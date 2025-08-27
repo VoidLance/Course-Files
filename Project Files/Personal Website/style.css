@@ -66,6 +66,7 @@ main {
 h2 {
     color: #2d6cdf;
     margin-bottom: 1rem;
+    font-size: 4rem;
 }
 
 ul {
@@ -80,6 +81,12 @@ a {
 
 a:hover {
     color: #1749a2;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    color: #333;
 }
 
 /* Footer styles */
