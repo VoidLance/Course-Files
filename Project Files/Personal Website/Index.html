@@ -20,7 +20,7 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I'm Alistair, a new software developer with a lot of varied experience, including creative writing, game design, 3d modelling, IT support, bar work and teaching. I love creating web applications and learning new technologies, and I have recently started a Software Development training course that promises to get me a job once I've finished the course, so I'm currently extremely excited about it. This website is just a local portfolio made for the course, so while it will improve with time as I progress through the course, my real portfolio website will always be <a href="alistairsweeting.online" target="_blank">here</a></p>
+        <p>Hello! I'm Alistair, a new software developer with a lot of varied experience, including creative writing, game design, 3d modelling, IT support, bar work and teaching. I love creating web applications and learning new technologies, and I have recently started a Software Development training course that promises to get me a job once I've finished the course, so I'm currently extremely excited about it. This website is just a local portfolio made for the course, so while it will improve with time as I progress through the course, my real portfolio website will always be <a href="https://alistairsweeting.online" target="_blank">here</a></p>
         <p>
             I have made the text on this page extremely, exceedingly large for now, because the links at the top go to the sections rather than other pages, and I don't have a lot of content to add yet, so I want to make sure that when you click the links, you can see that you've actually gone to a different section. This will be fixed in the future when I have more content to add.
         </p>
@@ -45,5 +45,26 @@
     <section id="contact">
         <h2>Contact</h2>
         <p>You can reach me at: <a href="mailto:alistair.m.sweeting@gmail.com">alistair.m.sweeting@gmail.com</a>
+</section>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">&#8679;</button>
+
 </body>
+<script>
+// Show/hide button on scroll
+window.onscroll = function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+};
+
+// Scroll to top on click
+document.getElementById('scrollTopBtn').onclick = function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+};
+</script>
 </html>
