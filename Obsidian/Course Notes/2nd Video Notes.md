@@ -1,0 +1,21 @@
+---
+banner: "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]"
+pixel-banner-flag-color: purple
+---
+- URL stands for Unique Resource Locator
+- Web browser uses Domain Name System to retrieve files from a server
+- JavaScript can interact with HTML and CSS, and dynamically change content
+- php is similar but interacts with server-side content
+- Node.js allows JavaScript to also be used on server-side
+- Data is stored in bits and bytes magnetically and then transferred using electrical signals. 
+- A bit is a digital (on/off) signal that can be represented by 0s and 1s or by light, or by anything that only has off and on states.
+- When data is transferred by fibre optic cable, for example, the cable transfers the bits by flashing light - light on = 1, light off = 0. 
+- A byte is 8 bits
+- A server is a computer that is configured to serve files to a network
+- When a request is made to access a domain, the web browser makes a request to all DNS servers to find which IP address the domain is registered to. Once the DNS server has returned the ip address, the web browser then makes a request to that IP address to send the requested file. (the target server will have its own rules for which file is sent and how based on the URL provided)
+- When a request is made to the domain, it is called an input or application request.
+- The DNS Resolver within the client is what makes the DNS request, sometimes through an ISP.
+- The DNS Server makes requests to Root NS servers, Top Level Domain NS servers, and Name NS servers.
+- Some files are executed on server-side and some are executed on client-side, and the code language and Filetype are indicators for which
+- Client-side files are files which the web browser has the functionality to read and implement the language correctly. They include HTML, CSS and JavaScript.
+- Information input by users on the client-side is stored on a database on the server.

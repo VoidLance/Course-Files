@@ -1,0 +1,28 @@
+{
+  "token": "jx9XjHw1XJpqCrP9ZzZ55CCjzxf5JD4jRAWLrl3FJsOZgyJoCw",
+  "readwiseDir": "Readwise",
+  "frequency": "0",
+  "triggerOnLoad": true,
+  "isSyncing": false,
+  "lastSyncFailed": false,
+  "lastSavedStatusID": 21825932,
+  "currentSyncStatusID": 0,
+  "refreshBooks": false,
+  "booksToRefresh": [],
+  "failedBooks": [],
+  "booksIDsMap": {
+    "Readwise/Books/Crown of Midnight.md": "33881624",
+    "Readwise/Books/Reading Like a Writer.md": "33881623",
+    "Readwise/Books/Free the Darkness.md": "33884648",
+    "Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": "33907074",
+    "Readwise/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": "33907074",
+    "Readwise/Books/Queen of Shadows.md": "39637535",
+    "Readwise/Articles/Developer's Block.md": "54457676",
+    "Readwise/Articles/Boredom of Certainty.md": "54457711",
+    "Readwise/Full Document Contents/Articles/Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG.md": "readerdocument:01hj5whczwtza3bz7g94tr1sw1",
+    "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md": "readerdocument:01hj5whcs8wckze32d0sm8rkvr",
+    "Readwise/Full Document Contents/Articles/Developer's Block.md": "readerdocument:01k3b47cxkefrq0d00me3xgnt6",
+    "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": "readerdocument:01hej9f82ep0wqvg6b01hjk15g"
+  },
+  "reimportShowConfirmation": true
+}
