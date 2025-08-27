@@ -36,8 +36,8 @@ header p {
 }
 
 /* Navigation styles */
-nav {
-}
+/* nav {
+} commenting out for cleanliness */ 
 nav ul {
     display: flex;
     justify-content: center;
