@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Module 2.md",
+                "file": "Course Notes/Module 3 - HTML and CSS.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Module 2"
+              "title": "Module 3 - HTML and CSS"
             }
           }
         ]
@@ -223,20 +223,20 @@
             "id": "3a306cbed2ab9f49",
             "type": "leaf",
             "state": {
-              "type": "BC-matrix",
+              "type": "empty",
               "state": {},
-              "icon": "BC-trail-icon",
-              "title": "Breadcrumbs Matrix"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
             "id": "7773f80cc6cff55d",
             "type": "leaf",
             "state": {
-              "type": "BC-tree",
+              "type": "empty",
               "state": {},
-              "icon": "feather-corner-right-down",
-              "title": "Breadcrumbs Down"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -258,9 +258,49 @@
               "icon": "file-digit",
               "title": "Strange New Worlds"
             }
+          },
+          {
+            "id": "2608cef52c6f3f23",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "0b15723afd828a76",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "3e4a860d7f3fdab7",
+            "type": "leaf",
+            "state": {
+              "type": "BC-matrix",
+              "state": {},
+              "icon": "BC-trail-icon",
+              "title": "Breadcrumbs Matrix"
+            }
+          },
+          {
+            "id": "b13a6d64c1bcba47",
+            "type": "leaf",
+            "state": {
+              "type": "BC-tree",
+              "state": {},
+              "icon": "feather-corner-right-down",
+              "title": "Breadcrumbs Down"
+            }
           }
         ],
-        "currentTab": 9
+        "currentTab": 15
       }
     ],
     "direction": "horizontal",
@@ -293,10 +333,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "7773f80cc6cff55d",
+  "active": "0d65f56057007388",
   "lastOpenFiles": [
-    "Course Notes/AI Tutor Notes.md",
     "Course Notes/Module 2.md",
+    "Course Notes/Module 3 - HTML and CSS.md",
+    "Course Notes/AI Tutor Notes.md",
     "Course Notes/2nd Video Notes.md",
     "Course Notes/1st Video Notes.md",
     "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg",

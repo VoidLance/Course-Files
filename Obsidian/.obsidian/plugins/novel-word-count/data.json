@@ -155,28 +155,28 @@
     "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
       "isCountable": true,
       "targetNodeType": "file",
-      "noteCount": 0,
-      "wordCount": 0,
+      "noteCount": 1,
+      "wordCount": 14965,
       "wordCountTowardGoal": 0,
-      "wordGoal": 0,
-      "pageCount": 0,
-      "characterCount": 0,
-      "nonWhitespaceCharacterCount": 0,
-      "newlineCount": 0,
-      "readingTimeInMinutes": 0,
-      "linkCount": 0,
+      "wordGoal": null,
+      "pageCount": 49.88333333333333,
+      "characterCount": 95030,
+      "nonWhitespaceCharacterCount": 79124,
+      "newlineCount": 1065,
+      "readingTimeInMinutes": 56.471698113207545,
+      "linkCount": 1,
       "embedCount": 0,
-      "aliases": [],
+      "aliases": null,
       "createdDate": 1756198928232,
       "modifiedDate": 1756198928233,
       "sizeInBytes": 95174,
       "sessionStart": {
-        "noteCount": 0,
-        "pageCount": 0,
-        "wordCount": 0,
-        "characterCount": 0,
-        "nonWhitespaceCharacterCount": 0,
-        "newlineCount": 0
+        "noteCount": 1,
+        "pageCount": 49.88333333333333,
+        "wordCount": 14965,
+        "characterCount": 95030,
+        "nonWhitespaceCharacterCount": 79124,
+        "newlineCount": 1065
       }
     },
     "Readwise/Full Document Contents/Articles/Developer's Block.md": {
@@ -233,33 +233,6 @@
         "newlineCount": 14
       }
     },
-    "Readwise/Books/Queen of Shadows.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 76,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.25333333333333335,
-      "characterCount": 818,
-      "nonWhitespaceCharacterCount": 715,
-      "newlineCount": 17,
-      "readingTimeInMinutes": 0.28679245283018867,
-      "linkCount": 1,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756198927953,
-      "modifiedDate": 1756198927954,
-      "sizeInBytes": 827,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.25333333333333335,
-        "wordCount": 76,
-        "characterCount": 818,
-        "nonWhitespaceCharacterCount": 715,
-        "newlineCount": 17
-      }
-    },
     "Readwise/Books/Reading Like a Writer.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -285,6 +258,33 @@
         "characterCount": 824,
         "nonWhitespaceCharacterCount": 720,
         "newlineCount": 18
+      }
+    },
+    "Readwise/Books/Queen of Shadows.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 76,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.25333333333333335,
+      "characterCount": 818,
+      "nonWhitespaceCharacterCount": 715,
+      "newlineCount": 17,
+      "readingTimeInMinutes": 0.28679245283018867,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756198927953,
+      "modifiedDate": 1756198927954,
+      "sizeInBytes": 827,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.25333333333333335,
+        "wordCount": 76,
+        "characterCount": 818,
+        "nonWhitespaceCharacterCount": 715,
+        "newlineCount": 17
       }
     },
     "Readwise/Books/Free the Darkness.md": {
@@ -574,6 +574,38 @@
         "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
         "banner-height": 450,
         "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Course Notes/Module 3 - HTML and CSS.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 709,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 2.3633333333333333,
+      "characterCount": 4459,
+      "nonWhitespaceCharacterCount": 3668,
+      "newlineCount": 64,
+      "readingTimeInMinutes": 2.6754716981132076,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756415719468,
+      "modifiedDate": 1756418630386,
+      "sizeInBytes": 4604,
+      "sessionStart": {
+        "noteCount": 0,
+        "pageCount": 0,
+        "wordCount": 0,
+        "characterCount": 0,
+        "nonWhitespaceCharacterCount": 0,
+        "newlineCount": 0
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple",
+        "banner-height": 580
       }
     }
   }
