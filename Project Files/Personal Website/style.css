@@ -17,11 +17,14 @@ body {
 header {
     background: #232336;
     color: #f3f3f3;
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
     text-align: center;
     box-shadow: 0 2px 8px rgba(45, 108, 223, 0.08);
-    border-bottom: 4px solid #43ea7c;
-    height:150px;
+    /* border-bottom: 4px solid #43ea7c; */
+    height: auto;
+    /* position: fixed; */
+    width:100%;
+    top: 0;
 }
 
 header h1 {
@@ -36,8 +39,17 @@ header p {
 }
 
 /* Navigation styles */
-/* nav {
-} commenting out for cleanliness */ 
+ nav {
+    background: #232336;
+    box-shadow: 0 1px 4px rgba(67, 234, 124, 0.10);
+    border-bottom: 3px solid #43ea7c;
+    padding: 10px 0;
+    position:fixed;
+    width:100%;
+    height:auto;
+    z-index: 1100;
+    top: 0px
+}
 nav ul {
     display: flex;
     justify-content: center;
@@ -53,7 +65,7 @@ nav li {
     box-shadow: 0 1px 4px rgba(67, 234, 124, 0.10);
     padding: 0.5rem 0;
     text-align: center;
-    border-bottom: 3px solid #43ea7c;
+    /* border-bottom: 3px solid #43ea7c; */
     margin-bottom:0px;
 }
 
@@ -62,12 +74,13 @@ nav a {
     text-decoration: none;
     margin: 0 1rem;
     font-weight: 600;
-    transition: color 0.2s;
+    transition: color 0.2s, border-bottom 0.5s;
     font-size: 2rem;
 }
 
 nav a:hover {
     color: #1749a2;
+    border-bottom: 3px solid #1749a2;
 }
 
 /* Main content styles */
@@ -87,6 +100,12 @@ main {
     box-shadow: 0 2px 16px rgba(106, 27, 154, 0.10);
     padding: 2rem 3vw;
 }
+
+#content {
+    margin-top: 120px; /* To offset fixed header */
+    position:relative;
+}
+
 section {
     max-width: 1800px;
     margin: 1rem auto;
@@ -94,6 +113,16 @@ section {
     border-radius: 20px;
     box-shadow: 0 5px 16px rgba(71, 66, 75, 0.1);
     padding: 1rem 2vw;
+    position:relative;
+    scroll-margin-top: 120px; /* Offset for fixed header */
+}
+
+section #about {
+    background: rgba(40, 0, 60, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 5px 16px rgba(71, 66, 75, 0.1);
+    padding: 1rem 2vw;
+    margin-top: 250px; /* To offset fixed header */
 }
 
 h2 {
