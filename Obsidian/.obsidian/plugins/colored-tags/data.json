@@ -11,7 +11,8 @@
   },
   "knownTags": {
     "books": 1,
-    "articles": 2
+    "articles": 2,
+    "fff": 3
   },
   "_version": 3
 }

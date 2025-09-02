@@ -67,3 +67,43 @@ Look up how to use Google fonts
 Will change the navlinks to white and add a black line underneath them when moused over.
 If we change the transition values, it will change how long the transition between states takes, and we can, for example, set the colour to change quicker than the border, like so:
 `transition: color 0.2s, border-bottom 0.6s;`
+
+- em/rem can be applied to font sizes.
+- em is relative based on the parent element
+- rem is relative to the root element (usually `<html>`)
+- In many browsers, the default font size is 16px, making both 1em and 1rem equal to 16px unless otherwise specified.
+- `border-radius` - adds bevel
+- Adding a box shadow can add some nice contrast and blending
+- ^ use this on portfolio - and also make sidebar 100% width on smaller screens
+- Line-height gives us spacing between lines in a paragraph
+- I think we can use border-radius to make a circle by the way
+- We can make an interesting underline by combining positioning within the box (using margin) and border-bottom (or for a basic underline just use text-decoration)
+- Add a `display:inline block` to limit the border to the size of the content
+- <b> makes text bold </b>
+- <strong>emphasizes text (and makes it bold) </strong>
+- <i>italicises text</i>
+- <em> is often also italicised, but also adds emphasis </em>
+- <span style="color: #32cd32;"> is used to contain text and accept CSS </span>
+- <small>small is another quick way to format and makes text smaller</small>
+- <mark>mark as in marker. It highlights text.</mark>
+- <del>del for delete</del> places a strikethrough
+- <ins>underlines text - note-taking code for inserting a passage</ins>
+- <sub>subscripts</sub>text
+- <sup>superscripts</sup>text
+- <blockquote cite="me">Testimonial-like block quotes</blockquote> must be formatted correctly and use citation. Use this to avoid being penalised in SEO for duplicated text
+- <q>q is another way to add a quote</q> but just adds quotation marks
+- `<br>` can be used within paragraphs
+- <abbr>NASA</abbr> <- put your cursor there to see - defines text as an abbreviation, which helps with SEO because spelling and grammar is important for SEO
+- <address>123 Address, <br>Address Road, <br>Address City,<br> ADD R355</address> Formats the text as an address. Can then be targeted with CSS
+- <cite>The Hobbit</cite> by JRR Tolkien. Here we are using the citation tag, which italicises and gives credibility using metadata
+- Everything inside <bdo dir="rtl">will be reversed</bdo> as it changes text direction
+- <code>Everything inside code tags will be formatted as code</code>
+- <kbd>Alt+S</kbd> formats and defines text as a keyboard shortcut
+- <samp>"Hello World!"</samp> Formats text to look like command line output
+- <var>italicises but also defines as a variable</var>
+- &lt; = < &pt; = >
+- The above are special characters known as 'entities'
+- &amp; = & &copy; = ©
+- Entities are pretty cool
+- &nbsp; = a non-breaking space - which helps with truncation as it inserts a space without breaking the text onto a new line
+- A full list of all entities is available online

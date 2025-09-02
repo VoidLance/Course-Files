@@ -11,10 +11,24 @@
             "id": "b6936eeb9817ad5a",
             "type": "leaf",
             "state": {
-              "type": "home-tab-view",
-              "state": {},
-              "icon": "search",
-              "title": "Home tab"
+              "type": "markdown",
+              "state": {
+                "file": "Course Notes/Module 3 - HTML and CSS.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Module 3 - HTML and CSS"
             }
           }
         ]
@@ -80,7 +94,8 @@
               "title": "File Tree"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -258,6 +273,26 @@
             "id": "3e4a860d7f3fdab7",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "b13a6d64c1bcba47",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "e3f55d33d00085e6",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -265,7 +300,7 @@
             }
           },
           {
-            "id": "b13a6d64c1bcba47",
+            "id": "b7740a75e57cbd8f",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -275,7 +310,7 @@
             }
           }
         ],
-        "currentTab": 15
+        "currentTab": 17
       }
     ],
     "direction": "horizontal",
@@ -308,8 +343,9 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "f2b158a58f8970bb",
+  "active": "b7740a75e57cbd8f",
   "lastOpenFiles": [
+    "Readwise/Full Document Contents/Articles/Your personal research assistant.md",
     "Tags/Tags.md",
     "AlistairsPortfolioGames.md",
     "Course Notes/Module 3 - HTML and CSS.md",

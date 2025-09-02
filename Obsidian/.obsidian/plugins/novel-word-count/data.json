@@ -449,6 +449,38 @@
         "newlineCount": 0
       }
     },
+    "Course Notes/Module 3 - HTML and CSS.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 1122,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 3.74,
+      "characterCount": 7298,
+      "nonWhitespaceCharacterCount": 6038,
+      "newlineCount": 106,
+      "readingTimeInMinutes": 4.233962264150944,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756415719468,
+      "modifiedDate": 1756562748629,
+      "sizeInBytes": 7444,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 2.4166666666666665,
+        "wordCount": 725,
+        "characterCount": 4563,
+        "nonWhitespaceCharacterCount": 3757,
+        "newlineCount": 65
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple",
+        "banner-height": 580
+      }
+    },
     "Course Notes/Module 2.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -478,69 +510,6 @@
       "frontmatter": {
         "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
         "banner-height": 590,
-        "pixel-banner-flag-color": "purple"
-      }
-    },
-    "Course Notes/AI Tutor Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 154,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.5133333333333333,
-      "characterCount": 1034,
-      "nonWhitespaceCharacterCount": 877,
-      "newlineCount": 13,
-      "readingTimeInMinutes": 0.5811320754716981,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756199015258,
-      "modifiedDate": 1756201670139,
-      "sizeInBytes": 1179,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.5133333333333333,
-        "wordCount": 154,
-        "characterCount": 1034,
-        "nonWhitespaceCharacterCount": 877,
-        "newlineCount": 13
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 620,
-        "pixel-banner-flag-color": "purple"
-      }
-    },
-    "Course Notes/2nd Video Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 316,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 1.0533333333333332,
-      "characterCount": 1816,
-      "nonWhitespaceCharacterCount": 1478,
-      "newlineCount": 18,
-      "readingTimeInMinutes": 1.1924528301886792,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756199766916,
-      "modifiedDate": 1756201620066,
-      "sizeInBytes": 1942,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 1.0533333333333332,
-        "wordCount": 316,
-        "characterCount": 1816,
-        "nonWhitespaceCharacterCount": 1478,
-        "newlineCount": 18
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
         "pixel-banner-flag-color": "purple"
       }
     },
@@ -576,24 +545,87 @@
         "pixel-banner-flag-color": "purple"
       }
     },
-    "Course Notes/Module 3 - HTML and CSS.md": {
+    "Course Notes/2nd Video Notes.md": {
       "isCountable": true,
       "targetNodeType": "file",
       "noteCount": 1,
-      "wordCount": 725,
+      "wordCount": 316,
       "wordCountTowardGoal": 0,
       "wordGoal": null,
-      "pageCount": 2.4166666666666665,
-      "characterCount": 4563,
-      "nonWhitespaceCharacterCount": 3757,
-      "newlineCount": 65,
-      "readingTimeInMinutes": 2.7358490566037736,
+      "pageCount": 1.0533333333333332,
+      "characterCount": 1816,
+      "nonWhitespaceCharacterCount": 1478,
+      "newlineCount": 18,
+      "readingTimeInMinutes": 1.1924528301886792,
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1756415719468,
-      "modifiedDate": 1756418687732,
-      "sizeInBytes": 4708,
+      "createdDate": 1756199766916,
+      "modifiedDate": 1756201620066,
+      "sizeInBytes": 1942,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 1.0533333333333332,
+        "wordCount": 316,
+        "characterCount": 1816,
+        "nonWhitespaceCharacterCount": 1478,
+        "newlineCount": 18
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Course Notes/AI Tutor Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 154,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.5133333333333333,
+      "characterCount": 1034,
+      "nonWhitespaceCharacterCount": 877,
+      "newlineCount": 13,
+      "readingTimeInMinutes": 0.5811320754716981,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756199015258,
+      "modifiedDate": 1756201670139,
+      "sizeInBytes": 1179,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.5133333333333333,
+        "wordCount": 154,
+        "characterCount": 1034,
+        "nonWhitespaceCharacterCount": 877,
+        "newlineCount": 13
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "banner-height": 620,
+        "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Readwise/Full Document Contents/Articles/Your personal research assistant.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 144,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.48,
+      "characterCount": 1352,
+      "nonWhitespaceCharacterCount": 1187,
+      "newlineCount": 26,
+      "readingTimeInMinutes": 0.5433962264150943,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756560785063,
+      "modifiedDate": 1756560785063,
+      "sizeInBytes": 1352,
       "sessionStart": {
         "noteCount": 0,
         "pageCount": 0,
@@ -601,11 +633,6 @@
         "characterCount": 0,
         "nonWhitespaceCharacterCount": 0,
         "newlineCount": 0
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "pixel-banner-flag-color": "purple",
-        "banner-height": 580
       }
     }
   }
