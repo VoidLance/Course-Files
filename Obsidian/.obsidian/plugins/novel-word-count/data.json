@@ -125,31 +125,58 @@
         "newlineCount": 41
       }
     },
-    "Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": {
+    "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md": {
       "isCountable": true,
       "targetNodeType": "file",
       "noteCount": 1,
-      "wordCount": 982,
+      "wordCount": 35,
       "wordCountTowardGoal": 0,
       "wordGoal": null,
-      "pageCount": 3.2733333333333334,
-      "characterCount": 8425,
-      "nonWhitespaceCharacterCount": 7387,
-      "newlineCount": 84,
-      "readingTimeInMinutes": 3.7056603773584906,
+      "pageCount": 0.11666666666666667,
+      "characterCount": 442,
+      "nonWhitespaceCharacterCount": 394,
+      "newlineCount": 14,
+      "readingTimeInMinutes": 0.1320754716981132,
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1756198927870,
-      "modifiedDate": 1756198927872,
-      "sizeInBytes": 8466,
+      "createdDate": 1756198928044,
+      "modifiedDate": 1756198928044,
+      "sizeInBytes": 442,
       "sessionStart": {
         "noteCount": 1,
-        "pageCount": 3.2733333333333334,
-        "wordCount": 982,
-        "characterCount": 8425,
-        "nonWhitespaceCharacterCount": 7387,
-        "newlineCount": 84
+        "pageCount": 0.11666666666666667,
+        "wordCount": 35,
+        "characterCount": 442,
+        "nonWhitespaceCharacterCount": 394,
+        "newlineCount": 14
+      }
+    },
+    "Readwise/Full Document Contents/Articles/Your personal research assistant.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 144,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.48,
+      "characterCount": 1352,
+      "nonWhitespaceCharacterCount": 1187,
+      "newlineCount": 26,
+      "readingTimeInMinutes": 0.5433962264150943,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756560785063,
+      "modifiedDate": 1756560785063,
+      "sizeInBytes": 1352,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.48,
+        "wordCount": 144,
+        "characterCount": 1352,
+        "nonWhitespaceCharacterCount": 1187,
+        "newlineCount": 26
       }
     },
     "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
@@ -206,31 +233,31 @@
         "newlineCount": 116
       }
     },
-    "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md": {
+    "Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": {
       "isCountable": true,
       "targetNodeType": "file",
       "noteCount": 1,
-      "wordCount": 35,
+      "wordCount": 982,
       "wordCountTowardGoal": 0,
       "wordGoal": null,
-      "pageCount": 0.11666666666666667,
-      "characterCount": 442,
-      "nonWhitespaceCharacterCount": 394,
-      "newlineCount": 14,
-      "readingTimeInMinutes": 0.1320754716981132,
+      "pageCount": 3.2733333333333334,
+      "characterCount": 8425,
+      "nonWhitespaceCharacterCount": 7387,
+      "newlineCount": 84,
+      "readingTimeInMinutes": 3.7056603773584906,
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1756198928044,
-      "modifiedDate": 1756198928044,
-      "sizeInBytes": 442,
+      "createdDate": 1756198927870,
+      "modifiedDate": 1756198927872,
+      "sizeInBytes": 8466,
       "sessionStart": {
         "noteCount": 1,
-        "pageCount": 0.11666666666666667,
-        "wordCount": 35,
-        "characterCount": 442,
-        "nonWhitespaceCharacterCount": 394,
-        "newlineCount": 14
+        "pageCount": 3.2733333333333334,
+        "wordCount": 982,
+        "characterCount": 8425,
+        "nonWhitespaceCharacterCount": 7387,
+        "newlineCount": 84
       }
     },
     "Readwise/Books/Reading Like a Writer.md": {
@@ -341,6 +368,33 @@
         "newlineCount": 13
       }
     },
+    "Readwise/Articles/Boredom of Certainty.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 79,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.2633333333333333,
+      "characterCount": 744,
+      "nonWhitespaceCharacterCount": 637,
+      "newlineCount": 18,
+      "readingTimeInMinutes": 0.2981132075471698,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756198927994,
+      "modifiedDate": 1756198927994,
+      "sizeInBytes": 746,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.2633333333333333,
+        "wordCount": 79,
+        "characterCount": 744,
+        "nonWhitespaceCharacterCount": 637,
+        "newlineCount": 18
+      }
+    },
     "Readwise/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -395,33 +449,6 @@
         "newlineCount": 13
       }
     },
-    "Readwise/Articles/Boredom of Certainty.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 79,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.2633333333333333,
-      "characterCount": 744,
-      "nonWhitespaceCharacterCount": 637,
-      "newlineCount": 18,
-      "readingTimeInMinutes": 0.2981132075471698,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756198927994,
-      "modifiedDate": 1756198927994,
-      "sizeInBytes": 746,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.2633333333333333,
-        "wordCount": 79,
-        "characterCount": 744,
-        "nonWhitespaceCharacterCount": 637,
-        "newlineCount": 18
-      }
-    },
     "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg": {
       "isCountable": false,
       "targetNodeType": "file",
@@ -447,38 +474,6 @@
         "characterCount": 0,
         "nonWhitespaceCharacterCount": 0,
         "newlineCount": 0
-      }
-    },
-    "Course Notes/Module 3 - HTML and CSS.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 1122,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 3.74,
-      "characterCount": 7298,
-      "nonWhitespaceCharacterCount": 6038,
-      "newlineCount": 106,
-      "readingTimeInMinutes": 4.233962264150944,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756415719468,
-      "modifiedDate": 1756562748629,
-      "sizeInBytes": 7444,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 2.4166666666666665,
-        "wordCount": 725,
-        "characterCount": 4563,
-        "nonWhitespaceCharacterCount": 3757,
-        "newlineCount": 65
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "pixel-banner-flag-color": "purple",
-        "banner-height": 580
       }
     },
     "Course Notes/Module 2.md": {
@@ -510,38 +505,6 @@
       "frontmatter": {
         "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
         "banner-height": 590,
-        "pixel-banner-flag-color": "purple"
-      }
-    },
-    "Course Notes/1st Video Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 75,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.25,
-      "characterCount": 441,
-      "nonWhitespaceCharacterCount": 358,
-      "newlineCount": 9,
-      "readingTimeInMinutes": 0.2830188679245283,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756199552727,
-      "modifiedDate": 1756201457306,
-      "sizeInBytes": 586,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.25,
-        "wordCount": 75,
-        "characterCount": 441,
-        "nonWhitespaceCharacterCount": 358,
-        "newlineCount": 9
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 450,
         "pixel-banner-flag-color": "purple"
       }
     },
@@ -608,24 +571,88 @@
         "pixel-banner-flag-color": "purple"
       }
     },
-    "Readwise/Full Document Contents/Articles/Your personal research assistant.md": {
+    "Course Notes/Module 3 - HTML and CSS.md": {
       "isCountable": true,
       "targetNodeType": "file",
       "noteCount": 1,
-      "wordCount": 144,
+      "wordCount": 1122,
       "wordCountTowardGoal": 0,
       "wordGoal": null,
-      "pageCount": 0.48,
-      "characterCount": 1352,
-      "nonWhitespaceCharacterCount": 1187,
-      "newlineCount": 26,
-      "readingTimeInMinutes": 0.5433962264150943,
-      "linkCount": 1,
+      "pageCount": 3.74,
+      "characterCount": 7298,
+      "nonWhitespaceCharacterCount": 6038,
+      "newlineCount": 106,
+      "readingTimeInMinutes": 4.233962264150944,
+      "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1756560785063,
-      "modifiedDate": 1756560785063,
-      "sizeInBytes": 1352,
+      "createdDate": 1756415719468,
+      "modifiedDate": 1756826402179,
+      "sizeInBytes": 7444,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 3.74,
+        "wordCount": 1122,
+        "characterCount": 7298,
+        "nonWhitespaceCharacterCount": 6038,
+        "newlineCount": 106
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple",
+        "banner-height": 580
+      }
+    },
+    "Course Notes/1st Video Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 75,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.25,
+      "characterCount": 441,
+      "nonWhitespaceCharacterCount": 358,
+      "newlineCount": 9,
+      "readingTimeInMinutes": 0.2830188679245283,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756199552727,
+      "modifiedDate": 1756201457306,
+      "sizeInBytes": 586,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.25,
+        "wordCount": 75,
+        "characterCount": 441,
+        "nonWhitespaceCharacterCount": 358,
+        "newlineCount": 9
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "banner-height": 450,
+        "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Course Notes/Personal Website Wireframe.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 177,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.59,
+      "characterCount": 1457,
+      "nonWhitespaceCharacterCount": 1190,
+      "newlineCount": 56,
+      "readingTimeInMinutes": 0.6679245283018868,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756819996482,
+      "modifiedDate": 1756820020136,
+      "sizeInBytes": 1457,
       "sessionStart": {
         "noteCount": 0,
         "pageCount": 0,

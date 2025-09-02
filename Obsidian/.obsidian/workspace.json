@@ -94,8 +94,7 @@
               "title": "File Tree"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -293,6 +292,26 @@
             "id": "e3f55d33d00085e6",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "b7740a75e57cbd8f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "8b347b89ebac58fd",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -300,7 +319,7 @@
             }
           },
           {
-            "id": "b7740a75e57cbd8f",
+            "id": "f40605fbf4bb2605",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -310,7 +329,7 @@
             }
           }
         ],
-        "currentTab": 17
+        "currentTab": 19
       }
     ],
     "direction": "horizontal",
@@ -343,12 +362,13 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b7740a75e57cbd8f",
+  "active": "b6936eeb9817ad5a",
   "lastOpenFiles": [
+    "Course Notes/Personal Website Wireframe.md",
+    "Course Notes/Module 3 - HTML and CSS.md",
     "Readwise/Full Document Contents/Articles/Your personal research assistant.md",
     "Tags/Tags.md",
     "AlistairsPortfolioGames.md",
-    "Course Notes/Module 3 - HTML and CSS.md",
     "Course Notes/Module 2.md",
     "Course Notes/AI Tutor Notes.md",
     "Course Notes/2nd Video Notes.md",

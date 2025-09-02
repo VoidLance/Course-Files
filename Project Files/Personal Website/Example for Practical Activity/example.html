@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>My Enhanced Website</title>
+                <style>
+                        /* We'll add CSS here later apparently */
+                        /* basic reset */
+                        * {
+                              margin: 0;
+                              padding: 0;
+                              box-sizing: border-box;
+                        }
+
+                        body {
+                              font-family: Arial, sans-serif;
+                              line-height: 1.6;
+                              background-color: #f4f4f4;
+                        }
+                        /* Navigation Styling */
+                        .nav-container {
+                              background-color: #333;
+                              padding: 1rem 0;
+                              position: sticky;
+                              top: 0;
+                        }
+
+                        .main-nav ul {
+                              list-style: none;
+                              display: flex;
+                              justify-content: center;
+                              gap: 2rem;
+                        }
+
+                        .main-nav a {
+                              color: white;
+                              text-decoration: none;
+                              padding: 0.5rem 1rem;
+                              transition: color 0.3s ease;
+                        }
+
+                        .main-nav a:hover {
+                              color: #ffd700;
+                        }
+
+                        /* Header Styling */
+                        .header {
+                              text-align: center;
+                              padding: 3rem 1rem;
+                              background-color: #fff;
+                              margin-bottom: 2rem;
+                        }
+
+                        .header h1 {
+                              color: #333;
+                              font-size: 2.5rem;
+                              margin-bottom: 1rem;
+                        }
+
+                        .subtitle {
+                              color: #666;
+                              font-size: 1.2rem;
+                        }
+
+                        /* main content styling */
+                        .main-content {
+                              max-width: 800px;
+                              margin: 0 auto;
+                              padding: 0 1rem;
+                              scroll-margin: 2rem;
+                        }
+
+                        .about-section, .services-section, .contact-section {
+                              background: white;
+                              padding: 2rem;
+                              margin-bottom: 2rem;
+                              border-radius: 8px;
+                              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                              scroll-margin-top: 4rem;
+                        }
+
+                        .practice-exercises {
+                              background: white;
+                              padding: 2rem;
+                              margin-bottom: 2rem;
+                              border-radius: 8px;
+                              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                              text-align: center;
+                              scroll-margin-top: 4rem;
+                        }
+
+                        .section {
+                              font-size: 1.2em;
+                              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.233);
+                        }
+
+                        .underlined {
+                              text-decoration: underline;
+                        }
+
+                        .strikethrough {
+                              text-decoration: line-through;
+                        }
+
+                        .right-align {
+                              text-align: right;
+                        }
+
+                        .experiment {
+                              font-family: 'Courier New', Courier, monospace;
+                              font-size: 1.2em;
+                              font-style: italic;
+                              color: #666;
+                              display: grid;
+                              grid-template-columns: 1fr;
+                              gap: 1rem;
+                              /* Add any additional styling for the experiment section here */
+                        }
+
+                        h2 {
+                              color: #333;
+                              margin-bottom: 1rem;
+                              font-size: 1.8rem;
+                        }
+
+                        /* Text Formatting */
+                        .highlight {
+                              background-color: #ffd700;
+                              padding: 0.2rem 0.5rem;
+                              border-radius: 4px;
+                        }
+
+                        em {
+                              color: #666;
+                              font-style: italic;
+                        }
+
+                        .email {
+                              color: #0066cc;
+                              font-weight: bold;
+                        }
+
+                        /* Footer Styling */
+                        .footer {
+                              text-align: center;
+                              padding: 2rem;
+                              background-color: white;
+                              margin-top: 2rem;
+                        }
+                </style>
+        </head>
+        <body>
+                <!-- Navigation Section -->
+                 <div class="nav-container">
+                        <nav class="main-nav">
+                                <ul>
+                                        <li><a href="#home">Home</a></li>
+                                        <li><a href="#about">About</a></li>
+                                        <li><a href="#services">Services</a></li>
+                                        <li><a href="#contact">Contact</a></li>
+                                          <li><a href="#practice-exercises">Practice Exercises</a></li>
+                                </ul>
+                        </nav>
+                 </div>
+                 <!-- Header Section -->
+                  <div class="header" id="home">
+                        <h1>Welcome to My Website</h1>
+                        <p class="subtitle">Learning <em>HTML</em> and <em>CSS</em></p>
+                  </div>
+
+                  <!-- Main Content Section -->
+                  <div class="main-content">
+                        <div class="about-section" id="about">
+                              <h2>About US</h2>
+                              <p>Welcome to our website! Here you'll find <span style="font-size: 1.2em;">amazing content</span> about webdevelopment.</p>
+                        </div>
+                        <div class="services-section" id="services">
+                              <h2>Our Services</h2>
+                              <p>We specialize in:</p>
+                              <ul>
+                                    <li>Web Design</li>
+                                    <li>Content Creation</li>
+                                    <li>Digital Marketing</li>
+                              </ul>
+                        </div>
+                        <div class="contact-section" id="contact">
+                              <h2>Contact Us</h2>
+                              <p>Get in touch: <span class="email">info@example.com</span></p>
+                        </div>
+
+                        <!-- Practice Exercises -->
+                        <section class="practice-exercises" id="practice-exercises">
+                              <h3>Practice Exercises</h3>
+                              <p>This <span class="section">section</span> is for enacting the practice skills portion of the practical activity whereby this html document was made. It will use all the CSS styling that was requested by the activity. This includes <span class="underlined">underlined text</span> and <span class="strikethrough">strikethrough text</span>.</p>
+                              <p class="right-align">And I may very well just add a bunch of my own stuff in here if I feel like it.</p>
+                              <p class="experiment">Because I know quite a bit more CSS than they're asking me to use so far
+                                    <code>Like for example: <br>
+                                          .experiment {
+                                                font-family: 'Courier New', Courier, monospace;
+                                                font-size: 1.2em;
+                                                font-style: italic;
+                                                color: #666;
+                                                display: grid;
+                                                grid-template-columns: 1fr;
+                                                gap: 1rem;
+                                          }
+                                    </code>
+                              </p>
+                        </section>
+
+                        <!-- Footer Section -->
+                        <div class="footer">
+                                <p>&copy; 2024 My Enhanced Website</p>
+                  </div>
+        </body>
+        </html>

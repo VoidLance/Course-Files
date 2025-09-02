@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
+
+
+.asul-regular {
+    font-family: "Asul", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.asul-bold {
+    font-family: "Asul", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* Reset some default styles */
 body, h1, h2, h3, p, ul {
     margin: 0;
@@ -5,8 +20,13 @@ body, h1, h2, h3, p, ul {
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: Asul;
+    src: url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Asul', '3270 Nerd Font', 'Courier New', Courier, monospace, sans-serif;
     margin: 0;
     padding: 0;
     background: #181820;
@@ -141,6 +161,13 @@ ul {
 a {
     color: #2d6cdf;
     text-decoration: underline;
+}
+
+a:hover {
+    color: #1749a2;
+    text-shadow: 0 0 8px #43ea7c;
+    text-decoration-color: #3bcde7d3;
+    text-decoration-style: dotted;
 }
 
 #scrollTopBtn {

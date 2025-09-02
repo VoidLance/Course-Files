@@ -101,7 +101,7 @@ If we change the transition values, it will change how long the transition betwe
 - <kbd>Alt+S</kbd> formats and defines text as a keyboard shortcut
 - <samp>"Hello World!"</samp> Formats text to look like command line output
 - <var>italicises but also defines as a variable</var>
-- &lt; = < &pt; = >
+- &lt; = < &gt; = >
 - The above are special characters known as 'entities'
 - &amp; = & &copy; = ©
 - Entities are pretty cool
