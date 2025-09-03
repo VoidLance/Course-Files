@@ -213,5 +213,13 @@
                         <div class="footer">
                                 <p>&copy; 2024 My Enhanced Website</p>
                   </div>
-        </body>
+      <div id="footer-container"></div>
+      <script>
+            fetch('../../../6fac0334-6350-44d1-ae7f-bf700708d76c/footer.html')
+                  .then(response => response.text())
+                  .then(data => {
+                        document.getElementById('footer-container').innerHTML = data;
+                  });
+      </script>
+      </body>
         </html>

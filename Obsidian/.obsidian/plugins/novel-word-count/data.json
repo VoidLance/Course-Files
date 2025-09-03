@@ -71,58 +71,28 @@
     "Tags/Tags.md": {
       "isCountable": true,
       "targetNodeType": "file",
-      "noteCount": 1,
+      "noteCount": 0,
       "wordCount": 0,
       "wordCountTowardGoal": 0,
-      "wordGoal": null,
+      "wordGoal": 0,
       "pageCount": 0,
-      "characterCount": 1,
+      "characterCount": 0,
       "nonWhitespaceCharacterCount": 0,
-      "newlineCount": 2,
+      "newlineCount": 0,
       "readingTimeInMinutes": 0,
       "linkCount": 0,
       "embedCount": 0,
-      "aliases": null,
+      "aliases": [],
       "createdDate": 1756200884893,
       "modifiedDate": 1756200884911,
       "sizeInBytes": 37,
       "sessionStart": {
-        "noteCount": 1,
+        "noteCount": 0,
         "pageCount": 0,
         "wordCount": 0,
-        "characterCount": 1,
+        "characterCount": 0,
         "nonWhitespaceCharacterCount": 0,
-        "newlineCount": 2
-      },
-      "frontmatter": {
-        "color": "var(--mk-color-green)"
-      }
-    },
-    "Readwise/Full Document Contents/Articles/Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 804,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 2.68,
-      "characterCount": 5543,
-      "nonWhitespaceCharacterCount": 4714,
-      "newlineCount": 41,
-      "readingTimeInMinutes": 3.0339622641509436,
-      "linkCount": 1,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756198928014,
-      "modifiedDate": 1756198928015,
-      "sizeInBytes": 5617,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 2.68,
-        "wordCount": 804,
-        "characterCount": 5543,
-        "nonWhitespaceCharacterCount": 4714,
-        "newlineCount": 41
+        "newlineCount": 0
       }
     },
     "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md": {
@@ -152,60 +122,6 @@
         "newlineCount": 14
       }
     },
-    "Readwise/Full Document Contents/Articles/Your personal research assistant.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 144,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.48,
-      "characterCount": 1352,
-      "nonWhitespaceCharacterCount": 1187,
-      "newlineCount": 26,
-      "readingTimeInMinutes": 0.5433962264150943,
-      "linkCount": 1,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756560785063,
-      "modifiedDate": 1756560785063,
-      "sizeInBytes": 1352,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.48,
-        "wordCount": 144,
-        "characterCount": 1352,
-        "nonWhitespaceCharacterCount": 1187,
-        "newlineCount": 26
-      }
-    },
-    "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 14965,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 49.88333333333333,
-      "characterCount": 95030,
-      "nonWhitespaceCharacterCount": 79124,
-      "newlineCount": 1065,
-      "readingTimeInMinutes": 56.471698113207545,
-      "linkCount": 1,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756198928232,
-      "modifiedDate": 1756198928233,
-      "sizeInBytes": 95174,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 49.88333333333333,
-        "wordCount": 14965,
-        "characterCount": 95030,
-        "nonWhitespaceCharacterCount": 79124,
-        "newlineCount": 1065
-      }
-    },
     "Readwise/Full Document Contents/Articles/Developer's Block.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -233,6 +149,60 @@
         "newlineCount": 116
       }
     },
+    "Readwise/Full Document Contents/Articles/Your personal research assistant.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 144,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.48,
+      "characterCount": 1352,
+      "nonWhitespaceCharacterCount": 1187,
+      "newlineCount": 26,
+      "readingTimeInMinutes": 0.5433962264150943,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756560785063,
+      "modifiedDate": 1756560785063,
+      "sizeInBytes": 1352,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.48,
+        "wordCount": 144,
+        "characterCount": 1352,
+        "nonWhitespaceCharacterCount": 1187,
+        "newlineCount": 26
+      }
+    },
+    "Readwise/Full Document Contents/Articles/Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 804,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 2.68,
+      "characterCount": 5543,
+      "nonWhitespaceCharacterCount": 4714,
+      "newlineCount": 41,
+      "readingTimeInMinutes": 3.0339622641509436,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756198928014,
+      "modifiedDate": 1756198928015,
+      "sizeInBytes": 5617,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 2.68,
+        "wordCount": 804,
+        "characterCount": 5543,
+        "nonWhitespaceCharacterCount": 4714,
+        "newlineCount": 41
+      }
+    },
     "Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -258,6 +228,33 @@
         "characterCount": 8425,
         "nonWhitespaceCharacterCount": 7387,
         "newlineCount": 84
+      }
+    },
+    "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 0,
+      "wordCount": 0,
+      "wordCountTowardGoal": 0,
+      "wordGoal": 0,
+      "pageCount": 0,
+      "characterCount": 0,
+      "nonWhitespaceCharacterCount": 0,
+      "newlineCount": 0,
+      "readingTimeInMinutes": 0,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": [],
+      "createdDate": 1756198928232,
+      "modifiedDate": 1756198928233,
+      "sizeInBytes": 95174,
+      "sessionStart": {
+        "noteCount": 0,
+        "pageCount": 0,
+        "wordCount": 0,
+        "characterCount": 0,
+        "nonWhitespaceCharacterCount": 0,
+        "newlineCount": 0
       }
     },
     "Readwise/Books/Reading Like a Writer.md": {
@@ -368,33 +365,6 @@
         "newlineCount": 13
       }
     },
-    "Readwise/Articles/Boredom of Certainty.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 79,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.2633333333333333,
-      "characterCount": 744,
-      "nonWhitespaceCharacterCount": 637,
-      "newlineCount": 18,
-      "readingTimeInMinutes": 0.2981132075471698,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756198927994,
-      "modifiedDate": 1756198927994,
-      "sizeInBytes": 746,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.2633333333333333,
-        "wordCount": 79,
-        "characterCount": 744,
-        "nonWhitespaceCharacterCount": 637,
-        "newlineCount": 18
-      }
-    },
     "Readwise/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md": {
       "isCountable": true,
       "targetNodeType": "file",
@@ -449,6 +419,33 @@
         "newlineCount": 13
       }
     },
+    "Readwise/Articles/Boredom of Certainty.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 79,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.2633333333333333,
+      "characterCount": 744,
+      "nonWhitespaceCharacterCount": 637,
+      "newlineCount": 18,
+      "readingTimeInMinutes": 0.2981132075471698,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756198927994,
+      "modifiedDate": 1756198927994,
+      "sizeInBytes": 746,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.2633333333333333,
+        "wordCount": 79,
+        "characterCount": 744,
+        "nonWhitespaceCharacterCount": 637,
+        "newlineCount": 18
+      }
+    },
     "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg": {
       "isCountable": false,
       "targetNodeType": "file",
@@ -474,101 +471,6 @@
         "characterCount": 0,
         "nonWhitespaceCharacterCount": 0,
         "newlineCount": 0
-      }
-    },
-    "Course Notes/Module 2.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 580,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 1.9333333333333333,
-      "characterCount": 3470,
-      "nonWhitespaceCharacterCount": 2833,
-      "newlineCount": 57,
-      "readingTimeInMinutes": 2.188679245283019,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756223144765,
-      "modifiedDate": 1756310419953,
-      "sizeInBytes": 3615,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 1.9333333333333333,
-        "wordCount": 580,
-        "characterCount": 3470,
-        "nonWhitespaceCharacterCount": 2833,
-        "newlineCount": 57
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 590,
-        "pixel-banner-flag-color": "purple"
-      }
-    },
-    "Course Notes/2nd Video Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 316,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 1.0533333333333332,
-      "characterCount": 1816,
-      "nonWhitespaceCharacterCount": 1478,
-      "newlineCount": 18,
-      "readingTimeInMinutes": 1.1924528301886792,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756199766916,
-      "modifiedDate": 1756201620066,
-      "sizeInBytes": 1942,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 1.0533333333333332,
-        "wordCount": 316,
-        "characterCount": 1816,
-        "nonWhitespaceCharacterCount": 1478,
-        "newlineCount": 18
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "pixel-banner-flag-color": "purple"
-      }
-    },
-    "Course Notes/AI Tutor Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 154,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.5133333333333333,
-      "characterCount": 1034,
-      "nonWhitespaceCharacterCount": 877,
-      "newlineCount": 13,
-      "readingTimeInMinutes": 0.5811320754716981,
-      "linkCount": 0,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1756199015258,
-      "modifiedDate": 1756201670139,
-      "sizeInBytes": 1179,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.5133333333333333,
-        "wordCount": 154,
-        "characterCount": 1034,
-        "nonWhitespaceCharacterCount": 877,
-        "newlineCount": 13
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 620,
-        "pixel-banner-flag-color": "purple"
       }
     },
     "Course Notes/Module 3 - HTML and CSS.md": {
@@ -603,36 +505,63 @@
         "banner-height": 580
       }
     },
-    "Course Notes/1st Video Notes.md": {
+    "Course Notes/Module 2.md": {
       "isCountable": true,
       "targetNodeType": "file",
       "noteCount": 1,
-      "wordCount": 75,
+      "wordCount": 580,
       "wordCountTowardGoal": 0,
       "wordGoal": null,
-      "pageCount": 0.25,
-      "characterCount": 441,
-      "nonWhitespaceCharacterCount": 358,
-      "newlineCount": 9,
-      "readingTimeInMinutes": 0.2830188679245283,
+      "pageCount": 1.9333333333333333,
+      "characterCount": 3470,
+      "nonWhitespaceCharacterCount": 2833,
+      "newlineCount": 57,
+      "readingTimeInMinutes": 2.188679245283019,
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1756199552727,
-      "modifiedDate": 1756201457306,
-      "sizeInBytes": 586,
+      "createdDate": 1756223144765,
+      "modifiedDate": 1756310419953,
+      "sizeInBytes": 3615,
       "sessionStart": {
         "noteCount": 1,
-        "pageCount": 0.25,
-        "wordCount": 75,
-        "characterCount": 441,
-        "nonWhitespaceCharacterCount": 358,
-        "newlineCount": 9
+        "pageCount": 1.9333333333333333,
+        "wordCount": 580,
+        "characterCount": 3470,
+        "nonWhitespaceCharacterCount": 2833,
+        "newlineCount": 57
       },
       "frontmatter": {
         "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 450,
+        "banner-height": 590,
         "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Course Notes/Semantic Elements.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 295,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.9833333333333333,
+      "characterCount": 1816,
+      "nonWhitespaceCharacterCount": 1500,
+      "newlineCount": 17,
+      "readingTimeInMinutes": 1.1132075471698113,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756847320603,
+      "modifiedDate": 1756848273837,
+      "sizeInBytes": 1816,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.9833333333333333,
+        "wordCount": 295,
+        "characterCount": 1816,
+        "nonWhitespaceCharacterCount": 1500,
+        "newlineCount": 17
       }
     },
     "Course Notes/Personal Website Wireframe.md": {
@@ -654,12 +583,124 @@
       "modifiedDate": 1756820020136,
       "sizeInBytes": 1457,
       "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.59,
+        "wordCount": 177,
+        "characterCount": 1457,
+        "nonWhitespaceCharacterCount": 1190,
+        "newlineCount": 56
+      }
+    },
+    "Course Notes/AI Tutor Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 0,
+      "wordCount": 0,
+      "wordCountTowardGoal": 0,
+      "wordGoal": 0,
+      "pageCount": 0,
+      "characterCount": 0,
+      "nonWhitespaceCharacterCount": 0,
+      "newlineCount": 0,
+      "readingTimeInMinutes": 0,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": [],
+      "createdDate": 1756199015258,
+      "modifiedDate": 1756201670139,
+      "sizeInBytes": 1179,
+      "sessionStart": {
         "noteCount": 0,
         "pageCount": 0,
         "wordCount": 0,
         "characterCount": 0,
         "nonWhitespaceCharacterCount": 0,
         "newlineCount": 0
+      }
+    },
+    "Course Notes/1st Video Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 0,
+      "wordCount": 0,
+      "wordCountTowardGoal": 0,
+      "wordGoal": 0,
+      "pageCount": 0,
+      "characterCount": 0,
+      "nonWhitespaceCharacterCount": 0,
+      "newlineCount": 0,
+      "readingTimeInMinutes": 0,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": [],
+      "createdDate": 1756199552727,
+      "modifiedDate": 1756201457306,
+      "sizeInBytes": 586,
+      "sessionStart": {
+        "noteCount": 0,
+        "pageCount": 0,
+        "wordCount": 0,
+        "characterCount": 0,
+        "nonWhitespaceCharacterCount": 0,
+        "newlineCount": 0
+      }
+    },
+    "Course Notes/Display and Layout of HTML Elements.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 726,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 2.42,
+      "characterCount": 4352,
+      "nonWhitespaceCharacterCount": 3559,
+      "newlineCount": 63,
+      "readingTimeInMinutes": 2.739622641509434,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756848278468,
+      "modifiedDate": 1756850161575,
+      "sizeInBytes": 4352,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 2.42,
+        "wordCount": 726,
+        "characterCount": 4352,
+        "nonWhitespaceCharacterCount": 3559,
+        "newlineCount": 63
+      }
+    },
+    "Course Notes/2nd Video Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 316,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 1.0533333333333332,
+      "characterCount": 1816,
+      "nonWhitespaceCharacterCount": 1478,
+      "newlineCount": 18,
+      "readingTimeInMinutes": 1.1924528301886792,
+      "linkCount": 0,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1756199766916,
+      "modifiedDate": 1756201620066,
+      "sizeInBytes": 1942,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 1.0533333333333332,
+        "wordCount": 316,
+        "characterCount": 1816,
+        "nonWhitespaceCharacterCount": 1478,
+        "newlineCount": 18
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple"
       }
     }
   }

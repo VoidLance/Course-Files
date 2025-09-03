@@ -83,16 +83,6 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
-          },
-          {
-            "id": "2456ce3d548454db",
-            "type": "leaf",
-            "state": {
-              "type": "file-tree-view",
-              "state": {},
-              "icon": "sheets-in-box",
-              "title": "File Tree"
-            }
           }
         ]
       }
@@ -312,6 +302,26 @@
             "id": "8b347b89ebac58fd",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "f40605fbf4bb2605",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "a0604b8db7440eee",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -319,7 +329,7 @@
             }
           },
           {
-            "id": "f40605fbf4bb2605",
+            "id": "961609b403871135",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -329,7 +339,7 @@
             }
           }
         ],
-        "currentTab": 19
+        "currentTab": 21
       }
     ],
     "direction": "horizontal",
@@ -364,8 +374,10 @@
   },
   "active": "b6936eeb9817ad5a",
   "lastOpenFiles": [
-    "Course Notes/Personal Website Wireframe.md",
+    "Course Notes/Display and Layout of HTML Elements.md",
+    "Course Notes/Semantic Elements.md",
     "Course Notes/Module 3 - HTML and CSS.md",
+    "Course Notes/Personal Website Wireframe.md",
     "Readwise/Full Document Contents/Articles/Your personal research assistant.md",
     "Tags/Tags.md",
     "AlistairsPortfolioGames.md",
@@ -396,7 +408,6 @@
     "Readwise/Full Document Contents",
     "Readwise/Books/Free the Darkness.md",
     "Readwise/Books/Reading Like a Writer.md",
-    "Readwise/Books/Crown of Midnight.md",
     "Readwise/Books",
     "Readwise"
   ]
