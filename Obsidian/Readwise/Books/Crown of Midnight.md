@@ -1,7 +1,7 @@
 # Crown of Midnight
 
 ![rw-book-cover](https://images-na.ssl-images-amazon.com/images/I/51EuQmgLVrL._SL200_.jpg)
-
+#writing 
 ## Metadata
 - Author: [[Sarah J. Maas]]
 - Full Title: Crown of Midnight

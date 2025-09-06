@@ -1,7 +1,7 @@
 # Queen of Shadows
 
 ![rw-book-cover](https://images-na.ssl-images-amazon.com/images/I/51oNS8OSWnL._SL200_.jpg)
-
+#writing 
 ## Metadata
 - Author: [[Sarah J. Maas]]
 - Full Title: Queen of Shadows

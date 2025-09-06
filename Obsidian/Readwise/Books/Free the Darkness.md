@@ -1,7 +1,7 @@
 # Free the Darkness
 
 ![rw-book-cover](https://images-na.ssl-images-amazon.com/images/I/51-v5wibKDL._SL200_.jpg)
-
+#writing 
 ## Metadata
 - Author: [[Kel Kade]]
 - Full Title: Free the Darkness

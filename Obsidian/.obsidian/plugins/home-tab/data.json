@@ -24,12 +24,24 @@
   "unresolvedLinks": false,
   "recentFilesStore": [
     {
-      "filepath": "Course Notes/Module 3 - HTML and CSS.md",
-      "timestamp": 1756899564437
+      "filepath": "Course Notes/AI Tutor Notes.md",
+      "timestamp": 1756902078919
+    },
+    {
+      "filepath": "Tags/Tags.md",
+      "timestamp": 1756901827659
+    },
+    {
+      "filepath": "Course Notes/1st Video Notes.md",
+      "timestamp": 1756901816410
+    },
+    {
+      "filepath": "Course Notes/2nd Video Notes.md",
+      "timestamp": 1756901810534
     },
     {
       "filepath": "Course Notes/Display and Layout of HTML Elements.md",
-      "timestamp": 1756899523976
+      "timestamp": 1756901791274
     }
   ],
   "bookmarkedFileStore": [],

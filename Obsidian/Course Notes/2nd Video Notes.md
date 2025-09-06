@@ -19,3 +19,7 @@ pixel-banner-flag-color: purple
 - Some files are executed on server-side and some are executed on client-side, and the code language and Filetype are indicators for which
 - Client-side files are files which the web browser has the functionality to read and implement the language correctly. They include HTML, CSS and JavaScript.
 - Information input by users on the client-side is stored on a database on the server.
+
+[[Display and layout of HTML elements]] is extremely important
+
+#software-development 

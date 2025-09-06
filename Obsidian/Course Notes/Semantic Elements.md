@@ -13,5 +13,10 @@ Semantic elements are html elements that give other elements meaning. They inclu
 	- It is possible, though very rare, to have more than one footer
 - `<aside>` is content that is indirectly or tangentially related to the surrounding content, and is usually positioned to the side of that content
 - `<figure> <figcaption>` is used to define a demonstrative or diagrammatical figure, and to caption it
-	- Where caption is a property for a standard `<img>` tag, `<figcaption>` is a separate element that is included inside `<figure></figure>` element tags.
-	- `<img>` tags are also still required inside `<figure>` tags in order to add the relevant image
+	- Where caption is a property for a standard `<img>` tag, `<figcaption>` is a separate element that is included inside `<figure></figure>` element [[tags]].
+	- `<img>` [[tags]] are also still required inside `<figure>` [[tags]] in order to add the relevant image
+
+
+[[Display and layout of HTML elements]] is extremely important
+
+#software-development 

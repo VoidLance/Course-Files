@@ -1,13 +1,13 @@
-# Developer's Block
+# [[Readwise/Articles/Developer's Block|Developer's Block]]
 
 ![rw-book-cover](https://news.ycombinator.com/y18.svg)
-
+#software-development
 ## Metadata
 - Author: [[Hacker News]]
-- Full Title: Developer's Block
+- Full Title: [[Readwise/Articles/Developer's Block|Developer's Block]]
 - Category: #articles
 - Document Note: This will be very useful
-- Summary: Developer's block happens when coding feels stuck, either starting a new project or working on an existing one. It can be caused by trying to do too much at once, feeling overwhelmed, or losing motivation. To get unblocked, take small steps, learn gradually, avoid over-optimizing early, and release your work often.
+- Summary: [[Readwise/Articles/Developer's Block|Developer's block]] happens when coding feels stuck, either starting a new project or working on an existing one. It can be caused by trying to do too much at once, feeling overwhelmed, or losing motivation. To get unblocked, take small steps, learn gradually, avoid over-optimizing early, and release your work often.
 - URL: https://underlap.org/developers-block/
 
 ## Full Document

@@ -12,7 +12,10 @@
   "knownTags": {
     "books": 1,
     "articles": 2,
-    "fff": 3
+    "fff": 3,
+    "games": 4,
+    "software-development": 5,
+    "writing": 6
   },
   "_version": 3
 }

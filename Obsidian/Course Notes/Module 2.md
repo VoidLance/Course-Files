@@ -7,9 +7,9 @@ pixel-banner-flag-color: purple
 - (note to find the best code editor for Chromebook)
 - Doctype html sets which version of html to use.
 - we want to use the latest (html5) declaration which is `<!DOCTYPE html>`
-- `<html>` tags define the root element of the document. 
-- Everything inside `<html>` tags is "nesting", or nested within the tags.
-- When you create `<html>` tags, you are informing the page that this is the root html element.
+- `<html>` [[tags]] define the root element of the document. 
+- Everything inside `<html>` [[tags]] is "nesting", or nested within the [[tags]].
+- When you create `<html>` [[tags]], you are informing the page that this is the root html element.
 - There should be nothing after the `</html>` element, and the only thing that should be before the `<html>` tag is the` <!DOCTYPE html>` tag.
 - An html document does not see spaces.
 - `<head></head> and <body></body>` are two crucial elements for all html documents.
@@ -19,7 +19,7 @@ pixel-banner-flag-color: purple
 	- `<title>title of the page</title>`
 - `</head>`
 - `<body>`
-	- text goes in as text, other elements go in as tags
+	- text goes in as text, other elements go in as [[tags]]
 - `</body>`
 
 - Placeholder text should be used to show what a page design looks like with text in it, particularly for showing to clients.
@@ -40,7 +40,7 @@ style="Height:500px;"
 - Hyperlinks allow users to send emails
 - `<a>` is for Anchor
 - href is for Hypertext Reference
-- to turn an image into a link, wrap the `<img>` tag inside `<a></a>` tags
+- to turn an image into a link, wrap the `<img>` tag inside `<a></a>` [[tags]]
 - email attribute: "mailto:example@email.com"
 - Add a horizontal line: `<hr>`
 - CSS can format the layout of webpages and the spacing between html elements.
@@ -59,3 +59,9 @@ style="Height:500px;"
 - ID can be used for other things such as within JavaScript.
 - `<link rel="stylesheet" href="style.css">`
 - `<script>` is the tag used to begin JavaScript within an html document
+
+[[Display and layout of HTML elements]] is extremely important
+
+This also links to [[Module 3 - HTML and CSS]]
+
+#software-development 

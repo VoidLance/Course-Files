@@ -1,7 +1,7 @@
 # Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG
 
 ![rw-book-cover](https://imgix.bustle.com/uploads/image/2023/11/2/1d62c1a9-4c29-4023-b3aa-7e7643c59b07-wartales-header.JPG?w=1200&h=630&fit=crop&crop=faces&fm=jpg)
-
+#games
 ## Metadata
 - Author: [[Mo Mozuch]]
 - Full Title: Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG

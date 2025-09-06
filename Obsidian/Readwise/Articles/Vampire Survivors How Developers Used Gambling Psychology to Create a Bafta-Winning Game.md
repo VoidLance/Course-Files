@@ -1,7 +1,7 @@
 # Vampire Survivors: How Developers Used Gambling Psychology to Create a Bafta-Winning Game
 
 ![rw-book-cover](https://images.theconversation.com/files/520244/original/file-20230411-797-kqe3wo.jpg?ixlib=rb-1.1.0&rect=89%2C0%2C1238%2C617&q=45&auto=format&w=1356&h=668&fit=crop)
-
+#games 
 ## Metadata
 - Author: [[Peter Howell]]
 - Full Title: Vampire Survivors: How Developers Used Gambling Psychology to Create a Bafta-Winning Game

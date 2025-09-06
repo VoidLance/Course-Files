@@ -3,6 +3,7 @@ banner: "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.
 banner-height: 450
 pixel-banner-flag-color: purple
 ---
+HTML and CSS is covered in more depth in [[Module 3 - HTML and CSS]]
 HTML = Bones
 CSS = Skin
 
@@ -11,3 +12,7 @@ Hypertext = Electronic text that is linked to other text and files in a system
 Markup Language = Text encoding system that can be used in a text document to be able to allow an application to control its structure, formatting and relationship between its parts
 
 HTML elements can be given a unique ID to allow other elements including CSS to refer to them.
+
+[[Display and layout of HTML elements]] is extremely important
+
+#software-development 

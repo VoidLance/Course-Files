@@ -8,11 +8,11 @@ banner-height: 580
 - Any type of html content can be placed inside.
 - It allows sections to be given their own CSS
 - Creates a division between elements/sections
-- Content within div tags should be tabbed to indicate that it is contained
+- Content within div [[tags]] should be tabbed to indicate that it is contained
 - Can use the border CSS property on a whole div section. This requires width and outset properties, and can accept padding and colour properties.
 - ^ Padding is not a border property, it is applied to the element to create space around the element.
 - (It seems like `<nav>` and `<section>` are similar)
-- Internal CSS is just external CSS, contained within `<style>` tags.
+- Internal CSS is just external CSS, contained within `<style>` [[tags]].
 - CSS can be applied to all `<div>` elements to give a consistent feel, and id or class can be used to make more unique styling
 - (I am taking notes in a notebook and then transferring them to Obsidian, which both gives the information an extra chance to enter my brain and me a chance to improve my cursive handwriting)
 - Class can be used either in internal or external CSS, not in inline CSS
@@ -23,9 +23,9 @@ banner-height: 580
 	- `padding:20px;`
 	- `}
 - We can have multiple divs nested within each other
-- Nav and section elements are semantic elements which function the same as divs, but are more appropriately named for their usage
+- Nav and section elements are [[semantic elements]] which function the same as divs, but are more appropriately named for their usage
 - (Apparently we're only just getting to list elements being used in navbar links)
-- When using anchor tags, we should always use relative urls if possible
+- When using anchor [[tags]], we should always use relative urls if possible
 - `list-style-type: none` to remove bullet points
 - (This is what I was waiting for)
 - Reset margin and padding is commonly done for nav elements
@@ -97,7 +97,7 @@ If we change the transition values, it will change how long the transition betwe
 - <address>123 Address, <br>Address Road, <br>Address City,<br> ADD R355</address> Formats the text as an address. Can then be targeted with CSS
 - <cite>The Hobbit</cite> by JRR Tolkien. Here we are using the citation tag, which italicises and gives credibility using metadata
 - Everything inside <bdo dir="rtl">will be reversed</bdo> as it changes text direction
-- <code>Everything inside code tags will be formatted as code</code>
+- <code>Everything inside code [[tags]] will be formatted as code</code>
 - <kbd>Alt+S</kbd> formats and defines text as a keyboard shortcut
 - <samp>"Hello World!"</samp> Formats text to look like command line output
 - <var>italicises but also defines as a variable</var>
@@ -107,3 +107,8 @@ If we change the transition values, it will change how long the transition betwe
 - Entities are pretty cool
 - &nbsp; = a non-breaking space - which helps with truncation as it inserts a space without breaking the text onto a new line
 - A full list of all entities is available online
+
+
+[[Display and layout of HTML elements]] is extremely important
+
+#software-development 

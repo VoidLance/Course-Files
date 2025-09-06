@@ -1,7 +1,7 @@
 # Bloodlines 2 - First Clan Reveal
 
 ![rw-book-cover](https://i.ytimg.com/vi/is1ktPTpGUA/maxresdefault.jpg)
-
+#games
 ## Metadata
 - Author: [[World of Darkness]]
 - Full Title: Bloodlines 2 - First Clan Reveal

@@ -1,12 +1,12 @@
 # Reading Like a Writer
 
 ![rw-book-cover](https://images-na.ssl-images-amazon.com/images/I/51bpONFnR9L._SL200_.jpg)
-
+#writing
 ## Metadata
 - Author: [[Francine Prose]]
 - Full Title: Reading Like a Writer
 - Category: #books
-- Document Tags: [[writing]]
+- Document [[Tags]]: [[writing]]
 
 ## Highlights
 - As far as she could see, that was over. ([Location 340](https://readwise.io/to_kindle?action=open&asin=B0081GDOCQ&location=340))
