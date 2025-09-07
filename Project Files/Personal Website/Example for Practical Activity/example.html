@@ -4,6 +4,7 @@
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <title>My Enhanced Website</title>
+                  <script src="https://kit.fontawesome.com/a606772bb3.js" crossorigin="anonymous"></script>
                 <style>
                         /* We'll add CSS here later apparently */
                         /* basic reset */
@@ -44,16 +45,32 @@
                               color: #ffd700;
                         }
 
-                        /* Header Styling */
-                        .header {
-                              text-align: center;
-                              padding: 3rem 1rem;
-                              background-color: #fff;
-                              margin-bottom: 2rem;
+                        nav ul {
+                              display: flex;
+                              list-style: none;
+                              gap: 1rem;
                         }
 
-                        .header h1 {
-                              color: #333;
+                        /* Header Styling */
+                        header {
+                              text-align: center;
+                              padding: 3rem 1rem;
+                              background-color: #3b3636bd;
+                              margin-bottom: 2rem;
+                              display: flex;
+                              justify-content: space-between;
+                              align-items: center;
+                              padding: 1rem;
+                              position: fixed;
+                              top: 0;
+                              left: 0;
+                              right: 0;
+                              z-index: 1000;
+                              align-items: flex-start;
+                        }
+
+                        header h1 {
+                              color: #e6e6e6;
                               font-size: 2.5rem;
                               margin-bottom: 1rem;
                         }
@@ -65,12 +82,35 @@
 
                         /* main content styling */
                         .main-content {
-                              max-width: 800px;
-                              margin: 0 auto;
+                              max-width: 60vw;
+                              margin: 2rem auto;
                               padding: 0 1rem;
+                              font-size: 1.1em;
                               scroll-margin: 2rem;
+                                    margin-top: 120px; /* Default for desktop */
                         }
+                              @media (max-width: 1000px) {
+                                    .main-content {
+                                          margin-top: 150px;
+                                    }
+                              }
+                              @media (max-width: 900px) {
+                                    .main-content {
+                                          margin-top: 200px;
+                                    }
+                              }
+                              @media (max-width: 600px) {
+                                    header {
+                                          flex-direction: column;
+                                          align-items: flex-start;
+                                          padding: 2rem 1rem;
+                                    }
+                                    .main-content {
+                                          margin-top: 340px;
+                                    }
+                              }
 
+                            
                         .about-section, .services-section, .contact-section {
                               background: white;
                               padding: 2rem;
@@ -123,7 +163,26 @@
                               margin-bottom: 1rem;
                               font-size: 1.8rem;
                         }
+                        
+                        main {
+                              display: grid;
+                              grid-template-columns: 2fr 1fr;
+                              gap: 2rem;
+                              margin-top: 2vh;
+                        }
 
+                        main p {
+                              margin-bottom: 1rem;
+                              line-height: 1.6;
+                              font-weight: normal;
+                              font-size: 1.2em;
+                              color: #333;
+                              text-align: justify;
+                              padding: 1rem;
+                              background-color: #f9f9f9;
+                              border-radius: 8px;
+                              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        }
                         /* Text Formatting */
                         .highlight {
                               background-color: #ffd700;
@@ -139,43 +198,114 @@
                         .email {
                               color: #0066cc;
                               font-weight: bold;
+                              text-decoration: none;
+                              cursor: pointer;
+                              font-size: 0.6em;
+                              font-style: italic;
+                              transition: color 0.3s ease;
+                              &:hover {
+                                    color: #004999;
+                              }
+                        }
+
+                        address {
+                              margin-bottom: 1rem;
+                              line-height: 1.6;
+                              font-weight: normal;
+                              font-size: 0.8em;
+                              color: #333;
+                              text-align: justify;
+                              padding: 1rem;
+                              background-color: #f9f9f9;
+                              border-radius: 8px;
+                              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                         }
 
                         /* Footer Styling */
-                        .footer {
+                        footer {
+                              width: 100vw;
+                              min-width: 100%;
+                              box-sizing: border-box;
                               text-align: center;
-                              padding: 2rem;
-                              background-color: white;
+                              background-color: rgba(27, 26, 26, 0.93);
                               margin-top: 2rem;
+                              padding: 2rem 1rem 1rem 1rem;
+                              position: relative;
+                              bottom: 0;
+                              z-index: 1;
+                              display: block;
+                        }
+                        footer p {
+                              margin: 0.5rem 0;
+                              color: #e6e6e6;
+                              font-size: 1rem;
+                              text-align: center;
+                              line-height: 1.5;
+                              font-style: italic;
+                              text-transform: uppercase;
+                              letter-spacing: 0.1rem;
+                              opacity: 0.85;
+                              word-break: break-word;
+                        }
+                        .social-link-btn {
+                              font-size: 1.3rem;
+                              display: flex;
+                              justify-content: center;
+                              gap: 1rem;
+                              flex-wrap: wrap;
+                              align-items: center;
+                        }
+                        .social-link-btn a {
+                              color: #e6e6e6;
+                              transition: color 0.3s;
+                              font-size: 1.3em;
+                        }
+                        .social-link-btn a:hover {
+                              color: #ffd700;
+                        }
+                        @media (max-width: 600px) {
+                              footer {
+                                    padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+                              }
+                              footer p {
+                                    font-size: 0.85rem;
+                              }
+                              .social-link-btn {
+                                    font-size: 1.1rem;
+                                    gap: 0.5rem;
+                              }
+                        }
+
+                        .social-link-btn a {
+                              color: #e6e6e6;
+                              text-decoration: none;
+                              margin: 0 0.5rem;
+                              font-size: 1.2rem;
+                              transition: color 0.3s ease;
                         }
                 </style>
         </head>
+
         <body>
-                <!-- Navigation Section -->
-                 <div class="nav-container">
-                        <nav class="main-nav">
-                                <ul>
-                                        <li><a href="#home">Home</a></li>
-                                        <li><a href="#about">About</a></li>
-                                        <li><a href="#services">Services</a></li>
-                                        <li><a href="#contact">Contact</a></li>
-                                          <li><a href="#practice-exercises">Practice Exercises</a></li>
-                                </ul>
-                        </nav>
-                 </div>
                  <!-- Header Section -->
-                  <div class="header" id="home">
-                        <h1>Welcome to My Website</h1>
+                  <header id="home">
+                        <h1><i class="fa-solid fa-laptop-code"></i> Welcome to My Website</h1>
                         <p class="subtitle">Learning <em>HTML</em> and <em>CSS</em></p>
-                  </div>
+                        <nav>
+                              <a href="#about" class="highlight">About Us</a> |
+                              <a href="#services" class="highlight">Services</a> |
+                              <a href="#contact" class="highlight">Contact</a> |
+                              <a href="#practice-exercises" class="highlight">Practice Exercises</a>
+                        </nav>
+                  </header>
 
                   <!-- Main Content Section -->
-                  <div class="main-content">
-                        <div class="about-section" id="about">
+                  <main class="main-content">
+                        <section id="about" class="about-section">
                               <h2>About US</h2>
                               <p>Welcome to our website! Here you'll find <span style="font-size: 1.2em;">amazing content</span> about webdevelopment.</p>
-                        </div>
-                        <div class="services-section" id="services">
+                        </section>
+                        <section class="services-section" id="services">
                               <h2>Our Services</h2>
                               <p>We specialize in:</p>
                               <ul>
@@ -183,11 +313,16 @@
                                     <li>Content Creation</li>
                                     <li>Digital Marketing</li>
                               </ul>
-                        </div>
-                        <div class="contact-section" id="contact">
+                        </section>
+                        <aside class="contact-section" id="contact">
                               <h2>Contact Us</h2>
-                              <p>Get in touch: <span class="email">info@example.com</span></p>
-                        </div>
+                              <p>Get in touch: <span class="email"><a href="mailto:info@example.com">info@example.com</a></span>
+                              <address>
+                                    123 Main Street<br>
+                                    Anytown, USA
+                              </address>
+                              </p>
+                        </aside>
 
                         <!-- Practice Exercises -->
                         <section class="practice-exercises" id="practice-exercises">
@@ -209,17 +344,19 @@
                               </p>
                         </section>
 
+                        </main>
+
                         <!-- Footer Section -->
-                        <div class="footer">
-                                <p>&copy; 2024 My Enhanced Website</p>
-                  </div>
-      <div id="footer-container"></div>
-      <script>
-            fetch('../../../6fac0334-6350-44d1-ae7f-bf700708d76c/footer.html')
-                  .then(response => response.text())
-                  .then(data => {
-                        document.getElementById('footer-container').innerHTML = data;
-                  });
-      </script>
+                        <footer>
+                                <p>&copy; 2024 My Enhanced Website
+                                    <br>
+                                    All rights reserved.
+                                    </p>
+                                    <p class="social-link-btn" style="color: #e6e6e6;">
+                                    <a href="facebook.com/alistair.sweeting" target="_blank"><i class="fa-brands fa-facebook-f"></i></a> |
+                                    <a href="https://www.linkedin.com/in/alistair-sweeting-959453165/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a> |
+                                    <a href="https://bsky.app/profile/alistairsweeting.online" target="_blank"><i class="fa-brands fa-bluesky"></i></a>
+                                </p>
+                  </footer>
       </body>
         </html>

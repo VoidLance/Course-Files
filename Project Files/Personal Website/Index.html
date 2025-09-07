@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Website</title>
-    <link rel="icon" type="image/png" href="/Images/favicon.png">
+        <link rel="icon" type="image/png" href="/Images/favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Alistair Sweeting's personal website, showcasing games, stories, 3D models, software, and photography.">
+    <meta name="keywords" content="Alistair Sweeting, games, stories, 3D models, software, photography, portfolio, VoidLance, Curse of Semna, Personal Website, gaming, writing, art, creative projects, software development, 3D modeling, indie games, interactive fiction, digital art, game design, programming, storytelling, web development, creative coding, open source, game development, game programming, game art, game assets, game engine, game mechanics, game narrative, game world, game characters, game levels, game environments, game sound, game music, game effects, game UI, game UX, game testing, game publishing, game marketing, game community, game forums, game reviews, game tutorials, game resources, game tools, game libraries, game frameworks, game engines, game design patterns, game development process, game development lifecycle, game development methodologies, game development best practices, game development tips, game development tricks, game development techniques, game development strategies, game development trends, game development news, game development events, game development conferences, game development workshops, game development courses, game development tutorials, game development blogs, game development podcasts, game development videos, game development forums, game development communities, game development networks, game development teams, game development studios, game development companies, game development agencies, game development freelancers, game development contractors, game development consultants, game development experts, game development professionals, game development enthusiasts">
+    <meta name="author" content="Alistair Sweeting">
+    <title>Alistair's Portfolio - Games, Stories and Code</title>
+    <link href="styles.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/Images/favicon.png">
+    <script src="https://kit.fontawesome.com/a606772bb3.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <nav>
             <ul id="nav-links">
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -26,7 +31,7 @@
 <div id="content"></div>
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I'm Alistair, a new software developer with a lot of varied experience, including creative writing, game design, 3d modelling, IT support, bar work and teaching. I love creating web applications and learning new technologies, and I have recently started a Software Development training course that promises to get me a job once I've finished the course, so I'm currently extremely excited about it. This website is just a local portfolio made for the course, so while it will improve with time as I progress through the course, my real portfolio website will always be <a href="https://alistairsweeting.online" target="_blank">here</a></p>
+        <p>Hello! I'm Alistair, a new software developer with a lot of varied experience, including creative writing, game design, 3d modelling, IT support, bar work and teaching. I love creating web applications and learning new technologies, and I have recently started a Software Development training course that promises to get me a job once I've finished the course, so I'm currently extremely excited about it. This website is just a local portfolio (although this one is actually hosted on the same domain as my main portfolio) made for the course, so while it will improve with time as I progress through the course, my real portfolio website will always be <a href="https://alistairsweeting.online" target="_blank">here</a></p>
         <p>
             I have made the text on this page extremely, exceedingly large for now, because the links at the top go to the sections rather than other pages, and I don't have a lot of content to add yet, so I want to make sure that when you click the links, you can see that you've actually gone to a different section. This will be fixed in the future when I have more content to add.
         </p>
@@ -56,15 +61,6 @@
 </div>
 <!-- Scroll to Top Button -->
 <button id="scrollTopBtn" title="Go to top">&#8679;</button>
-
-<div id="footer-container"></div>
-<script>
-    fetch('../../6fac0334-6350-44d1-ae7f-bf700708d76c/footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('footer-container').innerHTML = data;
-        });
-</script>
 </body>
 <script>
 // Show/hide button on scroll
