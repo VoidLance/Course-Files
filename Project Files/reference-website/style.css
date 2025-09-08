@@ -1,8 +1,18 @@
 
-/* nav styles */
+/* Global & Reset Styles */
 body {
         overflow-x: hidden;
+        background-color: #32323c;
+        font-family: "Montserrat", sans-serif;
 }
+
+p {
+        font-size: 20px;
+        color: #e6e6e6;
+        font-family: "Montserrat", sans-serif;
+}
+
+/* Navigation Styles */
 nav {
         background-color: rgba(27, 27, 27, 0.8);
         padding: 1rem 0;
@@ -24,7 +34,7 @@ nav {
         color: #e6e6e6;
         text-decoration: none;
         font-weight: 700;
-                position: relative;
+        position: relative;
 }
 
 .nav-links a:hover {
@@ -77,8 +87,6 @@ nav {
         z-index: -2;
 }
 
-
-
 h1 {
         font-size: 2.5rem;
         color: #e6e6e6;
@@ -91,7 +99,7 @@ h2 {
         z-index: 1;
 }
 
-/* button styles */
+/* Button Styles */
 #start-tour-button {
         margin-top: 20px;
         z-index: 1;
@@ -113,7 +121,7 @@ button {
         padding: 23px 33px;
         border: 3px solid transparent;
         width: 100%;
-        color:#e6e6e6;
+        color: #e6e6e6;
         cursor: pointer;
         align-content: center;
 }
@@ -136,7 +144,7 @@ button::after {
 }
 
 .shrink-border::after {
-        content:"";
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -155,18 +163,118 @@ button::after {
         transform: scaleX(1) scaleY(1);
 }
 
-/*main content styles*/
-/*main {
-        
-}*/
+/* Main Content Styles */
 
-/* footer section styles */
+/* main {
+        /* Add main content styles here if needed */
+/* } */
+#discovery {
+        border: 2px outset #a7d8fa;
+        padding: 10px;
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        color: #e6e6e6;
+        background-color: #4040473b;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        margin-bottom: 10px;
+        margin-top: 20px;
+}
 
+
+#images {
+        border: 10px outset #a7e77e;
+        padding: 10px;
+}
+
+/* Gallery Page Styles */
+/* Add gallery-specific styles below */
+
+#gallery-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        padding-top: 20px;
+        min-height: 60vh;
+        color: #e6e6e6;
+        background-color: #a0a0b33b;
+        border-radius: 16px;
+        width: 60%;
+        align-items: center;
+        margin: 120px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+
+}
+
+.gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+        width: 80%;
+        margin-top: 20px;
+        margin-bottom: 40px;
+}
+
+.gallery-item {
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 0 !important;
+        margin: 0 !important;
+        border-radius: 12px;
+        aspect-ratio: 4 / 3;
+}
+
+.gallery-item img {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        box-sizing: border-box;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* no border-radius here; image fills container */
+}
+
+figcaption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 0 0 12px 12px;
+        margin: auto;
+        /* opacity: 0; */
+        /* transition: opacity 0.3s ease; */
+}
+
+/* .gallery-item:hover figcaption {
+        opacity: 1;
+} */
+
+/* Footer Section Styles */
 footer {
         background-color: #1b1b1b20;
         padding: 40px 0;
         color: #e6e6e6;
         max-width: 100vw;
+        width: 100%;
 }
 
 .footer-content {
@@ -195,50 +303,18 @@ footer {
         transform: color 0.3s;
 }
 
-.footer-social{
+.footer-social {
         margin-top: 0;
-
 }
 
 .footer-social a {
         color: #e6e6e6;
         font-size: 1.7em;
-        margin:0 10px;
+        margin: 0 10px;
         text-decoration: none;
         transition: color 0.3s;
 }
 
 .footer-social a:hover {
         color: #2b6289;
-}
-
-p {
-        font-size: 20px;
-        color: #e6e6e6;
-        font-family: "Montserrat", sans-serif;
-}
-
-#discovery {
-        border:2px outset #a7d8fa;
-        padding: 10px;
-        padding: 60px 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        color: #e6e6e6;
-        background-color: #4040473b;
-        border-radius: 16px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(10px);
-        margin-bottom: 10px;
-        margin-top: 20px;
-}
-
-#images {
-        border: 10px outset #a7e77e;
-        padding: 10px;
-}
-
-body {
-        background-color: #32323c;
-        font-family: "Montserrat", sans-serif;
 }
