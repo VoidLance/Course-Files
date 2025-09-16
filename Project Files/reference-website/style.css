@@ -1,4 +1,3 @@
-
 /* Global & Reset Styles */
 body {
         overflow-x: hidden;
@@ -178,7 +177,7 @@ button::after {
         border-radius: 16px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         backdrop-filter: blur(10px);
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         margin-top: 20px;
 }
 
@@ -514,6 +513,46 @@ td {
         border: 2px outset #e6e6e6;
         transform: scale(1.05);
 }
+
+/* Tours Page Styles */
+.tours {
+        border: 2px outset #a7d8fa;
+        padding: 10px;
+        padding: 20px 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        max-width: 1200px;
+        margin: 0 auto;
+        color: #e6e6e6;
+        background-color: #4040473b;
+        border-radius: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        margin-top: 120px;
+        margin-bottom: 40px;
+        text-align: center;
+}
+
+/* Tour Details Styles */
+.tour-details {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+}
+
+.tour-details ul {
+        color: #e6e6e6
+}
+
+.tour-details img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
 /* Footer Section Styles */
 
 
