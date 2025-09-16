@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="description"
+                        content="Elegant Yachting Tours offers luxurious yachting experiences, exploring untouched islands and crystal clear waters.">
+                <meta name="keywords" content="Yachting, Tours, Luxury, Ocean, Travel, Vacation">
+                <meta name="author" content="Alistair Sweeting">
+                <title>Elegant Yachting | Contact Us</title>
+                <link rel="stylesheet" href="style.css">
+                <script src="https://kit.fontawesome.com/a606772bb3.js" crossorigin="anonymous"></script>
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+                        rel="stylesheet">
+                <!-- <base href="http://elegant-yachting-tours-company.com" target="_blank"> -->
+        </head>
+        <body>
+                <nav>
+                        <ul class="nav-links">
+                                <li><a href="home.html">Home</a></li>
+                                <li><a href="tours.html">Tours</a></li>
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                </nav>
+                <div class="contact-container">
+                        <div class="chapter-headings">
+                                <h1>Contact Us</h1>
+                                <h2>We'd love to hear from you!</h2>
+                        </div>
+                </div>
+                <!-- this is the main section -->
+                <main>
+                        <section id="contact">
+                                <div class="contact-box">
+                                        <h2>Send us a message!</h2>
+                                        <form action="form-handler.php" method="post">
+                                                <label for="name">Name:</label>
+                                                <input type="text" id="name" name="name" value="John Doe" required>
+
+                                                <label for="email">Email:</label>
+                                                <input type="email" id="email" name="email" value="john.doe@example.com" required>
+
+                                                <label for="message">Message:</label>
+                                                <textarea id="message" name="message" rows="5" required>Type your message here</textarea>
+
+                                                <label for="check">
+                                                        Subscribe to our newsletter
+                                                </label>
+                                                        <span class="radio-group">
+                                                                <input type="radio" id="yes" name="check" value="yes" checked>
+                                                                <label for="yes">Yes</label>
+                                                        </span>
+                                                        <span class="radio-group">
+                                                                <input type="radio" id="no" name="check" value="no">
+                                                                <label for="no">No</label>
+                                                        </span>
+                                                        <br>
+                                                <label for="robot">Are you a robot? (Please check "No")</label>
+                                                <span class="robot-checkbox">
+                                                        <label for="robot">No</label>
+                                                        <input type="checkbox" id="robot" name="robot" value="No" required>
+                                                </span>
+                                                <br>
+
+                                                <button type="submit" class="shrink-border">Submit</button>
+                                        </form>
+                                </div>
+                        </section>
+                </main>
+
+
+        <!-- this is the footer section -->
+        <footer>
+                <div class="footer-content">
+                        <p>
+                                &copy; 2023 Elegant Yachting Tours. All rights reserved.
+                        </p>
+                        <ul class="footer-links">
+                                <li><a href="home.html">Home</a></li>
+                                <li><a href="tours.html">Tours</a></li>
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                        <p class="footer-social">
+                                <a href="https://facebook.com/page/elegantyachting"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/eleganty"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://twitter.com/eleganty"><i class="fa-brands fa-twitter"></i></a>
+                        </p>
+                </div>
+        </footer>
+        </body>
+        
+        </html>
