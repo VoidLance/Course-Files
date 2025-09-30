@@ -16,8 +16,33 @@
               "icon": "lucide-git-fork",
               "title": "Graph view"
             }
+          },
+          {
+            "id": "da98e34ac716659c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Course Notes/Module 6 - Getting Online.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Module 6 - Getting Online"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -68,6 +93,16 @@
               "state": {},
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
+            }
+          },
+          {
+            "id": "67abe7882b8fc9a5",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {},
+              "icon": "sheets-in-box",
+              "title": "File Tree"
             }
           }
         ]
@@ -308,6 +343,26 @@
             "id": "a0604b8db7440eee",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "961609b403871135",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "8fa9f8c39879a5cf",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -315,7 +370,7 @@
             }
           },
           {
-            "id": "961609b403871135",
+            "id": "28fc6bb8ae3c65e0",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -325,7 +380,7 @@
             }
           }
         ],
-        "currentTab": 21
+        "currentTab": 23
       }
     ],
     "direction": "horizontal",
@@ -358,8 +413,9 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b6936eeb9817ad5a",
+  "active": "da98e34ac716659c",
   "lastOpenFiles": [
+    "Course Notes/Module 6 - Getting Online.md",
     "Course Notes/AI Tutor Notes.md",
     "Tags/Tags.md",
     "Course Notes/1st Video Notes.md",
@@ -385,7 +441,6 @@
     "AlistairsPortfolioGames.md",
     "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg",
     "pixel-banner-images",
-    "Untitled.md",
     "Readwise/Readwise.md",
     "Course Notes/Course Notes.md",
     "Tags",
