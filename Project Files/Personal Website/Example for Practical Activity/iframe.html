@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Embedded Content</title>
+                <link rel="stylesheet" href="style.css">
+        </head>
+
+        <header>
+                <h1>Embedded Content</h1>
+        </header>
+        <main>
+
+        <body>
+                <aside class="related-links">
+                <h2>Related Links</h2>
+                <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                </ul>
+        </aside>
+                <section class="map-section">
+                        <h2>Our Location</h2>
+                        <p>Find us at the address below:</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153166!3d-37.81627974202195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d6e5b8b5e7a6!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1614031234567!5m2!1sen!2sau" title="Google Maps Location"
+                        width="600"
+                        height="450"
+                        loading="lazy"
+                        allowfullscreen=""
+                        referrerpolicy="no-referrer-when-downgrade"
+                        sandbox="allow-scripts allow-same-origin allow-popups">
+                        <p>Your browser does not support iframes. Please visit our <a href="location-link">location page</a>.</p>
+                        </iframe>
+                        <div class="iframe-controls">
+                                <button onclick="reloadFrame()">Reload Content</button>
+                                <button onclick="toggleFullscreen()">Fullscreen</button>
+                        </div>
+                        
+                        <script>
+                                function reloadFrame() {
+                                        const frame = document.querySelector('iframe');
+                                        frame.src = frame.src;
+                                }
+
+                                function toggleFullscreen() {
+                                        const frame = document.querySelector('iframe');
+                                        if (frame.requestFullscreen) {
+                                                frame.requestFullscreen();
+                                        }
+                                }
+                                           </script>
+                </section>
+        </body>
+        </main>
+        <footer>
+                <p>&copy; 2024 Your Company. All rights reserved.</p>
+        </footer>
+</html>
