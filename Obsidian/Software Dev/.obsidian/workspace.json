@@ -101,11 +101,22 @@
             "state": {
               "type": "file-tree-view",
               "state": {},
+              "icon": "lucide-ghost",
+              "title": "file-tree-view"
+            }
+          },
+          {
+            "id": "e09fbd1fdca2ee93",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {},
               "icon": "sheets-in-box",
               "title": "File Tree"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -245,8 +256,8 @@
             "state": {
               "type": "journal-calendar",
               "state": {},
-              "icon": "calendar-days",
-              "title": "Calendar"
+              "icon": "lucide-ghost",
+              "title": "journal-calendar"
             }
           },
           {
@@ -255,7 +266,7 @@
             "state": {
               "type": "Strange New Worlds",
               "state": {},
-              "icon": "file-digit",
+              "icon": "lucide-ghost",
               "title": "Strange New Worlds"
             }
           },
@@ -363,6 +374,26 @@
             "id": "8fa9f8c39879a5cf",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "28fc6bb8ae3c65e0",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "d96f4b606ae3aadb",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -370,7 +401,7 @@
             }
           },
           {
-            "id": "28fc6bb8ae3c65e0",
+            "id": "b52baa2e7e78e429",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -378,9 +409,29 @@
               "icon": "feather-corner-right-down",
               "title": "Breadcrumbs Down"
             }
+          },
+          {
+            "id": "4a222f2c4df6734c",
+            "type": "leaf",
+            "state": {
+              "type": "journal-calendar",
+              "state": {},
+              "icon": "calendar-days",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "e1f2efb413aced04",
+            "type": "leaf",
+            "state": {
+              "type": "Strange New Worlds",
+              "state": {},
+              "icon": "file-digit",
+              "title": "Strange New Worlds"
+            }
           }
         ],
-        "currentTab": 23
+        "currentTab": 25
       }
     ],
     "direction": "horizontal",
@@ -413,7 +464,7 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "da98e34ac716659c",
+  "active": "b52baa2e7e78e429",
   "lastOpenFiles": [
     "Course Notes/Module 6 - Getting Online.md",
     "Course Notes/AI Tutor Notes.md",
