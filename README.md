@@ -16,7 +16,7 @@ I absolutely love Markdown and I guess maybe these readmes etc would be a good c
 - horizontal rule
 ---
 and 
-<p style = "font-size:23px; color: green;"> HTML integration </p>
+<p style = "font-size:23px; color: green;"> HTML integration </p> (only works in certain applications, but still cool)
 ---
 
 but ultimately the cool parts of markdown boils down to just being easy to use, so it's not really such an important skill to have
