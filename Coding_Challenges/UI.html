@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>VoidLance Games</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Search games..." class="search-bar">
+            <button class="search-btn">🔍</button>
+        </div>
+        <nav class="site-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#deals">Deals</a></li>
+                <li><a href="#wishlist">Wishlist</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <button class="cart-btn">🛒 Cart (0)</button>
+            <button class="account-btn">👤 Account</button>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Featured Game of the Week</h2>
+                <div class="featured-game">
+                    <img src="https://picsum.photos/400/200?random=1" alt="Featured Game" class="hero-image">
+                    <div class="hero-text">
+                        <h3>Cyber Adventures 2077</h3>
+                        <p>Immerse yourself in a futuristic world of adventure and mystery.</p>
+                        <div class="price-section">
+                            <span class="original-price">$59.99</span>
+                            <span class="sale-price">$39.99</span>
+                            <span class="discount">33% OFF</span>
+                        </div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Categories -->
+        <section class="categories-section">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <span class="category-icon">⚔️</span>
+                    <h3>Action</h3>
+                    <p>125 games</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">🧩</span>
+                    <h3>Strategy</h3>
+                    <p>89 games</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">🏎️</span>
+                    <h3>Racing</h3>
+                    <p>67 games</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">👾</span>
+                    <h3>Indie</h3>
+                    <p>203 games</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">⚽</span>
+                    <h3>Sports</h3>
+                    <p>45 games</p>
+                </div>
+                <div class="category-card">
+                    <span class="category-icon">🎭</span>
+                    <h3>RPG</h3>
+                    <p>156 games</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Games -->
+        <section class="popular-games-section">
+            <h2>Popular Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <img src="https://picsum.photos/250/300?random=2" alt="Space Explorer" class="game-image">
+                    <div class="game-info">
+                        <h3>Space Explorer</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (4.8)</div>
+                        <div class="price">$29.99</div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://picsum.photos/250/300?random=3" alt="Dragon Quest" class="game-image">
+                    <div class="game-info">
+                        <h3>Dragon Quest Legends</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (4.9)</div>
+                        <div class="price">$49.99</div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://picsum.photos/250/300?random=4" alt="Mystery Manor" class="game-image">
+                    <div class="game-info">
+                        <h3>Mystery Manor</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (4.7)</div>
+                        <div class="price">$19.99</div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://picsum.photos/250/300?random=5" alt="Racing Thunder" class="game-image">
+                    <div class="game-info">
+                        <h3>Racing Thunder</h3>
+                        <div class="rating">⭐⭐⭐⭐⭐ (4.6)</div>
+                        <div class="price">$34.99</div>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Offers -->
+        <section class="deals-section">
+            <h2>🔥 Hot Deals</h2>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-badge">75% OFF</div>
+                    <img src="https://picsum.photos/200/150?random=6" alt="Retro Arcade Collection" class="deal-image">
+                    <div class="deal-info">
+                        <h3>Retro Arcade Collection</h3>
+                        <div class="deal-price">
+                            <span class="original-price">$39.99</span>
+                            <span class="sale-price">$9.99</span>
+                        </div>
+                        <div class="deal-timer">⏰ 2 days left</div>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-badge">60% OFF</div>
+                    <img src="https://picsum.photos/200/150?random=7" alt="Puzzle Master" class="deal-image">
+                    <div class="deal-info">
+                        <h3>Puzzle Master Pro</h3>
+                        <div class="deal-price">
+                            <span class="original-price">$24.99</span>
+                            <span class="sale-price">$9.99</span>
+                        </div>
+                        <div class="deal-timer">⏰ 5 days left</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>VoidLance Games</h3>
+                <p>Your ultimate destination for the latest and greatest games.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#support">Support</a></li>
+                    <li><a href="#returns">Returns</a></li>
+                    <li><a href="#gift-cards">Gift Cards</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#">📘 Facebook</a>
+                    <a href="#">🐦 Twitter</a>
+                    <a href="#">📸 Instagram</a>
+                    <a href="#">🎮 Twitch</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VoidLance Games. All rights reserved.</p>
+        </div>
+    </footer>
+            
+</body>
+</html>
