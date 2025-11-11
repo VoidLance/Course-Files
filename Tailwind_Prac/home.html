@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tailwind Course</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <h1>My Tailwind Website</h1>
+<body class="bg-slate-700/60">
+    <header class="bg-indigo-700/95 rounded-lg p-4 flex justify-between items-center p-2">
+        <h1 class="text-white text-xl font-bold">My Tailwind Website</h1>
         <nav>
-            <a href="#home">Home</a>
-            <a href="#home">Gallery</a>
-            <a href="#home">About us</a>
-            <a href="#home">Contact</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Home</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Gallery</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">About us</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Contact</a>
         </nav>
     </header>
     <div class="h-screen flex justify-center items-center bg-[url('tree.jpg')] bg-cover">
-        <div class="text-center w-64 border-2 border-emerald-900 p-5">
+        <div class="text-center w-64 border-2 border-emerald-900 p-5 bg-violet-700/70 text-white rounded-lg">
             <h1 class="text-4xl underline underline-offset-4 m-4 text-emerald-900">Tailwind</h1>
             <div class="m-2">
                 <p>Tailwind is an awesome framework for CSS that uses utility classes to make the process of styling way easier.</p>
