@@ -7,13 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-700/60">
-    <header class="bg-indigo-700/95 rounded-lg p-4 flex justify-between items-center p-2">
-        <h1 class="text-white text-xl font-bold">My Tailwind Website</h1>
+    <header class="bg-indigo-700/95 rounded-lg p-4 flex justify-between items-center p-2 flex justify-between">
+        <h1 class="text-white text-3xl sm:text-xl font-bold">My Tailwind Website</h1>
         <nav>
-            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Home</a>
-            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Gallery</a>
-            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">About us</a>
-            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700">Contact</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Home</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Gallery</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">About us</a>
+            <a href="#home" class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Contact</a>
         </nav>
     </header>
     <div class="h-screen flex justify-center items-center bg-[url('tree.jpg')] bg-cover">
@@ -27,14 +27,19 @@
         </div>
     </div>
     
-    <footer>
-        <div>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#home">Gallery</a>
-                <a href="#home">About us</a>
-                <a href="#home">Contact</a>
-            </nav >
+    <footer class="bg-indigo-700/95 rounded-lg p-4 flex p-2 flex justify-center mt-4">
+        <div class="text-center">
+            <nav class="mb-3">
+                <a href="#home"
+                    class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Home</a>
+                <a href="#home"
+                    class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Gallery</a>
+                <a href="#home"
+                    class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">About
+                    us</a>
+                <a href="#home"
+                    class="m-1 p-0.5 border text-emerald-900 bg-emerald-200/80 rounded border-emerald-700 sm:inline sm:text-xl">Contact</a>
+                </nav>
             <p>&copy; Cuan Swan ltd.</p>
             <p>44 Address Road <br>
                 LivingPlace<br>
