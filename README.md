@@ -7,7 +7,8 @@ My notes from the course can be found in the Obsidian/Software Dev/Course Notes 
 The Project Files contains all the projects I have coded since starting the course.
 ## Coding Challenges
 The Coding_Challenges folder includes all of the Coding Challenges that are included at the end of the HTML section of the course
-
+---
+---
 
 ### Markdown
 I absolutely love Markdown and I guess maybe these readmes etc would be a good chance to 'show off' my knowledge of it, if it were impressive enough to show off. I guess there are some slightly more niche elements like:
