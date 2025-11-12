@@ -78,9 +78,33 @@
               "icon": "lucide-file",
               "title": "HTML and JavaScript"
             }
+          },
+          {
+            "id": "0d71499e20b58919",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Canvas Element.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "Canvas Element"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -153,7 +177,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Software Dev/Course Notes/HTML and JavaScript.md",
+                "file": "Canvas Element.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -163,7 +187,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for HTML and JavaScript"
+              "title": "Backlinks for Canvas Element"
             }
           },
           {
@@ -172,12 +196,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Software Dev/Course Notes/HTML and JavaScript.md",
+                "file": "Canvas Element.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from HTML and JavaScript"
+              "title": "Outgoing links from Canvas Element"
             }
           },
           {
@@ -201,13 +225,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Software Dev/Course Notes/HTML and JavaScript.md",
+                "file": "Canvas Element.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of HTML and JavaScript"
+              "title": "Outline of Canvas Element"
             }
           }
         ]
@@ -228,10 +252,11 @@
       "bases:Create new base": false
     }
   },
-  "active": "5c8634160cc4bfcd",
+  "active": "0d71499e20b58919",
   "lastOpenFiles": [
-    "Software Dev/Course Notes/iFrames.md",
     "Software Dev/Course Notes/HTML and JavaScript.md",
+    "Canvas Element.md",
+    "Software Dev/Course Notes/iFrames.md",
     "Software Dev/Course Notes/Semantic Elements.md",
     "Software Dev/Course Notes/Personal Website Wireframe.md",
     "Software Dev/Course Notes/Module 6 - Getting Online.md",

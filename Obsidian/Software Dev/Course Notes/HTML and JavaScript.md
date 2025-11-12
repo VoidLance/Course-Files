@@ -39,4 +39,34 @@
 	}
 `</script>`
 - var creates and defines a variable
-- 
+`<script>`
+	`function changeAttributes() {
+	`// get the existing image element
+	`var image = document.getElementById("myImage");
+	
+	// change the src attribute
+	image.src = "images/gallery2.jpg";
+	
+	// change the alt attribute
+	image.alt = "New Image";
+	}
+`</script>`
+
+`<script>`
+	`document.addEventListener("DomContentLoaded", function(){
+	`var image = document.getElementById("myImage");
+	`// change image source on "Enter"
+	`document.addEventListener("keydown, function(event){
+	`if (event.key ==="Enter"){
+	`image.src = "images/gallery2.jpg";
+	`}
+	`});
+	`});
+`</script>`
+
+
+- Event Listener = waiting for a specific behaviour
+- javascript may be required as a senior web developer
+- It can be used to create dashboards
+- codepen.io is a good resource for code examples
+- anime.js is also worth looking at in more detail
