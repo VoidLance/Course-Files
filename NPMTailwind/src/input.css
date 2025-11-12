@@ -1,0 +1,9 @@
+@import 'tailwindcss/theme' layer(theme);
+@import 'tailwindcss/utilities' layer(utilities);
+
+/* Custom CSS variables for colors */
+@theme {
+  --color-tahiti: #3ab7bf;
+}
+
+/* Custom styles can be added here */
