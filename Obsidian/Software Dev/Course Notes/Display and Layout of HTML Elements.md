@@ -62,7 +62,7 @@ There have been a number of frameworks developed developed to make it easier to 
 
 The display properties are very important to know. I should take extra care to make the notes accessible. I should try using some of the frameworks myself to get a good idea of how they are used.
 
-Remember this also links back to [[Module 3 - HTML and CSS]]
+Remember this also links back to [[Software Dev/Course Notes/Module 3 - HTML and CSS]]
 
 
 #software-development 

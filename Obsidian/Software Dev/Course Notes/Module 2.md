@@ -60,8 +60,8 @@ style="Height:500px;"
 - `<link rel="stylesheet" href="style.css">`
 - `<script>` is the tag used to begin JavaScript within an html document
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
-This also links to [[Module 3 - HTML and CSS]]
+This also links to [[Software Dev/Course Notes/Module 3 - HTML and CSS]]
 
 #software-development 

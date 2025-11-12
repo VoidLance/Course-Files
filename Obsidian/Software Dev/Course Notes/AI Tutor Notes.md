@@ -17,9 +17,9 @@ It is important to remember:
 ALL CODE USES AMERICAN SPELLING
 
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
-This covers bits from multiple areas, but HTML and CSS in particular is [[Module 3 - HTML and CSS]]
+This covers bits from multiple areas, but HTML and CSS in particular is [[Software Dev/Course Notes/Module 3 - HTML and CSS]]
 
 
 #software-development 

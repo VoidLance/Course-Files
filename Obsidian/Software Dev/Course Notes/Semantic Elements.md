@@ -17,6 +17,6 @@ Semantic elements are html elements that give other elements meaning. They inclu
 	- `<img>` [[tags]] are also still required inside `<figure>` [[tags]] in order to add the relevant image
 
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
 #software-development 

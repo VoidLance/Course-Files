@@ -20,6 +20,6 @@ pixel-banner-flag-color: purple
 - Client-side files are files which the web browser has the functionality to read and implement the language correctly. They include HTML, CSS and JavaScript.
 - Information input by users on the client-side is stored on a database on the server.
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
 #software-development 

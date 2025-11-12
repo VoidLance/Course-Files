@@ -55,6 +55,6 @@ Based on the content retrieved from the website, here is a wireframe design for 
 ---
 
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
 #software-development 

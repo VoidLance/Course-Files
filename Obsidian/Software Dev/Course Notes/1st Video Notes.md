@@ -3,7 +3,7 @@ banner: "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.
 banner-height: 450
 pixel-banner-flag-color: purple
 ---
-HTML and CSS is covered in more depth in [[Module 3 - HTML and CSS]]
+HTML and CSS is covered in more depth in [[Software Dev/Course Notes/Module 3 - HTML and CSS]]
 HTML = Bones
 CSS = Skin
 
@@ -13,6 +13,6 @@ Markup Language = Text encoding system that can be used in a text document to be
 
 HTML elements can be given a unique ID to allow other elements including CSS to refer to them.
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
 #software-development 

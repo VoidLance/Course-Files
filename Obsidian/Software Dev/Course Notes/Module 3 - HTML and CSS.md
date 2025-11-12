@@ -23,7 +23,7 @@ banner-height: 580
 	- `padding:20px;`
 	- `}
 - We can have multiple divs nested within each other
-- Nav and section elements are [[semantic elements]] which function the same as divs, but are more appropriately named for their usage
+- Nav and section elements are [[Software Dev/Course Notes/Semantic Elements]] which function the same as divs, but are more appropriately named for their usage
 - (Apparently we're only just getting to list elements being used in navbar links)
 - When using anchor [[tags]], we should always use relative urls if possible
 - `list-style-type: none` to remove bullet points
@@ -109,6 +109,6 @@ If we change the transition values, it will change how long the transition betwe
 - A full list of all entities is available online
 
 
-[[Display and layout of HTML elements]] is extremely important
+[[Software Dev/Course Notes/Display and Layout of HTML Elements]] is extremely important
 
 #software-development 
