@@ -17,6 +17,8 @@ if (myAge >= 18) {
 }
 }
 
+// Next lesson is called conditional statements - I would guess that means if else statements?
+
 window.onload = function() {
   console.log("Page is fully loaded");
   this.alert("Welcome to the page!");
