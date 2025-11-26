@@ -64,6 +64,28 @@ document.getElementById('check-balance-button').addEventListener('click', () => 
 });
 
 
+// Transaction log functionality
+const transactionLog = document.getElementById('transactions-list');
+
+function logTransaction(message) {
+    const logEntry = document.createElement('li');
+    logEntry.textContent = message;
+    transactionLog.appendChild(logEntry);
+}
+
+// Override deposit and withdraw methods to include logging
+const originalDeposit = bankAccount.prototype.deposit;
+bankAccount.prototype.deposit = function(amount) {
+    originalDeposit.call(this, amount);
+    logTransaction(`Deposited $${amount} to account ${this.accountNumber}. New balance: $${this.balance}.`);
+};
+
+const originalWithdraw = bankAccount.prototype.withdraw;
+bankAccount.prototype.withdraw = function(amount) {
+    originalWithdraw.call(this, amount);
+    logTransaction(`Withdrew $${amount} from account ${this.accountNumber}. New balance: $${this.balance}.`);
+};
+
 
 
 // Initial display
