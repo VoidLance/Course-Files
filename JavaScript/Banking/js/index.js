@@ -57,7 +57,7 @@ document.getElementById('withdraw-button').addEventListener('click', () => {
 
 document.getElementById('check-balance-button').addEventListener('click', () => {
     if (selectedAccount) {
-        alert(`Current balance: $${selectedAccount.checkBalance()}`);
+        alert(`Current balance: £${selectedAccount.checkBalance()}`);
     } else {
         console.log('No account selected to check balance.');
     }
@@ -77,13 +77,13 @@ function logTransaction(message) {
 const originalDeposit = bankAccount.prototype.deposit;
 bankAccount.prototype.deposit = function(amount) {
     originalDeposit.call(this, amount);
-    logTransaction(`Deposited $${amount} to account ${this.accountNumber}. New balance: $${this.balance}.`);
+    logTransaction(`Deposited £${amount} to account ${this.accountNumber}. New balance: £${this.balance}.`);
 };
 
 const originalWithdraw = bankAccount.prototype.withdraw;
 bankAccount.prototype.withdraw = function(amount) {
     originalWithdraw.call(this, amount);
-    logTransaction(`Withdrew $${amount} from account ${this.accountNumber}. New balance: $${this.balance}.`);
+    logTransaction(`Withdrew £${amount} from account ${this.accountNumber}. New balance: £${this.balance}.`);
 };
 
 
