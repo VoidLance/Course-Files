@@ -21,6 +21,7 @@ function addTask () {
                     <small style="opacity: 0.7;">${new Date().toLocaleString()}</small>
                 </div>
             </div>
+            <button onclick="this.parentElement.edit()">Edit</button>
             <button onclick="this.parentElement.remove()">Delete</button>
         `;
         // Append the new task to the task list
@@ -32,3 +33,13 @@ function addTask () {
 };
 // Add event listener to the input field to allow adding tasks with the Enter key
 newTaskInput.addEventListener('keydown', function(event) {'Enter'===event.key&&addTask()});
+
+// Extend the HTMLElement prototype to include edit method
+HTMLElement.prototype.edit = function() {
+    const taskTextElement = this.querySelector('strong');
+    const currentText = taskTextElement.textContent;
+    const newText = prompt('Edit Task:', currentText);
+    if (newText !== null && newText.trim() !== '') {
+        taskTextElement.textContent = newText.trim();
+    }
+}
