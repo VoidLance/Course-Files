@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Element Query Demo</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Arial, sans-serif;
+			background: #f6f8fa;
+			margin: 0;
+			color: #222;
+		}
+		header {
+			background: linear-gradient(90deg, #4f8cff 0%, #6ed6ff 100%);
+			color: white;
+			padding: 2rem 1rem 1rem 1rem;
+			text-align: center;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+		}
+		nav {
+			background: #fff;
+			box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+			margin-bottom: 2rem;
+		}
+		nav ul {
+			display: flex;
+			flex-wrap: wrap;
+			list-style: none;
+			margin: 0;
+			padding: 0.5rem 1rem;
+			gap: 1rem;
+		}
+		nav li {
+			margin: 0;
+		}
+		nav a {
+			text-decoration: none;
+			color: #4f8cff;
+			font-weight: 500;
+			padding: 0.5rem 1rem;
+			border-radius: 4px;
+			transition: background 0.2s;
+		}
+		nav a:hover {
+			background: #e3f0ff;
+		}
+		main {
+			max-width: 700px;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+			padding: 2rem;
+		}
+		.demo {
+			margin-top: 2rem;
+			padding: 1rem;
+			background: #f0f7ff;
+			border-radius: 6px;
+		}
+		.demo label {
+			font-weight: 500;
+		}
+		.demo input {
+			margin: 0 0.5rem;
+			padding: 0.3rem 0.6rem;
+			border-radius: 4px;
+			border: 1px solid #bcdcff;
+		}
+		.demo button {
+			background: #4f8cff;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			padding: 0.4rem 1rem;
+			font-weight: 500;
+			cursor: pointer;
+			margin-left: 0.5rem;
+		}
+		.demo button:hover {
+			background: #3576d6;
+		}
+		.demo .output {
+			margin-top: 1rem;
+			font-size: 1rem;
+			color: #3576d6;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Element Query Demo</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+	<main>
+		<p>This page is styled and ready to use the <code>index.js</code> script for element queries and manipulation. No inline or embedded JavaScript is present in this file.</p>
+		<div class="demo">
+			<label for="selector">CSS Selector:</label>
+			<input type="text" id="selector" value="header">
+			<button id="queryBtn">Query Element</button>
+			<button id="toggleBtn">Toggle Visibility</button>
+			<button id="addClassBtn">Add Class</button>
+			<button id="removeClassBtn">Remove Class</button>
+			<button id="setTextBtn">Set Text</button>
+			<div class="output" id="output"></div>
+		</div>
+	</main>
+	<script src="index.js"></script>
+</body>
+</html>
