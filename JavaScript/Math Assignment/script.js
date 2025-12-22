@@ -18,8 +18,8 @@ console.log("Sum:", sum);
 console.log("Mean:", mean);
 
 // Round the mean to two decimal places
-Math.round(mean, 2);
+const roundedMean = Math.round(mean * 100) / 100;
 
 // Change the html to display the calculations completed and the results
 document.getElementById("calculations").innerText = `Sum: ${sum}`;
-document.getElementById("result").innerText = `Mean: ${mean}`;
+document.getElementById("result").innerText = `Mean: ${roundedMean}`;
