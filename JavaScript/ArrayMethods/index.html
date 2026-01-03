@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Methods Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background: #f9f9f9;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        #arrayElements {
+            margin: 20px 0;
+            padding: 10px;
+            background: #eaeaea;
+            border-radius: 4px;
+            min-height: 30px;
+            font-size: 1.1em;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .controls input[type="text"],
+        .controls input[type="number"] {
+            padding: 6px;
+        }
+        .controls button {
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Methods Demo</h1>
+    <div class="container">
+        <div id="arrayElements">Array is empty.</div>
+        <div class="controls">
+            <input type="text" id="elementInput" placeholder="Enter element">
+            <button id="addBtn">Add (push)</button>
+            <button id="addFirstBtn">Add to Beginning (unshift)</button>
+            <button id="removeBtn">Remove Last (pop)</button>
+            <button id="removeFirstBtn">Remove First (shift)</button>
+            <input type="number" id="indexInput" placeholder="Index to remove" min="0">
+            <button id="removeIndexBtn">Remove by Index (splice)</button>
+            <button id="sortBtn">Sort</button>
+            <button id="reverseBtn">Reverse</button>
+            <button id="clearBtn">Clear</button>
+        </div>
+    </div>
+    <script src="script.js">
+        // JavaScript functionality will be added here
+    </script>
+</body>
+</html>
