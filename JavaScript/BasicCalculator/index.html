@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --surface: #111827;
+            --border: #1f2937;
+            --accent: #22d3ee;
+            --accent-strong: #0ea5e9;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --shadow: 0 20px 50px rgba(15, 23, 42, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 20% 20%, #1e293b, #0f172a 55%),
+                        radial-gradient(circle at 80% 0%, #0ea5e9, transparent 35%),
+                        radial-gradient(circle at 50% 80%, #1f2937, #0b1221 70%);
+            color: var(--text);
+            font-family: "Segoe UI", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .calculator {
+            width: min(420px, 90vw);
+            background: linear-gradient(145deg, #0b1221 0%, #0f172a 60%, #0a101d 100%);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .top-bar h1 {
+            font-size: 20px;
+            letter-spacing: 0.02em;
+            margin: 0;
+            color: var(--text);
+        }
+
+        .top-bar span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .display {
+            background: #0c1424;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            min-height: 68px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .expression {
+            color: var(--muted);
+            font-size: 13px;
+            letter-spacing: 0.03em;
+            min-height: 16px;
+        }
+
+        .result {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: #e0f2fe;
+        }
+
+        .inputs-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 18px 0 12px;
+        }
+
+        .inputs-row input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: #0b1221;
+            color: var(--text);
+            font-size: 15px;
+            transition: border 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .inputs-row input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+
+        .pad {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        button {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 16px;
+            color: var(--text);
+            background: linear-gradient(180deg, #162036 0%, #0f172a 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: transform 0.08s ease, box-shadow 0.12s ease, border-color 0.15s ease, background 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .op {
+            background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%);
+            color: #0b1221;
+            border-color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .clear {
+            background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+            border-color: #f97316;
+            color: #fff7ed;
+            font-weight: 700;
+        }
+
+        .info {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 18px;
+            }
+
+            .result {
+                font-size: 24px;
+            }
+
+            button {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="top-bar">
+            <h1>Basic Calculator</h1>
+            <span>Simple two-number ops</span>
+        </div>
+        <div class="display">
+            <div class="expression" id="expression">Ready when you are</div>
+            <div class="result" id="result">0</div>
+        </div>
+
+        <div class="inputs-row">
+            <input type="number" id="num1" placeholder="First number" aria-label="First number">
+            <input type="number" id="num2" placeholder="Second number" aria-label="Second number">
+        </div>
+
+        <div class="pad">
+            <button id="add" class="op" onclick="calculate('add')">+</button>
+            <button id="subtract" class="op" onclick="calculate('subtract')">−</button>
+            <button id="multiply" class="op" onclick="calculate('multiply')">×</button>
+            <button id="divide" class="op" onclick="calculate('divide')">÷</button>
+            <button id="clear" class="clear">C</button>
+        </div>
+
+        <div class="info">Enter two numbers and tap an operation.</div>
+    </div>
+    <script>
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const resultDiv = document.getElementById('result');
+        const expressionDiv = document.getElementById('expression');
+        let lastOperationId = null;
+
+        const symbols = {
+            add: '+',
+            subtract: '−',
+            multiply: '×',
+            divide: '÷',
+        };
+
+        function calculate(operation) {
+            const number1 = parseFloat(num1Input.value);
+            const number2 = parseFloat(num2Input.value);
+            let result;
+            let expressionText;
+            if (Number.isNaN(number1) || Number.isNaN(number2)) {
+                result = 'Please enter valid numbers.';
+                expressionText = 'Waiting for valid numbers';
+            } else {
+                switch (operation) {
+                    case 'add':
+                        result = `${number1} + ${number2} = ${number1 + number2}`;
+                        expressionText = `${number1} ${symbols.add} ${number2}`;
+                        break;
+                    case 'subtract':
+                        result = `${number1} - ${number2} = ${number1 - number2}`;
+                        expressionText = `${number1} ${symbols.subtract} ${number2}`;
+                        break;
+                    case 'multiply':
+                        result = `${number1} * ${number2} = ${number1 * number2}`;
+                        expressionText = `${number1} ${symbols.multiply} ${number2}`;
+                        break;
+                    case 'divide':
+                        if (number2 === 0) {
+                            result = 'Division by zero is not allowed.';
+                            expressionText = `${number1} ${symbols.divide} ${number2}`;
+                        } else {
+                            result = `${number1} / ${number2} = ${number1 / number2}`;
+                            expressionText = `${number1} ${symbols.divide} ${number2}`;
+                        }
+                        break;
+                    default:
+                        result = 'Unknown operation';
+                        expressionText = 'Ready when you are';
+                        break;
+                }
+            }
+
+            expressionDiv.textContent = expressionText;
+            resultDiv.innerText = result;
+            lastOperationId = operation;
+        }
+
+        document.getElementById('clear').onclick = function clearCalculator() {
+            num1Input.value = '';
+            num2Input.value = '';
+            expressionDiv.textContent = 'Ready when you are';
+            resultDiv.innerText = '0';
+            num1Input.focus();
+            lastOperationId = null;
+        };
+
+        document.addEventListener('keydown', (event) => {
+            const keyMap = {
+                '+': 'add',
+                '-': 'subtract',
+                '*': 'multiply',
+                x: 'multiply',
+                X: 'multiply',
+                '/': 'divide',
+                c: 'clear',
+                C: 'clear',
+                Escape: 'clear',
+            };
+
+            const targetId = keyMap[event.key];
+            if (targetId) {
+                event.preventDefault();
+                const button = document.getElementById(targetId);
+                if (button) {
+                    button.click();
+                }
+                return;
+            }
+
+            if (event.key === 'Enter' && lastOperationId) {
+                event.preventDefault();
+                calculate(lastOperationId);
+            }
+        });
+    </script>
+</html>
