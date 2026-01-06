@@ -66,9 +66,8 @@ function loadGallery() {
     const navEntry = performance.getEntriesByType('navigation')[0];
     const isReload = navEntry && navEntry.type === 'reload';
     
-    // Only clear if it's the FIRST reload in this session (no prior marker)
-    // This catches the case where user opens devtools and does hard refresh
-    if (isReload && !hadSessionMarker) {
+    // Clear on any reload AFTER the first (when session marker already exists)
+    if (isReload && hadSessionMarker) {
         localStorage.removeItem('imageGallery');
         localStorage.removeItem('lastUnloadTime');
     }
