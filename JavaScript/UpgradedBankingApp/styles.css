@@ -1,0 +1,302 @@
+/* Modern Banking App Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary-color: #10b981;
+    --danger-color: #ef4444;
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: var(--text-dark);
+}
+
+h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin: 40px 0 30px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+#app {
+    width: 100%;
+    max-width: 600px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Styles */
+#loginForm,
+#account {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--text-dark);
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+h3 {
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    margin: 24px 0 16px;
+    font-weight: 600;
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+    color: var(--text-dark);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+input::placeholder {
+    color: var(--text-light);
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#loginBtn,
+button[type="submit"] {
+    background: var(--primary-color);
+    color: white;
+}
+
+#loginBtn:hover,
+button[type="submit"]:hover {
+    background: var(--primary-dark);
+}
+
+#createBtn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+#createBtn:hover {
+    background: #059669;
+}
+
+#checkInfoBtn {
+    background: var(--primary-light);
+    color: white;
+}
+
+#checkInfoBtn:hover {
+    background: var(--primary-color);
+}
+
+#logoutBtn {
+    background: var(--danger-color);
+    color: white;
+}
+
+#logoutBtn:hover {
+    background: #dc2626;
+}
+
+/* Account Details */
+#welcomeMessage {
+    font-size: 1.125rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+#account > p:nth-child(3) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+/* Transactions List */
+#transactions {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+    background: #f9fafb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+#transactions::-webkit-scrollbar {
+    width: 8px;
+}
+
+#transactions::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+#transactions::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 8px;
+}
+
+#transactions::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+#transactions li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+#transactions li:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-md);
+}
+
+#transactions li:last-child {
+    margin-bottom: 0;
+}
+
+/* Transaction Form */
+#transactionForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+#transactionForm input,
+#transactionForm select {
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+        margin: 20px 0;
+    }
+
+    #loginForm,
+    #account {
+        padding: 24px;
+    }
+
+    #transactionForm {
+        grid-template-columns: 1fr;
+    }
+
+    button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Animation for new transactions */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.transaction-new {
+    animation: slideIn 0.4s ease-out;
+}
