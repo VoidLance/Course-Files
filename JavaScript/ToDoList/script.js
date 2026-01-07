@@ -76,8 +76,12 @@ function toggleTaskCompletion(id) {
 
 // Function to remove a task
 function removeTask(id) {
-    // Filter out the task with the given id
-    tasks = tasks.filter(task => task.id !== id);
+    // Find the index of the task with the given id
+    const index = tasks.findIndex(task => task.id === id);
+    if (index !== -1) {
+        // Remove the task using splice
+        tasks.splice(index, 1);
+    }
     // Re-render the task list
     renderTasks();
 }
