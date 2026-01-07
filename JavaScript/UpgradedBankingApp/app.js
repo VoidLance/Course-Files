@@ -44,13 +44,12 @@ class bankAccount {
 }
 
 // Sample accounts
-const accounts = [
-    new bankAccount('001', 'Alice', 500),
-    new bankAccount('002', 'Bob', 300),
-    new bankAccount('003', 'Charlie', 700),
-    new bankAccount('004', 'Negative Balance', -500),
-    new bankAccount('005', 'Richie Rich', 1000000)
-];
+const accounts = new Map();
+accounts.set('001', new bankAccount('001', 'Alice', 500));
+accounts.set('002', new bankAccount('002', 'Bob', 300));
+accounts.set('003', new bankAccount('003', 'Charlie', 700));
+accounts.set('004', new bankAccount('004', 'Negative Balance', -500));
+accounts.set('005', new bankAccount('005', 'Richie Rich', 1000000));
 
 // Current logged-in account
 let currentAccount = null;
@@ -72,24 +71,29 @@ const elements = {
 
 // Helper functions
 function findAccount(accountNumber) {
-    return accounts.find(acc => acc.accountNumber === accountNumber);
+    return accounts.get(accountNumber);
 }
 
 function findAccountByHolder(accountHolder) {
-    return accounts.find(acc => acc.accountHolder === accountHolder);
+    for (const account of accounts.values()) {
+        if (account.accountHolder === accountHolder) {
+            return account;
+        }
+    }
+    return undefined;
 }
 
 function generateAccountNumber() {
     let newNumber;
     do {
         newNumber = (Math.random() * 1000000).toFixed(0);
-    } while (findAccount(newNumber));
+    } while (accounts.has(newNumber));
     return newNumber;
 }
 
 function createAccount(accountNumber, accountHolder, initialBalance) {
     const newAccount = new bankAccount(accountNumber, accountHolder, initialBalance);
-    accounts.push(newAccount);
+    accounts.set(accountNumber, newAccount);
     return newAccount;
 }
 
@@ -205,10 +209,10 @@ function createInfiniteAccounts() {
         count++;
         
         if (count % 10000 === 0) {
-            console.log(`Created ${accounts.length} accounts so far...`);
+            console.log(`Created ${accounts.size} accounts so far...`);
         }
     }
 }
 // Uncomment to test: createInfiniteAccounts();
 
-console.log(`Total accounts created: ${accounts.length}`);
+console.log(`Total accounts created: ${accounts.size}`);
