@@ -366,7 +366,7 @@ function calculateCombinedTeamScore(typeDataArray) {
         }
         
         // Find best resistance and worst weakness
-        const resistances = memberResponses.filter(m => m < 1);
+        const resistances = memberResponses.filter(m => m < 1 && m > 0);  // Exclude 0 (immunity)
         const weaknesses = memberResponses.filter(m => m > 1);
         
         if (resistances.length === 0 && weaknesses.length === 0) {
@@ -473,6 +473,171 @@ function calculateCombinedTeamScore(typeDataArray) {
     const score = 10 * ratio;
     
     return Math.max(0, Math.min(10, score));
+}
+
+/**
+ * UTILITY: Generate detailed breakdown of combined team score calculation
+ * Shows all the factors that went into the score
+ * 
+ * @param {Array<Object>} typeDataArray - Array of type effectiveness objects
+ * @returns {string} HTML string showing calculation breakdown
+ */
+function generateTeamScoreBreakdown(typeDataArray) {
+    const typeCommonality = {
+        'fighting': 3.0, 'ground': 3.0, 'fire': 2.5, 'water': 2.5,
+        'ice': 2.5, 'electric': 2.5, 'fairy': 2.5, 'dragon': 2.0,
+        'steel': 2.0, 'psychic': 2.0, 'dark': 1.5, 'ghost': 1.5,
+        'rock': 1.5, 'flying': 1.5, 'grass': 1.0, 'poison': 1.0,
+        'bug': 1.0, 'normal': 0.5
+    };
+    const getCommonality = (type) => typeCommonality[type] || 1.0;
+    const allTypes = Object.keys(typeCommonality);
+    
+    // Aggregate team coverage
+    const teamCoverage = {};
+    allTypes.forEach(attackType => {
+        const memberResponses = typeDataArray.map(eff => eff[attackType] || 1);
+        
+        if (memberResponses.includes(0)) {
+            teamCoverage[attackType] = { net: 'immune', value: 0 };
+            return;
+        }
+        
+        const resistances = memberResponses.filter(m => m < 1 && m > 0);  // Exclude 0 (immunity)
+        const weaknesses = memberResponses.filter(m => m > 1);
+        
+        if (resistances.length === 0 && weaknesses.length === 0) return;
+        
+        if (weaknesses.length === 0) {
+            const bestResist = Math.min(...resistances);
+            teamCoverage[attackType] = { 
+                net: bestResist === 0.25 ? 'resist-025' : 'resist-05', 
+                value: bestResist 
+            };
+            return;
+        }
+        
+        if (resistances.length === 0) {
+            const worstWeak = Math.max(...weaknesses);
+            teamCoverage[attackType] = { 
+                net: worstWeak >= 4 ? 'weak-4x' : 'weak-2x', 
+                value: worstWeak 
+            };
+            return;
+        }
+        
+        const bestResist = Math.min(...resistances);
+        const worstWeak = Math.max(...weaknesses);
+        
+        if (bestResist === 0.25 && worstWeak >= 4) {
+            return;
+        } else if (bestResist === 0.5 && worstWeak >= 4) {
+            teamCoverage[attackType] = { net: 'weak-2x', value: 2 };
+        } else if (bestResist <= 0.5 && worstWeak === 2) {
+            return;
+        } else {
+            teamCoverage[attackType] = { 
+                net: worstWeak >= 4 ? 'weak-4x' : 'weak-2x', 
+                value: worstWeak 
+            };
+        }
+    });
+    
+    // Categorize
+    const immunities = [];
+    const resistances025 = [];
+    const resistances05 = [];
+    const weaknesses2x = [];
+    const weaknesses4x = [];
+    
+    Object.entries(teamCoverage).forEach(([type, data]) => {
+        if (data.net === 'immune') immunities.push(type);
+        else if (data.net === 'resist-025') resistances025.push(type);
+        else if (data.net === 'resist-05') resistances05.push(type);
+        else if (data.net === 'weak-2x') weaknesses2x.push(type);
+        else if (data.net === 'weak-4x') weaknesses4x.push(type);
+    });
+    
+    // Calculate scores
+    const immunityScore = immunities.reduce((sum, type) => sum + 8 + (getCommonality(type) * 2), 0);
+    const resistance025Score = resistances025.reduce((sum, type) => sum + 4 + (getCommonality(type) * 1), 0);
+    const resistance05Score = resistances05.reduce((sum, type) => sum + 2 + (getCommonality(type) * 0.5), 0);
+    const totalDefense = immunityScore + resistance025Score + resistance05Score;
+    
+    const weakness2xPenalty = weaknesses2x.reduce((sum, type) => sum + 3 + (getCommonality(type) * 1.5), 0);
+    const weakness4xPenalty = weaknesses4x.reduce((sum, type) => sum + 8 + (getCommonality(type) * 4), 0);
+    const totalWeakness = weakness2xPenalty + weakness4xPenalty;
+    
+    const weaknessCountPenalty = (weaknesses2x.length + weaknesses4x.length) * 2;
+    const immunityCountBonus = immunities.length * 3;
+    
+    const commonTypes = ['fighting', 'ground', 'fire', 'water', 'ice', 'electric', 'fairy'];
+    const weaknessTypes = [...weaknesses2x, ...weaknesses4x];
+    const commonTypeAvoidanceBonus = commonTypes
+        .filter(type => !weaknessTypes.includes(type))
+        .reduce((sum, type) => sum + getCommonality(type) * 1.5, 0);
+    
+    const adjustedDefense = totalDefense + immunityCountBonus + commonTypeAvoidanceBonus;
+    const adjustedWeakness = totalWeakness + weaknessCountPenalty;
+    
+    const ratio = adjustedDefense / (adjustedDefense + adjustedWeakness);
+    const finalScore = 10 * ratio;
+    
+    // Generate HTML
+    return `
+        <div style="background: white; padding: 1em; border-radius: 0.5em; margin-top: 1em; font-size: 0.9em; text-align: left; max-height: 400px; overflow-y: auto;">
+            <h4 style="margin: 0 0 0.5em 0; color: #4a5568;">📊 Calculation Breakdown</h4>
+            
+            <div style="margin-bottom: 1em;">
+                <strong style="color: #22c55e;">✅ Team Immunities (${immunities.length}):</strong>
+                <div style="margin-left: 1em; color: #666;">${immunities.length > 0 ? immunities.join(', ') : 'None'}</div>
+                <div style="margin-left: 1em; font-size: 0.85em;">Score: ${immunityScore.toFixed(1)} points</div>
+            </div>
+            
+            <div style="margin-bottom: 1em;">
+                <strong style="color: #3b82f6;">🛡️ Team x0.25 Resistances (${resistances025.length}):</strong>
+                <div style="margin-left: 1em; color: #666;">${resistances025.length > 0 ? resistances025.join(', ') : 'None'}</div>
+                <div style="margin-left: 1em; font-size: 0.85em;">Score: ${resistance025Score.toFixed(1)} points</div>
+            </div>
+            
+            <div style="margin-bottom: 1em;">
+                <strong style="color: #3b82f6;">🛡️ Team x0.5 Resistances (${resistances05.length}):</strong>
+                <div style="margin-left: 1em; color: #666;">${resistances05.length > 0 ? resistances05.join(', ') : 'None'}</div>
+                <div style="margin-left: 1em; font-size: 0.85em;">Score: ${resistance05Score.toFixed(1)} points</div>
+            </div>
+            
+            <div style="margin-bottom: 1em;">
+                <strong style="color: #f59e0b;">⚠️ Team x2 Weaknesses (${weaknesses2x.length}):</strong>
+                <div style="margin-left: 1em; color: #666;">${weaknesses2x.length > 0 ? weaknesses2x.join(', ') : 'None'}</div>
+                <div style="margin-left: 1em; font-size: 0.85em;">Penalty: ${weakness2xPenalty.toFixed(1)} points</div>
+            </div>
+            
+            <div style="margin-bottom: 1em;">
+                <strong style="color: #ef4444;">❌ Team x4 Weaknesses (${weaknesses4x.length}):</strong>
+                <div style="margin-left: 1em; color: #666;">${weaknesses4x.length > 0 ? weaknesses4x.join(', ') : 'None'}</div>
+                <div style="margin-left: 1em; font-size: 0.85em;">Penalty: ${weakness4xPenalty.toFixed(1)} points</div>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1em 0;">
+            
+            <div style="margin-bottom: 0.5em;">
+                <strong>Bonuses & Penalties:</strong>
+            </div>
+            <div style="margin-left: 1em; font-size: 0.85em; color: #666;">
+                • Immunity count bonus: +${immunityCountBonus.toFixed(1)}<br>
+                • Weakness count penalty: -${weaknessCountPenalty.toFixed(1)}<br>
+                • Common type avoidance: +${commonTypeAvoidanceBonus.toFixed(1)}
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 1em 0;">
+            
+            <div style="font-weight: bold;">
+                <div>Total Defense: ${adjustedDefense.toFixed(1)} points</div>
+                <div>Total Weakness: ${adjustedWeakness.toFixed(1)} points</div>
+                <div style="margin-top: 0.5em; color: #4a5568;">Final Score: ${adjustedDefense.toFixed(1)} / (${adjustedDefense.toFixed(1)} + ${adjustedWeakness.toFixed(1)}) × 10 = <span style="color: #667eea;">${finalScore.toFixed(1)}/10</span></div>
+            </div>
+        </div>
+    `;
 }
 
 /**
@@ -721,10 +886,37 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                                 <h4 style="color: white; margin: 0 0 0.5em 0;">🛡️ Combined Team Score</h4>
                                 <p style="font-size: 2em; font-weight: bold; color: white; margin: 0;">${combinedScore.toFixed(1)}/10</p>
                                 <p style="font-size: 0.85em; color: rgba(255,255,255,0.9); margin: 0.5em 0 0 0;">Team defensive synergy with top 3 picks</p>
+                                <button 
+                                    id="show-team-calc" 
+                                    style="margin-top: 0.5em; padding: 0.5em 1em; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); border-radius: 0.5em; cursor: pointer; font-size: 0.9em;"
+                                    onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                                    onmouseout="this.style.background='rgba(255,255,255,0.2)'"
+                                >
+                                    Show Calculations
+                                </button>
+                                <div id="team-calc-breakdown" style="display: none;"></div>
                             </div>
                         `;
                         
                         leftContainer.insertAdjacentHTML('beforeend', teamScoreHTML);
+                        
+                        // Add event listener for show calculations button
+                        setTimeout(() => {
+                            const calcBtn = document.getElementById('show-team-calc');
+                            const calcBreakdown = document.getElementById('team-calc-breakdown');
+                            if (calcBtn && calcBreakdown) {
+                                calcBtn.addEventListener('click', () => {
+                                    if (calcBreakdown.style.display === 'none') {
+                                        calcBreakdown.innerHTML = generateTeamScoreBreakdown(fullTeamEffectiveness);
+                                        calcBreakdown.style.display = 'block';
+                                        calcBtn.textContent = 'Hide Calculations';
+                                    } else {
+                                        calcBreakdown.style.display = 'none';
+                                        calcBtn.textContent = 'Show Calculations';
+                                    }
+                                });
+                            }
+                        }, 0);
                     }
                     
                     // Show message if no recommendations found
@@ -1258,6 +1450,15 @@ function renderComparisonSummary() {
                             <h3>🛡️ Combined Team Score</h3>
                             <p class="weakness-value-large" style="font-size: 2.5em; font-weight: bold; color: ${combinedTeamScore >= 7 ? '#22c55e' : combinedTeamScore >= 5 ? '#f59e0b' : '#ef4444'};">${combinedTeamScore.toFixed(1)}/10</p>
                             <p style="font-size: 0.9em; color: #666; margin-top: 0.5em;">Team defensive synergy (resistances cancel weaknesses)</p>
+                            <button 
+                                id="show-comparison-calc" 
+                                style="margin-top: 0.5em; padding: 0.5em 1em; background: #667eea; color: white; border: none; border-radius: 0.5em; cursor: pointer; font-size: 0.9em;"
+                                onmouseover="this.style.background='#5a67d8'"
+                                onmouseout="this.style.background='#667eea'"
+                            >
+                                Show Calculations
+                            </button>
+                            <div id="comparison-calc-breakdown" style="display: none;"></div>
                         </div>
                     </div>
                     <div class="summary-grid">
@@ -1302,6 +1503,24 @@ function renderComparisonSummary() {
                     </div>
                 </div>
             `;
+            
+            // Add event listener for show calculations button
+            setTimeout(() => {
+                const calcBtn = document.getElementById('show-comparison-calc');
+                const calcBreakdown = document.getElementById('comparison-calc-breakdown');
+                if (calcBtn && calcBreakdown) {
+                    calcBtn.addEventListener('click', () => {
+                        if (calcBreakdown.style.display === 'none') {
+                            calcBreakdown.innerHTML = generateTeamScoreBreakdown([leftEff, rightEff]);
+                            calcBreakdown.style.display = 'block';
+                            calcBtn.textContent = 'Hide Calculations';
+                        } else {
+                            calcBreakdown.style.display = 'none';
+                            calcBtn.textContent = 'Show Calculations';
+                        }
+                    });
+                }
+            }, 0);
         });
     }).catch(error => {
         console.error('Error rendering comparison summary:', error);
