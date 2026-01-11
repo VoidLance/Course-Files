@@ -1340,6 +1340,8 @@ async function getTeamRecommendations(pokemonData, typeData) {
  * 
  * This function builds complex HTML asynchronously as type data loads
  */
+let comparisonEffectivenessData = {}; // Store effectiveness data for breakdown access
+
 function renderComparisonSummary() {
     const container = document.getElementById('comparison-summary');
     if (!container) {
@@ -1398,6 +1400,9 @@ function renderComparisonSummary() {
 
             // ====== CALCULATE COMBINED TEAM SCORE ======
             const combinedTeamScore = calculateCombinedTeamScore([leftEff, rightEff]);
+            
+            // Store effectiveness data for button access
+            comparisonEffectivenessData = { left: leftEff, right: rightEff };
             
             // ====== COMPARE STATS ======
             const statNames = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
@@ -1511,7 +1516,8 @@ function renderComparisonSummary() {
                 if (calcBtn && calcBreakdown) {
                     calcBtn.addEventListener('click', () => {
                         if (calcBreakdown.style.display === 'none') {
-                            calcBreakdown.innerHTML = generateTeamScoreBreakdown([leftEff, rightEff]);
+                            // Use stored effectiveness data
+                            calcBreakdown.innerHTML = generateTeamScoreBreakdown([comparisonEffectivenessData.left, comparisonEffectivenessData.right]);
                             calcBreakdown.style.display = 'block';
                             calcBtn.textContent = 'Hide Calculations';
                         } else {
