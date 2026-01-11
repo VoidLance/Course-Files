@@ -221,27 +221,109 @@ function calculateTypeEffectiveness(typeData) {
 /**
  * CALCULATION: Calculate Weakness Value score (0-10)
  * 
- * Higher score = better defensive typing
- * Formula: (immunities × 3 + resistances × 1 - weaknesses × 1.5) normalized to 0-10 scale
+ * Comprehensive defensive typing score considering:
+ * 1. Low weakness count (highest priority)
+ * 2. High immunity count (second priority)
+ * 3. Weakness severity (x2 vs x4)
+ * 4. Resistance effectiveness (x0.25 vs x0.5)
+ * 5. Type commonality weighting
  * 
  * @param {Object} effectiveness - Type effectiveness object from calculateTypeEffectiveness
  * @returns {number} Score from 0-10 where higher is better
  */
 function calculateWeaknessValue(effectiveness) {
-    const weaknessCount = Object.values(effectiveness).filter(mult => mult > 1).length;
-    const resistanceCount = Object.values(effectiveness).filter(mult => mult < 1 && mult > 0).length;
-    const immunityCount = Object.values(effectiveness).filter(mult => mult === 0).length;
+    // Define type commonality (competitive usage weighting)
+    // Higher value = more common in competitive play
+    const typeCommonality = {
+        'fighting': 3.0,  // Very common
+        'ground': 3.0,    // Very common
+        'fire': 2.5,
+        'water': 2.5,
+        'ice': 2.5,
+        'electric': 2.5,
+        'fairy': 2.5,
+        'dragon': 2.0,
+        'steel': 2.0,
+        'psychic': 2.0,
+        'dark': 1.5,
+        'ghost': 1.5,
+        'rock': 1.5,
+        'flying': 1.5,
+        'grass': 1.0,
+        'poison': 1.0,
+        'bug': 1.0,
+        'normal': 0.5     // Least common
+    };
     
-    // Raw score: immunities worth 3 points, resistances 1 point, weaknesses -1.5 points
-    const rawScore = (immunityCount * 3) + (resistanceCount * 1) - (weaknessCount * 1.5);
+    // Categorize all type interactions
+    const immunities = [];
+    const resistances025 = [];
+    const resistances05 = [];
+    const weaknesses2x = [];
+    const weaknesses4x = [];
     
-    // Normalize to 0-10 scale
-    // Typical range is approximately -10 to +15, so we map this to 0-10
-    // Using sigmoid-like scaling: score = 5 + (rawScore / 3)
-    const normalizedScore = 5 + (rawScore / 3);
+    Object.entries(effectiveness).forEach(([type, mult]) => {
+        if (mult === 0) immunities.push(type);
+        else if (mult === 0.25) resistances025.push(type);
+        else if (mult === 0.5) resistances05.push(type);
+        else if (mult === 2) weaknesses2x.push(type);
+        else if (mult >= 4) weaknesses4x.push(type);
+    });
+    
+    // Calculate weighted scores
+    const getCommonality = (type) => typeCommonality[type] || 1.0;
+    
+    // IMMUNITIES: Base 8 points, +commonality bonus
+    const immunityScore = immunities.reduce((sum, type) => 
+        sum + 8 + (getCommonality(type) * 2), 0);
+    
+    // RESISTANCES: Base points + commonality bonus
+    const resistance025Score = resistances025.reduce((sum, type) => 
+        sum + 4 + (getCommonality(type) * 1), 0);
+    const resistance05Score = resistances05.reduce((sum, type) => 
+        sum + 2 + (getCommonality(type) * 0.5), 0);
+    
+    const totalDefense = immunityScore + resistance025Score + resistance05Score;
+    
+    // WEAKNESSES: Base penalty + commonality penalty
+    const weakness2xPenalty = weaknesses2x.reduce((sum, type) => 
+        sum + 3 + (getCommonality(type) * 1.5), 0);
+    const weakness4xPenalty = weaknesses4x.reduce((sum, type) => 
+        sum + 8 + (getCommonality(type) * 4), 0);
+    
+    const totalWeakness = weakness2xPenalty + weakness4xPenalty;
+    
+    // WEAKNESS COUNT PENALTY: Heavily penalize having many weaknesses
+    const weaknessCountPenalty = (weaknesses2x.length + weaknesses4x.length) * 2;
+    
+    // IMMUNITY COUNT BONUS: Reward having many immunities
+    const immunityCountBonus = immunities.length * 3;
+    
+    // COMMON TYPE AVOIDANCE BONUS: Reward NOT being weak to common types
+    const commonTypes = ['fighting', 'ground', 'fire', 'water', 'ice', 'electric', 'fairy'];
+    const weaknessTypes = [...weaknesses2x, ...weaknesses4x];
+    const commonTypeAvoidanceBonus = commonTypes
+        .filter(type => !weaknessTypes.includes(type))
+        .reduce((sum, type) => sum + getCommonality(type) * 1.5, 0);
+    
+    // Final calculation using ratio with adjustments
+    const adjustedDefense = totalDefense + immunityCountBonus + commonTypeAvoidanceBonus;
+    const adjustedWeakness = totalWeakness + weaknessCountPenalty;
+    
+    if (adjustedDefense === 0 && adjustedWeakness === 0) {
+        return "5.0"; // Neutral typing
+    }
+    
+    if (adjustedWeakness === 0) {
+        return "10.0"; // Perfect defensive typing (no weaknesses)
+    }
+    
+    // Ratio-based score with emphasis on defense quality
+    const ratio = adjustedDefense / (adjustedDefense + adjustedWeakness);
+    const score = 10 * ratio;
     
     // Clamp between 0 and 10
-    return Math.max(0, Math.min(10, normalizedScore)).toFixed(1);
+    return Math.max(0, Math.min(10, score)).toFixed(1);
 }
 
 /**
@@ -372,7 +454,7 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
 
     // ====== Store Profile for Comparison ======
     // Extract important data for comparison summary
-    const profile = extractProfile(data);
+    const profile = extractProfile(data, typeData, effectiveness);
     if (targetId === 'pokemon-data') {
         leftProfile = profile;
     } else if (targetId === 'pokemon-data-2') {
@@ -481,13 +563,15 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
  * @param {Object} data - Full Pokémon data from PokéAPI
  * @returns {Object} Simplified profile with essential data
  */
-function extractProfile(data) {
+function extractProfile(data, typeData, effectiveness) {
+    const weaknessValue = calculateWeaknessValue(effectiveness);
     return {
         name: data.name,
         id: data.id,
         types: data.types.map(t => t.type.name),
         stats: Object.fromEntries(data.stats.map(s => [s.stat.name, s.base_stat])),
-        sprite: data.sprites.front_default
+        sprite: data.sprites.front_default,
+        weaknessValue: parseFloat(weaknessValue)
     };
 }
 
@@ -664,6 +748,10 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     .filter(([_, mult]) => mult > 1)
                     .map(([type]) => type);
                 const weaknessPenalty = candWeaknesses.length * 0.5;
+                
+                // Calculate weakness value as primary scoring factor
+                const candWeaknessValue = parseFloat(calculateWeaknessValue(eff));
+                const weaknessValueBonus = candWeaknessValue * 2; // Scale weakness value (0-10 -> 0-20 points)
 
                 // Accept if provides NEW coverage
                 if (newCoverage.length > 0 || newImmunities.length > 0) {
@@ -678,11 +766,12 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     const rec = {
                         name: finalData.name,
                         sprite: finalData.sprites.front_default,
-                        score: Math.max(0, coverageScore + immunityCountBonus - weaknessPenalty),
+                        score: Math.max(0, coverageScore + immunityCountBonus + weaknessValueBonus - weaknessPenalty),
                         coveredWeaknesses: newCoverage,
                         immunities: [...newImmunities],
                         totalImmunities: immunities.size,
                         weaknessCount: candWeaknesses.length,
+                        weaknessValue: candWeaknessValue,
                         types: finalTypes
                     };
                     selectedRecs.push(rec);
@@ -748,6 +837,10 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                         .filter(([_, mult]) => mult > 1)
                         .map(([type]) => type);
                     const weaknessPenalty = candWeaknesses.length * 0.3;
+                    
+                    // Calculate weakness value as primary scoring factor
+                    const candWeaknessValue = parseFloat(calculateWeaknessValue(eff));
+                    const weaknessValueBonus = candWeaknessValue * 1.5; // Scale for Pass 2
 
                     usedChains.add(chainUrl);
                     [...immunities].filter(t => teamWeaknesses.has(t)).forEach(t => teamImmunities.add(t));
@@ -758,11 +851,12 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     const rec = {
                         name: finalData.name,
                         sprite: finalData.sprites.front_default,
-                        score: Math.max(0, coverageScore + immunityCountBonus - weaknessPenalty),
+                        score: Math.max(0, coverageScore + immunityCountBonus + weaknessValueBonus - weaknessPenalty),
                         coveredWeaknesses: covers,
                         immunities: [...immunities].filter(t => teamWeaknesses.has(t)),
                         totalImmunities: immunities.size,
                         weaknessCount: candWeaknesses.length,
+                        weaknessValue: candWeaknessValue,
                         types: finalTypes
                     };
                     selectedRecs.push(rec);
@@ -954,6 +1048,16 @@ function renderComparisonSummary() {
             container.innerHTML = `
                 <div class="comparison-summary">
                     <div class="comparison-summary-title">Comparison Summary</div>
+                    <div class="summary-grid">
+                        <div class="summary-section">
+                            <h3>Weakness Value: ${leftProfile.name}</h3>
+                            <p class="weakness-value-large" style="font-size: 2em; font-weight: bold; color: ${leftProfile.weaknessValue >= 7 ? '#22c55e' : leftProfile.weaknessValue >= 5 ? '#f59e0b' : '#ef4444'};">${leftProfile.weaknessValue.toFixed(1)}/10</p>
+                        </div>
+                        <div class="summary-section">
+                            <h3>Weakness Value: ${rightProfile.name}</h3>
+                            <p class="weakness-value-large" style="font-size: 2em; font-weight: bold; color: ${rightProfile.weaknessValue >= 7 ? '#22c55e' : rightProfile.weaknessValue >= 5 ? '#f59e0b' : '#ef4444'};">${rightProfile.weaknessValue.toFixed(1)}/10</p>
+                        </div>
+                    </div>
                     <div class="summary-grid">
                         <div class="summary-section">
                             <h3>Shared Weaknesses</h3>
