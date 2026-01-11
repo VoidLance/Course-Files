@@ -327,6 +327,155 @@ function calculateWeaknessValue(effectiveness) {
 }
 
 /**
+ * CALCULATION: Calculate combined team defensive score (0-10)
+ * 
+ * Evaluates team coverage by analyzing collective type effectiveness:
+ * - Resistances/immunities can cancel or reduce weaknesses to same type
+ * - x0 (immunity) cancels any weakness
+ * - x0.25 resistance cancels x4 weakness
+ * - x0.5 resistance reduces x4 to x2 equivalent
+ * - Net result scored using same criteria as individual weakness value
+ * 
+ * @param {Array<Object>} typeDataArray - Array of type effectiveness objects
+ * @returns {number} Combined team score from 0-10
+ */
+function calculateCombinedTeamScore(typeDataArray) {
+    // Define type commonality
+    const typeCommonality = {
+        'fighting': 3.0, 'ground': 3.0, 'fire': 2.5, 'water': 2.5,
+        'ice': 2.5, 'electric': 2.5, 'fairy': 2.5, 'dragon': 2.0,
+        'steel': 2.0, 'psychic': 2.0, 'dark': 1.5, 'ghost': 1.5,
+        'rock': 1.5, 'flying': 1.5, 'grass': 1.0, 'poison': 1.0,
+        'bug': 1.0, 'normal': 0.5
+    };
+    const getCommonality = (type) => typeCommonality[type] || 1.0;
+    
+    // All possible types
+    const allTypes = Object.keys(typeCommonality);
+    
+    // Aggregate team coverage for each type
+    const teamCoverage = {};
+    
+    allTypes.forEach(attackType => {
+        const memberResponses = typeDataArray.map(eff => eff[attackType] || 1);
+        
+        // Check for immunities (highest priority)
+        if (memberResponses.includes(0)) {
+            teamCoverage[attackType] = { net: 'immune', value: 0 };
+            return;
+        }
+        
+        // Find best resistance and worst weakness
+        const resistances = memberResponses.filter(m => m < 1);
+        const weaknesses = memberResponses.filter(m => m > 1);
+        
+        if (resistances.length === 0 && weaknesses.length === 0) {
+            // Neutral
+            return;
+        }
+        
+        if (weaknesses.length === 0) {
+            // Only resistances - use best one
+            const bestResist = Math.min(...resistances);
+            teamCoverage[attackType] = { 
+                net: bestResist === 0.25 ? 'resist-025' : 'resist-05', 
+                value: bestResist 
+            };
+            return;
+        }
+        
+        if (resistances.length === 0) {
+            // Only weaknesses - use worst one
+            const worstWeak = Math.max(...weaknesses);
+            teamCoverage[attackType] = { 
+                net: worstWeak >= 4 ? 'weak-4x' : 'weak-2x', 
+                value: worstWeak 
+            };
+            return;
+        }
+        
+        // Both resistances and weaknesses exist - calculate net effect
+        const bestResist = Math.min(...resistances);
+        const worstWeak = Math.max(...weaknesses);
+        
+        if (bestResist === 0.25 && worstWeak >= 4) {
+            // x0.25 cancels x4 - neutralized
+            return;
+        } else if (bestResist === 0.5 && worstWeak >= 4) {
+            // x0.5 reduces x4 to x2 equivalent
+            teamCoverage[attackType] = { net: 'weak-2x', value: 2 };
+        } else if (bestResist <= 0.5 && worstWeak === 2) {
+            // Resistance reduces x2 weakness effect
+            return; // Neutralized
+        } else {
+            // Weakness dominates
+            teamCoverage[attackType] = { 
+                net: worstWeak >= 4 ? 'weak-4x' : 'weak-2x', 
+                value: worstWeak 
+            };
+        }
+    });
+    
+    // Categorize final results
+    const immunities = [];
+    const resistances025 = [];
+    const resistances05 = [];
+    const weaknesses2x = [];
+    const weaknesses4x = [];
+    
+    Object.entries(teamCoverage).forEach(([type, data]) => {
+        if (data.net === 'immune') immunities.push(type);
+        else if (data.net === 'resist-025') resistances025.push(type);
+        else if (data.net === 'resist-05') resistances05.push(type);
+        else if (data.net === 'weak-2x') weaknesses2x.push(type);
+        else if (data.net === 'weak-4x') weaknesses4x.push(type);
+    });
+    
+    // Apply same scoring as individual weakness value
+    const immunityScore = immunities.reduce((sum, type) => 
+        sum + 8 + (getCommonality(type) * 2), 0);
+    
+    const resistance025Score = resistances025.reduce((sum, type) => 
+        sum + 4 + (getCommonality(type) * 1), 0);
+    const resistance05Score = resistances05.reduce((sum, type) => 
+        sum + 2 + (getCommonality(type) * 0.5), 0);
+    
+    const totalDefense = immunityScore + resistance025Score + resistance05Score;
+    
+    const weakness2xPenalty = weaknesses2x.reduce((sum, type) => 
+        sum + 3 + (getCommonality(type) * 1.5), 0);
+    const weakness4xPenalty = weaknesses4x.reduce((sum, type) => 
+        sum + 8 + (getCommonality(type) * 4), 0);
+    
+    const totalWeakness = weakness2xPenalty + weakness4xPenalty;
+    
+    const weaknessCountPenalty = (weaknesses2x.length + weaknesses4x.length) * 2;
+    const immunityCountBonus = immunities.length * 3;
+    
+    const commonTypes = ['fighting', 'ground', 'fire', 'water', 'ice', 'electric', 'fairy'];
+    const weaknessTypes = [...weaknesses2x, ...weaknesses4x];
+    const commonTypeAvoidanceBonus = commonTypes
+        .filter(type => !weaknessTypes.includes(type))
+        .reduce((sum, type) => sum + getCommonality(type) * 1.5, 0);
+    
+    const adjustedDefense = totalDefense + immunityCountBonus + commonTypeAvoidanceBonus;
+    const adjustedWeakness = totalWeakness + weaknessCountPenalty;
+    
+    if (adjustedDefense === 0 && adjustedWeakness === 0) {
+        return 5.0;
+    }
+    
+    if (adjustedWeakness === 0) {
+        return 10.0;
+    }
+    
+    const ratio = adjustedDefense / (adjustedDefense + adjustedWeakness);
+    const score = 10 * ratio;
+    
+    return Math.max(0, Math.min(10, score));
+}
+
+/**
  * DISPLAY: Render Pokémon data to the page
  * 
  * This function generates HTML for displaying:
@@ -516,14 +665,19 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
 
                 // Stream recommendations as they load (improves perceived performance)
                 let count = 0;
+                const recommendations = [];
+                const teamEffectivenessData = [effectiveness]; // Start with current Pokémon
+                
                 try {
                     for await (const rec of getTeamRecommendationsStream(data, typeData)) {
                         count++;
+                        recommendations.push(rec);
                         const recHTML = `
                             <div class="team-member" data-name="${rec.name}" tabindex="0" role="button" aria-label="Add ${rec.name} to comparison" aria-keyshortcuts="Enter Space">
                                 <img src="${rec.sprite}" alt="${rec.name}" class="team-member-image">
                                 <div class="team-member-name">${rec.name}</div>
                                 <div class="team-member-reason">Covers: ${rec.coveredWeaknesses.join(', ')}</div>
+                                <div class="team-member-wv" style="font-size: 0.8em; color: #666;">WV: ${rec.weaknessValue ? rec.weaknessValue.toFixed(1) : 'N/A'}/10</div>
                             </div>
                         `;
                         
@@ -533,6 +687,44 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                         } else if (rightGrid) {
                             rightGrid.innerHTML += recHTML;
                         }
+                        
+                        // Collect effectiveness data for team score calculation
+                        if (rec.effectivenessData) {
+                            teamEffectivenessData.push(rec.effectivenessData);
+                        }
+                    }
+                    
+                    // Calculate and display combined team score
+                    if (count > 0 && recommendations.length > 0) {
+                        // Fetch effectiveness data for all recommendations
+                        const recEffectivenessPromises = recommendations.slice(0, 3).map(async rec => {
+                            try {
+                                const recData = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${rec.name}`);
+                                const recTypeData = await Promise.all(
+                                    recData.types.map(t => fetchJSON(t.type.url))
+                                );
+                                return calculateTypeEffectiveness(recTypeData);
+                            } catch (e) {
+                                console.warn(`Could not fetch effectiveness for ${rec.name}:`, e);
+                                return null;
+                            }
+                        });
+                        
+                        const recEffectiveness = await Promise.all(recEffectivenessPromises);
+                        const validRecEffectiveness = recEffectiveness.filter(e => e !== null);
+                        const fullTeamEffectiveness = [effectiveness, ...validRecEffectiveness];
+                        
+                        const combinedScore = calculateCombinedTeamScore(fullTeamEffectiveness);
+                        
+                        const teamScoreHTML = `
+                            <div style="margin-top: 1em; padding: 1em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 0.5em; text-align: center;">
+                                <h4 style="color: white; margin: 0 0 0.5em 0;">🛡️ Combined Team Score</h4>
+                                <p style="font-size: 2em; font-weight: bold; color: white; margin: 0;">${combinedScore.toFixed(1)}/10</p>
+                                <p style="font-size: 0.85em; color: rgba(255,255,255,0.9); margin: 0.5em 0 0 0;">Team defensive synergy with top 3 picks</p>
+                            </div>
+                        `;
+                        
+                        leftContainer.insertAdjacentHTML('beforeend', teamScoreHTML);
                     }
                     
                     // Show message if no recommendations found
@@ -1012,6 +1204,9 @@ function renderComparisonSummary() {
             const leftUniqueResist = [...leftResist].filter(t => !rightResist.has(t)).sort();
             const rightUniqueResist = [...rightResist].filter(t => !leftResist.has(t)).sort();
 
+            // ====== CALCULATE COMBINED TEAM SCORE ======
+            const combinedTeamScore = calculateCombinedTeamScore([leftEff, rightEff]);
+            
             // ====== COMPARE STATS ======
             const statNames = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
             
@@ -1056,6 +1251,13 @@ function renderComparisonSummary() {
                         <div class="summary-section">
                             <h3>Weakness Value: ${rightProfile.name}</h3>
                             <p class="weakness-value-large" style="font-size: 2em; font-weight: bold; color: ${rightProfile.weaknessValue >= 7 ? '#22c55e' : rightProfile.weaknessValue >= 5 ? '#f59e0b' : '#ef4444'};">${rightProfile.weaknessValue.toFixed(1)}/10</p>
+                        </div>
+                    </div>
+                    <div class="summary-grid">
+                        <div class="summary-section summary-section--full">
+                            <h3>🛡️ Combined Team Score</h3>
+                            <p class="weakness-value-large" style="font-size: 2.5em; font-weight: bold; color: ${combinedTeamScore >= 7 ? '#22c55e' : combinedTeamScore >= 5 ? '#f59e0b' : '#ef4444'};">${combinedTeamScore.toFixed(1)}/10</p>
+                            <p style="font-size: 0.9em; color: #666; margin-top: 0.5em;">Team defensive synergy (resistances cancel weaknesses)</p>
                         </div>
                     </div>
                     <div class="summary-grid">
