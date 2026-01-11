@@ -219,6 +219,32 @@ function calculateTypeEffectiveness(typeData) {
 }
 
 /**
+ * CALCULATION: Calculate Weakness Value score (0-10)
+ * 
+ * Higher score = better defensive typing
+ * Formula: (immunities × 3 + resistances × 1 - weaknesses × 1.5) normalized to 0-10 scale
+ * 
+ * @param {Object} effectiveness - Type effectiveness object from calculateTypeEffectiveness
+ * @returns {number} Score from 0-10 where higher is better
+ */
+function calculateWeaknessValue(effectiveness) {
+    const weaknessCount = Object.values(effectiveness).filter(mult => mult > 1).length;
+    const resistanceCount = Object.values(effectiveness).filter(mult => mult < 1 && mult > 0).length;
+    const immunityCount = Object.values(effectiveness).filter(mult => mult === 0).length;
+    
+    // Raw score: immunities worth 3 points, resistances 1 point, weaknesses -1.5 points
+    const rawScore = (immunityCount * 3) + (resistanceCount * 1) - (weaknessCount * 1.5);
+    
+    // Normalize to 0-10 scale
+    // Typical range is approximately -10 to +15, so we map this to 0-10
+    // Using sigmoid-like scaling: score = 5 + (rawScore / 3)
+    const normalizedScore = 5 + (rawScore / 3);
+    
+    // Clamp between 0 and 10
+    return Math.max(0, Math.min(10, normalizedScore)).toFixed(1);
+}
+
+/**
  * DISPLAY: Render Pokémon data to the page
  * 
  * This function generates HTML for displaying:
@@ -288,6 +314,9 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
         ? immunities.map(([type]) => `<li class="immunity">${type} (×0)</li>`).join('')
         : '';
     
+    // ====== Calculate Weakness Value ======
+    const weaknessValue = calculateWeaknessValue(effectiveness);
+    
     // ====== Generate Full Pokemon Card HTML ======
     const pokemonInfo = `
         <div class="pokemon-card">
@@ -299,6 +328,7 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                     <p><strong>Height:</strong> ${(data.height / 10).toFixed(1)} m</p>
                     <p><strong>Weight:</strong> ${(data.weight / 10).toFixed(1)} kg</p>
                     <p><strong>Abilities:</strong> ${abilities}</p>
+                    <p><strong>Weakness Value:</strong> <span class="weakness-value" title="Higher is better (0-10 scale)">${weaknessValue}/10</span></p>
                 </div>
                 <h3>Team Recommendations</h3>
                 <button class="recommend-btn">Show Team Recommendations</button>
@@ -478,11 +508,19 @@ function extractProfile(data) {
  * @yields {Object} Recommendation objects with name, sprite, coverage
  */
 async function* getTeamRecommendationsStream(pokemonData, typeData) {
-    // Calculate what this Pokémon is weak to
+    // Get selected generations
+    const selectedGens = getSelectedGenerations();
+    
+    // Calculate what this Pokémon is weak to and immune to
     const effectiveness = calculateTypeEffectiveness(typeData);
     const mainWeaknesses = new Set(
         Object.entries(effectiveness)
             .filter(([_, mult]) => mult > 1)
+            .map(([type]) => type)
+    );
+    const mainImmunities = new Set(
+        Object.entries(effectiveness)
+            .filter(([_, mult]) => mult === 0)
             .map(([type]) => type)
     );
     
@@ -550,6 +588,7 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
         const typeCounts = new Map(); // Track type frequency
         const coveredAttackTypes = new Set(); // Already covered weaknesses
         const teamWeaknesses = new Set([...mainWeaknesses]);
+        const teamImmunities = new Set(); // Track immunities gained
 
         const incrementTypeCounts = (types) => {
             types.forEach(t => typeCounts.set(t, (typeCounts.get(t) || 0) + 1));
@@ -572,6 +611,11 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                 
                 // Get evolution chain to find final form
                 const species = await fetchJSON(baseData.species.url);
+                
+                // Filter by generation
+                const genNumber = getGenerationNumber(species.id);
+                if (!selectedGens.has(genNumber)) continue;
+                
                 const chainUrl = species.evolution_chain?.url;
                 if (!chainUrl || usedChains.has(chainUrl)) continue;
 
@@ -596,19 +640,36 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     finalTypes.map(t => fetchJSON(`https://pokeapi.co/api/v2/type/${t}`))
                 );
                 const eff = calculateTypeEffectiveness(typeDatas);
-                const resistOrImmune = new Set(
-                    Object.entries(eff).filter(([_, mult]) => mult < 1).map(([type]) => type)
+                const resistances = new Set(
+                    Object.entries(eff).filter(([_, mult]) => mult < 1 && mult > 0).map(([type]) => type)
                 );
+                const immunities = new Set(
+                    Object.entries(eff).filter(([_, mult]) => mult === 0).map(([type]) => type)
+                );
+                const resistOrImmune = new Set([...resistances, ...immunities]);
                 const covers = [...resistOrImmune].filter(t => teamWeaknesses.has(t));
                 const newCoverage = covers.filter(t => !coveredAttackTypes.has(t));
+                const newImmunities = [...immunities].filter(t => teamWeaknesses.has(t) && !teamImmunities.has(t));
+
+                // Calculate score: prioritize immunities over resistances
+                let coverageScore = 0;
+                newImmunities.forEach(() => coverageScore += 3); // Immunities worth 3 points
+                newCoverage.filter(t => !immunities.has(t)).forEach(() => coverageScore += 1); // Resistances worth 1 point
+                
+                // Bonus for total immunity count (more immunities = better)
+                const immunityCountBonus = immunities.size * 1.5;
+                
+                // Calculate weakness penalty (fewer weaknesses = better)
+                const candWeaknesses = Object.entries(eff)
+                    .filter(([_, mult]) => mult > 1)
+                    .map(([type]) => type);
+                const weaknessPenalty = candWeaknesses.length * 0.5;
 
                 // Accept if provides NEW coverage
-                if (newCoverage.length > 0) {
+                if (newCoverage.length > 0 || newImmunities.length > 0) {
                     usedChains.add(chainUrl);
                     newCoverage.forEach(t => coveredAttackTypes.add(t));
-                    const candWeaknesses = Object.entries(eff)
-                        .filter(([_, mult]) => mult > 1)
-                        .map(([type]) => type);
+                    newImmunities.forEach(t => teamImmunities.add(t));
                     candWeaknesses.forEach(t => teamWeaknesses.add(t));
                     incrementTypeCounts(finalTypes);
                     const vec = buildStatVector(finalData);
@@ -617,8 +678,11 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     const rec = {
                         name: finalData.name,
                         sprite: finalData.sprites.front_default,
-                        score: newCoverage.length,
+                        score: Math.max(0, coverageScore + immunityCountBonus - weaknessPenalty),
                         coveredWeaknesses: newCoverage,
+                        immunities: [...newImmunities],
+                        totalImmunities: immunities.size,
+                        weaknessCount: candWeaknesses.length,
                         types: finalTypes
                     };
                     selectedRecs.push(rec);
@@ -638,6 +702,11 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                 try {
                     const baseData = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${name}`);
                     const species = await fetchJSON(baseData.species.url);
+                    
+                    // Filter by generation
+                    const genNumber = getGenerationNumber(species.id);
+                    if (!selectedGens.has(genNumber)) continue;
+                    
                     const chainUrl = species.evolution_chain?.url;
                     if (!chainUrl || usedChains.has(chainUrl)) continue;
 
@@ -657,16 +726,31 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                         finalTypes.map(t => fetchJSON(`https://pokeapi.co/api/v2/type/${t}`))
                     );
                     const eff = calculateTypeEffectiveness(typeDatas);
-                    const resistOrImmune = new Set(
-                        Object.entries(eff).filter(([_, mult]) => mult < 1).map(([type]) => type)
+                    const resistances = new Set(
+                        Object.entries(eff).filter(([_, mult]) => mult < 1 && mult > 0).map(([type]) => type)
                     );
+                    const immunities = new Set(
+                        Object.entries(eff).filter(([_, mult]) => mult === 0).map(([type]) => type)
+                    );
+                    const resistOrImmune = new Set([...resistances, ...immunities]);
                     const covers = [...resistOrImmune].filter(t => teamWeaknesses.has(t));
                     if (covers.length === 0) continue;
 
-                    usedChains.add(chainUrl);
+                    // Calculate score with immunity preference and weakness penalty
+                    let coverageScore = 0;
+                    [...immunities].filter(t => teamWeaknesses.has(t)).forEach(() => coverageScore += 1.5);
+                    covers.filter(t => !immunities.has(t)).forEach(() => coverageScore += 0.5);
+                    
+                    // Bonus for total immunity count (more immunities = better)
+                    const immunityCountBonus = immunities.size * 1.0;
+                    
                     const candWeaknesses = Object.entries(eff)
                         .filter(([_, mult]) => mult > 1)
                         .map(([type]) => type);
+                    const weaknessPenalty = candWeaknesses.length * 0.3;
+
+                    usedChains.add(chainUrl);
+                    [...immunities].filter(t => teamWeaknesses.has(t)).forEach(t => teamImmunities.add(t));
                     candWeaknesses.forEach(t => teamWeaknesses.add(t));
                     incrementTypeCounts(finalTypes);
                     const vec = buildStatVector(finalData);
@@ -674,8 +758,11 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                     const rec = {
                         name: finalData.name,
                         sprite: finalData.sprites.front_default,
-                        score: covers.length * 0.5,
+                        score: Math.max(0, coverageScore + immunityCountBonus - weaknessPenalty),
                         coveredWeaknesses: covers,
+                        immunities: [...immunities].filter(t => teamWeaknesses.has(t)),
+                        totalImmunities: immunities.size,
+                        weaknessCount: candWeaknesses.length,
                         types: finalTypes
                     };
                     selectedRecs.push(rec);
@@ -696,6 +783,11 @@ async function* getTeamRecommendationsStream(pokemonData, typeData) {
                 try {
                     const baseData = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${name}`);
                     const species = await fetchJSON(baseData.species.url);
+                    
+                    // Filter by generation
+                    const genNumber = getGenerationNumber(species.id);
+                    if (!selectedGens.has(genNumber)) continue;
+                    
                     const chainUrl = species.evolution_chain?.url;
                     if (!chainUrl || usedChains.has(chainUrl)) continue;
 
@@ -962,5 +1054,48 @@ if (rightSearchBtn && rightSearchInput) {
     });
 } else {
     console.warn('Right search button or input element not found');
+}
+
+/**
+ * UTILITY: Get selected generations from checkboxes
+ * @returns {Set<number>} Set of selected generation numbers
+ */
+function getSelectedGenerations() {
+    const checkboxes = document.querySelectorAll('.generation-filter:checked');
+    return new Set(Array.from(checkboxes).map(cb => parseInt(cb.value)));
+}
+
+/**
+ * UTILITY: Determine generation number from Pokémon ID
+ * @param {number} pokemonId - The Pokémon's national dex number
+ * @returns {number} Generation number (1-9)
+ */
+function getGenerationNumber(pokemonId) {
+    if (pokemonId <= 151) return 1;
+    if (pokemonId <= 251) return 2;
+    if (pokemonId <= 386) return 3;
+    if (pokemonId <= 493) return 4;
+    if (pokemonId <= 649) return 5;
+    if (pokemonId <= 721) return 6;
+    if (pokemonId <= 809) return 7;
+    if (pokemonId <= 905) return 8;
+    return 9;
+}
+
+/**
+ * EVENT HANDLER: Select All Generations button
+ */
+const selectAllBtn = document.getElementById('select-all-gens');
+if (selectAllBtn) {
+    selectAllBtn.addEventListener('click', () => {
+        const checkboxes = document.querySelectorAll('.generation-filter');
+        const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+        
+        checkboxes.forEach(cb => {
+            cb.checked = !allChecked;
+        });
+        
+        selectAllBtn.textContent = allChecked ? 'Select All' : 'Deselect All';
+    });
 }
 
