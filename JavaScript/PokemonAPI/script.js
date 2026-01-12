@@ -357,7 +357,11 @@ function calculateCombinedTeamScore(typeDataArray) {
     const teamCoverage = {};
     
     allTypes.forEach(attackType => {
-        const memberResponses = typeDataArray.map(eff => eff[attackType] || 1);
+        const memberResponses = typeDataArray.map(eff => {
+            const value = eff[attackType];
+            // Must explicitly check for undefined/null since 0 is a valid immunity value
+            return (value !== undefined && value !== null) ? value : 1;
+        });
         
         // Check for immunities (highest priority)
         if (memberResponses.includes(0)) {
@@ -496,7 +500,11 @@ function generateTeamScoreBreakdown(typeDataArray) {
     // Aggregate team coverage
     const teamCoverage = {};
     allTypes.forEach(attackType => {
-        const memberResponses = typeDataArray.map(eff => eff[attackType] || 1);
+        const memberResponses = typeDataArray.map(eff => {
+            const value = eff[attackType];
+            // Must explicitly check for undefined/null since 0 is a valid immunity value
+            return (value !== undefined && value !== null) ? value : 1;
+        });
         
         if (memberResponses.includes(0)) {
             teamCoverage[attackType] = { net: 'immune', value: 0 };
@@ -887,14 +895,14 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                                 <p style="font-size: 2em; font-weight: bold; color: white; margin: 0;">${combinedScore.toFixed(1)}/10</p>
                                 <p style="font-size: 0.85em; color: rgba(255,255,255,0.9); margin: 0.5em 0 0 0;">Team defensive synergy with top 3 picks</p>
                                 <button 
-                                    id="show-team-calc" 
+                                    id="show-team-calc-${targetId}" 
                                     style="margin-top: 0.5em; padding: 0.5em 1em; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); border-radius: 0.5em; cursor: pointer; font-size: 0.9em;"
                                     onmouseover="this.style.background='rgba(255,255,255,0.3)'"
                                     onmouseout="this.style.background='rgba(255,255,255,0.2)'"
                                 >
                                     Show Calculations
                                 </button>
-                                <div id="team-calc-breakdown" style="display: none;"></div>
+                                <div id="team-calc-breakdown-${targetId}" style="display: none;"></div>
                             </div>
                         `;
                         
@@ -902,8 +910,8 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                         
                         // Add event listener for show calculations button
                         setTimeout(() => {
-                            const calcBtn = document.getElementById('show-team-calc');
-                            const calcBreakdown = document.getElementById('team-calc-breakdown');
+                            const calcBtn = document.getElementById(`show-team-calc-${targetId}`);
+                            const calcBreakdown = document.getElementById(`team-calc-breakdown-${targetId}`);
                             if (calcBtn && calcBreakdown) {
                                 calcBtn.addEventListener('click', () => {
                                     if (calcBreakdown.style.display === 'none') {
