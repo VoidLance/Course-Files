@@ -1920,12 +1920,27 @@ const teamBuilder = {
                 const { data, typeData } = this.selectedPokemonData[0];
                 const recs = await getTeamRecommendations(data, typeData);
                 
-                if (recs.length === 0) {
-                    container.innerHTML = '<p class="text-gray-500 col-span-full">No recommendations found</p>';
+                // Get selected generations from team builder filter
+                const selectedGens = Array.from(document.querySelectorAll('.team-builder-gen-filter:checked')).map(cb => parseInt(cb.value));
+                const selectedGenSet = new Set(selectedGens);
+                
+                // Get already-added Pokemon names (lowercase for comparison)
+                const addedPokemonNames = new Set(this.team.filter(p => p).map(p => p.toLowerCase()));
+                
+                // Filter recommendations to exclude already-added Pokemon and respect generation filter
+                const filteredRecs = recs.filter(rec => {
+                    const recGen = getGenerationNumber(rec.id);
+                    const isNotAdded = !addedPokemonNames.has(rec.name.toLowerCase());
+                    const isInSelectedGen = selectedGenSet.has(recGen);
+                    return isNotAdded && isInSelectedGen;
+                });
+                
+                if (filteredRecs.length === 0) {
+                    container.innerHTML = '<p class="text-gray-500 col-span-full">No recommendations found matching your filters</p>';
                     return;
                 }
                 
-                container.innerHTML = recs.slice(0, 5).map(rec => `
+                container.innerHTML = filteredRecs.slice(0, 5).map(rec => `
                     <div class="bg-white rounded-lg p-3 text-center border hover:shadow-lg transition cursor-pointer"
                          onclick="teamBuilder.searchAndAddPokemon(${this.team.indexOf(null)}, '${rec.name}')"
                          title="Click to add to team">
@@ -1956,6 +1971,8 @@ const teamBuilder = {
                 this.init();
                 // Setup calc button after modal is shown and elements exist
                 setTimeout(() => this.setupCalculationsButton(), 100);
+                // Setup generation filter listeners
+                this.setupGenerationFilterListeners();
             });
         }
         
@@ -1964,6 +1981,18 @@ const teamBuilder = {
             if (closeBtn) closeBtn.addEventListener('click', close);
             if (closeBtnFooter) closeBtnFooter.addEventListener('click', close);
         }
+    },
+    
+    /**
+     * Setup generation filter listeners for team builder
+     */
+    setupGenerationFilterListeners() {
+        const genFilters = document.querySelectorAll('.team-builder-gen-filter');
+        genFilters.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                this.updateRecommendations();
+            });
+        });
     },
     
     /**

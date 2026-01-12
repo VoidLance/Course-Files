@@ -189,7 +189,7 @@
         >
             <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
                 <!-- Team Builder Header -->
-                <div class="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-white flex justify-between items-center">
+                <div class="sticky top-0 z-10 bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-white flex justify-between items-center">
                     <h2 class="text-3xl font-bold">🛠️ Build Your Team</h2>
                     <button 
                         id="close-team-builder" 
@@ -201,6 +201,49 @@
                 </div>
                 
                 <div class="p-6">
+                    <!-- Generation Filter for Recommendations -->
+                    <div class="bg-gray-100 rounded-lg p-4 mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎮 Filter Recommendations by Generation:</label>
+                        <div class="grid grid-cols-4 md:grid-cols-5 gap-2">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="1" checked>
+                                <span class="text-sm">Gen 1</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="2" checked>
+                                <span class="text-sm">Gen 2</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="3" checked>
+                                <span class="text-sm">Gen 3</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="4" checked>
+                                <span class="text-sm">Gen 4</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="5" checked>
+                                <span class="text-sm">Gen 5</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="6" checked>
+                                <span class="text-sm">Gen 6</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="7" checked>
+                                <span class="text-sm">Gen 7</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="8" checked>
+                                <span class="text-sm">Gen 8</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="team-builder-gen-filter rounded" value="9" checked>
+                                <span class="text-sm">Gen 9</span>
+                            </label>
+                        </div>
+                    </div>
+                    
                     <!-- Team Slots -->
                     <div id="team-slots" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <!-- 6 team slots will be generated here -->
