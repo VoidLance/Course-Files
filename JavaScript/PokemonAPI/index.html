@@ -170,6 +170,77 @@
                 >
                     Compare
                 </button>
+                
+                <!-- Team Builder Button -->
+                <button 
+                    id="open-team-builder" 
+                    class="w-full mt-4 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 active:scale-95 transition transform"
+                    aria-label="Build a Pokémon team"
+                >
+                    🛠️ Build Team
+                </button>
+            </div>
+        </div>
+
+        <!-- TEAM BUILDER MODAL -->
+        <div 
+            id="team-builder-modal" 
+            class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto"
+        >
+            <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                <!-- Team Builder Header -->
+                <div class="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-white flex justify-between items-center">
+                    <h2 class="text-3xl font-bold">🛠️ Build Your Team</h2>
+                    <button 
+                        id="close-team-builder" 
+                        class="text-2xl hover:text-gray-200 transition"
+                        aria-label="Close team builder"
+                    >
+                        ✕
+                    </button>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Team Slots -->
+                    <div id="team-slots" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <!-- 6 team slots will be generated here -->
+                    </div>
+                    
+                    <!-- Team Summary -->
+                    <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Team Summary</h3>
+                        <div id="team-summary-stats" class="text-sm text-gray-700"></div>
+                        <div class="mt-4 p-4 bg-white rounded-lg">
+                            <h4 class="font-bold text-gray-800 mb-2">🛡️ Combined Team Score</h4>
+                            <p id="team-score-display" class="text-3xl font-bold text-purple-600">-/10</p>
+                            <button 
+                                id="show-full-team-calc" 
+                                class="mt-2 px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm transition"
+                            >
+                                Show Calculations
+                            </button>
+                            <div id="full-team-calc-breakdown" style="display: none; margin-top: 1em;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Recommendations -->
+                    <div class="bg-blue-50 rounded-lg p-4 mb-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">Recommended Team Members</h3>
+                        <div id="team-recommendations-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <p class="text-gray-500 col-span-full">Add 2+ team members to see recommendations</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer with Close Button -->
+                <div class="sticky bottom-0 bg-gray-100 p-4 border-t flex justify-end gap-2">
+                    <button 
+                        id="close-team-builder-btn" 
+                        class="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition"
+                    >
+                        ← Back to Comparison
+                    </button>
+                </div>
             </div>
         </div>
     </div>

@@ -1638,3 +1638,292 @@ if (selectAllBtn) {
     });
 }
 
+/**
+ * TEAM BUILDER: State and functionality
+ */
+const teamBuilder = {
+    team: [null, null, null, null, null, null], // 6 slots
+    selectedPokemonData: [null, null, null, null, null, null], // Full data for each slot
+    
+    /**
+     * Initialize team builder UI
+     */
+    init() {
+        this.renderTeamSlots();
+        this.setupEventListeners();
+        this.updateTeamScore();
+    },
+    
+    /**
+     * Render all 6 team slots
+     */
+    renderTeamSlots() {
+        const container = document.getElementById('team-slots');
+        if (!container) return;
+        
+        container.innerHTML = this.team.map((pokemon, index) => {
+            if (pokemon) {
+                // Collapsed view for selected Pokemon
+                return `
+                    <div class="bg-gray-100 rounded-lg p-4 relative">
+                        <button 
+                            class="absolute top-2 right-2 text-red-500 hover:text-red-700 font-bold text-lg"
+                            onclick="teamBuilder.removePokemon(${index})"
+                            title="Remove from team"
+                        >
+                            ✕
+                        </button>
+                        <div class="pr-8">
+                            <h4 class="font-bold text-lg capitalize">${pokemon}</h4>
+                            <p class="text-sm text-gray-600">Slot ${index + 1}</p>
+                            <button 
+                                class="mt-2 text-blue-600 hover:text-blue-800 text-sm underline"
+                                onclick="teamBuilder.expandSlot(${index})"
+                            >
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // Empty slot with search
+                return `
+                    <div class="bg-gray-50 rounded-lg p-4 border-2 border-dashed border-gray-300">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Slot ${index + 1}</label>
+                        <input 
+                            type="text" 
+                            id="team-search-${index}" 
+                            placeholder="Search Pokémon..."
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition"
+                            onkeypress="if(event.key==='Enter') teamBuilder.searchAndAddPokemon(${index}, this.value)"
+                        >
+                        <button 
+                            class="w-full mt-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm"
+                            onclick="teamBuilder.searchAndAddPokemon(${index}, document.getElementById('team-search-${index}').value)"
+                        >
+                            Add to Team
+                        </button>
+                        <div id="team-search-results-${index}"></div>
+                    </div>
+                `;
+            }
+        }).join('');
+    },
+    
+    /**
+     * Search for and add a Pokemon to a team slot
+     */
+    async searchAndAddPokemon(slotIndex, pokemonName) {
+        if (!pokemonName.trim()) {
+            alert('Please enter a Pokémon name or ID');
+            return;
+        }
+        
+        try {
+            const data = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+            const typeData = await Promise.all(
+                data.types.map(typeInfo => fetchJSON(typeInfo.type.url))
+            );
+            
+            this.team[slotIndex] = data.name;
+            this.selectedPokemonData[slotIndex] = { data, typeData, effectiveness: calculateTypeEffectiveness(typeData) };
+            
+            this.renderTeamSlots();
+            this.updateTeamScore();
+            this.updateRecommendations();
+        } catch (error) {
+            alert(`Could not find Pokémon "${pokemonName}". Please check the spelling.`);
+            console.error('Error searching for Pokémon:', error);
+        }
+    },
+    
+    /**
+     * Remove a Pokemon from a team slot
+     */
+    removePokemon(slotIndex) {
+        this.team[slotIndex] = null;
+        this.selectedPokemonData[slotIndex] = null;
+        this.renderTeamSlots();
+        this.updateTeamScore();
+        this.updateRecommendations();
+    },
+    
+    /**
+     * Expand a slot to show full Pokemon details
+     */
+    expandSlot(slotIndex) {
+        const pokemonData = this.selectedPokemonData[slotIndex];
+        if (!pokemonData) return;
+        
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4 overflow-y-auto';
+        modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+        
+        const { data, effectiveness } = pokemonData;
+        const weaknessValue = calculateWeaknessValue(effectiveness);
+        
+        modal.innerHTML = `
+            <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold capitalize">${data.name}</h3>
+                    <button onclick="this.closest('.fixed').remove()" class="text-2xl hover:text-gray-600">✕</button>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <img src="${data.sprites.front_default}" alt="${data.name}" class="w-48 h-48 mx-auto">
+                        <p><strong>ID:</strong> #${data.id}</p>
+                        <p><strong>Height:</strong> ${(data.height / 10).toFixed(1)} m</p>
+                        <p><strong>Weight:</strong> ${(data.weight / 10).toFixed(1)} kg</p>
+                        <p><strong>Weakness Value:</strong> <strong style="color: ${weaknessValue >= 7 ? '#22c55e' : weaknessValue >= 5 ? '#f59e0b' : '#ef4444'}">${weaknessValue}/10</strong></p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold mb-2">Types</h4>
+                        <div class="flex gap-2 mb-4">
+                            ${data.types.map(t => `<span class="px-3 py-1 bg-gray-200 rounded-full text-sm">${t.type.name}</span>`).join('')}
+                        </div>
+                        
+                        <h4 class="font-bold mb-2">Type Effectiveness</h4>
+                        ${this.getEffectivenessHTML(effectiveness)}
+                    </div>
+                </div>
+                
+                <button onclick="this.closest('.fixed').remove()" class="w-full mt-6 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                    Close
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    },
+    
+    /**
+     * Generate HTML for type effectiveness display
+     */
+    getEffectivenessHTML(effectiveness) {
+        const weaknesses = Object.entries(effectiveness).filter(([_, m]) => m > 1).map(([t]) => t);
+        const resistances = Object.entries(effectiveness).filter(([_, m]) => m < 1 && m > 0).map(([t]) => t);
+        const immunities = Object.entries(effectiveness).filter(([_, m]) => m === 0).map(([t]) => t);
+        
+        return `
+            ${immunities.length > 0 ? `<p><strong>Immunities:</strong> ${immunities.join(', ')}</p>` : ''}
+            ${resistances.length > 0 ? `<p><strong>Resistances:</strong> ${resistances.join(', ')}</p>` : ''}
+            ${weaknesses.length > 0 ? `<p><strong>Weaknesses:</strong> ${weaknesses.join(', ')}</p>` : ''}
+        `;
+    },
+    
+    /**
+     * Update the combined team score
+     */
+    updateTeamScore() {
+        const filledSlots = this.selectedPokemonData.filter(p => p !== null);
+        const scoreDisplay = document.getElementById('team-score-display');
+        const summaryStats = document.getElementById('team-summary-stats');
+        
+        if (filledSlots.length < 2) {
+            scoreDisplay.textContent = '-/10';
+            scoreDisplay.style.color = '#999';
+            summaryStats.innerHTML = `<p>Add 2+ team members to calculate team score</p>`;
+            return;
+        }
+        
+        const teamEffectiveness = filledSlots.map(p => p.effectiveness);
+        const score = calculateCombinedTeamScore(teamEffectiveness);
+        
+        scoreDisplay.textContent = `${score.toFixed(1)}/10`;
+        scoreDisplay.style.color = score >= 7 ? '#22c55e' : score >= 5 ? '#f59e0b' : '#ef4444';
+        
+        const teamNames = this.team.filter(p => p).map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(', ');
+        summaryStats.innerHTML = `<p><strong>Current Team:</strong> ${teamNames}</p><p><strong>Size:</strong> ${filledSlots.length}/6</p>`;
+    },
+    
+    /**
+     * Update recommendations based on current team
+     */
+    async updateRecommendations() {
+        const filledSlots = this.selectedPokemonData.filter(p => p !== null);
+        const container = document.getElementById('team-recommendations-grid');
+        
+        if (filledSlots.length < 1) {
+            container.innerHTML = '<p class="text-gray-500 col-span-full">Add a team member to see recommendations</p>';
+            return;
+        }
+        
+        container.innerHTML = '<p class="text-gray-500 col-span-full">Loading recommendations...</p>';
+        
+        try {
+            // Get recommendations based on the first Pokemon on the team
+            if (this.selectedPokemonData[0]) {
+                const { data, typeData } = this.selectedPokemonData[0];
+                const recs = await getTeamRecommendations(data, typeData);
+                
+                if (recs.length === 0) {
+                    container.innerHTML = '<p class="text-gray-500 col-span-full">No recommendations found</p>';
+                    return;
+                }
+                
+                container.innerHTML = recs.slice(0, 5).map(rec => `
+                    <div class="bg-white rounded-lg p-3 text-center border hover:shadow-lg transition cursor-pointer"
+                         onclick="teamBuilder.searchAndAddPokemon(${this.team.indexOf(null)}, '${rec.name}')"
+                         title="Click to add to team">
+                        <img src="${rec.sprite}" alt="${rec.name}" class="w-16 h-16 mx-auto">
+                        <p class="font-bold capitalize text-sm mt-1">${rec.name}</p>
+                        <p class="text-xs text-gray-600">WV: ${rec.weaknessValue ? rec.weaknessValue.toFixed(1) : 'N/A'}/10</p>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error loading recommendations:', error);
+            container.innerHTML = '<p class="text-red-500 col-span-full">Error loading recommendations</p>';
+        }
+    },
+    
+    /**
+     * Setup event listeners for team builder modal
+     */
+    setupEventListeners() {
+        const openBtn = document.getElementById('open-team-builder');
+        const closeBtn = document.getElementById('close-team-builder');
+        const closeBtnFooter = document.getElementById('close-team-builder-btn');
+        const modal = document.getElementById('team-builder-modal');
+        const showCalcBtn = document.getElementById('show-full-team-calc');
+        const calcBreakdown = document.getElementById('full-team-calc-breakdown');
+        
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                this.init();
+            });
+        }
+        
+        if (closeBtn || closeBtnFooter) {
+            const close = () => modal.classList.add('hidden');
+            if (closeBtn) closeBtn.addEventListener('click', close);
+            if (closeBtnFooter) closeBtnFooter.addEventListener('click', close);
+        }
+        
+        if (showCalcBtn) {
+            showCalcBtn.addEventListener('click', () => {
+                if (calcBreakdown.style.display === 'none') {
+                    const filledSlots = this.selectedPokemonData.filter(p => p !== null);
+                    if (filledSlots.length >= 2) {
+                        const teamEff = filledSlots.map(p => p.effectiveness);
+                        calcBreakdown.innerHTML = generateTeamScoreBreakdown(teamEff);
+                        calcBreakdown.style.display = 'block';
+                        showCalcBtn.textContent = 'Hide Calculations';
+                    }
+                } else {
+                    calcBreakdown.style.display = 'none';
+                    showCalcBtn.textContent = 'Show Calculations';
+                }
+            });
+        }
+    }
+};
+
+// Initialize team builder event listeners when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    teamBuilder.setupEventListeners();
+});
+
