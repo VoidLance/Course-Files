@@ -1662,7 +1662,8 @@ const teamBuilder = {
         if (!container) return;
         
         container.innerHTML = this.team.map((pokemon, index) => {
-            if (pokemon) {
+            if (pokemon && this.selectedPokemonData[index]) {
+                const pokemonData = this.selectedPokemonData[index];
                 // Collapsed view for selected Pokemon
                 return `
                     <div class="bg-gray-100 rounded-lg p-4 relative">
@@ -1673,8 +1674,9 @@ const teamBuilder = {
                         >
                             ✕
                         </button>
-                        <div class="pr-8">
-                            <h4 class="font-bold text-lg capitalize">${pokemon}</h4>
+                        <div class="pr-8 text-center">
+                            <img src="${pokemonData.data.sprites.front_default}" alt="${pokemon}" class="w-24 h-24 mx-auto">
+                            <h4 class="font-bold text-lg capitalize mt-2">${pokemon}</h4>
                             <p class="text-sm text-gray-600">Slot ${index + 1}</p>
                             <button 
                                 class="mt-2 text-blue-600 hover:text-blue-800 text-sm underline"
@@ -1825,6 +1827,7 @@ const teamBuilder = {
             scoreDisplay.textContent = '-/10';
             scoreDisplay.style.color = '#999';
             summaryStats.innerHTML = `<p>Add 2+ team members to calculate team score</p>`;
+            this.updateTeamComparisonSummary([]);
             return;
         }
         
@@ -1836,6 +1839,65 @@ const teamBuilder = {
         
         const teamNames = this.team.filter(p => p).map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(', ');
         summaryStats.innerHTML = `<p><strong>Current Team:</strong> ${teamNames}</p><p><strong>Size:</strong> ${filledSlots.length}/6</p>`;
+        
+        // Update team comparison summary
+        this.updateTeamComparisonSummary(filledSlots);
+    },
+    
+    /**
+     * Update team comparison summary with stats
+     */
+    updateTeamComparisonSummary(filledSlots) {
+        const container = document.getElementById('team-comparison-summary');
+        if (!container) return;
+        
+        if (filledSlots.length === 0) {
+            container.innerHTML = '<p class="text-gray-500">Add team members to see comparison</p>';
+            return;
+        }
+        
+        const statNames = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
+        
+        // Calculate stats for each Pokemon
+        const teamStats = filledSlots.map(slot => {
+            const stats = {};
+            statNames.forEach(name => {
+                stats[name] = slot.data.stats.find(s => s.stat.name === name)?.base_stat || 0;
+            });
+            return { name: slot.data.name, stats };
+        });
+        
+        // Calculate averages and find best/worst
+        const comparisons = statNames.map(statName => {
+            const values = teamStats.map(p => p.stats[statName]);
+            const avg = (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1);
+            const max = Math.max(...values);
+            const min = Math.min(...values);
+            const best = teamStats.find(p => p.stats[statName] === max).name;
+            const worst = teamStats.find(p => p.stats[statName] === min).name;
+            const diff = max - min;
+            
+            return { statName, avg, max, min, diff, best, worst };
+        });
+        
+        container.innerHTML = `
+            <h4 class="font-bold text-gray-800 mb-4">📊 Team Comparison</h4>
+            <div class="space-y-3">
+                ${comparisons.map(comp => `
+                    <div class="bg-white rounded-lg p-3 border border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <strong class="capitalize">${comp.statName.replace('-', ' ')}</strong>
+                            <span class="text-sm text-gray-600">Avg: <span class="font-bold">${comp.avg}</span></span>
+                        </div>
+                        <div class="text-xs text-gray-600 mt-1">
+                            <p>Best: <span class="font-semibold capitalize text-green-600">${comp.best}</span> (${comp.max})</p>
+                            <p>Worst: <span class="font-semibold capitalize text-red-600">${comp.worst}</span> (${comp.min})</p>
+                            <p>Difference: <span class="font-semibold">${comp.diff}</span></p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
     },
     
     /**
@@ -1887,13 +1949,13 @@ const teamBuilder = {
         const closeBtn = document.getElementById('close-team-builder');
         const closeBtnFooter = document.getElementById('close-team-builder-btn');
         const modal = document.getElementById('team-builder-modal');
-        const showCalcBtn = document.getElementById('show-full-team-calc');
-        const calcBreakdown = document.getElementById('full-team-calc-breakdown');
         
         if (openBtn) {
             openBtn.addEventListener('click', () => {
                 modal.classList.remove('hidden');
                 this.init();
+                // Setup calc button after modal is shown and elements exist
+                setTimeout(() => this.setupCalculationsButton(), 100);
             });
         }
         
@@ -1902,20 +1964,32 @@ const teamBuilder = {
             if (closeBtn) closeBtn.addEventListener('click', close);
             if (closeBtnFooter) closeBtnFooter.addEventListener('click', close);
         }
+    },
+    
+    /**
+     * Setup the show calculations button
+     */
+    setupCalculationsButton() {
+        const showCalcBtn = document.getElementById('show-full-team-calc');
+        const calcBreakdown = document.getElementById('full-team-calc-breakdown');
         
-        if (showCalcBtn) {
-            showCalcBtn.addEventListener('click', () => {
+        if (showCalcBtn && calcBreakdown) {
+            // Remove any existing listeners by cloning
+            const newBtn = showCalcBtn.cloneNode(true);
+            showCalcBtn.parentNode.replaceChild(newBtn, showCalcBtn);
+            
+            newBtn.addEventListener('click', () => {
                 if (calcBreakdown.style.display === 'none') {
                     const filledSlots = this.selectedPokemonData.filter(p => p !== null);
                     if (filledSlots.length >= 2) {
                         const teamEff = filledSlots.map(p => p.effectiveness);
                         calcBreakdown.innerHTML = generateTeamScoreBreakdown(teamEff);
                         calcBreakdown.style.display = 'block';
-                        showCalcBtn.textContent = 'Hide Calculations';
+                        newBtn.textContent = 'Hide Calculations';
                     }
                 } else {
                     calcBreakdown.style.display = 'none';
-                    showCalcBtn.textContent = 'Show Calculations';
+                    newBtn.textContent = 'Show Calculations';
                 }
             });
         }
