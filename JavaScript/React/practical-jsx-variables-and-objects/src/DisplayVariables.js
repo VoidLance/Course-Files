@@ -19,11 +19,7 @@ const DisplayVariables = () => {
       <h2>Variables:</h2>
       <p>Name: {name}</p>
       <p>Score: {score}</p>
-      <p>Is Awesome: {isAwesome ? 'Yes' : 'No'}</p>
-      <h3>Pros:</h3>
-      <ul>
-        {pros.map((pro, index) => (
-          <li key={index}>{pro}</li>
+      <p>Is Awesome: {isAwesome ? 'Yes' : 'No'}</p> <h3>Pros:</h3> <ul> {pros.map((pro, index) => ( <li key={index}>{pro}</li>
         ))}
       </ul>
       <h2>Object:</h2>
