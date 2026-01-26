@@ -4,6 +4,10 @@ const JobBoard = () => {
   const companyName = "Scopt Enterprises";
   const jobCount = 5; // You can change this value to test different scenarios
   const nextWeekJobs = jobCount * 1.5;
+  const textAttributes = {
+    fontSize: '16px',
+    color: 'red',
+  };
 
   const getJobMessage = (section) => {
     if (section === "Today") {
@@ -25,10 +29,10 @@ const JobBoard = () => {
       <>
       <div>
       <h1>{companyName}</h1>
-      <p>
+      <p className="today-jobs">
       {getJobMessage("Today")}
       </p>
-      <p>
+      <p style={textAttributes} className="next-week-jobs">
       {getJobMessage("Next Week")}
       </p>
       </div>
