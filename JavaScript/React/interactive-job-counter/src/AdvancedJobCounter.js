@@ -35,12 +35,22 @@ const AdvancedJobCounter = () => {
     }
   };
 
-  return (
+  const [environment, setEnvironment] = useState('Development');
+
+  const envSwitch = () => {
+    const newEnv = environment === 'Development' ? 'Production' : 'Development';
+    setEnvironment(newEnv);
+    console.log(`Switched environment to: ${newEnv}`);
+  };
+
+   return (
     <div>
+     <h2>Current Environment: {environment}</h2>
       <h1>Advanced Job Counter</h1>
       <p>{messageToSend()}</p>
       <button onClick={handleAddJob}>Add Job</button>
     <button onClick={resetJobs}>Reset Jobs</button>
+    <button onClick={envSwitch}>Switch Environment</button>
       <ul>
         {jobList.map((job, index) => (
           <li key={index}>
