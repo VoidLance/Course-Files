@@ -1,14 +1,14 @@
 import './App.css';
-import JobCounter from './JobCounter.js';
-import AdvancedJobCounter from './AdvancedJobCounter.js';
-
+import TestCard from './TestCard';
 function App() {
   return (
+    <>
     <div className="App">
       <header className="App-header">
-    <AdvancedJobCounter />
+    <TestCard />
       </header>
     </div>
+    </>
   );
 }
 
