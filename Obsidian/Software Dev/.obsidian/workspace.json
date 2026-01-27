@@ -114,9 +114,19 @@
               "icon": "sheets-in-box",
               "title": "File Tree"
             }
+          },
+          {
+            "id": "e162ef9846967a3a",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {},
+              "icon": "sheets-in-box",
+              "title": "File Tree"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -394,6 +404,46 @@
             "id": "d96f4b606ae3aadb",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "b52baa2e7e78e429",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          },
+          {
+            "id": "4a222f2c4df6734c",
+            "type": "leaf",
+            "state": {
+              "type": "journal-calendar",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "journal-calendar"
+            }
+          },
+          {
+            "id": "e1f2efb413aced04",
+            "type": "leaf",
+            "state": {
+              "type": "Strange New Worlds",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "Strange New Worlds"
+            }
+          },
+          {
+            "id": "b7436167778ec2b2",
+            "type": "leaf",
+            "state": {
               "type": "BC-matrix",
               "state": {},
               "icon": "BC-trail-icon",
@@ -401,7 +451,7 @@
             }
           },
           {
-            "id": "b52baa2e7e78e429",
+            "id": "5b023ee6629ffbd6",
             "type": "leaf",
             "state": {
               "type": "BC-tree",
@@ -411,7 +461,7 @@
             }
           },
           {
-            "id": "4a222f2c4df6734c",
+            "id": "9af9403a554b4476",
             "type": "leaf",
             "state": {
               "type": "journal-calendar",
@@ -421,7 +471,7 @@
             }
           },
           {
-            "id": "e1f2efb413aced04",
+            "id": "e33c9d107f6b37f8",
             "type": "leaf",
             "state": {
               "type": "Strange New Worlds",
@@ -431,7 +481,7 @@
             }
           }
         ],
-        "currentTab": 25
+        "currentTab": 29
       }
     ],
     "direction": "horizontal",
@@ -464,43 +514,45 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "b52baa2e7e78e429",
+  "active": "5b023ee6629ffbd6",
   "lastOpenFiles": [
+    "Canvas Element.md",
+    "Software Dev/Course Notes/HTML and JavaScript.md",
+    "Software Dev/Course Notes/iFrames.md",
+    "Software Dev/Course Notes/Module 3 - HTML and CSS.md",
+    "Software Dev/Course Notes/Display and Layout of HTML Elements.md",
+    "Software Dev/Course Notes/Module 2.md",
+    "Software Dev/Course Notes/Module 6 - Getting Online.md",
+    "Software Dev/Course Notes/2nd Video Notes.md",
+    "Software Dev/Course Notes/Semantic Elements.md",
+    "Software Dev/Course Notes/Personal Website Wireframe.md",
+    "Software Dev/Course Notes/AI Tutor Notes.md",
+    "Software Dev/Readwise/Articles/Boredom of Certainty.md",
+    "Software Dev/Course Notes/1st Video Notes.md",
+    "Software Dev/Readwise/Articles/Developer's Block.md",
+    "Software Dev/Course Notes",
+    "Software Dev/pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg",
+    "Software Dev/Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md",
+    "Software Dev/Readwise/Full Document Contents/Articles/Developer's Block.md",
+    "Software Dev/Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md",
+    "Software Dev/Readwise/Full Document Contents/Articles/Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG.md",
+    "Software Dev/Readwise/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md",
+    "Software Dev/Readwise/Books/Free the Darkness.md",
+    "Software Dev/Readwise/Books/Reading Like a Writer.md",
+    "Software Dev/Readwise/Books/Queen of Shadows.md",
+    "Software Dev/Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md",
+    "Software Dev/Readwise/Books/Crown of Midnight.md",
+    "Software Dev/Tags/Tags.md",
+    "Software Dev/Readwise/Full Document Contents/Articles",
+    "Software Dev/Readwise/Full Document Contents",
+    "Software Dev/pixel-banner-images",
+    "Software Dev/Readwise/Articles",
+    "Software Dev/Readwise/Books",
+    "Software Dev/Readwise",
+    "Software Dev/Tags",
+    "Software Dev",
     "Course Notes/Module 6 - Getting Online.md",
-    "Course Notes/AI Tutor Notes.md",
-    "Tags/Tags.md",
-    "Course Notes/1st Video Notes.md",
-    "Course Notes/2nd Video Notes.md",
-    "Course Notes/Display and Layout of HTML Elements.md",
-    "Course Notes/Module 2.md",
-    "Course Notes/Module 3 - HTML and CSS.md",
-    "Course Notes/Personal Website Wireframe.md",
-    "Course Notes/Semantic Elements.md",
-    "Readwise/Articles/Boredom of Certainty.md",
-    "Readwise/Articles/Developer's Block.md",
-    "Readwise/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md",
-    "Readwise/Books/Crown of Midnight.md",
-    "Readwise/Books/Free the Darkness.md",
-    "Readwise/Books/Queen of Shadows.md",
-    "Readwise/Books/Reading Like a Writer.md",
-    "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md",
-    "Readwise/Full Document Contents/Articles/Developer's Block.md",
-    "Readwise/Full Document Contents/Articles/Vampire Survivors How Developers Used Gambling Psychology to Create a Bafta-Winning Game.md",
-    "Readwise/Full Document Contents/Articles/Xbox Game Pass Just Quietly Released the Best Anti-Hero RPG.md",
-    "Readwise/Full Document Contents/Articles/Your personal research assistant.md",
-    "module 3.md",
-    "AlistairsPortfolioGames.md",
     "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg",
-    "pixel-banner-images",
-    "Readwise/Readwise.md",
-    "Course Notes/Course Notes.md",
-    "Tags",
-    "Untitled",
-    "Course Notes",
-    "Readwise/Articles",
-    "Readwise/Full Document Contents/Articles",
-    "Readwise/Full Document Contents",
-    "Readwise/Books",
-    "Readwise"
+    "pixel-banner-images"
   ]
 }

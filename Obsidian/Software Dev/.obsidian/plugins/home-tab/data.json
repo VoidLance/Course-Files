@@ -22,28 +22,7 @@
   "showShortcuts": true,
   "markdownOnly": false,
   "unresolvedLinks": false,
-  "recentFilesStore": [
-    {
-      "filepath": "Untitled.md",
-      "timestamp": 1759224975488
-    },
-    {
-      "filepath": "Course Notes/AI Tutor Notes.md",
-      "timestamp": 1756902078919
-    },
-    {
-      "filepath": "Tags/Tags.md",
-      "timestamp": 1756901827659
-    },
-    {
-      "filepath": "Course Notes/1st Video Notes.md",
-      "timestamp": 1756901816410
-    },
-    {
-      "filepath": "Course Notes/2nd Video Notes.md",
-      "timestamp": 1756901810534
-    }
-  ],
+  "recentFilesStore": [],
   "bookmarkedFileStore": [],
   "searchDelay": 0,
   "replaceNewTabs": true,
