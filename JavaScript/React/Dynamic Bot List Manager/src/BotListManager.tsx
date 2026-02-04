@@ -107,6 +107,9 @@ const addBot = (e: React.FormEvent) => {
     <>
       <div className="bot-list-manager">
         <h1>Bot List Manager</h1>
+        <h2>Bots running in current state: {bots
+          .filter((bot) => bot.status === "Running")
+          .length}</h2>
         <input
           type="text"
           placeholder="Enter status"
