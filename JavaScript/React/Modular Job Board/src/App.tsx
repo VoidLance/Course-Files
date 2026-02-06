@@ -36,6 +36,23 @@ const delJob = (id: number) => {
     setJobs((prevJobs) => prevJobs.filter((job) => job.id !== id));
   };
 
+  const editJob = (id: number, updatedJob: { name: string; status: string }) => {
+  setJobs((prevJobs) =>
+    prevJobs.map((job) =>
+      job.id === id ? { ...job, ...updatedJob } : job
+    )
+  );
+};
+
+const [show, setShow] = useState(false)
+const [filterStatus, setFilterStatus] = useState<string | null>(null);
+
+// Add this function to update the filter
+const updateFilter = (status: string | null) => {
+  setFilterStatus(status);
+};
+
+
   return (
     <div className="app">
       <Header />
@@ -55,8 +72,15 @@ const delJob = (id: number) => {
         <button type="submit">Add Job</button>
       </form>
 
-      <JobList jobs={jobs} delJob={delJob} />
-      <Footer />
+      <button onClick={()=> setShow(!show)}>Show/Hide</button>
+      {show && (<JobList
+        jobs={jobs}
+        delJob={delJob}
+        editJob={editJob}
+        filterStatus={filterStatus}
+        updateFilter={updateFilter}
+      />)}
+    <Footer />
     </div>
   );
 };
