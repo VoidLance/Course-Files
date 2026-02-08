@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AppForm.css'
 
 export const JobForm = () => {
   const [jobs, setJobs] = useState([{id:1, name:"Read Emails", status:"running"}, {id: 2, name:"Web Parsing", status:"completed"}, {id:3, name:"Send Emails", status:"stopped"}])
@@ -24,7 +25,7 @@ export const JobForm = () => {
     <input type="text" className="bot-input" name='name' placeholder="Enter the job to add" required />
     <div className="form-details">
     <div className="bottom-line">
-    {jobs.map((id) => (<button key={id.id} type="button" onClick={()=>console.log(id.status)}>{id.name}</button>))}
+    {jobs.map((id) => (<button className="tag" key={id.id} type="button" onClick={()=>console.log(id.status)}>{id.name}</button>))}
     </div>
     <select className="job-status" name='job-status' required>
     <option value="running">Running</option>
