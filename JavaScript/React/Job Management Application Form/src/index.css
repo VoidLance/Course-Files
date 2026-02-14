@@ -185,3 +185,24 @@ code {
     animation: none !important;
   }
 }
+
+.list {
+  list-style:none;
+}
+
+.list li img {
+  cursor: pointer;
+}
+
+.list li img:hover {
+  box-shadow: 6px 6px 12px rgba(155, 215, 182, 0.7);
+  border-radius: 50%;
+  color: rgba(255, 215, 182, 0.7);
+  scale: 110%;
+}
+
+.list li button:hover {
+  box-shadow: 6px 6px 12px rgba(155, 215, 182, 0.7);
+  color: rgba(255, 215, 182, 0.7);
+  scale: 110%;
+}

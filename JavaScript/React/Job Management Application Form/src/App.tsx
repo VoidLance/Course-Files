@@ -4,12 +4,27 @@ import "./index.css";
 import toDoIcon from './images/todoicon.png'
 import inProgressIcon from './images/inprogressicon.png'
 import completedIcon from './images/completedicon.png'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {JobStatus} from './components/JobStatus'
 
 
 export function App() {
-  const [items, setItems] = useState([{id: 1, title: "Finish Adding Items", status: "todo"}, {id:2, title: "Add Items", status: "inprogress"}, {id:3, title: "Add An Item For Each Column", status: "completed"}])
+  const [items, setItems] = useState(() => {
+    // Load data from localStorage on initial render
+    const savedItems = localStorage.getItem('items');
+    return savedItems ? JSON.parse(savedItems) : [
+      { id: 1, title: "Finish Adding Items", status: "todo" },
+      { id: 2, title: "Add Items", status: "inprogress" },
+      { id: 3, title: "Add An Item For Each Column", status: "completed" },
+    ];
+  });
+
   const [search, setSearch] = useState("");
+
+  // Save items to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   // Helper to move item to a specific column
   const moveItemTo = (id: number, targetStatus: 'todo' | 'inprogress' | 'completed') => {
@@ -30,6 +45,15 @@ export function App() {
     ]);
   };
 
+  const deleteJob = (id: number) => {
+    setItems((prevItems) => prevItems.filter(item => item.id !== id));
+  };
+
+const handleDrop = (itemId: number, targetColumnId: string) => {
+   moveItemTo(itemId, targetColumnId as 'todo' | 'inprogress' | 'completed'); // Use moveItemTo
+    console.log(`Moving ${itemId} to ${targetColumnId}`)
+  };
+
   return (
     <div className="app">
       <div className="search-bar">
@@ -39,51 +63,41 @@ export function App() {
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
-        {/* TODO: Use the 'search' state to filter items as you like */}
       </div>
       <JobForm onAdd={handleAddToDo}/>
       <div className="job-columns">
-        <JobColumn title="To Do" image={toDoIcon} alt="To Do">
-          <ul>
+        <JobColumn onDrop={handleDrop} status="todo" title="To Do" image={toDoIcon} alt="To Do">
+          <ul className="list">
             {items
               .filter(item => item.status === "todo" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                  {item.title}
-                  <span className="move-buttons">
-                    <button className="move-inprogress" onClick={() => moveItemTo(item.id, 'inprogress')}>Move to In Progress</button>
-                    <button className="move-completed" onClick={() => moveItemTo(item.id, 'completed')}>Move to Completed</button>
-                  </span>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                  </JobStatus>
                 </li>
               ))}
           </ul>
         </JobColumn>
-        <JobColumn title="In Progress" image={inProgressIcon} alt="In Progress">
-          <ul>
+        <JobColumn onDrop={handleDrop} status="inprogress" title="In Progress" image={inProgressIcon} alt="In Progress">
+          <ul className="list">
             {items
               .filter(item => item.status === "inprogress" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                  {item.title}
-                  <span className="move-buttons">
-                    <button className="move-todo" onClick={() => moveItemTo(item.id, 'todo')}>Move to To Do</button>
-                    <button className="move-completed" onClick={() => moveItemTo(item.id, 'completed')}>Move to Completed</button>
-                  </span>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                  </JobStatus>
                 </li>
               ))}
           </ul>
         </JobColumn>
-        <JobColumn title="Completed" image={completedIcon} alt="Done">
-          <ul>
+        <JobColumn onDrop={handleDrop} status="completed" title="Completed" image={completedIcon} alt="Done">
+          <ul className="list">
             {items
               .filter(item => item.status === "completed" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                  {item.title}
-                  <span className="move-buttons">
-                    <button className="move-todo" onClick={() => moveItemTo(item.id, 'todo')}>Move to To Do</button>
-                    <button className="move-inprogress" onClick={() => moveItemTo(item.id, 'inprogress')}>Move to In Progress</button>
-                  </span>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                  </JobStatus>
                 </li>
               ))}
           </ul>
