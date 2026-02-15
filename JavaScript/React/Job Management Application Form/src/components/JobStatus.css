@@ -3,7 +3,10 @@ img {
 }
 
 .jobStateArt {
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .textArticle {
@@ -11,13 +14,53 @@ img {
 }
 
 .jobBox {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .jobStatBox {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .jobDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.jobNotes {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.jobNotesWrap {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.jobNotesToggle {
+  background-color: transparent;
+  border: 1px solid blanchedalmond;
+  color: blanchedalmond;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.jobNotesToggle:hover {
+  background-color: rgba(255, 235, 205, 0.15);
 }

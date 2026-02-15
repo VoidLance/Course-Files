@@ -69,3 +69,53 @@ background-color: rgba(0,155,190,0.8)
 color: brown;
 text-decoration: underline;
 }
+
+.form-grid {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+}
+
+.form-error {
+  color: #a61d24;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.form-success {
+  color: #116329;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.field-error {
+  color: #a61d24;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.job-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.submit-data:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-edit {
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #555;
+  color: #fff;
+  border-radius: 3px;
+  padding: 7px 15px;
+  cursor: pointer;
+}

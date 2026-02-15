@@ -1,0 +1,76 @@
+.added-job-list {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 2px solid blanchedalmond;
+  width: 100%;
+}
+
+.added-job-heading {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.added-job-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.added-job-item {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 2px solid blanchedalmond;
+  border-radius: 9px;
+  background-color: rgba(150, 80, 255, 0.25);
+}
+
+.added-job-view {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.added-job-title {
+  font-weight: 600;
+  color: #fff;
+}
+
+.added-job-notes {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.added-job-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.added-job-input {
+  padding: 6px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+.added-job-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.added-job-button {
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  background-color: #5b5b5b;
+  color: #fff;
+  cursor: pointer;
+}
+
+.added-job-error {
+  color: #a61d24;
+  font-size: 13px;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { ReactNode } from 'react'; // Use type-only import
 import deleteIcon from '../images/deleteicon.png';
 import './JobStatus.css';
@@ -6,14 +6,16 @@ import {FormButton} from './FormButton'
 
 
 interface JobStatusProps {
-  item: object;
+  item: { id: number };
   value: string;
+  notes?: string;
   deleteJob: (id: number) => void;
   children?: ReactNode; // Add children prop
 }
 
 
-export const JobStatus = ({item, value, deleteJob, children }: JobStatusProps) => {
+export const JobStatus = ({item, value, notes, deleteJob, children }: JobStatusProps) => {
+  const [showNotes, setShowNotes] = useState(false);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData('text/plain', item.id.toString()); // Store the job ID in the dataTransfer object
@@ -27,6 +29,18 @@ export const JobStatus = ({item, value, deleteJob, children }: JobStatusProps) =
     <article className="jobStateArt">
     <FormButton value={value}/>
     </article>
+    {notes ? (
+      <div className="jobNotesWrap">
+        <button
+          type="button"
+          className="jobNotesToggle"
+          onClick={() => setShowNotes((prev) => !prev)}
+        >
+          {showNotes ? "Hide notes" : "Show notes"}
+        </button>
+        {showNotes ? <p className="jobNotes">{notes}</p> : null}
+      </div>
+    ) : null}
     </div>
       <div className="job-actions">
         {children} {/* Render children here */}

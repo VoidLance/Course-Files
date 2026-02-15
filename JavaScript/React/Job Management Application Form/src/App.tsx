@@ -9,13 +9,15 @@ import {JobStatus} from './components/JobStatus'
 
 
 export function App() {
+  type JobStatusValue = "todo" | "inprogress" | "completed";
+
   const [items, setItems] = useState(() => {
     // Load data from localStorage on initial render
     const savedItems = localStorage.getItem('items');
     return savedItems ? JSON.parse(savedItems) : [
-      { id: 1, title: "Finish Adding Items", status: "todo" },
-      { id: 2, title: "Add Items", status: "inprogress" },
-      { id: 3, title: "Add An Item For Each Column", status: "completed" },
+      { id: 1, title: "Finish Adding Items", status: "todo", notes: "" },
+      { id: 2, title: "Add Items", status: "inprogress", notes: "" },
+      { id: 3, title: "Add An Item For Each Column", status: "completed", notes: "" },
     ];
   });
 
@@ -27,20 +29,21 @@ export function App() {
   }, [items]);
 
   // Helper to move item to a specific column
-  const moveItemTo = (id: number, targetStatus: 'todo' | 'inprogress' | 'completed') => {
+  const moveItemTo = (id: number, targetStatus: JobStatusValue) => {
     setItems(prevItems => prevItems.map(item =>
       item.id === id ? { ...item, status: targetStatus } : item
     ));
   };
 
   // Handler to add a new item to the To Do column
-  const handleAddToDo = (title: string) => {
+  const handleAddToDo = (title: string, status: JobStatusValue, notes: string) => {
     setItems(prevItems => [
       ...prevItems,
       {
         id: prevItems.length > 0 ? prevItems[prevItems.length - 1].id + 1 : 1,
         title,
-        status: 'todo',
+        status,
+        notes,
       },
     ]);
   };
@@ -50,7 +53,7 @@ export function App() {
   };
 
 const handleDrop = (itemId: number, targetColumnId: string) => {
-   moveItemTo(itemId, targetColumnId as 'todo' | 'inprogress' | 'completed'); // Use moveItemTo
+  moveItemTo(itemId, targetColumnId as JobStatusValue); // Use moveItemTo
     console.log(`Moving ${itemId} to ${targetColumnId}`)
   };
 
@@ -64,7 +67,7 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
           onChange={e => setSearch(e.target.value)}
         />
       </div>
-      <JobForm onAdd={handleAddToDo}/>
+      <JobForm onAdd={handleAddToDo} />
       <div className="job-columns">
         <JobColumn onDrop={handleDrop} status="todo" title="To Do" image={toDoIcon} alt="To Do">
           <ul className="list">
@@ -72,7 +75,7 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
               .filter(item => item.status === "todo" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
                   </JobStatus>
                 </li>
               ))}
@@ -84,7 +87,7 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
               .filter(item => item.status === "inprogress" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
                   </JobStatus>
                 </li>
               ))}
@@ -96,7 +99,7 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
               .filter(item => item.status === "completed" && item.title.toLowerCase().includes(search.toLowerCase()))
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title}>
+                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
                   </JobStatus>
                 </li>
               ))}
