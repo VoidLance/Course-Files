@@ -9,12 +9,22 @@ interface JobStatusProps {
   item: { id: number };
   value: string;
   notes?: string;
+  categories?: string[];
+  statusLabel?: string;
   deleteJob: (id: number) => void;
   children?: ReactNode; // Add children prop
 }
 
 
-export const JobStatus = ({item, value, notes, deleteJob, children }: JobStatusProps) => {
+export const JobStatus = ({
+  item,
+  value,
+  notes,
+  categories = [],
+  statusLabel,
+  deleteJob,
+  children,
+}: JobStatusProps) => {
   const [showNotes, setShowNotes] = useState(false);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
@@ -29,6 +39,18 @@ export const JobStatus = ({item, value, notes, deleteJob, children }: JobStatusP
     <article className="jobStateArt">
     <FormButton value={value}/>
     </article>
+    {statusLabel ? (
+      <span className="jobStatusTag">{statusLabel}</span>
+    ) : null}
+    {categories.length > 0 ? (
+      <div className="jobCategories">
+        {categories.map((category) => (
+          <span key={category} className="jobCategoryTag">
+            {category}
+          </span>
+        ))}
+      </div>
+    ) : null}
     {notes ? (
       <div className="jobNotesWrap">
         <button

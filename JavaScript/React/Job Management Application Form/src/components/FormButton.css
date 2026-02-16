@@ -1,3 +1,27 @@
-button {
+.category-button {
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #f1f1f1;
+  color: #333;
+  border: 1px solid #bdbdbd;
+  border-radius: 18px;
+  padding: 6px 16px;
+  transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.category-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background-color: rgba(0, 155, 190, 0.2);
+}
+
+.category-button--selected {
+  background-color: rgba(0, 155, 190, 0.8);
+  color: #fff;
+  border-color: rgba(0, 155, 190, 0.8);
+}
+
+.category-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }

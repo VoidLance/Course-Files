@@ -11,14 +11,33 @@ import {JobStatus} from './components/JobStatus'
 export function App() {
   type JobStatusValue = "todo" | "inprogress" | "completed";
 
+  const getStatusLabel = (status: JobStatusValue) => {
+    switch (status) {
+      case "todo":
+        return "To Do";
+      case "inprogress":
+        return "In Progress";
+      case "completed":
+        return "Completed";
+      default:
+        return status;
+    }
+  };
+
   const [items, setItems] = useState(() => {
     // Load data from localStorage on initial render
     const savedItems = localStorage.getItem('items');
-    return savedItems ? JSON.parse(savedItems) : [
-      { id: 1, title: "Finish Adding Items", status: "todo", notes: "" },
-      { id: 2, title: "Add Items", status: "inprogress", notes: "" },
-      { id: 3, title: "Add An Item For Each Column", status: "completed", notes: "" },
-    ];
+    const baseItems = savedItems
+      ? JSON.parse(savedItems)
+      : [
+          { id: 1, title: "Finish Adding Items", status: "todo", notes: "", categories: [] },
+          { id: 2, title: "Add Items", status: "inprogress", notes: "", categories: [] },
+          { id: 3, title: "Add An Item For Each Column", status: "completed", notes: "", categories: [] },
+        ];
+    return baseItems.map((item: { categories?: string[] }) => ({
+      ...item,
+      categories: Array.isArray(item.categories) ? item.categories : [],
+    }));
   });
 
   const [search, setSearch] = useState("");
@@ -36,7 +55,12 @@ export function App() {
   };
 
   // Handler to add a new item to the To Do column
-  const handleAddToDo = (title: string, status: JobStatusValue, notes: string) => {
+  const handleAddToDo = (
+    title: string,
+    status: JobStatusValue,
+    notes: string,
+    categories: string[]
+  ) => {
     setItems(prevItems => [
       ...prevItems,
       {
@@ -44,6 +68,7 @@ export function App() {
         title,
         status,
         notes,
+        categories,
       },
     ]);
   };
@@ -62,20 +87,58 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
       <div className="search-bar">
         <input
           type="text"
+          className="search-input"
           placeholder="Search jobs..."
           value={search}
           onChange={e => setSearch(e.target.value)}
         />
+        <button
+          type="button"
+          className="search-clear"
+          onClick={() => setSearch("")}
+          disabled={!search}
+        >
+          Clear
+        </button>
       </div>
       <JobForm onAdd={handleAddToDo} />
       <div className="job-columns">
         <JobColumn onDrop={handleDrop} status="todo" title="To Do" image={toDoIcon} alt="To Do">
           <ul className="list">
             {items
-              .filter(item => item.status === "todo" && item.title.toLowerCase().includes(search.toLowerCase()))
+              .filter(item => {
+                if (item.status !== "todo") {
+                  return false;
+                }
+                const query = search.toLowerCase();
+                if (!query) {
+                  return true;
+                }
+                const matchesTitle = item.title.toLowerCase().includes(query);
+                const matchesNotes = (item.notes || "").toLowerCase().includes(query);
+                const matchesCategories = (item.categories || []).some((category: string) =>
+                  category.toLowerCase().includes(query)
+                );
+                const matchesStatus = item.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(item.status).toLowerCase().includes(query);
+                return (
+                  matchesTitle ||
+                  matchesNotes ||
+                  matchesCategories ||
+                  matchesStatus ||
+                  matchesStatusLabel
+                );
+              })
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
+                <JobStatus
+                  item={item}
+                  deleteJob={deleteJob}
+                  value={item.title}
+                  notes={item.notes}
+                  categories={item.categories}
+                  statusLabel={getStatusLabel(item.status)}
+                >
                   </JobStatus>
                 </li>
               ))}
@@ -84,10 +147,39 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
         <JobColumn onDrop={handleDrop} status="inprogress" title="In Progress" image={inProgressIcon} alt="In Progress">
           <ul className="list">
             {items
-              .filter(item => item.status === "inprogress" && item.title.toLowerCase().includes(search.toLowerCase()))
+              .filter(item => {
+                if (item.status !== "inprogress") {
+                  return false;
+                }
+                const query = search.toLowerCase();
+                if (!query) {
+                  return true;
+                }
+                const matchesTitle = item.title.toLowerCase().includes(query);
+                const matchesNotes = (item.notes || "").toLowerCase().includes(query);
+                const matchesCategories = (item.categories || []).some((category: string) =>
+                  category.toLowerCase().includes(query)
+                );
+                const matchesStatus = item.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(item.status).toLowerCase().includes(query);
+                return (
+                  matchesTitle ||
+                  matchesNotes ||
+                  matchesCategories ||
+                  matchesStatus ||
+                  matchesStatusLabel
+                );
+              })
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
+                <JobStatus
+                  item={item}
+                  deleteJob={deleteJob}
+                  value={item.title}
+                  notes={item.notes}
+                  categories={item.categories}
+                  statusLabel={getStatusLabel(item.status)}
+                >
                   </JobStatus>
                 </li>
               ))}
@@ -96,10 +188,39 @@ const handleDrop = (itemId: number, targetColumnId: string) => {
         <JobColumn onDrop={handleDrop} status="completed" title="Completed" image={completedIcon} alt="Done">
           <ul className="list">
             {items
-              .filter(item => item.status === "completed" && item.title.toLowerCase().includes(search.toLowerCase()))
+              .filter(item => {
+                if (item.status !== "completed") {
+                  return false;
+                }
+                const query = search.toLowerCase();
+                if (!query) {
+                  return true;
+                }
+                const matchesTitle = item.title.toLowerCase().includes(query);
+                const matchesNotes = (item.notes || "").toLowerCase().includes(query);
+                const matchesCategories = (item.categories || []).some((category: string) =>
+                  category.toLowerCase().includes(query)
+                );
+                const matchesStatus = item.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(item.status).toLowerCase().includes(query);
+                return (
+                  matchesTitle ||
+                  matchesNotes ||
+                  matchesCategories ||
+                  matchesStatus ||
+                  matchesStatusLabel
+                );
+              })
               .map(item => (
                 <li key={item.id}>
-                <JobStatus item={item} deleteJob={deleteJob} value={item.title} notes={item.notes}>
+                <JobStatus
+                  item={item}
+                  deleteJob={deleteJob}
+                  value={item.title}
+                  notes={item.notes}
+                  categories={item.categories}
+                  statusLabel={getStatusLabel(item.status)}
+                >
                   </JobStatus>
                 </li>
               ))}
