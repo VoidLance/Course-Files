@@ -25,7 +25,6 @@ export function App() {
   };
 
   const [items, setItems] = useState(() => {
-    // Load data from localStorage on initial render
     const savedItems = localStorage.getItem('items');
     const baseItems = savedItems
       ? JSON.parse(savedItems)
@@ -42,19 +41,16 @@ export function App() {
 
   const [search, setSearch] = useState("");
 
-  // Save items to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
 
-  // Helper to move item to a specific column
   const moveItemTo = (id: number, targetStatus: JobStatusValue) => {
     setItems(prevItems => prevItems.map(item =>
       item.id === id ? { ...item, status: targetStatus } : item
     ));
   };
 
-  // Handler to add a new item to the To Do column
   const handleAddToDo = (
     title: string,
     status: JobStatusValue,
@@ -78,7 +74,7 @@ export function App() {
   };
 
 const handleDrop = (itemId: number, targetColumnId: string) => {
-  moveItemTo(itemId, targetColumnId as JobStatusValue); // Use moveItemTo
+  moveItemTo(itemId, targetColumnId as JobStatusValue);
     console.log(`Moving ${itemId} to ${targetColumnId}`)
   };
 

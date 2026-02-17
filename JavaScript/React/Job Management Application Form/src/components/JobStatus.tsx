@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { ReactNode } from 'react'; // Use type-only import
+import type { ReactNode } from 'react';
 import deleteIcon from '../images/deleteicon.png';
 import './JobStatus.css';
 import {FormButton} from './FormButton'
@@ -12,7 +12,7 @@ interface JobStatusProps {
   categories?: string[];
   statusLabel?: string;
   deleteJob: (id: number) => void;
-  children?: ReactNode; // Add children prop
+  children?: ReactNode;
 }
 
 
@@ -28,8 +28,8 @@ export const JobStatus = ({
   const [showNotes, setShowNotes] = useState(false);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
-    event.dataTransfer.setData('text/plain', item.id.toString()); // Store the job ID in the dataTransfer object
-    event.dataTransfer.effectAllowed = 'move'; // Indicate the drag action is a move
+    event.dataTransfer.setData('text/plain', item.id.toString());
+    event.dataTransfer.effectAllowed = 'move';
     console.log(`Dragging: ${item.id}`)
   };
 
@@ -65,7 +65,7 @@ export const JobStatus = ({
     ) : null}
     </div>
       <div className="job-actions">
-        {children} {/* Render children here */}
+        {children}
         <div className="jobDelete">
     <img onClick={() => deleteJob(item.id)} src={deleteIcon} alt="delete item" />
     </div>

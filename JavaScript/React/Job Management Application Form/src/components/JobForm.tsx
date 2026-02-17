@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './AppForm.css'
 import { FormButton } from './FormButton';
+import { CategorySelector } from './CategorySelector';
 import { useCategorySelection } from './useCategorySelection';
 
 type JobCategory = "Read Emails" | "Send Emails" | "Parse Web";
@@ -235,52 +236,19 @@ export const JobForm: React.FC<JobFormProps> = ({
               required
             />
           </div>
-          <div className="form-field">
-            <input
-              type="text"
-              className="bot-input category-search"
-              placeholder="Search categories..."
-              value={categorySearch}
-              onChange={(event) => setCategorySearch(event.target.value)}
-            />
-            <div className="category-list">
-              {filteredCategories.map((category) => (
-                <FormButton
-                  key={category}
-                  value={category}
-                  selectCategory={selectCategory}
-                  isSelected={isSelected(category)}
-                  disabled={!isSelected(category) && !canSelectMore}
-                />
-              ))}
-            </div>
-            {jobDetails.categories.length > 0 && (
-              <div className="category-summary">
-                <div className="category-summary-title">Selected categories:</div>
-                <div className="category-tags">
-                  {jobDetails.categories.map((category) => (
-                    <span key={category} className="category-tag">
-                      {category}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="category-actions">
-              <button
-                type="button"
-                className="category-clear"
-                onClick={() => {
-                  clearCategories();
-                  setFormError("");
-                }}
-                disabled={jobDetails.categories.length === 0}
-              >
-                Clear Categories
-              </button>
-              <div className="category-limit">Max {maxSelected} selections</div>
-            </div>
-          </div>
+          <CategorySelector
+            filteredCategories={filteredCategories}
+            selectCategory={selectCategory}
+            isSelected={isSelected}
+            canSelectMore={canSelectMore}
+            clearCategories={clearCategories}
+            selectedCategories={jobDetails.categories}
+            maxSelected={maxSelected}
+            categorySearch={categorySearch}
+            setCategorySearch={setCategorySearch}
+            formError={formError}
+            setFormError={setFormError}
+          />
         </div>
         <div className="job-form-actions">
           <button
