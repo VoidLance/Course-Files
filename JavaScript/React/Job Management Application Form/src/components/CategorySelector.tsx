@@ -3,9 +3,9 @@ import './AppForm.css';
 import { CategoryButton } from './CategoryButton';
 
 export const categoryStyles = {
-  "Read Emails": "#ff8c00",
-  "Send Emails": "#ffd700",
-  "Parse Web": "#1e90ff",
+  'Read Emails': '#ff8c00',
+  'Send Emails': '#ffd700',
+  'Parse Web': '#1e90ff',
 };
 
 interface CategorySelectorProps {
@@ -49,12 +49,12 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
       }
       selectCategory(cat);
     }
-    setFormError?.("");
+    setFormError?.('');
   };
 
   const handleClearCategories = () => {
     clearCategories();
-    setFormError?.("");
+    setFormError?.('');
   };
 
   return (
@@ -74,7 +74,10 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
             selectCategory={handleSelectCategory}
             isSelected={isSelected(category)}
             disabled={!isSelected(category) && !canSelectMore}
-            categoryColor={categoryStyles[category as keyof typeof categoryStyles] || "#0b4b59"}
+            categoryColor={
+              categoryStyles[category as keyof typeof categoryStyles] ||
+              '#0b4b59'
+            }
           />
         ))}
       </div>

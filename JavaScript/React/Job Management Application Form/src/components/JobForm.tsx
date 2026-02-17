@@ -1,16 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import './AppForm.css'
+import './AppForm.css';
 import { FormButton } from './FormButton';
 import { CategorySelector } from './CategorySelector';
 import { useCategorySelection } from './useCategorySelection';
 
-type JobCategory = "Read Emails" | "Send Emails" | "Parse Web";
+type JobCategory = 'Read Emails' | 'Send Emails' | 'Parse Web';
 
-const CATEGORY_OPTIONS: JobCategory[] = ["Read Emails", "Send Emails", "Parse Web"];
+const CATEGORY_OPTIONS: JobCategory[] = [
+  'Read Emails',
+  'Send Emails',
+  'Parse Web',
+];
 
 export type JobDetailsInput = {
   name: string;
-  status: "todo" | "inprogress" | "completed" | "";
+  status: 'todo' | 'inprogress' | 'completed' | '';
   notes: string;
   categories: JobCategory[];
 };
@@ -18,9 +22,9 @@ export type JobDetailsInput = {
 type JobFormProps = {
   onAdd: (
     title: string,
-    status: "todo" | "inprogress" | "completed",
+    status: 'todo' | 'inprogress' | 'completed',
     notes: string,
-    categories: JobCategory[]
+    categories: JobCategory[],
   ) => void;
   onAddDetailed?: (details: JobDetailsInput) => void;
   onUpdateDetailed?: (details: JobDetailsInput & { id: number }) => void;
@@ -29,9 +33,9 @@ type JobFormProps = {
 };
 
 const emptyJobDetails: JobDetailsInput = {
-  name: "",
-  status: "",
-  notes: "",
+  name: '',
+  status: '',
+  notes: '',
   categories: [],
 };
 
@@ -42,26 +46,31 @@ export const JobForm: React.FC<JobFormProps> = ({
   editingJob,
   onCancelEdit,
 }) => {
-  const [jobDetails, setJobDetails] = useState<JobDetailsInput>(emptyJobDetails);
-  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof JobDetailsInput, string>>>({});
-  const [formError, setFormError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [categorySearch, setCategorySearch] = useState("");
+  const [jobDetails, setJobDetails] =
+    useState<JobDetailsInput>(emptyJobDetails);
+  const [fieldErrors, setFieldErrors] = useState<
+    Partial<Record<keyof JobDetailsInput, string>>
+  >({});
+  const [formError, setFormError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [categorySearch, setCategorySearch] = useState('');
 
   const filteredCategories = useMemo(() => {
     const query = categorySearch.trim().toLowerCase();
     if (!query) {
       return CATEGORY_OPTIONS;
     }
-    return CATEGORY_OPTIONS.filter((category) => category.toLowerCase().includes(query));
+    return CATEGORY_OPTIONS.filter((category) =>
+      category.toLowerCase().includes(query),
+    );
   }, [categorySearch]);
 
   const setSelectedCategories = (
-    updater: JobCategory[] | ((prev: JobCategory[]) => JobCategory[])
+    updater: JobCategory[] | ((prev: JobCategory[]) => JobCategory[]),
   ) => {
     setJobDetails((prev) => {
       const nextCategories =
-        typeof updater === "function" ? updater(prev.categories) : updater;
+        typeof updater === 'function' ? updater(prev.categories) : updater;
       return { ...prev, categories: nextCategories };
     });
   };
@@ -80,9 +89,9 @@ export const JobForm: React.FC<JobFormProps> = ({
 
   const isFormComplete = useMemo(() => {
     return (
-      jobDetails.name.trim() !== "" &&
-      jobDetails.status.trim() !== "" &&
-      jobDetails.notes.trim() !== ""
+      jobDetails.name.trim() !== '' &&
+      jobDetails.status.trim() !== '' &&
+      jobDetails.notes.trim() !== ''
     );
   }, [jobDetails]);
 
@@ -90,7 +99,7 @@ export const JobForm: React.FC<JobFormProps> = ({
 
   const hasFieldErrors = useMemo(
     () => Object.values(fieldErrors).some(Boolean),
-    [fieldErrors]
+    [fieldErrors],
   );
 
   useEffect(() => {
@@ -102,26 +111,32 @@ export const JobForm: React.FC<JobFormProps> = ({
         categories: editingJob.categories ?? [],
       });
       setFieldErrors({});
-      setFormError("");
-      setSuccessMessage("");
+      setFormError('');
+      setSuccessMessage('');
     }
   }, [editingJob]);
 
   const resetForm = () => {
     setJobDetails(emptyJobDetails);
     setFieldErrors({});
-    setFormError("");
+    setFormError('');
   };
 
   const getFieldError = (field: keyof JobDetailsInput, value: string) => {
-    if (field === "name" && value.trim().length > 0 && value.trim().length < 3) {
-      return "Job title must be at least 3 characters long.";
+    if (
+      field === 'name' &&
+      value.trim().length > 0 &&
+      value.trim().length < 3
+    ) {
+      return 'Job title must be at least 3 characters long.';
     }
-    return "";
+    return '';
   };
 
   const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = event.target;
 
@@ -147,33 +162,33 @@ export const JobForm: React.FC<JobFormProps> = ({
       }
       handleCategoryToggle(cat);
     }
-    setFormError("");
+    setFormError('');
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(jobDetails);
-    setFormError("");
-    setSuccessMessage("");
+    setFormError('');
+    setSuccessMessage('');
 
     if (!isFormComplete) {
-      setFormError("Please fill in all fields before submitting.");
+      setFormError('Please fill in all fields before submitting.');
       return;
     }
 
     if (!hasCategories) {
-      setFormError("Please select at least one category before submitting.");
+      setFormError('Please select at least one category before submitting.');
       return;
     }
 
     if (hasFieldErrors) {
-      setFormError("Please fix the errors before submitting.");
+      setFormError('Please fix the errors before submitting.');
       return;
     }
 
     if (editingJob && onUpdateDetailed) {
       onUpdateDetailed({ ...jobDetails, id: editingJob.id });
-      setSuccessMessage("Job updated successfully.");
+      setSuccessMessage('Job updated successfully.');
       if (onCancelEdit) {
         onCancelEdit();
       }
@@ -182,12 +197,17 @@ export const JobForm: React.FC<JobFormProps> = ({
     }
 
     if (jobDetails.status) {
-      onAdd(jobDetails.name, jobDetails.status, jobDetails.notes, jobDetails.categories);
+      onAdd(
+        jobDetails.name,
+        jobDetails.status,
+        jobDetails.notes,
+        jobDetails.categories,
+      );
     }
     if (onAddDetailed) {
       onAddDetailed(jobDetails);
     }
-    setSuccessMessage("Job added successfully.");
+    setSuccessMessage('Job added successfully.');
     resetForm();
   };
 
@@ -207,7 +227,9 @@ export const JobForm: React.FC<JobFormProps> = ({
               onChange={handleInputChange}
               required
             />
-            {fieldErrors.name && <div className="field-error">{fieldErrors.name}</div>}
+            {fieldErrors.name && (
+              <div className="field-error">{fieldErrors.name}</div>
+            )}
           </div>
           <div className="form-field">
             <select
@@ -256,7 +278,7 @@ export const JobForm: React.FC<JobFormProps> = ({
             className="submit-data"
             disabled={!isFormComplete || !hasCategories || hasFieldErrors}
           >
-            {editingJob ? "Update Job" : "Add to To Do"}
+            {editingJob ? 'Update Job' : 'Add to To Do'}
           </button>
           {editingJob && (
             <button

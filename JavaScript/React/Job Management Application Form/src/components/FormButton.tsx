@@ -1,5 +1,5 @@
-import React from "react";
-import "./FormButton.css";
+import React from 'react';
+import './FormButton.css';
 
 type FormButtonProps = {
   value: string;
@@ -17,7 +17,7 @@ export const FormButton: React.FC<FormButtonProps> = ({
   return (
     <button
       type="button"
-      className={`category-button${isSelected ? " category-button--selected" : ""}`}
+      className={`category-button${isSelected ? ' category-button--selected' : ''}`}
       onClick={() => selectCategory(value)}
       disabled={disabled}
     >

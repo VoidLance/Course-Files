@@ -1,4 +1,3 @@
-
 .category-button {
   cursor: pointer;
   font-size: 14px;
@@ -7,7 +6,12 @@
   border: 2px solid;
   border-radius: 18px;
   padding: 6px 16px;
-  transition: transform 0.15s, opacity 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
+  transition:
+    transform 0.15s,
+    opacity 0.3s,
+    box-shadow 0.3s,
+    background-color 0.3s,
+    border-color 0.3s;
   opacity: 0.8;
 }
 
@@ -20,7 +24,9 @@
 .category-button:hover:not(:disabled) {
   transform: translateY(-1px);
   opacity: 1;
-  box-shadow: 0 0 12px 2px #b3aaff, 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow:
+    0 0 12px 2px #b3aaff,
+    0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .category-button:disabled {

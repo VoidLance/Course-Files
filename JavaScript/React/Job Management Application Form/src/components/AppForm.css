@@ -1,55 +1,55 @@
 .form-header {
   max-width: 75%;
-display: flex;
-align-items: center;
-justify-content: center;
-padding: 10px;
-border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-bottom: 1px solid black;
 }
 
 .bot-input {
-font-size: 23px;
-font-weight: 400;
-border-radius: 5px;
-margin-bottom: 15px;;
-margin-top: 5px;
-width: 100%;
-padding: 10px 40px;
+  font-size: 23px;
+  font-weight: 400;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px 40px;
 }
 
-.bot-input:focus{
+.bot-input:focus {
   background-color: cadetblue;
   color: #fff;
 }
 
 .form-details {
-width: 100%;
+  width: 100%;
 }
 
 .bottomline {
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .job-status {
-font-size: 16px;
-font-weight: 300;
-border: 1px solid #999;
-width: 135px;
-height: 40px;
-padding: 0px 5px;
+  font-size: 16px;
+  font-weight: 300;
+  border: 1px solid #999;
+  width: 135px;
+  height: 40px;
+  padding: 0px 5px;
 }
 
 .submit-data {
-font-size: 16px;
-font-weight: 500;
-background-color: brown;
-color: #fff;
-border-radius: 3px;
-padding: 7px 15px;
-margin-left: 15px;
-cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: brown;
+  color: #fff;
+  border-radius: 3px;
+  padding: 7px 15px;
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 .tag {
@@ -60,14 +60,14 @@ cursor: pointer;
 }
 
 .tag:hover {
-scale: 120%;
-box-shadow: 2px;
-background-color: rgba(0,155,190,0.8)
+  scale: 120%;
+  box-shadow: 2px;
+  background-color: rgba(0, 155, 190, 0.8);
 }
 
 .tag:active {
-color: brown;
-text-decoration: underline;
+  color: brown;
+  text-decoration: underline;
 }
 
 .category-search {

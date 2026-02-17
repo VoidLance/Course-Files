@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import type { Dispatch, SetStateAction } from "react";
+import { useCallback } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 type UseCategorySelectionArgs<Category extends string> = {
   selectedCategories: Category[];
@@ -32,7 +32,7 @@ export const useCategorySelection = <Category extends string>({
         return [...prev, category];
       });
     },
-    [maxSelected, setSelectedCategories]
+    [maxSelected, setSelectedCategories],
   );
 
   const clearCategories = useCallback(() => {
@@ -41,7 +41,7 @@ export const useCategorySelection = <Category extends string>({
 
   const isSelected = useCallback(
     (category: Category) => selectedCategories.includes(category),
-    [selectedCategories]
+    [selectedCategories],
   );
 
   return {

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import type { JobDetailsInput } from "./JobForm";
-import "./AddedJobList.css";
+import React, { useState } from 'react';
+import type { JobDetailsInput } from './JobForm';
+import './AddedJobList.css';
 
-type JobStatusValue = "todo" | "inprogress" | "completed";
+type JobStatusValue = 'todo' | 'inprogress' | 'completed';
 
 type AddedJob = JobDetailsInput & { id: number; status: JobStatusValue };
 
@@ -12,28 +12,32 @@ type AddedJobListProps = {
   onDelete: (id: number) => void;
 };
 
-export const AddedJobList: React.FC<AddedJobListProps> = ({ jobs, onUpdate, onDelete }) => {
+export const AddedJobList: React.FC<AddedJobListProps> = ({
+  jobs,
+  onUpdate,
+  onDelete,
+}) => {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [draft, setDraft] = useState<AddedJob | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const startEdit = (job: AddedJob) => {
     setEditingId(job.id);
     setDraft({ ...job });
-    setError("");
+    setError('');
   };
 
   const cancelEdit = () => {
     setEditingId(null);
     setDraft(null);
-    setError("");
+    setError('');
   };
 
   const handleDraftChange = (
     event:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLSelectElement>,
   ) => {
     if (!draft) {
       return;
@@ -49,19 +53,19 @@ export const AddedJobList: React.FC<AddedJobListProps> = ({ jobs, onUpdate, onDe
     }
 
     if (draft.name.trim().length < 3) {
-      setError("Job title must be at least 3 characters long.");
+      setError('Job title must be at least 3 characters long.');
       return;
     }
 
     if (!draft.status) {
-      setError("Please choose a status before saving.");
+      setError('Please choose a status before saving.');
       return;
     }
 
     onUpdate(draft);
     setEditingId(null);
     setDraft(null);
-    setError("");
+    setError('');
   };
 
   if (jobs.length === 0) {
@@ -102,10 +106,18 @@ export const AddedJobList: React.FC<AddedJobListProps> = ({ jobs, onUpdate, onDe
                   rows={2}
                 />
                 <div className="added-job-actions">
-                  <button type="button" className="added-job-button" onClick={handleSave}>
+                  <button
+                    type="button"
+                    className="added-job-button"
+                    onClick={handleSave}
+                  >
                     Save
                   </button>
-                  <button type="button" className="added-job-button" onClick={cancelEdit}>
+                  <button
+                    type="button"
+                    className="added-job-button"
+                    onClick={cancelEdit}
+                  >
                     Cancel
                   </button>
                 </div>
@@ -115,10 +127,18 @@ export const AddedJobList: React.FC<AddedJobListProps> = ({ jobs, onUpdate, onDe
                 <div className="added-job-title">{job.name}</div>
                 <div className="added-job-notes">{job.notes}</div>
                 <div className="added-job-actions">
-                  <button type="button" className="added-job-button" onClick={() => startEdit(job)}>
+                  <button
+                    type="button"
+                    className="added-job-button"
+                    onClick={() => startEdit(job)}
+                  >
                     Edit
                   </button>
-                  <button type="button" className="added-job-button" onClick={() => onDelete(job.id)}>
+                  <button
+                    type="button"
+                    className="added-job-button"
+                    onClick={() => onDelete(job.id)}
+                  >
                     Delete
                   </button>
                 </div>
