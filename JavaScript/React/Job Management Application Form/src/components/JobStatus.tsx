@@ -29,6 +29,7 @@ export const JobStatus = ({
   const [editing, setEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(value);
   const [editNotes, setEditNotes] = useState(notes || "");
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData('text/plain', item.id.toString());
@@ -111,9 +112,17 @@ export const JobStatus = ({
       <div className="job-actions">
         {children}
         <div className="jobDelete">
-    <img onClick={() => deleteJob(item.id)} src={deleteIcon} alt="delete item" />
-    </div>
-    </div>
+          {showDeleteConfirm ? (
+            <div className="job-delete-confirm">
+              <span>Are you sure you want to delete this job?</span>
+              <button type="button" className="job-delete-yes" onClick={() => { setShowDeleteConfirm(false); deleteJob(item.id); }}>Yes</button>
+              <button type="button" className="job-delete-no" onClick={() => setShowDeleteConfirm(false)}>No</button>
+            </div>
+          ) : (
+            <img onClick={() => setShowDeleteConfirm(true)} src={deleteIcon} alt="delete item" />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
