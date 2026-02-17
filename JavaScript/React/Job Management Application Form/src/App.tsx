@@ -7,8 +7,17 @@ import completedIcon from './images/completedicon.png';
 import React, { useEffect, useState } from 'react';
 import { JobStatus } from './components/JobStatus';
 
+// JobManager component (formerly App)
 export function App() {
   type JobStatusValue = 'todo' | 'inprogress' | 'completed';
+  interface Job {
+    id: number;
+    title: string;
+    status: JobStatusValue;
+    notes: string;
+    categories: string[];
+    timestamp: number;
+  }
 
   const getStatusLabel = (status: JobStatusValue) => {
     switch (status) {
@@ -23,79 +32,66 @@ export function App() {
     }
   };
 
-  const [items, setItems] = useState(() => {
-    const savedItems = localStorage.getItem('items');
-    const baseItems = savedItems
-      ? JSON.parse(savedItems)
-      : [
-          {
-            id: 1,
-            title: 'Finish Adding Items',
-            status: 'todo',
-            notes: '',
-            categories: [],
-          },
-          {
-            id: 2,
-            title: 'Add Items',
-            status: 'inprogress',
-            notes: '',
-            categories: [],
-          },
-          {
-            id: 3,
-            title: 'Add An Item For Each Column',
-            status: 'completed',
-            notes: '',
-            categories: [],
-          },
-        ];
-    return baseItems.map((item: { categories?: string[] }) => ({
-      ...item,
-      categories: Array.isArray(item.categories) ? item.categories : [],
-    }));
+  // Task 3: Retrieve jobs from localStorage on mount
+  const [jobs, setJobs] = useState<Job[]>(() => {
+    const savedJobs = localStorage.getItem('jobs');
+    return savedJobs ? JSON.parse(savedJobs) : [];
   });
 
   const [search, setSearch] = useState('');
 
+  // Task 4: Save jobs to localStorage whenever jobs state changes
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
+    localStorage.setItem('jobs', JSON.stringify(jobs));
+  }, [jobs]);
 
-  const moveItemTo = (id: number, targetStatus: JobStatusValue) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, status: targetStatus } : item,
+  // Move job to another status
+  const moveJobTo = (id: number, targetStatus: JobStatusValue) => {
+    setJobs((prevJobs: Job[]) =>
+      prevJobs.map((job: Job) =>
+        job.id === id ? { ...job, status: targetStatus } : job,
       ),
     );
   };
 
-  const handleAddToDo = (
+  // Task 5: Add job using current jobs state
+  const addJob = (
     title: string,
     status: JobStatusValue,
     notes: string,
     categories: string[],
   ) => {
-    setItems((prevItems) => [
-      ...prevItems,
+    const now = Date.now();
+    setJobs((prevJobs: Job[]) => [
+      ...prevJobs,
       {
-        id: prevItems.length > 0 ? prevItems[prevItems.length - 1].id + 1 : 1,
+        id: now,
         title,
         status,
         notes,
         categories,
+        timestamp: now,
       },
     ]);
   };
 
-  const deleteJob = (id: number) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  // Task 6: Delete job using current jobs state
+  const deleteJob = (jobId: number) => {
+    setJobs((prevJobs: Job[]) => prevJobs.filter((job: Job) => job.id !== jobId));
   };
 
-  const handleDrop = (itemId: number, targetColumnId: string) => {
-    moveItemTo(itemId, targetColumnId as JobStatusValue);
-    console.log(`Moving ${itemId} to ${targetColumnId}`);
+  // Drag and drop handler (bonus)
+  const handleDrop = (jobId: number, targetColumnId: string) => {
+    moveJobTo(jobId, targetColumnId as JobStatusValue);
+    console.log(`Moving ${jobId} to ${targetColumnId}`);
   };
+
+  // Task 7: Clear all jobs and localStorage
+  const clearAllJobs = () => {
+    setJobs([]);
+    localStorage.removeItem('jobs');
+  };
+
 
   return (
     <div className="app">
@@ -115,8 +111,17 @@ export function App() {
         >
           Clear
         </button>
+        {/* Task 8: Clear All Jobs button */}
+        <button
+          type="button"
+          className="clear-all"
+          onClick={clearAllJobs}
+          disabled={jobs.length === 0}
+        >
+          Clear All Jobs
+        </button>
       </div>
-      <JobForm onAdd={handleAddToDo} />
+      <JobForm onAdd={addJob} />
       <div className="job-columns">
         <JobColumn
           onDrop={handleDrop}
@@ -126,24 +131,24 @@ export function App() {
           alt="To Do"
         >
           <ul className="list">
-            {items
-              .filter((item) => {
-                if (item.status !== 'todo') {
+            {jobs
+              .filter((job) => {
+                if (job.status !== 'todo') {
                   return false;
                 }
                 const query = search.toLowerCase();
                 if (!query) {
                   return true;
                 }
-                const matchesTitle = item.title.toLowerCase().includes(query);
-                const matchesNotes = (item.notes || '')
+                const matchesTitle = job.title.toLowerCase().includes(query);
+                const matchesNotes = (job.notes || '')
                   .toLowerCase()
                   .includes(query);
-                const matchesCategories = (item.categories || []).some(
+                const matchesCategories = (job.categories || []).some(
                   (category: string) => category.toLowerCase().includes(query),
                 );
-                const matchesStatus = item.status.toLowerCase().includes(query);
-                const matchesStatusLabel = getStatusLabel(item.status)
+                const matchesStatus = job.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(job.status)
                   .toLowerCase()
                   .includes(query);
                 return (
@@ -154,15 +159,17 @@ export function App() {
                   matchesStatusLabel
                 );
               })
-              .map((item) => (
-                <li key={item.id}>
+              .sort((a, b) => a.timestamp - b.timestamp)
+              .map((job) => (
+                <li key={job.id}>
                   <JobStatus
-                    item={item}
+                    item={job}
                     deleteJob={deleteJob}
-                    value={item.title}
-                    notes={item.notes}
-                    categories={item.categories}
-                    statusLabel={getStatusLabel(item.status)}
+                    value={job.title}
+                    notes={job.notes}
+                    categories={job.categories}
+                    statusLabel={getStatusLabel(job.status)}
+                    timestamp={job.timestamp}
                   ></JobStatus>
                 </li>
               ))}
@@ -176,24 +183,24 @@ export function App() {
           alt="In Progress"
         >
           <ul className="list">
-            {items
-              .filter((item) => {
-                if (item.status !== 'inprogress') {
+            {jobs
+              .filter((job) => {
+                if (job.status !== 'inprogress') {
                   return false;
                 }
                 const query = search.toLowerCase();
                 if (!query) {
                   return true;
                 }
-                const matchesTitle = item.title.toLowerCase().includes(query);
-                const matchesNotes = (item.notes || '')
+                const matchesTitle = job.title.toLowerCase().includes(query);
+                const matchesNotes = (job.notes || '')
                   .toLowerCase()
                   .includes(query);
-                const matchesCategories = (item.categories || []).some(
+                const matchesCategories = (job.categories || []).some(
                   (category: string) => category.toLowerCase().includes(query),
                 );
-                const matchesStatus = item.status.toLowerCase().includes(query);
-                const matchesStatusLabel = getStatusLabel(item.status)
+                const matchesStatus = job.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(job.status)
                   .toLowerCase()
                   .includes(query);
                 return (
@@ -204,15 +211,17 @@ export function App() {
                   matchesStatusLabel
                 );
               })
-              .map((item) => (
-                <li key={item.id}>
+              .sort((a, b) => a.timestamp - b.timestamp)
+              .map((job) => (
+                <li key={job.id}>
                   <JobStatus
-                    item={item}
+                    item={job}
                     deleteJob={deleteJob}
-                    value={item.title}
-                    notes={item.notes}
-                    categories={item.categories}
-                    statusLabel={getStatusLabel(item.status)}
+                    value={job.title}
+                    notes={job.notes}
+                    categories={job.categories}
+                    statusLabel={getStatusLabel(job.status)}
+                    timestamp={job.timestamp}
                   ></JobStatus>
                 </li>
               ))}
@@ -226,24 +235,24 @@ export function App() {
           alt="Done"
         >
           <ul className="list">
-            {items
-              .filter((item) => {
-                if (item.status !== 'completed') {
+            {jobs
+              .filter((job) => {
+                if (job.status !== 'completed') {
                   return false;
                 }
                 const query = search.toLowerCase();
                 if (!query) {
                   return true;
                 }
-                const matchesTitle = item.title.toLowerCase().includes(query);
-                const matchesNotes = (item.notes || '')
+                const matchesTitle = job.title.toLowerCase().includes(query);
+                const matchesNotes = (job.notes || '')
                   .toLowerCase()
                   .includes(query);
-                const matchesCategories = (item.categories || []).some(
+                const matchesCategories = (job.categories || []).some(
                   (category: string) => category.toLowerCase().includes(query),
                 );
-                const matchesStatus = item.status.toLowerCase().includes(query);
-                const matchesStatusLabel = getStatusLabel(item.status)
+                const matchesStatus = job.status.toLowerCase().includes(query);
+                const matchesStatusLabel = getStatusLabel(job.status)
                   .toLowerCase()
                   .includes(query);
                 return (
@@ -254,15 +263,17 @@ export function App() {
                   matchesStatusLabel
                 );
               })
-              .map((item) => (
-                <li key={item.id}>
+              .sort((a, b) => a.timestamp - b.timestamp)
+              .map((job) => (
+                <li key={job.id}>
                   <JobStatus
-                    item={item}
+                    item={job}
                     deleteJob={deleteJob}
-                    value={item.title}
-                    notes={item.notes}
-                    categories={item.categories}
-                    statusLabel={getStatusLabel(item.status)}
+                    value={job.title}
+                    notes={job.notes}
+                    categories={job.categories}
+                    statusLabel={getStatusLabel(job.status)}
+                    timestamp={job.timestamp}
                   ></JobStatus>
                 </li>
               ))}

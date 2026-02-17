@@ -11,9 +11,9 @@ interface JobStatusProps {
   categories?: string[];
   statusLabel?: string;
   deleteJob: (id: number) => void;
+  timestamp?: number;
   children?: ReactNode;
 }
-
 export const JobStatus = ({
   item,
   value,
@@ -21,6 +21,7 @@ export const JobStatus = ({
   categories = [],
   statusLabel,
   deleteJob,
+  timestamp,
   children,
 }: JobStatusProps) => {
   const [showNotes, setShowNotes] = useState(false);
@@ -39,6 +40,13 @@ export const JobStatus = ({
     <div draggable="true" className="jobBox" onDragStart={handleDragStart}>
       <div className="jobStatBox">
         <article className="jobStateArt">
+          {timestamp && (
+            <div className="job-timestamp">
+              <small>
+                {new Date(timestamp).toLocaleString()}
+              </small>
+            </div>
+          )}
           {editing ? (
             <>
               <input
