@@ -26,6 +26,9 @@ export const JobStatus = ({
   children,
 }: JobStatusProps) => {
   const [showNotes, setShowNotes] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState(value);
+  const [editNotes, setEditNotes] = useState(notes || "");
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.setData('text/plain', item.id.toString());
@@ -37,7 +40,48 @@ export const JobStatus = ({
     <div draggable="true" className="jobBox" onDragStart={handleDragStart}>
     <div className="jobStatBox">
     <article className="jobStateArt">
-    <FormButton value={value}/>
+      {editing ? (
+        <>
+          <input
+            type="text"
+            value={editTitle}
+            onChange={e => setEditTitle(e.target.value)}
+            className="job-edit-title"
+          />
+          <textarea
+            value={editNotes}
+            onChange={e => setEditNotes(e.target.value)}
+            className="job-edit-notes"
+            rows={2}
+          />
+          <button
+            type="button"
+            className="job-edit-save"
+            onClick={() => {
+              setEditing(false);
+              // TODO: Call update handler from parent
+            }}
+          >Save</button>
+          <button
+            type="button"
+            className="job-edit-cancel"
+            onClick={() => setEditing(false)}
+          >Cancel</button>
+        </>
+      ) : (
+        <>
+          <button
+            type="button"
+            className="job-title-btn"
+            onClick={() => setShowNotes((prev) => !prev)}
+          >{value}</button>
+          <button
+            type="button"
+            className="job-edit"
+            onClick={() => setEditing(true)}
+          >Edit</button>
+        </>
+      )}
     </article>
     {statusLabel ? (
       <span className="jobStatusTag">{statusLabel}</span>
