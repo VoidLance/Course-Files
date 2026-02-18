@@ -17,12 +17,12 @@ body{
     font-size: 1.5rem;
   }
 
-  #user-input {
+#user-input {
   padding: 1rem;
   max-width: 30rem;
   margin: 2rem auto;
   border-radius: 4px;
-  background-color: #363636;
+  background-color: #f0f0f0;
 }
 
 .input-group {
