@@ -1,8 +1,11 @@
 import React from 'react'
-import { calculateInvestmentResults } from '../util/investments';
+import { calculateInvestmentResults, formatter } from '../util/investments';
 import './Output.css'
 
 const Output = ({inputval}) => {
+  if (inputval.yearInv <= 0) {
+      return <p className="error">Please enter a duration greater than zero.</p>;
+    }
   const resdata = calculateInvestmentResults({
   initialInvestment: +inputval.begInvestment,
   annualInvestment: +inputval.annInvestment,
@@ -10,9 +13,14 @@ const Output = ({inputval}) => {
   duration: +inputval.yearInv
 });
 
-  const maxInterest = Math.max(...resdata.map((data) => data.interest));
+  const totalInvested = resdata.reduce((sum, data) => sum + data.investedCapital, 0);
+  const totalInterest = resdata.reduce((sum, data) => sum + data.interest, 0);
 
+
+  const maxInterest = Math.max(...resdata.map((data) => data.interest));
   return (
+    <>
+    <div className="Table">
   <table>
     <thead>
       <tr>
@@ -24,20 +32,29 @@ const Output = ({inputval}) => {
       </tr>
     </thead>
     <tbody>
-      {resdata.map((yearData, index) => (
-        <tr key={index}
-        style={{
-              backgroundColor: yearData.interest === maxInterest ? 'lightgreen' : 'transparent',
-            }}>
-          <td>{yearData.year}</td>
-          <td>{yearData.investmentValue.toFixed(2)}</td>
-          <td>{yearData.interest.toFixed(2)}</td>
-          <td>{yearData.totalInterest.toFixed(2)}</td>
-          <td>{yearData.investedCapital.toFixed(2)}</td>
-        </tr>
-      ))}
+      {resdata.map((yearData) => {
+      return (
+      <tr
+      key={yearData.year}
+      className={yearData.interest === maxInterest ? 'highest-interest' : 'normal'}
+      >
+        <td>{yearData.year}</td>
+        <td>{formatter.format(yearData.investmentValue)}</td>
+        <td>{formatter.format(yearData.interest)}</td>
+        <td>{formatter.format(yearData.totalInterest)}</td>
+        <td>{formatter.format(yearData.investedCapital)}</td>
+      </tr>
+    );
+  })}
     </tbody>
   </table>
+    </div>
+    <div className="summary">
+    <h1>Summary</h1>
+    <p>Total amount invested: ${totalInvested}</p>
+    <p>Total interest earned: ${totalInterest}</p>
+    </div>
+    </>
 );
 
 }

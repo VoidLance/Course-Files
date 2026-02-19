@@ -18,3 +18,30 @@ th {
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+.highest-interest {
+  background-color: yellowgreen;
+}
+
+.normal {
+  background-color: transparent;
+}
+
+.error {
+  color: red;
+  background-color: slategray;
+  align-self: center;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.summary {
+  background-color: gainsboro;
+  margin: 16px;
+  padding: 8px;
+  border-width: 8px;
+  border-radius: 12px;
+  border-color: blanchedalmond;
+  border-style: outset;
+}
