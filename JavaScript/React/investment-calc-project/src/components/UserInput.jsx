@@ -1,38 +1,23 @@
-import React, {useState} from 'react'
 import '../App.css'
 
-const UserInput = () => {
-const [inputCust, setInputCust] = useState({
-    begInvestment:4000,
-    annInvestment:1200,
-    returnInv:6,
-    yearInv:35
-})
-
-  function callUserInput (inputIde, val) {
-    setInputCust((prev) => ({
-       ...prev,
-        [inputIde]: val
-    }));
-  }
-
+const UserInput = ({callUserInput, inputval }) => {
   return(
     <section id='user-input'>
     <p className="input-group">
     <label htmlFor="initialInvestment">Beginning Investment ($)</label>
-    <input type="number" id="initialInvestment" value={inputCust.begInvestment} onChange={(e)=> callUserInput('begInvestment', e.target.value)} required/>
+    <input type="number" id="initialInvestment" value={inputval.begInvestment} onChange={(e)=> callUserInput('begInvestment', e.target.value)} required min="0"/>
     </p>
     <p className="input-group">
     <label htmlFor="annualInvestment">Annual Investment ($)</label>
-    <input type="number" id="annualInvestment" value={inputCust.annInvestment} onChange={(e)=> callUserInput('annInvestment', e.target.value)} required/>
+    <input type="number" id="annualInvestment" value={inputval.annInvestment} onChange={(e)=> callUserInput('annInvestment', e.target.value)} required min="0"/>
     </p>
     <p className="input-group">
     <label htmlFor="expectedReturn">Expected Return ($)</label>
-    <input type="number" id="expectedReturn" value={inputCust.returnInv} onChange={(e)=> callUserInput('returnInv', e.target.value)} required/>
+    <input type="number" id="expectedReturn" value={inputval.returnInv} onChange={(e)=> callUserInput('returnInv', e.target.value)} required min="0"/>
     </p>
     <p className="input-group">
-    <label htmlFor="yearlyInvestment">Yearly Investment ($)</label>
-    <input id="yearlyInvestment" type="number" value={inputCust.yearInv} onChange={(e)=> callUserInput('yearInv', e.target.value)}/>
+    <label htmlFor="yearlyInvestment">Duration (Years)</label>
+    <input id="yearlyInvestment" type="number" value={inputval.yearInv} onChange={(e)=> callUserInput('yearInv', e.target.value)} required min="0"/>
     </p>
     </section>
   )
