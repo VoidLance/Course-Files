@@ -4,7 +4,7 @@ import {useState} from 'react'
 import Output from './components/Output.jsx'
 import { calculateInvestmentResults } from './util/investments.js'
 import {generatepdf, /*generatedocx*/} from './util/generatereport.js'
-
+import Chart from './components/Chart.jsx'
 
 function App() {
 
@@ -44,6 +44,14 @@ const [inputCust, setInputCust] = useState({
     <Header title="Investment Calculator" subtitle="Meet your finantial InVestMate" />
     <UserInput inputval={inputCust} callUserInput={callUserInput}/>
     <Output inputval={inputCust} />
+    <Chart
+  Data={calculateInvestmentResults({
+    initialInvestment: +inputCust.begInvestment,
+    annualInvestment: +inputCust.annInvestment,
+    expectedReturn: +inputCust.returnInv,
+    duration: +inputCust.yearInv,
+  })}
+/>
     <button onClick={()=> handleGenerateReport('pdf')}>Generate PDF Report</button>
     {/* <button onClick={()=> handleGenerateReport('docx')}>Generate Document Report</button> */}
     </>
