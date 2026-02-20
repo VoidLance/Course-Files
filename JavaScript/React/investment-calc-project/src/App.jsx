@@ -1,61 +1,63 @@
-import Header from './components/Header.jsx'
-import UserInput from './components/UserInput.jsx'
-import {useState} from 'react'
-import Output from './components/Output.jsx'
-import { calculateInvestmentResults } from './util/investments.js'
-import {generatepdf, /*generatedocx*/} from './util/generatereport.js'
-import Chart from './components/Chart.jsx'
+import { useRef, useState } from "react";
+import Header from "./components/Header.jsx";
+import UserInput from "./components/UserInput.jsx";
+import Output from "./components/Output.jsx";
+import Chart from "./components/Chart.jsx";
+import { calculateInvestmentResults } from "./util/investments.js";
+import { generatepdf } from "./util/generatereport.js";
 
 function App() {
+  const chartRef = useRef(); // Create a ref for the chart
 
-const [inputCust, setInputCust] = useState({
-    begInvestment:4000,
-    annInvestment:1200,
-    returnInv:6,
-    yearInv:35
-})
+  const [inputCust, setInputCust] = useState({
+    begInvestment: 4000,
+    annInvestment: 1200,
+    returnInv: 6,
+    yearInv: 35,
+  });
 
-  function callUserInput (inputIde, val) {
+  function callUserInput(inputIde, val) {
     setInputCust((prev) => ({
-       ...prev,
-        [inputIde]: +val
+      ...prev,
+      [inputIde]: +val,
     }));
   }
 
   function handleGenerateReport(file) {
-    const resdata=calculateInvestmentResults({initialInvestment: +inputCust.begInvestment,
+    const resdata = calculateInvestmentResults({
+      initialInvestment: +inputCust.begInvestment,
       annualInvestment: +inputCust.annInvestment,
       expectedReturn: +inputCust.returnInv,
-      duration: +inputCust.yearInv}
-);
+      duration: +inputCust.yearInv,
+    });
 
-    console.log("current input: ", inputCust)
-    console.log("current results:", resdata)
-    if (file === 'pdf') {
-      generatepdf({...inputCust, results: resdata})
-    }
-    else {
-      //generatedocx({...inputCust, results: resdata})
+    console.log("current input: ", inputCust);
+    console.log("current results:", resdata);
+
+    if (file === "pdf") {
+      generatepdf({ ...inputCust, results: resdata }, chartRef); // Pass chartRef here
     }
   }
 
   return (
     <>
-    <Header title="Investment Calculator" subtitle="Meet your finantial InVestMate" />
-    <UserInput inputval={inputCust} callUserInput={callUserInput}/>
-    <Output inputval={inputCust} />
-    <Chart
-  Data={calculateInvestmentResults({
-    initialInvestment: +inputCust.begInvestment,
-    annualInvestment: +inputCust.annInvestment,
-    expectedReturn: +inputCust.returnInv,
-    duration: +inputCust.yearInv,
-  })}
-/>
-    <button onClick={()=> handleGenerateReport('pdf')}>Generate PDF Report</button>
-    {/* <button onClick={()=> handleGenerateReport('docx')}>Generate Document Report</button> */}
+      <Header title="Investment Calculator" subtitle="Meet your financial InVestMate" />
+      <UserInput inputval={inputCust} callUserInput={callUserInput} />
+      <Output inputval={inputCust} />
+      <div ref={chartRef}>
+        {/* Attach the ref to the chart container */}
+        <Chart
+          Data={calculateInvestmentResults({
+            initialInvestment: +inputCust.begInvestment,
+            annualInvestment: +inputCust.annInvestment,
+            expectedReturn: +inputCust.returnInv,
+            duration: +inputCust.yearInv,
+          })}
+        />
+      </div>
+      <button onClick={() => handleGenerateReport("pdf")}>Generate PDF Report</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
