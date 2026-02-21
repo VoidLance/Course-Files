@@ -1,10 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 const PasswordGenerator = () => {
   const [length, setLength] = useState(10);
   const [numberAllowed, setNumberAllowed] = useState(true);
   const [characterAllowed, setCharacterAllowed] = useState(true);
   const [password, setPassword] = useState('');
+
+const passwordGenerator = useCallback(() => {
+  let pass = "";
+  let strdata = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghilmnopqrstuvwxyz";
+  const guaranteedChars: string[] = [];
+
+  // Add numbers if allowed
+  if (numberAllowed) {
+    strdata += "0123456789";
+    guaranteedChars.push("0123456789".charAt(Math.floor(Math.random() * 10)));
+  }
+
+  // Add special characters if allowed
+  if (characterAllowed) {
+    strdata += "!£$%^&#@~`";
+    guaranteedChars.push("!£$%^&#@~`".charAt(Math.floor(Math.random() * 12)));
+  }
+
+  // Fill the rest of the password
+  for (let index = guaranteedChars.length; index < length; index++) {
+    const char = Math.floor(Math.random() * strdata.length);
+    pass += strdata.charAt(char);
+  }
+
+  // Combine guaranteed characters and the rest, then shuffle
+  pass = [...guaranteedChars, ...pass].sort(() => Math.random() - 0.5).join("");
+
+  setPassword(pass);
+}, [length, numberAllowed, characterAllowed, setPassword]);
 
   return (
     <div className="container mx-auto mt-8">
@@ -60,7 +89,7 @@ const PasswordGenerator = () => {
               <span className="ml-2 text-amber-800">Include Special Characters</span>
             </label>
           </div>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+          <button onClick={passwordGenerator} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
             Generate Password
           </button>
         </div>
