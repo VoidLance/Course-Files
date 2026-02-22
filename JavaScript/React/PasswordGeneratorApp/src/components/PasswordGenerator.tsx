@@ -35,12 +35,21 @@ const passwordGenerator = useCallback(() => {
   setPassword(pass);
 }, [length, numberAllowed, characterAllowed, setPassword]);
 
+const [copyText, setCopyText] = useState("Copy")
+
+const copyPasswordToClipboard = () => {
+  navigator.clipboard.writeText(password);
+  setCopyText("Copied ✔️");
+  setTimeout(()=> setCopyText("Copy"), 1000);
+}
+
+
   return (
     <div className="container mx-auto mt-8">
       <h1 className="text-4xl font-bold text-center mb-8">Password Generator</h1>
       <div className="max-w-md mx-auto bg-amber-50 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
         <div className="p-8">
-          <div className="mb-4">
+          <div className="mb-4 flex shadow rounded-lg overflow-hidden">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
               Generated Password
             </label>
@@ -52,6 +61,15 @@ const passwordGenerator = useCallback(() => {
               value={password}
               readOnly
             />
+           <button
+            className={`outline-none text-white px-4 py-1 shrink-0 active:scale-75 active:bg-green-500! ${
+            copyText === "Copy" ? "bg-slate-500!" : "bg-green-500!"
+            }`}
+            onClick={copyPasswordToClipboard}
+            >
+            {copyText}
+          </button>
+
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="length">
