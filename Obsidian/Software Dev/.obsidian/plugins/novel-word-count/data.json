@@ -83,7 +83,7 @@
       "linkCount": 0,
       "embedCount": 0,
       "aliases": [],
-      "createdDate": 1760532403248,
+      "createdDate": 1769510994760,
       "modifiedDate": 1760532403248,
       "sizeInBytes": 640723,
       "sessionStart": {
@@ -110,7 +110,7 @@
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403248,
+      "createdDate": 1769510993739,
       "modifiedDate": 1760532403248,
       "sizeInBytes": 405,
       "sessionStart": {
@@ -150,7 +150,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403248,
+      "createdDate": 1769510994203,
       "modifiedDate": 1760532403248,
       "sizeInBytes": 5623,
       "sessionStart": {
@@ -177,7 +177,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403248,
+      "createdDate": 1769510994315,
       "modifiedDate": 1760532403248,
       "sizeInBytes": 8473,
       "sessionStart": {
@@ -187,33 +187,6 @@
         "characterCount": 8432,
         "nonWhitespaceCharacterCount": 7393,
         "newlineCount": 84
-      }
-    },
-    "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 14965,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 49.88333333333333,
-      "characterCount": 95030,
-      "nonWhitespaceCharacterCount": 79124,
-      "newlineCount": 1065,
-      "readingTimeInMinutes": 56.471698113207545,
-      "linkCount": 1,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1760506168139,
-      "modifiedDate": 1756198928233,
-      "sizeInBytes": 95174,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 49.88333333333333,
-        "wordCount": 14965,
-        "characterCount": 95030,
-        "nonWhitespaceCharacterCount": 79124,
-        "newlineCount": 1065
       }
     },
     "Readwise/Full Document Contents/Articles/Developer's Block.md": {
@@ -231,7 +204,7 @@
       "linkCount": 6,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510994380,
       "modifiedDate": 1760532403248,
       "sizeInBytes": 8523,
       "sessionStart": {
@@ -241,6 +214,33 @@
         "characterCount": 8419,
         "nonWhitespaceCharacterCount": 6970,
         "newlineCount": 116
+      }
+    },
+    "Readwise/Full Document Contents/Articles/Reader Frequently Asked Questions.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 14965,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 49.88333333333333,
+      "characterCount": 95030,
+      "nonWhitespaceCharacterCount": 79124,
+      "newlineCount": 1065,
+      "readingTimeInMinutes": 56.471698113207545,
+      "linkCount": 1,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1769510994479,
+      "modifiedDate": 1756198928233,
+      "sizeInBytes": 95174,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 49.88333333333333,
+        "wordCount": 14965,
+        "characterCount": 95030,
+        "nonWhitespaceCharacterCount": 79124,
+        "newlineCount": 1065
       }
     },
     "Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md": {
@@ -258,7 +258,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510993880,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 448,
       "sessionStart": {
@@ -285,7 +285,7 @@
       "linkCount": 3,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510993992,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 843,
       "sessionStart": {
@@ -312,7 +312,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510993937,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 836,
       "sessionStart": {
@@ -339,7 +339,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510994075,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 1425,
       "sessionStart": {
@@ -366,7 +366,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510993830,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 419,
       "sessionStart": {
@@ -393,7 +393,7 @@
       "linkCount": 2,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510994152,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 2997,
       "sessionStart": {
@@ -420,7 +420,7 @@
       "linkCount": 4,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510994895,
       "modifiedDate": 1762961394346,
       "sizeInBytes": 646,
       "sessionStart": {
@@ -447,7 +447,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1760532403247,
+      "createdDate": 1769510995017,
       "modifiedDate": 1762961394343,
       "sizeInBytes": 843,
       "sessionStart": {
@@ -474,7 +474,7 @@
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961354496,
+      "createdDate": 1769510995709,
       "modifiedDate": 1762961647997,
       "sizeInBytes": 662,
       "sessionStart": {
@@ -501,7 +501,7 @@
       "linkCount": 4,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961207819,
+      "createdDate": 1769510995165,
       "modifiedDate": 1762961394362,
       "sizeInBytes": 1943,
       "sessionStart": {
@@ -528,7 +528,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961207754,
+      "createdDate": 1769510995117,
       "modifiedDate": 1762961394361,
       "sizeInBytes": 1571,
       "sessionStart": {
@@ -555,7 +555,7 @@
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961207882,
+      "createdDate": 1769510995300,
       "modifiedDate": 1760532403247,
       "sizeInBytes": 3051,
       "sessionStart": {
@@ -582,7 +582,7 @@
       "linkCount": 6,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961207978,
+      "createdDate": 1769510995622,
       "modifiedDate": 1762961394396,
       "sizeInBytes": 7604,
       "sessionStart": {
@@ -614,7 +614,7 @@
       "linkCount": 8,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961208732,
+      "createdDate": 1769510995382,
       "modifiedDate": 1762961394420,
       "sizeInBytes": 3827,
       "sessionStart": {
@@ -646,7 +646,7 @@
       "linkCount": 0,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961656340,
+      "createdDate": 1769510995768,
       "modifiedDate": 1762970960766,
       "sizeInBytes": 3063,
       "sessionStart": {
@@ -673,7 +673,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961207929,
+      "createdDate": 1769510995436,
       "modifiedDate": 1762961394386,
       "sizeInBytes": 4465,
       "sessionStart": {
@@ -683,38 +683,6 @@
         "characterCount": 4465,
         "nonWhitespaceCharacterCount": 3653,
         "newlineCount": 68
-      }
-    },
-    "Course Notes/AI Tutor Notes.md": {
-      "isCountable": true,
-      "targetNodeType": "file",
-      "noteCount": 1,
-      "wordCount": 186,
-      "wordCountTowardGoal": 0,
-      "wordGoal": null,
-      "pageCount": 0.62,
-      "characterCount": 1281,
-      "nonWhitespaceCharacterCount": 1085,
-      "newlineCount": 21,
-      "readingTimeInMinutes": 0.7018867924528301,
-      "linkCount": 3,
-      "embedCount": 0,
-      "aliases": null,
-      "createdDate": 1762961208478,
-      "modifiedDate": 1762961394405,
-      "sizeInBytes": 1426,
-      "sessionStart": {
-        "noteCount": 1,
-        "pageCount": 0.62,
-        "wordCount": 186,
-        "characterCount": 1281,
-        "nonWhitespaceCharacterCount": 1085,
-        "newlineCount": 21
-      },
-      "frontmatter": {
-        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
-        "banner-height": 620,
-        "pixel-banner-flag-color": "purple"
       }
     },
     "Course Notes/2nd Video Notes.md": {
@@ -732,7 +700,7 @@
       "linkCount": 1,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961208605,
+      "createdDate": 1769510995223,
       "modifiedDate": 1762961394408,
       "sizeInBytes": 2056,
       "sessionStart": {
@@ -745,6 +713,38 @@
       },
       "frontmatter": {
         "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "pixel-banner-flag-color": "purple"
+      }
+    },
+    "Course Notes/AI Tutor Notes.md": {
+      "isCountable": true,
+      "targetNodeType": "file",
+      "noteCount": 1,
+      "wordCount": 186,
+      "wordCountTowardGoal": 0,
+      "wordGoal": null,
+      "pageCount": 0.62,
+      "characterCount": 1281,
+      "nonWhitespaceCharacterCount": 1085,
+      "newlineCount": 21,
+      "readingTimeInMinutes": 0.7018867924528301,
+      "linkCount": 3,
+      "embedCount": 0,
+      "aliases": null,
+      "createdDate": 1769510995062,
+      "modifiedDate": 1762961394405,
+      "sizeInBytes": 1426,
+      "sessionStart": {
+        "noteCount": 1,
+        "pageCount": 0.62,
+        "wordCount": 186,
+        "characterCount": 1281,
+        "nonWhitespaceCharacterCount": 1085,
+        "newlineCount": 21
+      },
+      "frontmatter": {
+        "banner": "![[pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg]]",
+        "banner-height": 620,
         "pixel-banner-flag-color": "purple"
       }
     },
@@ -763,7 +763,7 @@
       "linkCount": 2,
       "embedCount": 0,
       "aliases": null,
-      "createdDate": 1762961208415,
+      "createdDate": 1769510994961,
       "modifiedDate": 1762961394401,
       "sizeInBytes": 795,
       "sessionStart": {
@@ -799,12 +799,12 @@
       "modifiedDate": 1762972706628,
       "sizeInBytes": 2199,
       "sessionStart": {
-        "noteCount": 0,
-        "pageCount": 0,
-        "wordCount": 0,
-        "characterCount": 0,
-        "nonWhitespaceCharacterCount": 0,
-        "newlineCount": 0
+        "noteCount": 1,
+        "pageCount": 0.8833333333333333,
+        "wordCount": 265,
+        "characterCount": 2199,
+        "nonWhitespaceCharacterCount": 1560,
+        "newlineCount": 58
       }
     }
   }

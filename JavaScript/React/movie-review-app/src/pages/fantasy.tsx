@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FilteredMoviePage from '../components/FilteredMoviePage';
+import { GENRE_TO_TMDB_IDS } from '../types/movie';
 
 export default function FantasyPage() {
   return (
@@ -15,8 +16,9 @@ export default function FantasyPage() {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-8">
           <FilteredMoviePage
             title="Fantasy Movies"
-            filterMovies={(movies) => movies.filter((movie) => movie.genres.includes('fantasy'))}
-            emptyMessage="No fantasy movies yet."
+            apiType="by_genre"
+            genreIds={GENRE_TO_TMDB_IDS.fantasy}
+            emptyMessage="No fantasy movies found."
           />
         </div>
       </main>

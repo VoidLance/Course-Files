@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FilteredMoviePage from '../components/FilteredMoviePage';
+import { GENRE_TO_TMDB_IDS } from '../types/movie';
 
 export default function RomancePage() {
   return (
@@ -15,8 +16,9 @@ export default function RomancePage() {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-8">
           <FilteredMoviePage
             title="Romance Movies"
-            filterMovies={(movies) => movies.filter((movie) => movie.genres.includes('romance'))}
-            emptyMessage="No romance movies yet."
+            apiType="by_genre"
+            genreIds={GENRE_TO_TMDB_IDS.romance}
+            emptyMessage="No romance movies found."
           />
         </div>
       </main>

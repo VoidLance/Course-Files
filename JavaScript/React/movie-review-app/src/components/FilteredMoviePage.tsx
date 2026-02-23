@@ -4,60 +4,57 @@ import { type Movie } from '../types/movie';
 
 interface FilteredMoviePageProps {
   title: string;
-  filterMovies: (movies: Movie[]) => Movie[];
+  apiType: 'popular' | 'top_rated' | 'by_genre';
+  genreIds?: number[];
   emptyMessage: string;
 }
 
-const FilteredMoviePage = ({ title, filterMovies, emptyMessage }: FilteredMoviePageProps) => {
+const FilteredMoviePage = ({ title, apiType, genreIds, emptyMessage }: FilteredMoviePageProps) => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [statusMessage, setStatusMessage] = useState<string>('');
-
-  const saveMovies = async (nextMovies: Movie[]) => {
-    try {
-      const response = await fetch('/api/movies', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ movies: nextMovies }),
-      });
-      if (!response.ok) {
-        throw new Error('Save failed');
-      }
-    } catch (error) {
-      console.error('Failed to save movies', error);
-      setStatusMessage('Failed to save movies.');
-    }
-  };
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadMovies = async () => {
       try {
-        const response = await fetch('/api/movies');
+        setLoading(true);
+        let url = '/api/movies';
+
+        if (apiType === 'top_rated') {
+          url = '/api/movies?type=top_rated';
+        } else if (apiType === 'by_genre' && genreIds) {
+          url = `/api/movies?type=by_genre&genres=${genreIds.join(',')}`;
+        } else {
+          url = '/api/movies?type=popular';
+        }
+
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Failed to load movies');
         }
+
         const data = (await response.json()) as { movies?: Movie[] };
         const storedMovies = Array.isArray(data.movies) ? data.movies : [];
         setMovies(storedMovies);
+
+        if (storedMovies.length === 0) {
+          setStatusMessage(emptyMessage);
+        }
       } catch (error) {
-        console.error('Failed to load movies', error);
+        console.error('Failed to load movies', error instanceof Error ? error.message : 'Unknown error');
         setStatusMessage('Failed to load movies.');
+      } finally {
+        setLoading(false);
       }
     };
 
     void loadMovies();
-  }, []);
+  }, [apiType, genreIds, emptyMessage]);
 
-  const filteredMovies = filterMovies(movies);
-
-  const updateMovieRating = (targetMovie: Movie, rating: number) => {
-    const normalizedRating = Math.round(Math.min(5, Math.max(0, rating)));
-    setMovies((prevMovies) => {
-      const nextMovies = prevMovies.map((movie) =>
-        movie === targetMovie ? { ...movie, rating: normalizedRating } : movie,
-      );
-      void saveMovies(nextMovies);
-      return nextMovies;
-    });
+  const updateMovieRating = (_targetMovie: Movie, _rating: number) => {
+    // Note: Ratings are now read-only from TMDB
+    // This is kept for future local rating feature if needed
+    console.log('Rating updates are not persisted in TMDB API mode');
   };
 
   return (
@@ -68,12 +65,17 @@ const FilteredMoviePage = ({ title, filterMovies, emptyMessage }: FilteredMovieP
           {statusMessage}
         </div>
       )}
-      {filteredMovies.length === 0 ? (
+      {loading && (
+        <div className="rounded bg-amber-100 px-4 py-2 text-sm font-semibold text-slate-900">
+          Loading movies...
+        </div>
+      )}
+      {movies.length === 0 && !loading ? (
         <p className="text-amber-100">{emptyMessage}</p>
       ) : (
         <ul className="grid grid-cols-4 gap-4 mt-8 movie-list">
-          {filteredMovies.map((movie, index) => (
-            <li key={`${movie.name}-${index}`}>
+          {movies.map((movie, index) => (
+            <li key={String(movie.id ?? `${movie.name}-${index}`)}>
               <MovieCard
                 name={movie.name}
                 img={movie.img}

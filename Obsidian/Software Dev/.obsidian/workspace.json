@@ -41,8 +41,7 @@
               "title": "Module 6 - Getting Online"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -101,8 +100,8 @@
             "state": {
               "type": "file-tree-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "file-tree-view"
+              "icon": "sheets-in-box",
+              "title": "File Tree"
             }
           },
           {
@@ -444,20 +443,20 @@
             "id": "b7436167778ec2b2",
             "type": "leaf",
             "state": {
-              "type": "BC-matrix",
+              "type": "empty",
               "state": {},
-              "icon": "BC-trail-icon",
-              "title": "Breadcrumbs Matrix"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
             "id": "5b023ee6629ffbd6",
             "type": "leaf",
             "state": {
-              "type": "BC-tree",
+              "type": "empty",
               "state": {},
-              "icon": "feather-corner-right-down",
-              "title": "Breadcrumbs Down"
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           },
           {
@@ -479,9 +478,29 @@
               "icon": "file-digit",
               "title": "Strange New Worlds"
             }
+          },
+          {
+            "id": "42fe3812ec2d4ee5",
+            "type": "leaf",
+            "state": {
+              "type": "BC-matrix",
+              "state": {},
+              "icon": "BC-trail-icon",
+              "title": "Breadcrumbs Matrix"
+            }
+          },
+          {
+            "id": "60269d69e49d6b7e",
+            "type": "leaf",
+            "state": {
+              "type": "BC-tree",
+              "state": {},
+              "icon": "feather-corner-right-down",
+              "title": "Breadcrumbs Down"
+            }
           }
         ],
-        "currentTab": 29
+        "currentTab": 33
       }
     ],
     "direction": "horizontal",
@@ -514,8 +533,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "5b023ee6629ffbd6",
+  "active": "b6936eeb9817ad5a",
   "lastOpenFiles": [
+    "Course Notes/Module 6 - Getting Online.md",
+    "Readwise/Tags/Tags.md",
+    "Readwise/Tags",
     "Canvas Element.md",
     "Software Dev/Course Notes/HTML and JavaScript.md",
     "Software Dev/Course Notes/iFrames.md",
@@ -542,7 +564,6 @@
     "Software Dev/Readwise/Books/Queen of Shadows.md",
     "Software Dev/Readwise/Full Document Contents/Articles/Bloodlines 2 - First Clan Reveal.md",
     "Software Dev/Readwise/Books/Crown of Midnight.md",
-    "Software Dev/Tags/Tags.md",
     "Software Dev/Readwise/Full Document Contents/Articles",
     "Software Dev/Readwise/Full Document Contents",
     "Software Dev/pixel-banner-images",
@@ -551,8 +572,6 @@
     "Software Dev/Readwise",
     "Software Dev/Tags",
     "Software Dev",
-    "Course Notes/Module 6 - Getting Online.md",
-    "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg",
-    "pixel-banner-images"
+    "pixel-banner-images/banner-for-software-development-notes-above-a-s.jpg"
   ]
 }
