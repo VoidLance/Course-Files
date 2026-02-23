@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import MovieCard from './MovieCard';
-import Kiba from '../assets/kiba.jpg';
 import { GENRES, type Genre, type Movie } from '../types/movie';
 
 const MovieList = ({
@@ -16,7 +15,7 @@ const MovieList = ({
 }) => {
   const [newMovie, setNewMovie] = useState<Movie>({
     name: '',
-    img: Kiba.src, // Default image as a string
+    img: '/images/placeholder.svg',
     alt: '',
     description: '',
     rating: 0,
@@ -51,7 +50,7 @@ const MovieList = ({
     addMovie(newMovie);
     setNewMovie({
       name: '',
-      img: Kiba.src, // Reset to default image
+      img: '/images/placeholder.svg',
       alt: '',
       description: '',
       rating: 0,

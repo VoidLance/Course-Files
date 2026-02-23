@@ -29,7 +29,16 @@ const sanitizeMovie = (value: unknown): Movie | null => {
   const img = sanitizeString(record.img, MAX_IMAGE_LENGTH);
   const alt = sanitizeString(record.alt, MAX_ALT_LENGTH);
   const description = sanitizeString(record.description, MAX_DESCRIPTION_LENGTH);
-  const rating = typeof record.rating === 'number' ? record.rating : Number(record.rating);
+
+  // Safely convert rating to a number
+  let rating = 0;
+  if (typeof record.rating === 'number') {
+    rating = record.rating;
+  } else if (typeof record.rating === 'string') {
+    const parsed = parseFloat(record.rating);
+    rating = Number.isFinite(parsed) ? parsed : 0;
+  }
+
   const genresRaw = Array.isArray(record.genres) ? record.genres : [];
   const normalizedGenres = genresRaw
     .filter((genre): genre is string => typeof genre === 'string')
@@ -38,11 +47,14 @@ const sanitizeMovie = (value: unknown): Movie | null => {
     .filter((genre, index, array) => array.indexOf(genre) === index)
     .slice(0, MAX_GENRES);
 
-  if (!name || !img || !alt || !description || !Number.isFinite(rating)) {
+  // Validate required fields (allow empty description)
+  if (!name || !img || !alt) {
+    console.error('Missing required field:', { name, img, alt });
     return null;
   }
 
   if (normalizedGenres.length === 0) {
+    console.error('No valid genres found in:', record.genres);
     return null;
   }
 
@@ -112,11 +124,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const sanitizedMovies = movies
-      .map((movie) => sanitizeMovie(movie))
+      .map((movie, index) => {
+        const sanitized = sanitizeMovie(movie);
+        if (!sanitized) {
+          console.error(`Movie ${index} failed sanitization:`, movie);
+        }
+        return sanitized;
+      })
       .filter((movie): movie is Movie => movie !== null);
 
-    if (sanitizedMovies.length !== movies.length) {
-      res.status(400).json({ message: 'movies contains invalid entries' });
+    if (sanitizedMovies.length === 0) {
+      console.error(`All ${movies.length} movies failed sanitization`);
+      res.status(400).json({ message: 'no valid movies provided' });
       return;
     }
 
