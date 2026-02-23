@@ -1,9 +1,13 @@
 import Head from 'next/head';
+import { useTheme } from '../context/ThemeContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MostPopularPageContent from '../components/MostPopularPageContent';
 
 export default function MostPopularPage() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <>
       <Head>
@@ -11,7 +15,11 @@ export default function MostPopularPage() {
         <meta name="description" content="Most popular movies" />
       </Head>
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-linear-to-b from-[#2e026d] to-[#15162c]">
+      <main className={`flex min-h-screen flex-col items-center justify-center ${
+        isDark 
+          ? 'bg-gradient-to-b from-[#1a1a1a] to-[#2d2d2d]' 
+          : 'bg-gradient-to-b from-[#8b7355] to-[#6b5644]'
+      }`}>
         <MostPopularPageContent />
       </main>
       <Footer />

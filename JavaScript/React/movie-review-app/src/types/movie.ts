@@ -2,6 +2,13 @@ export const GENRES = ['action', 'fantasy', 'romance', 'comedy', 'anime', 'drama
 
 export type Genre = (typeof GENRES)[number];
 
+export interface Actor {
+  id: number;
+  name: string;
+  character?: string;
+  profilePath?: string;
+}
+
 export interface Movie {
   id?: number; // TMDB movie ID
   name: string;
@@ -12,6 +19,8 @@ export interface Movie {
   genres: Genre[];
   popularity?: number; // TMDB popularity score
   releaseDate?: string; // TMDB release date
+  cast?: Actor[]; // Cast members
+  castPosition?: number; // Actor's billing position (for actor search sorting)
 }
 
 // Map TMDB genre IDs to our custom genres

@@ -3,6 +3,12 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Custom color palette matching Header component */
+  --color-amber-100: #fbbf24;
+  --color-rose-400: #f43f5e;
+  --color-taupe-500: #8b7355;
+  --color-mist-700: #2d2d2d;
 }
 
 @font-face {
@@ -13,31 +19,31 @@
     font-display: swap;
 }
 
-/* Color Scheme */
+/* Color Scheme - Matching Header Component */
 :root {
   /* Primary Colors */
   --color-primary: #fbbf24; /* Amber-100 */
-  --color-primary-dark: #f59e0b; /* Darker Amber */
+  --color-primary-dark: #f59e0b; /* Amber-600 */
 
   /* Secondary Colors */
-  --color-secondary: #e11d48; /* Rose-400 */
-  --color-secondary-light: #fecdd3; /* Lighter Rose */
+  --color-secondary: #f43f5e; /* Rose-400 */
+  --color-secondary-light: #fecdd3; /* Rose-100 */
 
   /* Neutral Colors */
-  --color-neutral: #d6ccc2; /* Mist-700 */
-  --color-neutral-dark: #7f5539; /* Taupe-500 */
+  --color-neutral: #2d2d2d; /* Mist-700 (dark for text) */
+  --color-neutral-light: #6b7280; /* Grey-500 */
+  --color-neutral-dark: #8b7355; /* Taupe-500 (nav background) */
 
   /* Background Colors */
-  --color-background: #fef3c7; /* Amber-100 */
-  --color-background-dark: #78350f; /* Darker Amber for contrast */
+  --color-background: #fbbf24; /* Amber-100 */
+  --color-background-dark: #1f2937; /* Dark background for pages */
 
   /* Border Colors */
-  --color-border: #e11d48; /* Rose-400 */
+  --color-border: #f43f5e; /* Rose-400 */
 }
 /* End of Color Scheme */
-
-
 
 .local-font {
   font-family: 'Carrois Gothic SC', sans-serif;
 }
+

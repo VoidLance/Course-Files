@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useTheme } from '../context/ThemeContext';
 import type { Movie } from '../types/movie';
 
 interface MovieCardProps {
@@ -22,12 +23,15 @@ const MovieCard: React.FC<MovieCardProps> = ({
   genres,
   onRate,
 }) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const renderStars = () => {
     const normalizedRating = Math.max(0, Math.min(5, rating));
     const roundedRating = Math.round(normalizedRating);
 
     return (
-      <div className="flex items-center gap-1" role="radiogroup" aria-label="Rate this movie">
+      <div className="flex items-center" role="radiogroup" aria-label="Rate this movie">
         {Array.from({ length: 5 }, (_, index) => {
           const starValue = index + 1;
           const isFilled = starValue <= roundedRating;
@@ -51,12 +55,20 @@ const MovieCard: React.FC<MovieCardProps> = ({
   };
 
   return (
-    <section className="movie-card m-5 items-center flex flex-col max-w-md p-3 rounded-lg bg-taupe-200">
+    <section className={`movie-card m-1 items-center flex flex-col max-w-md max-h-full min-h-full overflow-hidden wrap p-2 rounded-lg shadow-lg ${
+      isDark 
+        ? 'bg-[#3a3a3a] text-amber-100' 
+        : 'bg-[#d4c5b8] text-[#2d2d2d]'
+    }`}>
       <h2 className="text-xl p-3">{name}</h2>
       {img && <Image width={200} height={250} src={img} alt={alt} />}
       <div className="flex flex-wrap justify-center gap-2 pt-3 text-xs">
         {genres.map((genre) => (
-          <span key={genre} className="rounded bg-amber-100 px-2 py-1 text-slate-900">
+          <span key={genre} className={`rounded px-2 py-1 ${
+            isDark 
+              ? 'bg-rose-400 text-[#1a1a1a]' 
+              : 'bg-rose-400 text-[#2d2d2d]'
+          }`}>
             {formatGenre(genre)}
           </span>
         ))}

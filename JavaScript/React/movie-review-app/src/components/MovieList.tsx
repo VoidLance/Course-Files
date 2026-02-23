@@ -16,7 +16,7 @@ const MovieList = ({
   };
 
   return (
-    <ul className="grid grid-cols-4 gap-4 mt-8 movie-list">
+    <ul className="grid grid-cols-4 mt-8 movie-list">
       {movies.map((movie, index) => (
         <li key={String(movie.id ?? `${movie.name}-${index}`)}>
           <MovieCard

@@ -1,5 +1,6 @@
 import { type AppType } from "next/app";
 import { Montserrat } from "next/font/google";
+import { ThemeProvider } from "~/context/ThemeContext";
 
 import "~/styles/globals.css";
 
@@ -10,9 +11,11 @@ const montserrat = Montserrat({
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
-    <div className={montserrat.className}>
-      <Component {...pageProps} />
-    </div>
+    <ThemeProvider>
+      <div className={montserrat.className}>
+        <Component {...pageProps} />
+      </div>
+    </ThemeProvider>
     </>
   );
 };
