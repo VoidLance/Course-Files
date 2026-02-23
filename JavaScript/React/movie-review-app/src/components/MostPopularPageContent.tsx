@@ -15,24 +15,24 @@ const MostPopularPageContent = () => {
     }, 4000);
   };
 
-  const saveMovies = async (nextMovies: Movie[]) => {
-    try {
-      const response = await fetch('/api/movies', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ movies: nextMovies }),
-      });
-      if (!response.ok) {
-        throw new Error('Save failed');
-      }
-      showStatus('Saved movies.');
-    } catch (error) {
-      console.error('Failed to save movies', error);
-      showStatus('Failed to save movies.');
-    }
-  };
-
   useEffect(() => {
+    const saveMovies = async (nextMovies: Movie[]) => {
+      try {
+        const response = await fetch('/api/movies', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ movies: nextMovies }),
+        });
+        if (!response.ok) {
+          throw new Error('Save failed');
+        }
+        showStatus('Saved movies.');
+      } catch (error) {
+        console.error('Failed to save movies', error);
+        showStatus('Failed to save movies.');
+      }
+    };
+
     const loadMovies = async () => {
       try {
         const response = await fetch('/api/movies');
@@ -57,6 +57,23 @@ const MostPopularPageContent = () => {
 
     void loadMovies();
   }, []);
+
+  const saveMovies = async (nextMovies: Movie[]) => {
+    try {
+      const response = await fetch('/api/movies', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ movies: nextMovies }),
+      });
+      if (!response.ok) {
+        throw new Error('Save failed');
+      }
+      showStatus('Saved movies.');
+    } catch (error) {
+      console.error('Failed to save movies', error);
+      showStatus('Failed to save movies.');
+    }
+  };
 
   const addMovie = (movie: Movie) => {
     setMovies((prevMovies) => {
