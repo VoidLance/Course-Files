@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@font-face {
+    font-family: 'Carrois Gothic SC';
+    src: url('./transfonter.org-20260222-182346/CarroisGothicSC-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Color Scheme */
+:root {
+  /* Primary Colors */
+  --color-primary: #fbbf24; /* Amber-100 */
+  --color-primary-dark: #f59e0b; /* Darker Amber */
+
+  /* Secondary Colors */
+  --color-secondary: #e11d48; /* Rose-400 */
+  --color-secondary-light: #fecdd3; /* Lighter Rose */
+
+  /* Neutral Colors */
+  --color-neutral: #d6ccc2; /* Mist-700 */
+  --color-neutral-dark: #7f5539; /* Taupe-500 */
+
+  /* Background Colors */
+  --color-background: #fef3c7; /* Amber-100 */
+  --color-background-dark: #78350f; /* Darker Amber for contrast */
+
+  /* Border Colors */
+  --color-border: #e11d48; /* Rose-400 */
+}
+/* End of Color Scheme */
+
+
+
+.local-font {
+  font-family: 'Carrois Gothic SC', sans-serif;
+}
