@@ -204,6 +204,7 @@ const FilteredMoviePage = ({ title, apiType, genreIds, emptyMessage, showGenreFi
           {filteredMovies.map((movie, index) => (
             <li key={String(movie.id ?? `${movie.name}-${index}`)}>
               <MovieCard
+                id={movie.id}
                 name={movie.name}
                 img={movie.img}
                 alt={movie.alt}

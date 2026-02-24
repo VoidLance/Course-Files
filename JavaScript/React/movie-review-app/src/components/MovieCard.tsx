@@ -3,6 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import type { Movie } from '../types/movie';
 
 interface MovieCardProps {
+  id?: Movie['id'];
   name: Movie['name'];
   img: Movie['img'];
   alt: Movie['alt'];
@@ -15,6 +16,7 @@ interface MovieCardProps {
 const formatGenre = (genre: string) => genre.charAt(0).toUpperCase() + genre.slice(1);
 
 const MovieCard: React.FC<MovieCardProps> = ({
+  id,
   name,
   img,
   alt,
@@ -25,6 +27,9 @@ const MovieCard: React.FC<MovieCardProps> = ({
 }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const tmdbUrl = id
+    ? `https://www.themoviedb.org/movie/${id}`
+    : `https://www.themoviedb.org/search?query=${encodeURIComponent(name)}`;
 
   const renderStars = () => {
     const normalizedRating = Math.max(0, Math.min(5, rating));
@@ -60,7 +65,17 @@ const MovieCard: React.FC<MovieCardProps> = ({
         ? 'bg-[#3a3a3a] text-amber-100' 
         : 'bg-[#d4c5b8] text-[#2d2d2d]'
     }`}>
-      <h2 className="text-xl p-3">{name}</h2>
+      <h2 className="text-xl p-3">
+        <a
+          href={tmdbUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="underline-offset-4 hover:underline"
+          aria-label={`View ${name} on TMDB`}
+        >
+          {name}
+        </a>
+      </h2>
       {img && <Image width={200} height={250} src={img} alt={alt} />}
       <div className="flex flex-wrap justify-center gap-2 pt-3 text-xs">
         {genres.map((genre) => (

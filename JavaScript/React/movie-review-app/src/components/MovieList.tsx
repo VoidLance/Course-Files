@@ -20,6 +20,7 @@ const MovieList = ({
       {movies.map((movie, index) => (
         <li key={String(movie.id ?? `${movie.name}-${index}`)}>
           <MovieCard
+            id={movie.id}
             name={movie.name}
             img={movie.img}
             alt={movie.alt}
