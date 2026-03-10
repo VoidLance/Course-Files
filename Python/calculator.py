@@ -16,9 +16,9 @@ def multiply(x,y):
 
 operation = input("Add, Subtract, Multiply: ")
 
-if operation == "add":
+if operation.lower() == "add":
     add(x,y)
-elif operation == "subtract":
+elif operation.lower() == "subtract":
     subtract(x,y)
-elif operation == "multiply":
+elif operation.lower() == "multiply":
     multiply(x,y)

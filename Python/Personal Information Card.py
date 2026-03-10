@@ -7,7 +7,7 @@ class Person:
         self.hobby = hobby
 
 # Define new Person with the attributes used in the previous solution
-alistair = Person("Alistair", 29, "Bristol", "Coding")
+alistair = Person(input("Enter your name: "), int(input("Enter your Age: ")), input("Enter your city: "), input("Enter your Hobby: "))
 
 # Declare all variables
 # name=str("Alistair")
