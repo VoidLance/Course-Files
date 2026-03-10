@@ -9,6 +9,8 @@ The Project Files contains all the projects I have coded since starting the cour
 The Coding_Challenges folder includes all of the Coding Challenges that are included at the end of the HTML section of the course
 ## JavaScript
 The JavaScript folder contains all of my JavaScript projects, as well as all of my React projects in the React subfolder. This is really where the meat of the repository is at, given that learning React seems to be the primary aim of the course. I've also experimented there with some personal projects and using different tools like Bun and the T3 stack.
+## Python
+The Python folder contains all my Python projects. I am already fairly familiar with Python starting this part of the course, through building real-world projects like games - but always using some kind of engine or other layer that used a slightly different syntax, so I'm excited to see where learning the fundamentals can take me.
 
 ---
 
