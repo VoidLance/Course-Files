@@ -53,4 +53,4 @@ if "comedy" and "romance" in genre.lower():
     recommendations += "Serendipity, The Bounty Hunter, The Wedding Planner, She's All That, "
 
 
-print(recommendations[0:-2])
+print("Your recommendations are: ", recommendations[0:-2])
