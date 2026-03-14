@@ -14,7 +14,11 @@ def multiply(x,y):
   z=x*y
   print(z)
 
-operation = input("Add, Subtract, Multiply: ")
+def divide(x,y):
+    z=x/y
+    print(z)
+
+operation = input("Add, Subtract, Multiply, Divide: ")
 
 if operation.lower() == "add":
     add(x,y)
@@ -22,3 +26,5 @@ elif operation.lower() == "subtract":
     subtract(x,y)
 elif operation.lower() == "multiply":
     multiply(x,y)
+elif operation.lower() == "divide":
+    divide(x,y)
