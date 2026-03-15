@@ -32,9 +32,9 @@ if average_score % 10 >= 5:
 #Check if a specific score is present using membership operators
 check_score = int(input("Enter the score to search for: "))
 if check_score in scores:
-    print("The score {check_score} is in the list".format(check_score=check_score))
+    print(f"The score {check_score} is in the list")
 else:
-    print("The score {check_score} is not in the list".format(check_score=check_score))
+    print(f"The score {check_score} is not in the list")
 
 #Compare scores using identity operators
 scores_copy = scores
@@ -52,4 +52,4 @@ bitwise_result = scores_copy[0] | scores_copy[1]
 print("bitwise OR of the first two scores: ", bitwise_result)
 
 #Display the student's grade
-print("The student's average score is: {average_score} and their grade is: {grade}".format(average_score=average_score, grade=grade))
+print(f"The student's average score is: {average_score} and their grade is: {grade}")
