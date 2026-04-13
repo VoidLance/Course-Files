@@ -1,0 +1,7 @@
+- When you start using AWS, you can choose different support plans depending on how much help you want and response time
+- The more coverage you get, the more peace of mind you get, but also the more the cost goes up
+- Basic Support - free and comes with every account. Has access to documentation, whitepapers, forums
+- Developer Support - You can call someone for advice, but the response is not immediate. AWS gives you email support during business hours, which works fine for test or small dev environments
+- Business Support - 24/7 support by phone, chat and email, faster response times, plus Trusted Advisor full checks - perfect for production workflows. Cloud support engineers are on standby 24/7. IEM (Infrastructure Event Management) only available for an extra fee
+- Enterprise On-Ramp & Enterprise Support - VIP packages. AWS provides a Technical Account Manager  (TAM), proactive reviews,  and the fastest response times for mission-critical systems
+- 

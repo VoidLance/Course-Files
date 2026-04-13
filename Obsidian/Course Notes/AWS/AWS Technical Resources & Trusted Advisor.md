@@ -1,0 +1,11 @@
+- When you work with AWS, you're never left on your own. AWS provides a range of resources that act like different kinds of guides, doctors, and advisors to keep you on track.
+- For example, as we've seen, when you're attempting something new, AWS provides a help and tutorials page
+- When you need a health check on your environment, tools like Trusted Advisor can review your setup and recommend improvements
+- AWS also offers more expert advice about architecture and operational best practices, through tools like the Well Architected Framework and AWS Knowledge Center
+- AWS Documentation, whitepapers and blogs: These are your instruction manuals and textbooks. They cover everything from simple how to guides to deep dives into architecture, security and cost optimisation. They're written by AWS experts and kept updated constantly to reflect the latest and best practices
+- AWS Knowledge Center and re;Post: Think of these as study groups and Q&A forums. You can ask questions, read FAQs, and get help from AWS staff and the wider community. The knowledge center gives you short, focused, pre-written answers to common questions, while re;Post is a public forum where users and AWS experts share insights and advice.
+- AWS Trusted Advisor - Scans your account for cost savings, performance, fault tolerance, service limits and security gaps.
+- AWS Health Dashboard - Shows the overall status of AWS services and alerts you if something is affecting your environment or if your environment is unhealthy. You'll see alerts and updates in real time.
+- AWS Support Centre and Professional Services - These are your specialist consultants on call. If you face complex challenges (like migration, scaling or architecture), AWS experts provide hands-on help. 
+- AWS Partner Network - Think of this as AWS's extended family of certified contractors. APN partners are vetted companies that can help you design, migrate, secure or optimise AWS solutions. They're trained to follow AWS best practices, so whether you need development help, security auditing or architecture design, there's a partner for that.
+- For instructor-led learning, AWS provides Classroom Training sessions led by certified instructors, and online Tech Talks that offer deep dives into cloud security and other topics.
