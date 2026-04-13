@@ -2,7 +2,7 @@
 This repository is where I'm putting everything relating to the Software Development training course I am currently undertaking. I'm hoping that it can be used both to show my work to
 tutors and anyone else at the institution that is providing the course who needs to see it, and also to allow potential employers to see what I have achieved and learned on the course.
 ## Notes
-My notes from the course can be found in the Obsidian/Software Dev/Course Notes folder, and any and all subfolders. I keep them on GitHub separately from the rest of my Obsidian library so that I can more easily access my notes while looking through the GitHub presence of the rest of my course files.
+My notes from the course can be found in the Obsidian/Software Dev/Course Notes folder, and any and all subfolders. I keep them on GitHub separately from the rest of my Obsidian library so that I can more easily access my notes while looking through the GitHub presence of the rest of my course files. The notes are rather out of date online because I have been keeping handwritten notes but not typing them up for a while. Eventually all my notes will be here but it will take a long time, probably even after I've already finished the course.
 ## Project Files
 The Project Files contains all the projects I have coded since starting the course.
 ## Coding Challenges
