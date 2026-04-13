@@ -3,8 +3,7 @@ class Book:
         self.title = title
         self.author = author
         self.available = available
-        if available:
-            library.add_book(self)
+        library.add_book(self)
 
     def __repr__(self):
         status = "available" if self.available else "not available"
@@ -40,6 +39,7 @@ library = Library()
 
 lord_Of_The_Rings = Book("Lord of the Rings", "JRR Tolkien")
 catcher_in_the_Rye = Book("Catcher in the Rye", "JD Salinger")
+artemis_fowl = Book("Artemis Fowl", "Eoin Colfer", available=False)
 
 print(library.books)
 
