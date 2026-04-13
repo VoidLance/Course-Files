@@ -1,9 +1,0 @@
-- Displaying another element within a frame.
-- It cuts out a part of a page and displays it on your own.
-- for example: a contact form.
-- iframes are not really used much - it's a good idea to have a template page to make new pages from, which should reduce the need to use an iframe
-- php can be used to grab and use html snippets
-- I myself have made extensive use of iframes already, in my portfolio website.
-- one way iframes can be used is to add a Google Maps dynamic tool.
-- Many tools, such as Google Maps, have a generator available to create an iframe of a customised part of the tool.
-- It is possible to remove the scroll functionality from an iframe
