@@ -11,6 +11,7 @@ interface JobStatusProps {
   categories?: string[];
   statusLabel?: string;
   deleteJob: (id: number) => void;
+  updateJob: (id: number, title: string, notes: string) => void;
   timestamp?: number;
   children?: ReactNode;
 }
@@ -21,6 +22,7 @@ export const JobStatus = ({
   categories = [],
   statusLabel,
   deleteJob,
+  updateJob,
   timestamp,
   children,
 }: JobStatusProps) => {
@@ -65,8 +67,8 @@ export const JobStatus = ({
                 type="button"
                 className="job-edit-save"
                 onClick={() => {
+                  updateJob(item.id, editTitle.trim(), editNotes);
                   setEditing(false);
-                  // TODO: Call update handler from parent
                 }}
               >
                 Save
@@ -74,7 +76,11 @@ export const JobStatus = ({
               <button
                 type="button"
                 className="job-edit-cancel"
-                onClick={() => setEditing(false)}
+                onClick={() => {
+                  setEditTitle(value);
+                  setEditNotes(notes || '');
+                  setEditing(false);
+                }}
               >
                 Cancel
               </button>
@@ -91,7 +97,11 @@ export const JobStatus = ({
               <button
                 type="button"
                 className="job-edit"
-                onClick={() => setEditing(true)}
+                onClick={() => {
+                  setEditTitle(value);
+                  setEditNotes(notes || '');
+                  setEditing(true);
+                }}
               >
                 Edit
               </button>

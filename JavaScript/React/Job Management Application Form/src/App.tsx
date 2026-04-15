@@ -80,6 +80,20 @@ export function App() {
     setJobs((prevJobs: Job[]) => prevJobs.filter((job: Job) => job.id !== jobId));
   };
 
+  const updateJob = (jobId: number, title: string, notes: string) => {
+    setJobs((prevJobs: Job[]) =>
+      prevJobs.map((job: Job) =>
+        job.id === jobId
+          ? {
+              ...job,
+              title: title || job.title,
+              notes,
+            }
+          : job,
+      ),
+    );
+  };
+
   // Drag and drop handler (bonus)
   const handleDrop = (jobId: number, targetColumnId: string) => {
     moveJobTo(jobId, targetColumnId as JobStatusValue);
@@ -165,6 +179,7 @@ export function App() {
                   <JobStatus
                     item={job}
                     deleteJob={deleteJob}
+                    updateJob={updateJob}
                     value={job.title}
                     notes={job.notes}
                     categories={job.categories}
@@ -217,6 +232,7 @@ export function App() {
                   <JobStatus
                     item={job}
                     deleteJob={deleteJob}
+                    updateJob={updateJob}
                     value={job.title}
                     notes={job.notes}
                     categories={job.categories}
@@ -269,6 +285,7 @@ export function App() {
                   <JobStatus
                     item={job}
                     deleteJob={deleteJob}
+                    updateJob={updateJob}
                     value={job.title}
                     notes={job.notes}
                     categories={job.categories}
