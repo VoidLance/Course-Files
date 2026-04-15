@@ -38,7 +38,10 @@
     When the line above stays commented, no duplicate result is printed.
     Only the single active call below runs, so the sum appears once.
 
-    Execute the function once so the result is displayed on the page. */
+    Execute the function once so the result is displayed on the page.
+    If the following line were commented out, the function would not run at all,
+    and no output would be shown.
+    */
     addNumbers();
     ?>
 </body>
