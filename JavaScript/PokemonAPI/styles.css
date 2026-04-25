@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body {
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
 /* ============================================================
    CUSTOM ANIMATIONS AND KEYFRAMES
    ============================================================ */
@@ -153,6 +157,58 @@
     font-weight: bold;
 }
 
+/* Move list for offensive coverage analysis */
+.move-list,
+.move-coverage-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.move-list {
+    flex-direction: column;
+}
+
+.move-list li {
+    background: #eef2ff;
+    border: 1px solid #c7d2fe;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.move-name {
+    display: block;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #312e81;
+}
+
+.move-meta {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85em;
+    color: #4b5563;
+    text-transform: capitalize;
+}
+
+.move-coverage-title {
+    color: #555;
+    font-size: 0.95em;
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+.move-coverage-list li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+    color: white;
+    text-transform: capitalize;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
 /* ============================================================
    TYPE STYLING
    ============================================================ */
@@ -239,6 +295,51 @@
 .neutral {
     background: #e9ecef;
     color: #868e96;
+}
+
+body[data-theme="dark"] {
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 50%, #0f766e 100%) !important;
+    color: #e5e7eb;
+}
+
+body[data-theme="dark"] .bg-white,
+body[data-theme="dark"] .pokemon-card,
+body[data-theme="dark"] #comparison-summary,
+body[data-theme="dark"] .bg-gray-50,
+body[data-theme="dark"] .bg-gray-100,
+body[data-theme="dark"] .bg-blue-50 {
+    background: rgba(15, 23, 42, 0.88) !important;
+    color: #e5e7eb !important;
+    border-color: rgba(148, 163, 184, 0.25) !important;
+}
+
+body[data-theme="dark"] .text-gray-700,
+body[data-theme="dark"] .text-gray-600,
+body[data-theme="dark"] .text-gray-500,
+body[data-theme="dark"] .text-gray-800,
+body[data-theme="dark"] .pokemon-card h2,
+body[data-theme="dark"] .pokemon-card h3,
+body[data-theme="dark"] .pokemon-right h3,
+body[data-theme="dark"] #pokemon-info strong,
+body[data-theme="dark"] #type-effectiveness h4,
+body[data-theme="dark"] .move-name,
+body[data-theme="dark"] .move-meta {
+    color: #e5e7eb !important;
+}
+
+body[data-theme="dark"] #pokemon-info p,
+body[data-theme="dark"] #pokemon-stats li,
+body[data-theme="dark"] .move-list li,
+body[data-theme="dark"] .team-member,
+body[data-theme="dark"] #team-comparison-summary .bg-white {
+    background: rgba(30, 41, 59, 0.95) !important;
+    color: #e5e7eb !important;
+    border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+body[data-theme="dark"] .neutral {
+    background: rgba(71, 85, 105, 0.8);
+    color: #e5e7eb;
 }
 
 /* ============================================================

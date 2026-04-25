@@ -1,0 +1,10 @@
+{
+  "name": "Pokemon Finder and Comparison Tool",
+  "short_name": "Pokemon Finder",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "description": "Search, compare, and build Pokemon teams with cached app-shell support.",
+  "icons": []
+}

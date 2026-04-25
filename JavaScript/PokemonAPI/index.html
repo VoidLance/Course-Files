@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon Finder - Search & Compare</title>
+    <meta name="theme-color" content="#667eea">
+    <link rel="manifest" href="manifest.webmanifest">
     <!-- Tailwind CSS via CDN for instant styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom CSS for additional styling -->
@@ -18,7 +20,7 @@
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 min-h-screen font-sans">
+<body class="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 min-h-screen font-sans" data-theme="light">
     <!-- Main container with flex layout: left sidebar, main content, right sidebar -->
     <div class="flex gap-8 p-8 h-screen overflow-hidden">
         
@@ -26,16 +28,36 @@
         <div class="w-80 flex flex-col flex-shrink-0">
             <!-- Header with search icon and title -->
             <h1 class="text-3xl font-bold text-white mb-6 text-center drop-shadow-lg">
-                🔍 Pokémon Finder
+                🔍 <span data-i18n="appTitle">Pokemon Finder</span>
             </h1>
             
             <!-- Search input container -->
             <div class="bg-white p-6 rounded-2xl shadow-2xl">
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="languageLabel">Language</label>
+                        <select id="language-select" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-indigo-500">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="themeLabel">Theme</label>
+                        <button 
+                            id="theme-toggle"
+                            class="w-full px-3 py-2 bg-slate-900 text-white rounded-lg text-sm hover:bg-slate-800 transition"
+                            type="button"
+                        >
+                            Dark
+                        </button>
+                    </div>
+                </div>
                 <!-- Text input for Pokémon name or ID -->
                 <input 
                     type="text" 
                     id="pokemon-name" 
                     placeholder="Enter Pokémon name or ID..." 
+                    data-i18n-placeholder="searchPlaceholder"
                     class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition"
                     aria-label="Search for a Pokémon"
                 >
@@ -45,13 +67,13 @@
                     class="w-full mt-4 px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 active:scale-95 transition transform disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Search for Pokémon"
                 >
-                    Search
+                    <span data-i18n="searchButton">Search</span>
                 </button>
                 
                 <!-- Generation Filter -->
                 <div class="mt-6 pt-6 border-t border-gray-200">
                     <label class="block text-sm font-semibold text-gray-700 mb-3">
-                        🎮 Filter by Generation:
+                        🎮 <span data-i18n="generationFilter">Filter by Generation:</span>
                     </label>
                     <div class="grid grid-cols-3 gap-2">
                         <label class="flex items-center space-x-2 cursor-pointer">
@@ -95,7 +117,7 @@
                         id="select-all-gens" 
                         class="w-full mt-3 px-3 py-2 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-300 transition"
                     >
-                        Select All
+                        <span data-i18n="deselectAll">Deselect All</span>
                     </button>
                 </div>
             </div>
@@ -110,7 +132,7 @@
                 role="status"
                 aria-live="polite"
             >
-                ⏳ Loading Pokémon data...
+                ⏳ <span data-i18n="loadingMessage">Loading Pokemon data...</span>
             </div>
             
             <!-- Error message container - hidden by default, shown when errors occur -->
@@ -126,7 +148,7 @@
                 href="#comparison-summary" 
                 class="text-white hover:text-yellow-200 underline mb-4 text-sm transition"
             >
-                ↓ Jump to Summary
+                ↓ <span data-i18n="jumpToSummary">Jump to Summary</span>
             </a>
             
             <!-- Two-column grid for side-by-side Pokémon comparison -->
@@ -149,7 +171,7 @@
         <div class="w-80 flex flex-col flex-shrink-0">
             <!-- Header with battle icon and title -->
             <h1 class="text-3xl font-bold text-white mb-6 text-center drop-shadow-lg">
-                ⚔️ Compare
+                ⚔️ <span data-i18n="compareTitle">Compare</span>
             </h1>
             
             <!-- Search input container for second Pokémon -->
@@ -159,6 +181,7 @@
                     type="text" 
                     id="pokemon-name-2" 
                     placeholder="Enter second Pokémon name or ID..." 
+                    data-i18n-placeholder="comparePlaceholder"
                     class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition"
                     aria-label="Search for a Pokémon to compare"
                 >
@@ -168,7 +191,7 @@
                     class="w-full mt-4 px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 active:scale-95 transition transform disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Compare with Pokémon"
                 >
-                    Compare
+                    <span data-i18n="compareButton">Compare</span>
                 </button>
                 
                 <!-- Team Builder Button -->
@@ -177,7 +200,7 @@
                     class="w-full mt-4 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 active:scale-95 transition transform"
                     aria-label="Build a Pokémon team"
                 >
-                    🛠️ Build Team
+                    🛠️ <span data-i18n="buildTeam">Build Team</span>
                 </button>
             </div>
         </div>
@@ -185,12 +208,13 @@
         <!-- TEAM BUILDER MODAL -->
         <div 
             id="team-builder-modal" 
-            class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto"
+            class="fixed inset-0 bg-black/50 z-50 p-4 overflow-y-auto"
+            style="display: none;"
         >
             <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
                 <!-- Team Builder Header -->
                 <div class="sticky top-0 z-10 bg-gradient-to-r from-purple-600 to-pink-600 p-6 text-white flex justify-between items-center">
-                    <h2 class="text-3xl font-bold">🛠️ Build Your Team</h2>
+                    <h2 class="text-3xl font-bold">🛠️ <span data-i18n="teamBuilderTitle">Build Your Team</span></h2>
                     <button 
                         id="close-team-builder" 
                         class="text-2xl hover:text-gray-200 transition"
@@ -203,7 +227,7 @@
                 <div class="p-6">
                     <!-- Generation Filter for Recommendations -->
                     <div class="bg-gray-100 rounded-lg p-4 mb-6">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎮 Filter Recommendations by Generation:</label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎮 <span data-i18n="teamFilterLabel">Filter Recommendations by Generation:</span></label>
                         <div class="grid grid-cols-4 md:grid-cols-5 gap-2">
                             <label class="flex items-center space-x-2 cursor-pointer">
                                 <input type="checkbox" class="team-builder-gen-filter rounded" value="1" checked>
@@ -251,32 +275,52 @@
                     
                     <!-- Team Summary -->
                     <div class="bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg p-4 mb-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">Team Summary</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2" data-i18n="teamSummaryTitle">Team Summary</h3>
                         <div id="team-summary-stats" class="text-sm text-gray-700"></div>
                         <div class="mt-4 p-4 bg-white rounded-lg">
-                            <h4 class="font-bold text-gray-800 mb-2">🛡️ Combined Team Score</h4>
+                            <h4 class="font-bold text-gray-800 mb-2">🛡️ <span data-i18n="teamScoreTitle">Combined Team Score</span></h4>
                             <p id="team-score-display" class="text-3xl font-bold text-purple-600">-/10</p>
                             <button 
                                 id="show-full-team-calc" 
                                 class="mt-2 px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm transition"
                             >
-                                Show Calculations
+                                <span data-i18n="showCalculations">Show Calculations</span>
                             </button>
                             <div id="full-team-calc-breakdown" style="display: none; margin-top: 1em;"></div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4">
+                                <button id="save-team" class="px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm transition" data-i18n="saveTeam">Save Team</button>
+                                <button id="load-saved-team" class="px-3 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 text-sm transition" data-i18n="loadTeam">Load Saved Team</button>
+                                <button id="clear-saved-team" class="px-3 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 text-sm transition" data-i18n="clearSaved">Clear Saved Team</button>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- Team Recommendations -->
                     <div class="bg-blue-50 rounded-lg p-4 mb-6">
-                        <h3 class="text-lg font-bold text-gray-800 mb-4">Recommended Team Members</h3>
+                        <h3 class="text-lg font-bold text-gray-800 mb-4" data-i18n="teamRecommendationsTitle">Recommended Team Members</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="typeFilterLabel">Type Filter</label>
+                                <select id="recommendation-type-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500"></select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1" data-i18n="sortLabel">Sort By</label>
+                                <select id="recommendation-sort" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500">
+                                    <option value="coverage" data-i18n="sortCoverage">Coverage</option>
+                                    <option value="weakness" data-i18n="sortWeakness">Weakness Value</option>
+                                    <option value="name" data-i18n="sortName">Name</option>
+                                    <option value="dex" data-i18n="sortDex">Dex Number</option>
+                                </select>
+                            </div>
+                        </div>
                         <div id="team-recommendations-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                            <p class="text-gray-500 col-span-full">Add 2+ team members to see recommendations</p>
+                            <p class="text-gray-500 col-span-full" data-i18n="teamNeedsRecommendations">Add a team member to see recommendations</p>
                         </div>
                     </div>
                     
                     <!-- Team Comparison Summary -->
                     <div id="team-comparison-summary" class="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg p-4 mb-6">
-                        <p class="text-gray-500">Add team members to see comparison</p>
+                        <p class="text-gray-500" data-i18n="teamNeedsComparison">Add team members to see comparison</p>
                     </div>
                 </div>
                 
@@ -286,7 +330,7 @@
                         id="close-team-builder-btn" 
                         class="px-4 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition"
                     >
-                        ← Back to Comparison
+                        ← <span data-i18n="teamBack">Back to Comparison</span>
                     </button>
                 </div>
             </div>

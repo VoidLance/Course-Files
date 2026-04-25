@@ -21,12 +21,263 @@ let leftProfile = null;
 /** @type {Object|null} - Stores profile data for right/comparison Pokémon */
 let rightProfile = null;
 
+const STORAGE_KEYS = {
+    savedTeam: 'pokemon-finder-saved-team',
+    theme: 'pokemon-finder-theme',
+    language: 'pokemon-finder-language'
+};
+
+const translations = {
+    en: {
+        appTitle: 'Pokemon Finder',
+        compareTitle: 'Compare',
+        searchPlaceholder: 'Enter Pokemon name or ID...',
+        comparePlaceholder: 'Enter second Pokemon name or ID...',
+        searchButton: 'Search',
+        compareButton: 'Compare',
+        buildTeam: 'Build Team',
+        generationFilter: 'Filter by Generation:',
+        selectAll: 'Select All',
+        deselectAll: 'Deselect All',
+        loadingMessage: 'Loading Pokemon data...',
+        jumpToSummary: 'Jump to Summary',
+        controlsLabel: 'Preferences',
+        languageLabel: 'Language',
+        themeLabel: 'Theme',
+        themeLight: 'Light',
+        themeDark: 'Dark',
+        teamBuilderTitle: 'Build Your Team',
+        teamFilterLabel: 'Filter Recommendations by Generation:',
+        teamSummaryTitle: 'Team Summary',
+        teamScoreTitle: 'Combined Team Score',
+        showCalculations: 'Show Calculations',
+        hideCalculations: 'Hide Calculations',
+        teamRecommendationsTitle: 'Recommended Team Members',
+        teamComparisonTitle: 'Team Comparison',
+        teamBack: 'Back to Comparison',
+        saveTeam: 'Save Team',
+        loadTeam: 'Load Saved Team',
+        clearSaved: 'Clear Saved Team',
+        recommendationControls: 'Recommendation Controls',
+        typeFilterLabel: 'Type Filter',
+        typeFilterAll: 'All Types',
+        sortLabel: 'Sort By',
+        sortCoverage: 'Coverage',
+        sortWeakness: 'Weakness Value',
+        sortName: 'Name',
+        sortDex: 'Dex Number',
+        movesTitle: 'Move Coverage',
+        moveCoverageLabel: 'Coverage Types',
+        teamNeedsMembers: 'Add 2+ team members to calculate team score',
+        teamNeedsRecommendations: 'Add a team member to see recommendations',
+        teamNeedsComparison: 'Add team members to see comparison',
+        noRecommendationsMatch: 'No recommendations found matching your filters',
+        recommendationsLoading: 'Loading recommendations...',
+        recommendationError: 'Error loading recommendations',
+        noTypeCoverage: 'No offensive coverage data available',
+        noMoveData: 'No high-impact move data available',
+        teamSaved: 'Team saved locally.',
+        noSavedTeam: 'No saved team found yet.',
+        teamLoaded: 'Saved team loaded.',
+        savedTeamCleared: 'Saved team removed.',
+        savedTeamLoadError: 'Could not load the saved team.',
+        searchPrompt: 'Please enter a Pokemon name or ID.',
+        comparePrompt: 'Please enter a Pokemon name or ID to compare.',
+        generationBlocked: 'Generation filter excludes {name}. Select Gen {generation} to view this Pokemon.',
+        pokemonNotFound: 'Pokemon "{name}" not found. Please check the spelling.',
+        networkError: 'Network error. Please check your internet connection.',
+        fetchFailed: 'Failed to fetch Pokemon data: {message}',
+        invalidTeamSearch: 'Please enter a Pokemon name or ID',
+        invalidTeamMember: 'Could not find Pokemon "{name}". Please check the spelling.'
+    },
+    es: {
+        appTitle: 'Buscador Pokemon',
+        compareTitle: 'Comparar',
+        searchPlaceholder: 'Escribe un nombre o ID de Pokemon...',
+        comparePlaceholder: 'Escribe un segundo Pokemon o ID...',
+        searchButton: 'Buscar',
+        compareButton: 'Comparar',
+        buildTeam: 'Crear Equipo',
+        generationFilter: 'Filtrar por Generacion:',
+        selectAll: 'Seleccionar todo',
+        deselectAll: 'Deseleccionar todo',
+        loadingMessage: 'Cargando datos del Pokemon...',
+        jumpToSummary: 'Ir al resumen',
+        controlsLabel: 'Preferencias',
+        languageLabel: 'Idioma',
+        themeLabel: 'Tema',
+        themeLight: 'Claro',
+        themeDark: 'Oscuro',
+        teamBuilderTitle: 'Crea Tu Equipo',
+        teamFilterLabel: 'Filtrar recomendaciones por generacion:',
+        teamSummaryTitle: 'Resumen del Equipo',
+        teamScoreTitle: 'Puntuacion Combinada del Equipo',
+        showCalculations: 'Ver calculos',
+        hideCalculations: 'Ocultar calculos',
+        teamRecommendationsTitle: 'Miembros Recomendados',
+        teamComparisonTitle: 'Comparacion del Equipo',
+        teamBack: 'Volver a la comparacion',
+        saveTeam: 'Guardar Equipo',
+        loadTeam: 'Cargar Equipo Guardado',
+        clearSaved: 'Borrar Guardado',
+        recommendationControls: 'Controles de recomendacion',
+        typeFilterLabel: 'Filtro de tipo',
+        typeFilterAll: 'Todos los tipos',
+        sortLabel: 'Ordenar por',
+        sortCoverage: 'Cobertura',
+        sortWeakness: 'Valor defensivo',
+        sortName: 'Nombre',
+        sortDex: 'Numero Dex',
+        movesTitle: 'Cobertura de Movimientos',
+        moveCoverageLabel: 'Tipos de cobertura',
+        teamNeedsMembers: 'Agrega 2 o mas miembros para calcular la puntuacion',
+        teamNeedsRecommendations: 'Agrega un miembro para ver recomendaciones',
+        teamNeedsComparison: 'Agrega miembros para ver la comparacion',
+        noRecommendationsMatch: 'No hay recomendaciones para esos filtros',
+        recommendationsLoading: 'Cargando recomendaciones...',
+        recommendationError: 'Error al cargar recomendaciones',
+        noTypeCoverage: 'No hay datos de cobertura ofensiva disponibles',
+        noMoveData: 'No hay movimientos ofensivos disponibles',
+        teamSaved: 'Equipo guardado localmente.',
+        noSavedTeam: 'Todavia no hay equipo guardado.',
+        teamLoaded: 'Equipo guardado cargado.',
+        savedTeamCleared: 'Se elimino el equipo guardado.',
+        savedTeamLoadError: 'No se pudo cargar el equipo guardado.',
+        searchPrompt: 'Escribe un nombre o ID de Pokemon.',
+        comparePrompt: 'Escribe un nombre o ID de Pokemon para comparar.',
+        generationBlocked: 'El filtro de generacion excluye a {name}. Activa la Gen {generation} para verlo.',
+        pokemonNotFound: 'No se encontro el Pokemon "{name}". Revisa la ortografia.',
+        networkError: 'Error de red. Revisa tu conexion a internet.',
+        fetchFailed: 'No se pudieron cargar los datos del Pokemon: {message}',
+        invalidTeamSearch: 'Escribe un nombre o ID de Pokemon',
+        invalidTeamMember: 'No se pudo encontrar el Pokemon "{name}". Revisa la ortografia.'
+    }
+};
+
+let currentLanguage = readStorage(STORAGE_KEYS.language) || 'en';
+let currentTheme = readStorage(STORAGE_KEYS.theme) || 'light';
+
 /**
  * UTILITY: In-memory cache for API responses
  * Prevents redundant API calls for the same URLs
  * @type {Map<string, any>}
  */
 const jsonCache = new Map();
+
+function readStorage(key) {
+    try {
+        return localStorage.getItem(key);
+    } catch (error) {
+        console.warn(`Storage read failed for ${key}:`, error);
+        return null;
+    }
+}
+
+function writeStorage(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (error) {
+        console.warn(`Storage write failed for ${key}:`, error);
+    }
+}
+
+function removeStorage(key) {
+    try {
+        localStorage.removeItem(key);
+    } catch (error) {
+        console.warn(`Storage remove failed for ${key}:`, error);
+    }
+}
+
+function translate(key, replacements = {}) {
+    const dictionary = translations[currentLanguage] || translations.en;
+    let value = dictionary[key] || translations.en[key] || key;
+
+    Object.entries(replacements).forEach(([token, replacement]) => {
+        value = value.replace(`{${token}}`, replacement);
+    });
+
+    return value;
+}
+
+function applyLanguage() {
+    document.documentElement.lang = currentLanguage === 'es' ? 'es' : 'en';
+
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        element.textContent = translate(element.dataset.i18n);
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        element.setAttribute('placeholder', translate(element.dataset.i18nPlaceholder));
+    });
+
+    const selectAllButton = document.getElementById('select-all-gens');
+    if (selectAllButton) {
+        const checkboxes = document.querySelectorAll('.generation-filter');
+        const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+        selectAllButton.textContent = allChecked ? translate('deselectAll') : translate('selectAll');
+    }
+
+    teamBuilder.refreshUI();
+}
+
+function applyTheme(theme) {
+    currentTheme = theme === 'dark' ? 'dark' : 'light';
+    document.body.dataset.theme = currentTheme;
+    writeStorage(STORAGE_KEYS.theme, currentTheme);
+
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.textContent = currentTheme === 'dark' ? translate('themeLight') : translate('themeDark');
+    }
+}
+
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(error => {
+            console.warn('Service worker registration failed:', error);
+        });
+    }
+}
+
+function formatMoveName(name) {
+    return name.replace(/-/g, ' ');
+}
+
+async function fetchMoveAnalysis(pokemonData) {
+    const candidateMoves = pokemonData.moves
+        .filter(move => move.version_group_details.some(detail => detail.move_learn_method.name === 'level-up'))
+        .slice(0, 10);
+
+    const fallbackMoves = candidateMoves.length > 0 ? candidateMoves : pokemonData.moves.slice(0, 10);
+    const moveDetails = await Promise.all(
+        fallbackMoves.map(async move => {
+            try {
+                const details = await fetchJSON(move.move.url);
+                return {
+                    name: details.name,
+                    type: details.type?.name || 'unknown',
+                    power: details.power || 0,
+                    accuracy: details.accuracy || 0,
+                    damageClass: details.damage_class?.name || 'status'
+                };
+            } catch (error) {
+                console.warn(`Could not fetch move details for ${move.move.name}:`, error);
+                return null;
+            }
+        })
+    );
+
+    const offensiveMoves = moveDetails
+        .filter(move => move && move.damageClass !== 'status')
+        .sort((left, right) => (right.power || 0) - (left.power || 0))
+        .slice(0, 4);
+
+    return {
+        moves: offensiveMoves,
+        coverageTypes: [...new Set(offensiveMoves.map(move => move.type))]
+    };
+}
 
 /**
  * UTILITY: Fetch JSON data from API with caching
@@ -93,7 +344,7 @@ async function fetchJSON(url) {
 async function fetchPokemonData(pokemonName, targetId = "pokemon-data") {
     // Validate input
     if (!pokemonName || pokemonName.trim() === '') {
-        showError('Please enter a Pokémon name or ID.');
+        showError(translate('searchPrompt'));
         return;
     }
 
@@ -105,25 +356,35 @@ async function fetchPokemonData(pokemonName, targetId = "pokemon-data") {
     try {
         // Fetch basic Pokémon data
         const data = await fetchJSON(url);
+
+        const selectedGenerations = getSelectedGenerations();
+        const generationNumber = getGenerationNumber(data.id);
+
+        if (selectedGenerations.size > 0 && !selectedGenerations.has(generationNumber)) {
+            showError(translate('generationBlocked', { name: data.name, generation: generationNumber }));
+            return;
+        }
         
         // Fetch type effectiveness data for each type this Pokémon has
         const typeData = await Promise.all(
             data.types.map(typeInfo => fetchJSON(typeInfo.type.url))
         );
+
+        const moveAnalysis = await fetchMoveAnalysis(data);
         
         // Display formatted data to user
-        displayPokemonData(data, typeData, targetId);
+        displayPokemonData(data, typeData, targetId, moveAnalysis);
         showError(null); // Clear any previous errors
     } catch (error) {
         console.error('Error fetching Pokémon data:', error);
         
         // Show user-friendly error message
         if (error.message.includes('404')) {
-            showError(`Pokémon "${pokemonName}" not found. Please check the spelling.`);
+            showError(translate('pokemonNotFound', { name: pokemonName }));
         } else if (error.message.includes('Network')) {
-            showError('Network error. Please check your internet connection.');
+            showError(translate('networkError'));
         } else {
-            showError(`Failed to fetch Pokémon data: ${error.message}`);
+            showError(translate('fetchFailed', { message: error.message }));
         }
     } finally {
         // Hide loading indicator
@@ -661,8 +922,9 @@ function generateTeamScoreBreakdown(typeDataArray) {
  * @param {Object} data - Pokémon data object from PokéAPI
  * @param {Array<Object>} typeData - Type effectiveness data
  * @param {string} [targetId="pokemon-data"] - DOM element ID to render into
+ * @param {{moves: Array<Object>, coverageTypes: Array<string>}} [moveAnalysis] - Offensive move summary
  */
-function displayPokemonData(data, typeData, targetId = "pokemon-data") {
+function displayPokemonData(data, typeData, targetId = "pokemon-data", moveAnalysis = { moves: [], coverageTypes: [] }) {
     // Hide previous messages
     const errorMessage = document.getElementById('error-message');
     const loadingMessage = document.getElementById('loading-message');
@@ -717,6 +979,19 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
     const immunityHTML = immunities.length > 0 
         ? immunities.map(([type]) => `<li class="immunity">${type} (×0)</li>`).join('')
         : '';
+
+    const movesHTML = moveAnalysis.moves.length > 0
+        ? moveAnalysis.moves.map(move => `
+            <li>
+                <span class="move-name">${formatMoveName(move.name)}</span>
+                <span class="move-meta">${move.type} | ${move.damageClass} | ${move.power || '-'} power | ${move.accuracy || '-'} acc</span>
+            </li>
+        `).join('')
+        : `<li class="neutral">${translate('noMoveData')}</li>`;
+
+    const moveCoverageHTML = moveAnalysis.coverageTypes.length > 0
+        ? moveAnalysis.coverageTypes.map(type => `<li>${type}</li>`).join('')
+        : `<li class="neutral">${translate('noTypeCoverage')}</li>`;
     
     // ====== Calculate Weakness Value ======
     const weaknessValue = calculateWeaknessValue(effectiveness);
@@ -726,7 +1001,7 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
         <div class="pokemon-card">
             <div class="pokemon-left">
                 <h2>${data.name}</h2>
-                <img src="${data.sprites.front_default}" alt="${data.name}" class="pokemon-image">
+                <img src="${data.sprites.front_default}" alt="${data.name}" class="pokemon-image" loading="lazy">
                 <div id="pokemon-info">
                     <p><strong>ID:</strong> #${data.id}</p>
                     <p><strong>Height:</strong> ${(data.height / 10).toFixed(1)} m</p>
@@ -758,6 +1033,14 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                 <h3>Stats</h3>
                 <ul id="pokemon-stats">
                     ${statsHTML}
+                </ul>
+                <h3>${translate('movesTitle')}</h3>
+                <ul class="move-list">
+                    ${movesHTML}
+                </ul>
+                <h4 class="move-coverage-title">${translate('moveCoverageLabel')}</h4>
+                <ul class="move-coverage-list">
+                    ${moveCoverageHTML}
                 </ul>
                 <div class="team-recommendations-right"></div>
             </div>
@@ -847,7 +1130,7 @@ function displayPokemonData(data, typeData, targetId = "pokemon-data") {
                         recommendations.push(rec);
                         const recHTML = `
                             <div class="team-member" data-name="${rec.name}" tabindex="0" role="button" aria-label="Add ${rec.name} to comparison" aria-keyshortcuts="Enter Space">
-                                <img src="${rec.sprite}" alt="${rec.name}" class="team-member-image">
+                                <img src="${rec.sprite}" alt="${rec.name}" class="team-member-image" loading="lazy">
                                 <div class="team-member-name">${rec.name}</div>
                                 <div class="team-member-reason">Covers: ${rec.coveredWeaknesses.join(', ')}</div>
                                 <div class="team-member-wv" style="font-size: 0.8em; color: #666;">WV: ${rec.weaknessValue ? rec.weaknessValue.toFixed(1) : 'N/A'}/10</div>
@@ -1551,7 +1834,7 @@ document.getElementById('fetch-button').addEventListener('click', () => {
     if (pokemonName) {
         fetchPokemonData(pokemonName, 'pokemon-data');
     } else {
-        showError('Please enter a Pokémon name or ID.');
+        showError(translate('searchPrompt'));
     }
 });
 
@@ -1578,7 +1861,7 @@ if (rightSearchBtn && rightSearchInput) {
         if (name) {
             fetchPokemonData(name, 'pokemon-data-2');
         } else {
-            showError('Please enter a Pokémon name or ID to compare.');
+            showError(translate('comparePrompt'));
         }
     });
 
@@ -1634,7 +1917,7 @@ if (selectAllBtn) {
             cb.checked = !allChecked;
         });
         
-        selectAllBtn.textContent = allChecked ? 'Select All' : 'Deselect All';
+        selectAllBtn.textContent = allChecked ? translate('selectAll') : translate('deselectAll');
     });
 }
 
@@ -1650,8 +1933,98 @@ const teamBuilder = {
      */
     init() {
         this.renderTeamSlots();
-        this.setupEventListeners();
+        this.populateTypeFilterOptions();
         this.updateTeamScore();
+        this.updateRecommendations();
+    },
+
+    refreshUI() {
+        this.renderTeamSlots();
+        this.populateTypeFilterOptions();
+        this.updateTeamScore();
+    },
+
+    getNextEmptySlotIndex() {
+        return this.team.findIndex(slot => slot === null);
+    },
+
+    persistCurrentTeam() {
+        const names = this.team.filter(Boolean);
+
+        if (names.length === 0) {
+            removeStorage(STORAGE_KEYS.savedTeam);
+            return;
+        }
+
+        writeStorage(STORAGE_KEYS.savedTeam, JSON.stringify(names));
+    },
+
+    async hydrateSlot(slotIndex, pokemonName) {
+        const data = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+        const typeData = await Promise.all(
+            data.types.map(typeInfo => fetchJSON(typeInfo.type.url))
+        );
+
+        this.team[slotIndex] = data.name;
+        this.selectedPokemonData[slotIndex] = {
+            data,
+            typeData,
+            effectiveness: calculateTypeEffectiveness(typeData)
+        };
+    },
+
+    saveTeam() {
+        this.persistCurrentTeam();
+        showError(translate('teamSaved'));
+    },
+
+    async loadSavedTeam() {
+        const rawTeam = readStorage(STORAGE_KEYS.savedTeam);
+        if (!rawTeam) {
+            showError(translate('noSavedTeam'));
+            return;
+        }
+
+        try {
+            const savedTeam = JSON.parse(rawTeam);
+            this.team = [null, null, null, null, null, null];
+            this.selectedPokemonData = [null, null, null, null, null, null];
+
+            await Promise.all(savedTeam.slice(0, 6).map((pokemonName, index) => this.hydrateSlot(index, pokemonName)));
+
+            this.refreshUI();
+            await this.updateRecommendations();
+            showError(translate('teamLoaded'));
+        } catch (error) {
+            console.error('Error loading saved team:', error);
+            showError(translate('savedTeamLoadError'));
+        }
+    },
+
+    clearSavedTeam() {
+        removeStorage(STORAGE_KEYS.savedTeam);
+        showError(translate('savedTeamCleared'));
+    },
+
+    populateTypeFilterOptions() {
+        const typeFilter = document.getElementById('recommendation-type-filter');
+        if (!typeFilter) return;
+
+        const currentValue = typeFilter.value || 'all';
+        const typeOptions = [
+            'all', 'bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire',
+            'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison',
+            'psychic', 'rock', 'steel', 'water'
+        ];
+
+        typeFilter.innerHTML = typeOptions.map(type => {
+            const label = type === 'all'
+                ? translate('typeFilterAll')
+                : `${type.charAt(0).toUpperCase()}${type.slice(1)}`;
+            return `<option value="${type}">${label}</option>`;
+        }).join('');
+
+        typeFilter.value = typeOptions.includes(currentValue) ? currentValue : 'all';
     },
     
     /**
@@ -1675,14 +2048,14 @@ const teamBuilder = {
                             ✕
                         </button>
                         <div class="pr-8 text-center">
-                            <img src="${pokemonData.data.sprites.front_default}" alt="${pokemon}" class="w-24 h-24 mx-auto">
+                            <img src="${pokemonData.data.sprites.front_default}" alt="${pokemon}" class="w-24 h-24 mx-auto" loading="lazy">
                             <h4 class="font-bold text-lg capitalize mt-2">${pokemon}</h4>
                             <p class="text-sm text-gray-600">Slot ${index + 1}</p>
                             <button 
                                 class="mt-2 text-blue-600 hover:text-blue-800 text-sm underline"
                                 onclick="teamBuilder.expandSlot(${index})"
                             >
-                                View Details
+                                ${currentLanguage === 'es' ? 'Ver detalles' : 'View Details'}
                             </button>
                         </div>
                     </div>
@@ -1695,7 +2068,7 @@ const teamBuilder = {
                         <input 
                             type="text" 
                             id="team-search-${index}" 
-                            placeholder="Search Pokémon..."
+                            placeholder="${currentLanguage === 'es' ? 'Buscar Pokemon...' : 'Search Pokemon...'}"
                             class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500 transition"
                             onkeypress="if(event.key==='Enter') teamBuilder.searchAndAddPokemon(${index}, this.value)"
                         >
@@ -1703,7 +2076,7 @@ const teamBuilder = {
                             class="w-full mt-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm"
                             onclick="teamBuilder.searchAndAddPokemon(${index}, document.getElementById('team-search-${index}').value)"
                         >
-                            Add to Team
+                            ${currentLanguage === 'es' ? 'Agregar al equipo' : 'Add to Team'}
                         </button>
                         <div id="team-search-results-${index}"></div>
                     </div>
@@ -1717,24 +2090,19 @@ const teamBuilder = {
      */
     async searchAndAddPokemon(slotIndex, pokemonName) {
         if (!pokemonName.trim()) {
-            alert('Please enter a Pokémon name or ID');
+            showError(translate('invalidTeamSearch'));
             return;
         }
         
         try {
-            const data = await fetchJSON(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
-            const typeData = await Promise.all(
-                data.types.map(typeInfo => fetchJSON(typeInfo.type.url))
-            );
-            
-            this.team[slotIndex] = data.name;
-            this.selectedPokemonData[slotIndex] = { data, typeData, effectiveness: calculateTypeEffectiveness(typeData) };
+            await this.hydrateSlot(slotIndex, pokemonName);
             
             this.renderTeamSlots();
             this.updateTeamScore();
-            this.updateRecommendations();
+            this.persistCurrentTeam();
+            await this.updateRecommendations();
         } catch (error) {
-            alert(`Could not find Pokémon "${pokemonName}". Please check the spelling.`);
+            showError(translate('invalidTeamMember', { name: pokemonName }));
             console.error('Error searching for Pokémon:', error);
         }
     },
@@ -1747,6 +2115,7 @@ const teamBuilder = {
         this.selectedPokemonData[slotIndex] = null;
         this.renderTeamSlots();
         this.updateTeamScore();
+        this.persistCurrentTeam();
         this.updateRecommendations();
     },
     
@@ -1773,7 +2142,7 @@ const teamBuilder = {
                 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <img src="${data.sprites.front_default}" alt="${data.name}" class="w-48 h-48 mx-auto">
+                        <img src="${data.sprites.front_default}" alt="${data.name}" class="w-48 h-48 mx-auto" loading="lazy">
                         <p><strong>ID:</strong> #${data.id}</p>
                         <p><strong>Height:</strong> ${(data.height / 10).toFixed(1)} m</p>
                         <p><strong>Weight:</strong> ${(data.weight / 10).toFixed(1)} kg</p>
@@ -1826,7 +2195,7 @@ const teamBuilder = {
         if (filledSlots.length < 2) {
             scoreDisplay.textContent = '-/10';
             scoreDisplay.style.color = '#999';
-            summaryStats.innerHTML = `<p>Add 2+ team members to calculate team score</p>`;
+            summaryStats.innerHTML = `<p>${translate('teamNeedsMembers')}</p>`;
             this.updateTeamComparisonSummary([]);
             return;
         }
@@ -1852,7 +2221,7 @@ const teamBuilder = {
         if (!container) return;
         
         if (filledSlots.length === 0) {
-            container.innerHTML = '<p class="text-gray-500">Add team members to see comparison</p>';
+            container.innerHTML = `<p class="text-gray-500">${translate('teamNeedsComparison')}</p>`;
             return;
         }
         
@@ -1881,7 +2250,7 @@ const teamBuilder = {
         });
         
         container.innerHTML = `
-            <h4 class="font-bold text-gray-800 mb-4">📊 Team Comparison</h4>
+            <h4 class="font-bold text-gray-800 mb-4">📊 ${translate('teamComparisonTitle')}</h4>
             <div class="space-y-3">
                 ${comparisons.map(comp => `
                     <div class="bg-white rounded-lg p-3 border border-gray-200">
@@ -1906,13 +2275,15 @@ const teamBuilder = {
     async updateRecommendations() {
         const filledSlots = this.selectedPokemonData.filter(p => p !== null);
         const container = document.getElementById('team-recommendations-grid');
+        const typeFilter = document.getElementById('recommendation-type-filter');
+        const sortSelect = document.getElementById('recommendation-sort');
         
         if (filledSlots.length < 1) {
-            container.innerHTML = '<p class="text-gray-500 col-span-full">Add a team member to see recommendations</p>';
+            container.innerHTML = `<p class="text-gray-500 col-span-full">${translate('teamNeedsRecommendations')}</p>`;
             return;
         }
         
-        container.innerHTML = '<p class="text-gray-500 col-span-full">Loading recommendations...</p>';
+        container.innerHTML = `<p class="text-gray-500 col-span-full">${translate('recommendationsLoading')}</p>`;
         
         try {
             // Get recommendations based on the first Pokemon on the team
@@ -1926,33 +2297,53 @@ const teamBuilder = {
                 
                 // Get already-added Pokemon names (lowercase for comparison)
                 const addedPokemonNames = new Set(this.team.filter(p => p).map(p => p.toLowerCase()));
+                const selectedType = typeFilter ? typeFilter.value : 'all';
+                const selectedSort = sortSelect ? sortSelect.value : 'coverage';
                 
                 // Filter recommendations to exclude already-added Pokemon and respect generation filter
                 const filteredRecs = recs.filter(rec => {
                     const recGen = getGenerationNumber(rec.id);
                     const isNotAdded = !addedPokemonNames.has(rec.name.toLowerCase());
                     const isInSelectedGen = selectedGenSet.has(recGen);
-                    return isNotAdded && isInSelectedGen;
+                    const matchesType = selectedType === 'all' || rec.types.includes(selectedType);
+                    return isNotAdded && isInSelectedGen && matchesType;
+                }).sort((left, right) => {
+                    if (selectedSort === 'weakness') {
+                        return (right.weaknessValue || 0) - (left.weaknessValue || 0);
+                    }
+
+                    if (selectedSort === 'name') {
+                        return left.name.localeCompare(right.name);
+                    }
+
+                    if (selectedSort === 'dex') {
+                        return left.id - right.id;
+                    }
+
+                    return (right.coveredWeaknesses?.length || 0) - (left.coveredWeaknesses?.length || 0);
                 });
                 
                 if (filteredRecs.length === 0) {
-                    container.innerHTML = '<p class="text-gray-500 col-span-full">No recommendations found matching your filters</p>';
+                    container.innerHTML = `<p class="text-gray-500 col-span-full">${translate('noRecommendationsMatch')}</p>`;
                     return;
                 }
+
+                const nextEmptySlot = this.getNextEmptySlotIndex();
                 
                 container.innerHTML = filteredRecs.slice(0, 5).map(rec => `
                     <div class="bg-white rounded-lg p-3 text-center border hover:shadow-lg transition cursor-pointer"
-                         onclick="teamBuilder.searchAndAddPokemon(${this.team.indexOf(null)}, '${rec.name}')"
-                         title="Click to add to team">
-                        <img src="${rec.sprite}" alt="${rec.name}" class="w-16 h-16 mx-auto">
+                         onclick="${nextEmptySlot >= 0 ? `teamBuilder.searchAndAddPokemon(${nextEmptySlot}, '${rec.name}')` : ''}"
+                         title="${nextEmptySlot >= 0 ? 'Click to add to team' : 'Team is full'}">
+                        <img src="${rec.sprite}" alt="${rec.name}" class="w-16 h-16 mx-auto" loading="lazy">
                         <p class="font-bold capitalize text-sm mt-1">${rec.name}</p>
+                        <p class="text-xs text-gray-500">#${rec.id} | ${rec.types.join(', ')}</p>
                         <p class="text-xs text-gray-600">WV: ${rec.weaknessValue ? rec.weaknessValue.toFixed(1) : 'N/A'}/10</p>
                     </div>
                 `).join('');
             }
         } catch (error) {
             console.error('Error loading recommendations:', error);
-            container.innerHTML = '<p class="text-red-500 col-span-full">Error loading recommendations</p>';
+            container.innerHTML = `<p class="text-red-500 col-span-full">${translate('recommendationError')}</p>`;
         }
     },
     
@@ -1967,17 +2358,21 @@ const teamBuilder = {
         
         if (openBtn) {
             openBtn.addEventListener('click', () => {
-                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
                 this.init();
                 // Setup calc button after modal is shown and elements exist
                 setTimeout(() => this.setupCalculationsButton(), 100);
-                // Setup generation filter listeners
-                this.setupGenerationFilterListeners();
             });
         }
         
         if (closeBtn || closeBtnFooter) {
-            const close = () => modal.classList.add('hidden');
+            const close = () => {
+                modal.style.display = 'none';
+                modal.style.alignItems = '';
+                modal.style.justifyContent = '';
+            };
             if (closeBtn) closeBtn.addEventListener('click', close);
             if (closeBtnFooter) closeBtnFooter.addEventListener('click', close);
         }
@@ -1989,9 +2384,11 @@ const teamBuilder = {
     setupGenerationFilterListeners() {
         const genFilters = document.querySelectorAll('.team-builder-gen-filter');
         genFilters.forEach(checkbox => {
+            if (checkbox.dataset.teamBuilderBound === 'true') return;
             checkbox.addEventListener('change', () => {
                 this.updateRecommendations();
             });
+            checkbox.dataset.teamBuilderBound = 'true';
         });
     },
     
@@ -2014,11 +2411,11 @@ const teamBuilder = {
                         const teamEff = filledSlots.map(p => p.effectiveness);
                         calcBreakdown.innerHTML = generateTeamScoreBreakdown(teamEff);
                         calcBreakdown.style.display = 'block';
-                        newBtn.textContent = 'Hide Calculations';
+                        newBtn.textContent = translate('hideCalculations');
                     }
                 } else {
                     calcBreakdown.style.display = 'none';
-                    newBtn.textContent = 'Show Calculations';
+                    newBtn.textContent = translate('showCalculations');
                 }
             });
         }
@@ -2027,6 +2424,57 @@ const teamBuilder = {
 
 // Initialize team builder event listeners when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    const languageSelect = document.getElementById('language-select');
+    const themeToggle = document.getElementById('theme-toggle');
+    const recommendationTypeFilter = document.getElementById('recommendation-type-filter');
+    const recommendationSort = document.getElementById('recommendation-sort');
+
+    if (languageSelect) {
+        languageSelect.value = currentLanguage;
+        languageSelect.addEventListener('change', event => {
+            currentLanguage = event.target.value === 'es' ? 'es' : 'en';
+            writeStorage(STORAGE_KEYS.language, currentLanguage);
+            applyLanguage();
+        });
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        });
+    }
+
+    if (recommendationTypeFilter) {
+        recommendationTypeFilter.addEventListener('change', () => {
+            teamBuilder.updateRecommendations();
+        });
+    }
+
+    if (recommendationSort) {
+        recommendationSort.addEventListener('change', () => {
+            teamBuilder.updateRecommendations();
+        });
+    }
+
+    const saveTeamButton = document.getElementById('save-team');
+    if (saveTeamButton) {
+        saveTeamButton.addEventListener('click', () => teamBuilder.saveTeam());
+    }
+
+    const loadSavedTeamButton = document.getElementById('load-saved-team');
+    if (loadSavedTeamButton) {
+        loadSavedTeamButton.addEventListener('click', () => teamBuilder.loadSavedTeam());
+    }
+
+    const clearSavedTeamButton = document.getElementById('clear-saved-team');
+    if (clearSavedTeamButton) {
+        clearSavedTeamButton.addEventListener('click', () => teamBuilder.clearSavedTeam());
+    }
+
     teamBuilder.setupEventListeners();
+    teamBuilder.setupGenerationFilterListeners();
+    applyTheme(currentTheme);
+    applyLanguage();
+    registerServiceWorker();
 });
 

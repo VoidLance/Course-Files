@@ -9,6 +9,8 @@ A modern, responsive web application for searching, comparing, and analyzing Pok
 - **Detailed Information**: View stats, types, height, weight, and abilities
 - **Sprite Display**: See the official Pokémon sprite artwork
 - **Type Effectiveness**: Understand weaknesses, resistances, and immunities
+- **Move Coverage Analysis**: Review high-impact moves and offensive coverage types
+- **Generation-Aware Search**: Prevent out-of-filter results from appearing in the main search
 
 ### Comparison
 - **Side-by-Side View**: Compare two Pokémon simultaneously
@@ -24,6 +26,9 @@ A modern, responsive web application for searching, comparing, and analyzing Pok
   - Pass 3: Add stat diversity
 - **Type Limits**: Prevents team imbalance (max 2 of each type)
 - **Clickable Results**: Click recommendations to add them to comparison
+- **Advanced Filtering and Sorting**: Filter recommendations by type and sort by coverage, weakness value, name, or Dex number
+- **Saved Teams**: Save and reload team-builder progress from local storage
+- **Theme and Language Preferences**: Switch between light/dark mode and English/Spanish UI labels
 
 ## Technology Stack
 
@@ -53,6 +58,8 @@ PokemonAPI/
 ├── script.js           # All JavaScript logic with detailed comments
 ├── styles.css          # Tailwind-based CSS with extensive comments
 ├── tailwind.config.js  # Tailwind CSS configuration
+├── manifest.webmanifest# PWA manifest for installable app shell
+├── sw.js               # Service worker for cached offline shell
 └── README.md           # This file
 ```
 
@@ -241,18 +248,18 @@ The application includes comprehensive error handling for:
 1. **API Rate Limiting**: PokéAPI has rate limits for large number of requests
 2. **Evolution Chains**: Complex evolution lines may take longer to process
 3. **Image Loading**: Sprite images depend on PokéAPI availability
-4. **Offline Mode**: Requires internet connection for all functionality
+4. **Offline Data**: The cached app shell works offline, but fresh Pokémon API data still requires internet access
 
 ## Future Enhancements
 
-- [ ] Move data and coverage analysis
-- [ ] Generation filtering
-- [ ] Team building mode
-- [ ] Local storage for saved teams
-- [ ] Dark/light theme toggle
-- [ ] Multi-language support
-- [ ] PWA offline functionality
-- [ ] Advanced filtering and sorting
+- Move data and coverage analysis: completed
+- Generation filtering: completed
+- Team building mode: completed
+- Local storage for saved teams: completed
+- Dark/light theme toggle: completed
+- Multi-language support: completed
+- PWA offline functionality: completed
+- Advanced filtering and sorting: completed
 
 ## API Reference
 
