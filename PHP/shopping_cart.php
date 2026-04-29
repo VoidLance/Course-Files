@@ -128,13 +128,13 @@
 </head>
 <body>
     <?php
-    // Calculate tax on the amount remaining after all discounts are applied.
+    # Calculate tax after discounts are applied.
     function calculateTax($amount, $taxRate)
     {
         return round($amount * $taxRate, 2);
     }
 
-    // Multiple customers can use the same calculator in one run.
+    # Multiple customers can use the same calculator in one run.
     $customers = [
         [
             'name' => 'Customer 1',
@@ -158,10 +158,7 @@
         ],
     ];
 
-    /*
-     * Calculate item totals and collect values for summary math operations.
-     * Also perform basic validation to handle negative quantities.
-     */
+    # Build item totals and validate input before rendering each bill.
     ?>
 
     <div class="page-intro">
@@ -201,7 +198,7 @@
             $discountRate = 0.10;
         }
 
-        // Apply discount per item so the bill shows exactly where savings come from.
+                    # Apply discount per item so the bill shows where savings come from.
         foreach ($itemized as $key => $item) {
             $itemDiscount = $item['line_total'] * $discountRate;
             $itemized[$key]['discount_amount'] = round($itemDiscount, 2);
@@ -223,11 +220,11 @@
         $taxAmount = calculateTax($taxableTotal, $taxRate);
         $finalTotal = round($taxableTotal + $taxAmount, 2);
 
-        // Use max() and min() to find most/least expensive line totals.
+                    # Identify most/least expensive line totals.
         $highestLineTotal = !empty($lineTotals) ? max($lineTotals) : 0;
         $lowestLineTotal = !empty($lineTotals) ? min($lineTotals) : 0;
 
-        // Use rand() to generate a random order number.
+                    # Generate a random order number.
         $orderNumber = rand(100000, 999999);
         ?>
 

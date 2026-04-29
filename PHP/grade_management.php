@@ -1,6 +1,6 @@
 <?php
 
-// Multidimensional array with student grades
+# Multidimensional array with student grades
 $studentGrades = [
     "Alice" => [
         "Math" => 85,
@@ -29,7 +29,7 @@ $studentGrades = [
     ]
 ];
 
-// Function 1: Calculate average grade for a specific student
+# Function 1: Calculate average grade for a specific student
 function calculateAverage($studentGrades, $student) {
     if (!isset($studentGrades[$student])) {
         return "Student not found";
@@ -43,7 +43,7 @@ function calculateAverage($studentGrades, $student) {
     return $average;
 }
 
-// Function 2: Find top student in a specific subject
+# Function 2: Find top student in a specific subject
 function findTopStudent($studentGrades, $subject) {
     $topStudent = null;
     $topGrade = -1;
@@ -58,7 +58,7 @@ function findTopStudent($studentGrades, $subject) {
     return $topStudent;
 }
 
-// Function 3: Calculate class average for a specific subject
+# Function 3: Calculate class average for a specific subject
 function classAverage($studentGrades, $subject) {
     $total = 0;
     $count = 0;
@@ -77,7 +77,7 @@ function classAverage($studentGrades, $subject) {
     return $total / $count;
 }
 
-// Function 4: Sort students by overall average
+# Function 4: Sort students by overall average
 function sortStudentsByOverallAverage($studentGrades) {
     $averages = [];
     
@@ -87,16 +87,16 @@ function sortStudentsByOverallAverage($studentGrades) {
         $averages[$student] = $sum / $count;
     }
     
-    // Sort in descending order using arsort()
+    # Sort in descending order using arsort().
     arsort($averages);
     
     return $averages;
 }
 
-// Display results
+# Display results
 echo "=== Grade Management System ===\n\n";
 
-// Test Function 1: Calculate average for each student
+# Test Function 1: Calculate average for each student
 echo "--- Individual Student Averages ---\n";
 foreach ($studentGrades as $student => $grades) {
     $average = calculateAverage($studentGrades, $student);
@@ -104,7 +104,7 @@ foreach ($studentGrades as $student => $grades) {
 }
 
 echo "\n--- Top Students by Subject ---\n";
-// Test Function 2: Find top student in each subject
+# Test Function 2: Find top student in each subject
 $subjects = ["Math", "English", "Science"];
 foreach ($subjects as $subject) {
     $topStudent = findTopStudent($studentGrades, $subject);
@@ -113,14 +113,14 @@ foreach ($subjects as $subject) {
 }
 
 echo "\n--- Class Averages by Subject ---\n";
-// Test Function 3: Class average for each subject
+# Test Function 3: Class average for each subject
 foreach ($subjects as $subject) {
     $classAvg = classAverage($studentGrades, $subject);
     echo "Class Average for $subject: " . number_format($classAvg, 2) . "\n";
 }
 
 echo "\n--- Students Ranked by Overall Average ---\n";
-// Test Function 4: Sort students by overall average
+# Test Function 4: Sort students by overall average
 $sortedStudents = sortStudentsByOverallAverage($studentGrades);
 $rank = 1;
 foreach ($sortedStudents as $student => $average) {
@@ -128,7 +128,7 @@ foreach ($sortedStudents as $student => $average) {
     $rank++;
 }
 
-// Additional test cases
+# Additional test cases
 echo "\n--- Additional Tests ---\n";
 echo "Testing specific student: Alice's average = " . number_format(calculateAverage($studentGrades, "Alice"), 2) . "\n";
 echo "Testing specific student: Charlie's average = " . number_format(calculateAverage($studentGrades, "Charlie"), 2) . "\n";

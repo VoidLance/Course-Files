@@ -5,9 +5,7 @@ declare(strict_types=1);
 $rootPath = __DIR__;
 $rootName = basename($rootPath);
 
-/**
- * Encode each path segment so links are safe while preserving slashes.
- */
+# URL-encode each path segment so links stay safe and still keep folder slashes.
 function toUrlPath(string $relativePath): string
 {
     $segments = explode('/', str_replace('\\', '/', $relativePath));
@@ -16,9 +14,7 @@ function toUrlPath(string $relativePath): string
     return implode('/', $encoded);
 }
 
-/**
- * Add a directory path to the tree structure.
- */
+# Build directory branches in the tree one segment at a time.
 function addDirectoryToTree(array &$tree, string $relativePath): void
 {
     $parts = array_values(array_filter(explode('/', $relativePath), static fn(string $part): bool => $part !== ''));
@@ -41,10 +37,8 @@ function addDirectoryToTree(array &$tree, string $relativePath): void
     }
 }
 
-/**
- * Add a PHP file path to the tree structure.
- */
-function addPhpFileToTree(array &$tree, string $relativePath): void
+# Add any file type to the tree. No file gets left behind.
+function addFileToTree(array &$tree, string $relativePath): void
 {
     $parts = array_values(array_filter(explode('/', $relativePath), static fn(string $part): bool => $part !== ''));
     $fileName = array_pop($parts);
@@ -78,9 +72,7 @@ function addPhpFileToTree(array &$tree, string $relativePath): void
     ];
 }
 
-/**
- * Sort tree nodes naturally for readable output.
- */
+# Keep sorting natural so file_2 appears before file_10.
 function sortTree(array &$node): void
 {
     if (!empty($node['dirs'])) {
@@ -99,9 +91,7 @@ function sortTree(array &$node): void
     }
 }
 
-/**
- * Render nested expandable tree nodes.
- */
+# Render nested folders/files as an expandable tree.
 function renderTree(array $node, bool $expand = false): void
 {
     foreach ($node['dirs'] as $dirNode) {
@@ -159,9 +149,8 @@ foreach ($iterator as $item) {
         continue;
     }
 
-    if (strtolower(pathinfo($relativePath, PATHINFO_EXTENSION)) === 'php') {
-        addPhpFileToTree($tree, $relativePath);
-    }
+    # Include all files so everything under PHP/ stays reachable from this page.
+    addFileToTree($tree, $relativePath);
 }
 
 sortTree($tree);
@@ -173,68 +162,33 @@ sortTree($tree);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo htmlspecialchars($rootName, ENT_QUOTES, 'UTF-8'); ?> Directory Index</title>
     <style>
-        :root {
-            color-scheme: light;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #0f172a;
-            --muted: #475569;
-            --border: #e2e8f0;
-            --link: #0f766e;
-            --link-hover: #115e59;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text);
-            background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-        }
-
-        .wrap {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem 2rem;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+            margin: 1.25rem;
+            font-family: "Courier New", Courier, monospace;
+            line-height: 1.4;
+            color: #111;
+            background: #fff;
         }
 
         h1 {
             margin-top: 0;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 1.25rem;
         }
 
         p {
-            margin-top: 0;
-            color: var(--muted);
+            margin-top: 0.35rem;
         }
 
         h2 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-size: 1.1rem;
-        }
-
-        ul {
-            margin: 0;
-            padding-left: 1.2rem;
-            line-height: 1.7;
+            margin-top: 1rem;
+            margin-bottom: 0.35rem;
+            font-size: 1rem;
         }
 
         .tree-root,
         .tree-root ul {
-            list-style: none;
+            list-style: square;
             margin: 0;
             padding-left: 1.1rem;
         }
@@ -250,10 +204,7 @@ sortTree($tree);
         summary {
             cursor: pointer;
             user-select: none;
-        }
-
-        summary::marker {
-            color: #334155;
+            font-weight: 600;
         }
 
         summary a {
@@ -261,45 +212,47 @@ sortTree($tree);
         }
 
         a {
-            color: var(--link);
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: var(--link-hover);
+            color: #0033aa;
             text-decoration: underline;
         }
 
+        a:hover {
+            color: #001f66;
+        }
+
         .empty {
-            color: var(--muted);
+            color: #444;
             font-style: italic;
         }
 
         code {
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 0.1rem 0.35rem;
+            background: #f7f7f7;
+            border: 1px solid #ccc;
+            padding: 0.05rem 0.2rem;
+        }
+
+        .divider {
+            margin: 0.75rem 0;
+            border: 0;
+            border-top: 1px dashed #bbb;
         }
     </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="card">
-        <h1><?php echo htmlspecialchars($rootName, ENT_QUOTES, 'UTF-8'); ?> index</h1>
-        <p>Auto-generated expandable tree for directories and PHP files in this root.</p>
+    <h1><?php echo htmlspecialchars($rootName, ENT_QUOTES, 'UTF-8'); ?> index</h1>
+    <p>Plain directory listing for everything inside this PHP root.</p>
+    <hr class="divider">
 
-        <h2>File tree</h2>
-        <?php if (!empty($tree['dirs']) || !empty($tree['files'])): ?>
-            <ul class="tree-root">
-                <?php renderTree($tree, true); ?>
-            </ul>
-        <?php else: ?>
-            <p class="empty">No directories or PHP files found.</p>
-        <?php endif; ?>
+    <h2>File tree</h2>
+    <?php if (!empty($tree['dirs']) || !empty($tree['files'])): ?>
+        <ul class="tree-root">
+            <?php renderTree($tree, true); ?>
+        </ul>
+    <?php else: ?>
+        <p class="empty">No directories or files found.</p>
+    <?php endif; ?>
 
-        <p><small>Refresh this page to see updates after adding/removing files.</small></p>
-    </div>
-</div>
+    <hr class="divider">
+    <p><small>Refresh to pick up adds/removes.</small></p>
 </body>
 </html>

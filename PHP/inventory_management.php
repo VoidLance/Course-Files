@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-/**
- * Detect web requests reliably (including built-in PHP server).
- */
+#
+# Detect web requests reliably (including built-in PHP server).
+#
 function isWebRequest(): bool
 {
 	if (PHP_SAPI !== "cli") {
@@ -17,9 +17,9 @@ function isWebRequest(): bool
 		|| isset($_SERVER["SERVER_PROTOCOL"]);
 }
 
-/**
- * Start a readable HTML shell for web requests.
- */
+#
+# Start a readable HTML shell for web requests.
+#
 function beginWebOutput(): void
 {
 	if (!isWebRequest()) {
@@ -71,9 +71,9 @@ function beginWebOutput(): void
 	echo "</div><pre>";
 }
 
-/**
- * Close the HTML shell for web requests.
- */
+#
+# Close the HTML shell for web requests.
+#
 function endWebOutput(): void
 {
 	if (!isWebRequest()) {
@@ -83,17 +83,17 @@ function endWebOutput(): void
 	echo "</pre></div></div></body></html>\n";
 }
 
-/*
- * Inventory Management Demo (Improved Version)
- * This script demonstrates:
- * - Typed functions and stricter validation
- * - Case-insensitive item lookup
- * - foreach, while, do-while, and for loops
- * - Optional JSON persistence
- * - Best-selling report from sales activity
- */
+#
+# Inventory Management Demo (Improved Version)
+# This script demonstrates:
+# - Typed functions and stricter validation
+# - Case-insensitive item lookup
+# - foreach, while, do-while, and for loops
+# - Optional JSON persistence
+# - Best-selling report from sales activity
+#
 
-// 1) Sample inventory data: item => [quantity, price]
+# 1) Sample inventory data: item => [quantity, price]
 $inventory = [
 	"Laptop" => ["quantity" => 10, "price" => 899.99],
 	"Mouse" => ["quantity" => 35, "price" => 24.50],
@@ -103,12 +103,12 @@ $inventory = [
 	"Headset" => ["quantity" => 4, "price" => 79.95],
 ];
 
-// Track sold units per item for reporting.
+# Track sold units per item for the victory chart.
 $salesLog = [];
 
-/**
- * Display inventory table and totals.
- */
+#
+# Display inventory table and totals.
+#
 function displayInventory(array $inventory, string $title = "Current Inventory"): void
 {
 	echo "\n=== {$title} ===\n";
@@ -123,7 +123,7 @@ function displayInventory(array $inventory, string $title = "Current Inventory")
 
 	$grandTotal = 0.0;
 
-	// foreach loop to iterate through associative array items.
+	# Loop through each inventory item and compute totals.
 	foreach ($inventory as $itemName => $details) {
 		$quantity = (int) ($details["quantity"] ?? 0);
 		$price = (float) ($details["price"] ?? 0);
@@ -137,10 +137,10 @@ function displayInventory(array $inventory, string $title = "Current Inventory")
 	printf("%-37s $%-11.2f\n", "Entire Inventory Value:", $grandTotal);
 }
 
-/**
- * Return the real inventory key for a user-provided item name.
- * This allows case-insensitive lookups like "mouse", "Mouse", or "MOUSE".
- */
+#
+# Return the real inventory key for a user-provided item name.
+# This allows case-insensitive lookups like "mouse", "Mouse", or "MOUSE".
+#
 function findItemKey(array $inventory, string $itemName): ?string
 {
 	$needle = strtolower(trim($itemName));
@@ -162,10 +162,10 @@ function findItemKey(array $inventory, string $itemName): ?string
 	return null;
 }
 
-/**
- * Update the quantity of an existing item.
- * Returns true on success, false on failure.
- */
+#
+# Update the quantity of an existing item.
+# Returns true on success, false on failure.
+#
 function updateItemQuantity(array &$inventory, string $itemName, int $newQuantity): bool
 {
 	if ($newQuantity < 0) {
@@ -186,9 +186,9 @@ function updateItemQuantity(array &$inventory, string $itemName, int $newQuantit
 	return true;
 }
 
-/**
- * Record a sale by reducing stock, with stock-safety checks.
- */
+#
+# Record a sale by reducing stock, with stock-safety checks.
+#
 function recordSale(array &$inventory, array &$salesLog, string $itemName, int $units): bool
 {
 	if ($units <= 0) {
@@ -214,9 +214,9 @@ function recordSale(array &$inventory, array &$salesLog, string $itemName, int $
 	return true;
 }
 
-/**
- * Find and display low-stock items below a threshold.
- */
+#
+# Find and display low-stock items below a threshold.
+#
 function lowStockAlert(array $inventory, int $threshold): void
 {
 	echo "\n=== Low Stock Alert (threshold: {$threshold}) ===\n";
@@ -228,7 +228,7 @@ function lowStockAlert(array $inventory, int $threshold): void
 
 	$foundAny = false;
 
-	// for loop over keys to demonstrate loop variety.
+	# Classic for-loop pass to keep loop variety in the exercise.
 	$keys = array_keys($inventory);
 	for ($i = 0; $i < count($keys); $i++) {
 		$itemName = $keys[$i];
@@ -245,10 +245,10 @@ function lowStockAlert(array $inventory, int $threshold): void
 	}
 }
 
-/**
- * Apply discount to every item's price.
- * Uses do-while loop and prints old/new prices.
- */
+#
+# Apply discount to every item's price.
+# Uses do-while loop and prints old/new prices.
+#
 function applyDiscount(array &$inventory, float $discountPercent): bool
 {
 	echo "\n=== Applying Discount: {$discountPercent}% ===\n";
@@ -267,7 +267,7 @@ function applyDiscount(array &$inventory, float $discountPercent): bool
 	$keys = array_keys($inventory);
 	$index = 0;
 
-	// do-while loop for at least one pass.
+	# do-while guarantees one pass, even if the array is tiny.
 	do {
 		$itemName = $keys[$index];
 		$oldPrice = (float) $inventory[$itemName]["price"];
@@ -281,9 +281,9 @@ function applyDiscount(array &$inventory, float $discountPercent): bool
 	return true;
 }
 
-/**
- * Optional extension: print top best-selling items from the sales log.
- */
+#
+# Optional extension: print top best-selling items from the sales log.
+#
 function generateBestSellingReport(array $salesLog, int $topN = 3): void
 {
 	echo "\n=== Best-Selling Items Report ===\n";
@@ -309,9 +309,9 @@ function generateBestSellingReport(array $salesLog, int $topN = 3): void
 	}
 }
 
-/**
- * Validate decoded inventory data shape from JSON.
- */
+#
+# Validate decoded inventory data shape from JSON.
+#
 function isValidInventoryStructure(array $data): bool
 {
 	if (empty($data)) {
@@ -339,9 +339,9 @@ function isValidInventoryStructure(array $data): bool
 	return true;
 }
 
-/**
- * Optional feature: save inventory as JSON.
- */
+#
+# Optional feature: save inventory as JSON.
+#
 function saveInventoryToFile(array $inventory, string $filePath): bool
 {
 	$json = json_encode($inventory, JSON_PRETTY_PRINT);
@@ -361,9 +361,9 @@ function saveInventoryToFile(array $inventory, string $filePath): bool
 	return true;
 }
 
-/**
- * Optional feature: load inventory from JSON.
- */
+#
+# Optional feature: load inventory from JSON.
+#
 function loadInventoryFromFile(string $filePath): ?array
 {
 	if (!file_exists($filePath)) {
@@ -391,9 +391,9 @@ function loadInventoryFromFile(string $filePath): ?array
 	return $decoded;
 }
 
-/**
- * Read and trim one line from CLI input.
- */
+#
+# Read and trim one line from CLI input.
+#
 function promptInput(string $message): string
 {
 	echo $message;
@@ -405,9 +405,9 @@ function promptInput(string $message): string
 	return trim($line);
 }
 
-/**
- * Parse user input as integer with validation.
- */
+#
+# Parse user input as integer with validation.
+#
 function promptInt(string $message): ?int
 {
 	$raw = promptInput($message);
@@ -420,9 +420,9 @@ function promptInt(string $message): ?int
 	return (int) $value;
 }
 
-/**
- * Parse user input as float with validation.
- */
+#
+# Parse user input as float with validation.
+#
 function promptFloat(string $message): ?float
 {
 	$raw = promptInput($message);
@@ -434,23 +434,23 @@ function promptFloat(string $message): ?float
 	return (float) $raw;
 }
 
-/**
- * Run non-interactive demo workflow for quick testing.
- */
+#
+# Run non-interactive demo workflow for quick testing.
+#
 function runSampleWorkflow(array &$inventory, array &$salesLog, string $savePath): void
 {
 	displayInventory($inventory, "Initial Inventory");
 
 	echo "\n--- Sample Quantity Updates ---\n";
-	updateItemQuantity($inventory, "mouse", 28);       // case-insensitive update
-	updateItemQuantity($inventory, "Headset", 2);      // valid low-stock example
-	updateItemQuantity($inventory, "Laptop", 9);       // valid update
-	updateItemQuantity($inventory, "Webcam", 10);      // intentional not-found error example
+	updateItemQuantity($inventory, "mouse", 28); # Case-insensitive update.
+	updateItemQuantity($inventory, "Headset", 2); # Intentionally low-stock example.
+	updateItemQuantity($inventory, "Laptop", 9); # Normal happy-path update.
+	updateItemQuantity($inventory, "Webcam", 10); # Intentional not-found example.
 
 	echo "\n--- Sample Sales Activity ---\n";
-	recordSale($inventory, $salesLog, "Laptop", 2);    // valid sale
-	recordSale($inventory, $salesLog, "keyboard", 5);  // valid case-insensitive sale
-	recordSale($inventory, $salesLog, "Headset", 1);   // valid sale
+	recordSale($inventory, $salesLog, "Laptop", 2); # Valid sale.
+	recordSale($inventory, $salesLog, "keyboard", 5); # Valid sale with mixed case.
+	recordSale($inventory, $salesLog, "Headset", 1); # Another valid sale.
 
 	lowStockAlert($inventory, 5);
 
@@ -467,9 +467,9 @@ function runSampleWorkflow(array &$inventory, array &$salesLog, string $savePath
 	}
 }
 
-/**
- * Browser-only test hook so users can manually trigger additional scenarios.
- */
+#
+# Browser-only test hook so users can manually trigger additional scenarios.
+#
 function runWebTestAction(array &$inventory, array &$salesLog): void
 {
 	if (!isWebRequest()) {
@@ -525,9 +525,9 @@ function runWebTestAction(array &$inventory, array &$salesLog): void
 	}
 }
 
-/**
- * Run interactive command-line menu.
- */
+#
+# Run interactive command-line menu.
+#
 function runInteractiveMenu(array &$inventory, array &$salesLog, string $savePath): void
 {
 	echo "\n=== Inventory Management CLI ===\n";
@@ -616,7 +616,7 @@ function runInteractiveMenu(array &$inventory, array &$salesLog, string $savePat
 	}
 }
 
-// 7) Main program flow
+# 7) Main program flow
 beginWebOutput();
 
 $savePath = __DIR__ . "/inventory_data.json";
@@ -624,8 +624,8 @@ $args = $_SERVER["argv"] ?? [];
 $forceInteractive = in_array("--interactive", $args, true);
 $isCliExecution = PHP_SAPI === "cli" && defined("STDIN");
 
-// Default behavior is non-interactive so requirements run end-to-end automatically.
-// Use: php inventory_management.php --interactive
+# Default behavior is non-interactive so requirements run end-to-end automatically.
+# Use: php inventory_management.php --interactive
 if ($forceInteractive && $isCliExecution) {
 	runInteractiveMenu($inventory, $salesLog, $savePath);
 } else {

@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 session_start();
 
-/**
- * Escape output for safe HTML rendering.
- */
+#
+# Escape output for safe HTML rendering.
+#
 function escape(mixed $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 }
 
-/**
- * Render arrays and scalars safely for demo output.
- */
+#
+# Render arrays and scalars safely for demo output.
+#
 function dumpValue(mixed $value): string
 {
     return escape(print_r($value, true));
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($postedName === '') {
             $messages[] = 'Please enter a name before submitting the POST form.';
         } else {
-            // Store a cleaned user name in the current session.
+            # Store a cleaned user name in the current session.
             $_SESSION['user_name'] = $postedName;
             $messages[] = 'Your name was saved to the session.';
         }
@@ -60,7 +60,7 @@ if ($getTopic !== '') {
     $messages[] = "GET topic received: {$getTopic}";
 }
 
-// Set a cookie that persists for one hour so its value can be read on the next request.
+# Set a cookie that persists for one hour so its value can be read on the next request.
 $cookieName = 'favorite_language';
 $cookieValue = 'PHP';
 

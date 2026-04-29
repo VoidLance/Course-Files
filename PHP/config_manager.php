@@ -6,35 +6,35 @@ if (PHP_SAPI !== 'cli') {
     header('Content-Type: text/plain; charset=UTF-8');
 }
 
-/*
- * Config Manager Constant Demonstration
- *
- * This script demonstrates:
- * 1. Basic constant usage
- * 2. Array constant access
- * 3. Constant case-sensitivity behavior across PHP versions
- * 4. Global scope access from inside functions
- * 5. Error handling for constant redefinition attempts
- */
+#
+# Config Manager Constant Demonstration
+#
+# This script demonstrates:
+# 1. Basic constant usage
+# 2. Array constant access
+# 3. Constant case-sensitivity behavior across PHP versions
+# 4. Global scope access from inside functions
+# 5. Error handling for constant redefinition attempts
+#
 
-// Constants for database configuration.
+# Constants for database configuration.
 define('DB_HOST', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
 define('DB_NAME', 'config_manager');
 
-// Constants for application information.
+# Constants for application information.
 const APP_NAME = 'Config Manager';
 const APP_VERSION = '1.0.0';
 const DEBUG_MODE = true;
 
-// Array constant to store supported languages.
+# Array constant to store supported languages.
 const SUPPORTED_LANGUAGES = ['en', 'es', 'fr', 'de'];
 
-/*
- * Optional extension:
- * Multi-dimensional array constant for app configuration.
- */
+#
+# Optional extension:
+# Multi-dimensional array constant for app configuration.
+#
 const APP_CONFIG = [
     'timezone' => 'UTC',
     'cache' => [
@@ -47,7 +47,7 @@ const APP_CONFIG = [
     ],
 ];
 
-// Display DB constants.
+# Display DB constants.
 function displayConfig(): void
 {
     echo "===== Database Configuration =====\n";
@@ -57,7 +57,7 @@ function displayConfig(): void
     echo "Database: " . DB_NAME . "\n";
 }
 
-// Display app metadata constants.
+# Display app metadata constants.
 function displayAppInfo(): void
 {
     echo "===== App Information =====\n";
@@ -66,7 +66,7 @@ function displayAppInfo(): void
     echo "Debug Mode: " . (DEBUG_MODE ? 'Enabled' : 'Disabled') . "\n";
 }
 
-// Display one-dimensional array constant values.
+# Display one-dimensional array constant values.
 function displaySupportedLanguages(): void
 {
     echo "===== Supported Languages =====\n";
@@ -74,7 +74,7 @@ function displaySupportedLanguages(): void
     echo "Primary Language: " . SUPPORTED_LANGUAGES[0] . "\n";
 }
 
-// Demonstrates constants are available inside function scope without using global.
+# Demonstrates constants are available inside function scope without using global.
 function demonstrateGlobalScopeAccess(): void
 {
     echo "===== Global Scope Demo =====\n";
@@ -82,7 +82,7 @@ function demonstrateGlobalScopeAccess(): void
     echo "Inside function - DB_HOST: " . DB_HOST . "\n";
 }
 
-// Demonstrates complex array constant access.
+# Demonstrates complex array constant access.
 function configureApplication(): void
 {
     echo "===== App Configuration Demo =====\n";
@@ -94,35 +94,36 @@ function configureApplication(): void
     echo "Cache is {$cacheStatus} (TTL: {$ttl} seconds)\n";
 }
 
-// Demonstrates case-sensitivity differences across PHP versions.
+# Demonstrates case-sensitivity differences across PHP versions.
 function demonstrateCaseSensitivity(): void
 {
     echo "===== Case-Sensitivity Demo =====\n";
     echo "APP_NAME: " . APP_NAME . "\n";
 
-    // In PHP 8+, undefined constants throw an Error (catchable as Throwable).
-    // In older PHP versions, undefined constants could be treated as strings with notices.
+    # PHP 8+ throws on undefined constants. Older versions were more permissive.
+    $lowerCaseName = 'app_name';
     try {
-        echo "app_name: " . app_name . "\n";
+        echo "app_name: " . constant($lowerCaseName) . "\n";
     } catch (Throwable $exception) {
         echo "app_name access failed: " . $exception->getMessage() . "\n";
     }
 }
 
-// Demonstrates error handling around constant redefinition attempts.
+# Demonstrates error handling around constant redefinition attempts.
 function demonstrateRedefinitionHandling(): void
 {
     echo "===== Redefinition Demo =====\n";
 
-    // Convert warnings/notices to exceptions so try-catch can handle them.
+    # Convert warnings/notices into exceptions so try/catch can handle them.
     set_error_handler(
         static function (int $severity, string $message, string $file, int $line): bool {
             throw new ErrorException($message, 0, $severity, $file, $line);
         }
     );
 
+    $existingConstantName = 'APP' . '_NAME';
     try {
-        define('APP_NAME', 'Another Name');
+        define($existingConstantName, 'Another Name');
         echo "Redefinition attempted with no throwable error.\n";
     } catch (Throwable $exception) {
         echo "Redefinition failed as expected: " . $exception->getMessage() . "\n";
@@ -133,7 +134,7 @@ function demonstrateRedefinitionHandling(): void
     echo "APP_NAME remains: " . APP_NAME . "\n";
 }
 
-// Main execution area: call display functions to demonstrate constant access.
+# Main execution area: call display functions to demonstrate constant access.
 displayConfig();
 echo str_repeat('-', 40) . "\n";
 displayAppInfo();
@@ -141,7 +142,7 @@ echo str_repeat('-', 40) . "\n";
 displaySupportedLanguages();
 echo str_repeat('-', 40) . "\n";
 
-// Show direct array constant access in the main execution flow.
+# Show direct array constant access in the main execution flow.
 echo "===== Main Array Constant Access =====\n";
 echo "Feature registration enabled: " . (APP_CONFIG['features']['registration'] ? 'Yes' : 'No') . "\n";
 echo "Beta dashboard enabled: " . (APP_CONFIG['features']['beta_dashboard'] ? 'Yes' : 'No') . "\n";

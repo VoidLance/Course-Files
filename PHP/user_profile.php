@@ -2,24 +2,24 @@
 declare(strict_types=1);
 session_start();
 
-/*
- * User Profile System
- * Demonstrates conditionals: if-else, if-elseif-else, and switch.
- */
+#
+# User Profile System
+# Demonstrates conditionals: if-else, if-elseif-else, and switch.
+#
 
-/** Escape output for safe HTML rendering. */
+# Escape output for safe HTML rendering.
 function e(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
-/** Return the current hour in 24-hour format (0-23). */
+# Return the current hour in 24-hour format (0-23).
 function getCurrentHour(): int
 {
     return (int) date('G');
 }
 
-/** Determine greeting based on hour using if-else logic. */
+# Determine greeting based on hour using if-else logic.
 function getGreetingByHour(int $hour): string
 {
     if ($hour < 0 || $hour > 23) {
@@ -37,7 +37,7 @@ function getGreetingByHour(int $hour): string
     return 'Good night';
 }
 
-/** Return an age-specific message using if-elseif-else logic. */
+# Return an age-specific message using if-elseif-else logic.
 function getAgeMessage(int $age): string
 {
     if ($age < 0) {
@@ -55,10 +55,10 @@ function getAgeMessage(int $age): string
     return 'Senior: thank you for being with us. Enjoy your experience.';
 }
 
-/**
- * Classify the user by login count using switch.
- * 0 = New User, 1-5 = Beginner, 6-20 = Regular User, 21+ = Expert User.
- */
+#
+# Classify the user by login count using switch.
+# 0 = New User, 1-5 = Beginner, 6-20 = Regular User, 21+ = Expert User.
+#
 function getUserType(int $loginCount): string
 {
     if ($loginCount < 0) {
@@ -77,7 +77,7 @@ function getUserType(int $loginCount): string
     }
 }
 
-/** Validate input data and collect errors for basic error handling. */
+# Validate input data and collect errors for basic error handling.
 function validateUserData(string $name, int $age, int $loginCount): array
 {
     $errors = [];
@@ -97,7 +97,7 @@ function validateUserData(string $name, int $age, int $loginCount): array
     return $errors;
 }
 
-/** Validate additional profile attributes used by optional project extensions. */
+# Validate additional profile attributes used by optional project extensions.
 function validateAdditionalData(string $membershipTier, string $preferredLanguage, int $completedProjects): array
 {
     $errors = [];
@@ -118,7 +118,7 @@ function validateAdditionalData(string $membershipTier, string $preferredLanguag
     return $errors;
 }
 
-/** Return an additional message based on user type. */
+# Return an additional message based on user type.
 function getMotivationByUserType(string $userType, int $loginCount): string
 {
     if ($userType === 'Expert User') {
@@ -138,7 +138,7 @@ function getMotivationByUserType(string $userType, int $loginCount): string
     return 'Welcome aboard. Start exploring to level up your profile.';
 }
 
-/** Return a message based on membership level using switch. */
+# Return a message based on membership level using switch.
 function getMembershipMessage(string $membershipTier): string
 {
     switch ($membershipTier) {
@@ -153,7 +153,7 @@ function getMembershipMessage(string $membershipTier): string
     }
 }
 
-/** Return a language-specific onboarding hint. */
+# Return a language-specific onboarding hint.
 function getLanguageHint(string $preferredLanguage): string
 {
     if (strcasecmp($preferredLanguage, 'English') === 0) {
@@ -167,7 +167,7 @@ function getLanguageHint(string $preferredLanguage): string
     return 'Some translations may be limited for your selected language.';
 }
 
-/** Return a progress message based on completed projects. */
+# Return a progress message based on completed projects.
 function getProjectMilestoneMessage(int $completedProjects): string
 {
     if ($completedProjects >= 20) {
@@ -181,7 +181,7 @@ function getProjectMilestoneMessage(int $completedProjects): string
     return 'Begin your first project to start building momentum.';
 }
 
-/** Optional extension: visualize progress toward Expert User. */
+# Optional extension: visualize progress toward Expert User.
 function getProgressBar(int $loginCount): string
 {
     $target = 21;
@@ -194,7 +194,7 @@ function getProgressBar(int $loginCount): string
         . '</div></div>';
 }
 
-/** Render a single user profile card. */
+# Render a single user profile card.
 function renderUserProfile(string $name, int $age, int $loginCount, array $attributes = []): void
 {
     $errors = validateUserData($name, $age, $loginCount);
@@ -246,10 +246,10 @@ function renderUserProfile(string $name, int $age, int $loginCount, array $attri
     echo getProgressBar($loginCount);
 }
 
-/**
- * Test helper for checking all conditional paths with simulated users.
- * This demonstrates minors, teenagers, adults, seniors, and invalid data.
- */
+#
+# Test helper for checking all conditional paths with simulated users.
+# This demonstrates minors, teenagers, adults, seniors, and invalid data.
+#
 function renderTestCases(): void
 {
     $testUsers = [
@@ -269,7 +269,7 @@ function renderTestCases(): void
     }
 }
 
-// Simulated user data (in a real system this would come from a database).
+# Simulated user data (in a real system this would come from a database).
 $userName = 'John Doe';
 $userAge = 25;
 $defaultLoginCount = 10;
@@ -279,11 +279,11 @@ $userAttributes = [
     'completedProjects' => 8,
 ];
 
-/*
- * Simple login simulation:
- * - action=login: increment login count
- * - action=reset: reset login count to default
- */
+#
+# Simple login simulation:
+# - action=login: increment login count
+# - action=reset: reset login count to default
+#
 if (!isset($_SESSION['loginCount'])) {
     $_SESSION['loginCount'] = $defaultLoginCount;
 }
@@ -298,7 +298,7 @@ if ($action === 'login') {
 
 $loginCount = (int) $_SESSION['loginCount'];
 
-// Main execution
+# Main execution
 echo '<div style="margin:12px 0;">';
 echo '<a href="?action=login" style="display:inline-block;margin-right:8px;padding:6px 10px;border:1px solid #333;border-radius:4px;text-decoration:none;">Simulate Login</a>';
 echo '<a href="?action=reset" style="display:inline-block;padding:6px 10px;border:1px solid #333;border-radius:4px;text-decoration:none;">Reset Logins</a>';
@@ -306,6 +306,6 @@ echo '</div>';
 
 renderUserProfile($userName, $userAge, $loginCount, $userAttributes);
 
-// Requirement #10: run through different simulated users.
+# Requirement #10: run through different simulated users.
 renderTestCases();
 ?>
