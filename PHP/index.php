@@ -99,9 +99,7 @@ function renderTree(array $node, bool $expand = false): void
         echo '<li class="tree-node tree-dir">';
         echo '<details' . ($expand ? ' open' : '') . '>';
         echo '<summary>';
-        echo '<a href="' . htmlspecialchars(toUrlPath($dirNode['path']), ENT_QUOTES, 'UTF-8') . '/">';
-        echo htmlspecialchars($dirNode['name'], ENT_QUOTES, 'UTF-8') . '/';
-        echo '</a>';
+        echo '<span class="folder-name">' . htmlspecialchars($dirNode['name'], ENT_QUOTES, 'UTF-8') . '/</span>';
         echo '</summary>';
 
         if ($hasChildren) {
@@ -207,7 +205,7 @@ sortTree($tree);
             font-weight: 600;
         }
 
-        summary a {
+        .folder-name {
             margin-left: 0.2rem;
         }
 
