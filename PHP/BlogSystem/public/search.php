@@ -36,29 +36,29 @@ $paginate = Helper::paginate($total_results, $per_page, $page);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/index.php">Home</a>
+                        <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
                     </li>
                     <?php if (Helper::isLoggedIn()): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/logout.php">Logout</a>
+                            <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/login.php">Login</a>
+                            <a class="nav-link" href="/BlogSystem/public/login.php">Login</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -97,7 +97,7 @@ $paginate = Helper::paginate($total_results, $per_page, $page);
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($post['title']); ?>
                                         </a>
                                     </h5>
@@ -108,7 +108,7 @@ $paginate = Helper::paginate($total_results, $per_page, $page);
                                     <p class="card-text">
                                         <?php echo Helper::excerpt($post['summary'] ?? $post['content'], 250); ?>
                                     </p>
-                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-sm btn-primary">
+                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-sm btn-primary">
                                         Read More →
                                     </a>
                                 </div>

@@ -7,7 +7,7 @@ AuthMiddleware::checkAuth();
 $post_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 if (!$post_id) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -22,7 +22,7 @@ if (!$post) {
 
 // Check ownership (author or admin can edit)
 if ($post['author_id'] !== $_SESSION['user_id'] && !Helper::isAdmin()) {
-    header("Location: /public/access-denied.php");
+    header("Location: /BlogSystem/public/access-denied.php");
     exit();
 }
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Handle featured image if uploaded
             $featured_image = null;
             if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] !== UPLOAD_ERR_NO_FILE) {
-                $upload_dir = BASE_PATH . '/public/uploads/posts/';
+                $upload_dir = BASE_PATH . '/BlogSystem/public/uploads/posts/';
                 $upload_result = Helper::uploadFile($_FILES['featured_image'], $upload_dir);
                 if (!$upload_result['success']) {
                     $errors[] = $upload_result['message'];
@@ -102,9 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
     <script>
         // Initialize TinyMCE for rich text editing
         tinymce.init({
@@ -119,11 +119,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>">Back to Post</a>
-                <a class="nav-link" href="/public/profile.php">Profile</a>
-                <a class="nav-link" href="/public/logout.php">Logout</a>
+                <a class="nav-link" href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>">Back to Post</a>
+                <a class="nav-link" href="/BlogSystem/public/profile.php">Profile</a>
+                <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <label for="featured_image" class="form-label">Featured Image</label>
                                     <?php if ($post['featured_image']): ?>
                                         <div class="mb-2">
-                                            <img src="/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
+                                            <img src="/BlogSystem/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
                                                  class="img-thumbnail" style="max-height: 200px;" alt="Featured image">
                                         </div>
                                     <?php endif; ?>
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Buttons -->
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-warning">💾 Save Changes</button>
-                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-secondary">Cancel</a>
+                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
                         </div>

@@ -40,20 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/index.php">Home</a>
+                <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
                 <?php if (Helper::isAdmin()): ?>
-                    <a class="nav-link" href="/public/admin/dashboard.php">Admin</a>
+                    <a class="nav-link" href="/BlogSystem/public/admin/dashboard.php">Admin</a>
                 <?php endif; ?>
-                <a class="nav-link" href="/public/logout.php">Logout</a>
+                <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <div class="list-group-item">
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="mb-1">
-                                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" 
+                                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" 
                                                        class="text-decoration-none">
                                                         <?php echo htmlspecialchars($post['title']); ?>
                                                     </a>
@@ -144,13 +144,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <small class="text-muted"><?php echo Helper::formatDate($post['created_at']); ?></small>
                                             </div>
                                             <p class="mb-2 text-muted"><?php echo Helper::excerpt($post['summary'] ?? $post['content'], 100); ?></p>
-                                            <a href="/public/edit-post.php?id=<?php echo $post['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                                            <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-sm btn-primary">View</a>
+                                            <a href="/BlogSystem/public/edit-post.php?id=<?php echo $post['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-sm btn-primary">View</a>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
                             <?php else: ?>
-                                <p class="text-muted">You haven't published any posts yet. <a href="/public/create-post.php">Write your first post!</a></p>
+                                <p class="text-muted">You haven't published any posts yet. <a href="/BlogSystem/public/create-post.php">Write your first post!</a></p>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -7,7 +7,7 @@ AuthMiddleware::checkAuth();
 $post_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 if (!$post_id) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -15,13 +15,13 @@ if (!$post_id) {
 $post = $postObj->getPostById($post_id);
 
 if (!$post) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
 // Check ownership (author or admin only)
 if ($post['author_id'] !== $_SESSION['user_id'] && !Helper::isAdmin()) {
-    header("Location: /public/access-denied.php");
+    header("Location: /BlogSystem/public/access-denied.php");
     exit();
 }
 
@@ -30,13 +30,13 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
     // Delete the post (cascade delete will handle comments)
     if ($postObj->deletePost($post_id)) {
         Helper::logActivity($conn, $_SESSION['user_id'], 'DELETE_POST', "Deleted post: " . $post['title']);
-        header("Location: /public/index.php?deleted=true");
+        header("Location: /BlogSystem/public/index.php?deleted=true");
         exit();
     }
 }
 
 // If not confirmed yet, redirect back with confirmation
 // In a real app, you'd show a modal or page asking for confirmation
-header("Location: /public/post.php?slug=" . $post['slug'] . "&confirm_delete=true");
+header("Location: /BlogSystem/public/post.php?slug=" . $post['slug'] . "&confirm_delete=true");
 exit();
 ?>

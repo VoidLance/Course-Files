@@ -3,8 +3,8 @@
 class Database {
     private $host = 'localhost';
     private $db_name = 'blog_system';
-    private $db_user = 'root';
-    private $db_pass = '';
+    private $db_user = 'blog_user';
+    private $db_pass = 'BlogPass2024';
     private $conn;
 
     // Fire up that database connection - connect() to the database or connect() to your feelings

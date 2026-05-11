@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Denied - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body class="d-flex align-items-center justify-content-center" style="min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
     <div class="container">
@@ -24,9 +24,9 @@
                     <li>✗ You don't own this resource</li>
                     <li>✗ You don't have admin privileges</li>
                 </ul>
-                <a href="/public/index.php" class="btn btn-light btn-lg">← Back to Homepage</a>
+                <a href="/BlogSystem/public/index.php" class="btn btn-light btn-lg">← Back to Homepage</a>
                 <br><br>
-                <a href="/public/login.php" class="btn btn-outline-light">Login to Your Account</a>
+                <a href="/BlogSystem/public/login.php" class="btn btn-outline-light">Login to Your Account</a>
             </div>
         </div>
     </div>

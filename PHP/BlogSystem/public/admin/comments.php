@@ -65,8 +65,8 @@ $paginate = Helper::paginate($total, $per_page, $page);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Comments - Admin Panel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -77,10 +77,10 @@ $paginate = Helper::paginate($total, $per_page, $page);
                     <h5 class="text-white">⚙️ Admin Panel</h5>
                 </div>
                 <nav>
-                    <a href="/public/admin/dashboard.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">📊 Dashboard</a>
-                    <a href="/public/admin/comments.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block; background-color: rgba(52, 152, 219, 0.1);">💬 Comments</a>
-                    <a href="/public/admin/posts.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">📝 Posts</a>
-                    <a href="/public/index.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">← Back to Blog</a>
+                    <a href="/BlogSystem/public/admin/dashboard.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">📊 Dashboard</a>
+                    <a href="/BlogSystem/public/admin/comments.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block; background-color: rgba(52, 152, 219, 0.1);">💬 Comments</a>
+                    <a href="/BlogSystem/public/admin/posts.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">📝 Posts</a>
+                    <a href="/BlogSystem/public/index.php" style="color: #ecf0f1; text-decoration: none; padding: 12px 20px; display: block;">← Back to Blog</a>
                 </nav>
             </div>
 
@@ -130,7 +130,7 @@ $paginate = Helper::paginate($total, $per_page, $page);
                                         <tr>
                                             <td><?php echo htmlspecialchars($comment['username']); ?></td>
                                             <td>
-                                                <a href="/public/post.php?id=<?php echo $comment['post_id']; ?>" 
+                                                <a href="/BlogSystem/public/post.php?id=<?php echo $comment['post_id']; ?>" 
                                                    class="text-decoration-none">
                                                     <?php echo htmlspecialchars(substr($comment['title'], 0, 30)); ?>...
                                                 </a>

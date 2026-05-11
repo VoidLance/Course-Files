@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Handle file upload if provided
             if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] !== UPLOAD_ERR_NO_FILE) {
-                $upload_dir = BASE_PATH . '/public/uploads/posts/';
+                $upload_dir = BASE_PATH . '/BlogSystem/public/uploads/posts/';
                 $upload_result = Helper::uploadFile($_FILES['featured_image'], $upload_dir);
 
                 if (!$upload_result['success']) {
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $featured_image = $upload_result['filename'];
 
                     // Create thumbnail (optional but cool!)
-                    $thumb_dir = BASE_PATH . '/public/uploads/thumbnails/';
+                    $thumb_dir = BASE_PATH . '/BlogSystem/public/uploads/thumbnails/';
                     if (!is_dir($thumb_dir)) {
                         mkdir($thumb_dir, 0755, true);
                     }
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $success = 'Post created successfully!';
 
                     // Redirect after 2 seconds
-                    header("Refresh: 2; url=/public/post.php?slug=" . $postObj->getPostById($post_id)['slug']);
+                    header("Refresh: 2; url=/post.php?slug=" . $postObj->getPostById($post_id)['slug']);
                 } else {
                     $errors[] = $result['message'];
                 }
@@ -89,10 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
     <!-- TinyMCE rich text editor (optional - remove if not needed) -->
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"></script>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
     <script>
         // Initialize TinyMCE for rich text editing (because plain text is so boring)
         tinymce.init({
@@ -107,11 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/index.php">Home</a>
-                <a class="nav-link" href="/public/profile.php">Profile</a>
-                <a class="nav-link" href="/public/logout.php">Logout</a>
+                <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
+                <a class="nav-link" href="/BlogSystem/public/profile.php">Profile</a>
+                <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <!-- Submit buttons -->
                                 <div class="d-flex gap-2">
                                     <button type="submit" class="btn btn-primary">📝 Create Post</button>
-                                    <a href="/public/index.php" class="btn btn-secondary">Cancel</a>
+                                    <a href="/BlogSystem/public/index.php" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
                         </div>

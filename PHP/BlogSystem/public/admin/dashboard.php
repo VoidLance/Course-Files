@@ -31,8 +31,8 @@ $recent_posts = $conn->query($query_recent_posts)->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
     <style>
         /* Admin dashboard styling - because admins deserve nice things */
         .sidebar {
@@ -77,15 +77,15 @@ $recent_posts = $conn->query($query_recent_posts)->fetch_all(MYSQLI_ASSOC);
                 </div>
 
                 <nav>
-                    <a href="/public/admin/dashboard.php" class="active">📊 Dashboard</a>
-                    <a href="/public/admin/posts.php">📝 Manage Posts</a>
-                    <a href="/public/admin/categories.php">📁 Categories</a>
-                    <a href="/public/admin/comments.php">💬 Comments (<?php echo $pending_comments > 0 ? '<span class="badge bg-danger">' . $pending_comments . '</span>' : '0'; ?>)</a>
-                    <a href="/public/admin/users.php">👥 Users</a>
-                    <a href="/public/admin/settings.php">⚙️ Settings</a>
+                    <a href="/BlogSystem/public/admin/dashboard.php" class="active">📊 Dashboard</a>
+                    <a href="/BlogSystem/public/admin/posts.php">📝 Manage Posts</a>
+                    <a href="/BlogSystem/public/admin/categories.php">📁 Categories</a>
+                    <a href="/BlogSystem/public/admin/comments.php">💬 Comments (<?php echo $pending_comments > 0 ? '<span class="badge bg-danger">' . $pending_comments . '</span>' : '0'; ?>)</a>
+                    <a href="/BlogSystem/public/admin/users.php">👥 Users</a>
+                    <a href="/BlogSystem/public/admin/settings.php">⚙️ Settings</a>
                     <hr class="bg-secondary">
-                    <a href="/public/index.php">← Back to Blog</a>
-                    <a href="/public/logout.php">🚪 Logout</a>
+                    <a href="/BlogSystem/public/index.php">← Back to Blog</a>
+                    <a href="/BlogSystem/public/logout.php">🚪 Logout</a>
                 </nav>
             </div>
 
@@ -135,10 +135,10 @@ $recent_posts = $conn->query($query_recent_posts)->fetch_all(MYSQLI_ASSOC);
                         <h5 class="mb-0">⚡ Quick Actions</h5>
                     </div>
                     <div class="card-body">
-                        <a href="/public/create-post.php" class="btn btn-primary btn-sm">+ New Post</a>
-                        <a href="/public/admin/categories.php" class="btn btn-success btn-sm">+ New Category</a>
-                        <a href="/public/admin/users.php" class="btn btn-info btn-sm">Manage Users</a>
-                        <a href="/public/admin/comments.php" class="btn btn-warning btn-sm">Review Comments</a>
+                        <a href="/BlogSystem/public/create-post.php" class="btn btn-primary btn-sm">+ New Post</a>
+                        <a href="/BlogSystem/public/admin/categories.php" class="btn btn-success btn-sm">+ New Category</a>
+                        <a href="/BlogSystem/public/admin/users.php" class="btn btn-info btn-sm">Manage Users</a>
+                        <a href="/BlogSystem/public/admin/comments.php" class="btn btn-warning btn-sm">Review Comments</a>
                     </div>
                 </div>
 
@@ -164,9 +164,9 @@ $recent_posts = $conn->query($query_recent_posts)->fetch_all(MYSQLI_ASSOC);
                                         <td><?php echo htmlspecialchars($rpost['username']); ?></td>
                                         <td><?php echo Helper::formatDate($rpost['created_at']); ?></td>
                                         <td>
-                                            <a href="/public/post.php?slug=<?php echo htmlspecialchars($rpost['slug']); ?>" 
+                                            <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($rpost['slug']); ?>" 
                                                class="btn btn-sm btn-outline-primary">View</a>
-                                            <a href="/public/edit-post.php?id=<?php echo $rpost['id']; ?>" 
+                                            <a href="/BlogSystem/public/edit-post.php?id=<?php echo $rpost['id']; ?>" 
                                                class="btn btn-sm btn-outline-secondary">Edit</a>
                                         </td>
                                     </tr>

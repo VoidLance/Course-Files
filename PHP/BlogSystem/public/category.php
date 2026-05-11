@@ -7,7 +7,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $per_page = 10;
 
 if (empty($slug)) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -34,24 +34,24 @@ $paginate = Helper::paginate($total, $per_page, $page);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($category['name']); ?> - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/index.php">Home</a>
+                        <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/search.php">Search</a>
+                        <a class="nav-link" href="/BlogSystem/public/search.php">Search</a>
                     </li>
                 </ul>
             </div>
@@ -74,12 +74,12 @@ $paginate = Helper::paginate($total, $per_page, $page);
                         <?php foreach ($posts as $post): ?>
                             <div class="card mb-4">
                                 <?php if ($post['featured_image']): ?>
-                                    <img src="/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
+                                    <img src="/BlogSystem/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
                                          class="card-img-top" alt="<?php echo htmlspecialchars($post['title']); ?>">
                                 <?php endif; ?>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($post['title']); ?>
                                         </a>
                                     </h5>
@@ -89,7 +89,7 @@ $paginate = Helper::paginate($total, $per_page, $page);
                                     <p class="card-text">
                                         <?php echo Helper::excerpt($post['summary'] ?? $post['content'], 200); ?>
                                     </p>
-                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">Read More →</a>
+                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">Read More →</a>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -131,7 +131,7 @@ $paginate = Helper::paginate($total, $per_page, $page);
                             <ul class="list-group list-group-flush">
                                 <?php foreach ($categoryObj->getCategoriesWithCounts() as $cat): ?>
                                     <li class="list-group-item">
-                                        <a href="/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($cat['name']); ?>
                                         </a>
                                         <span class="badge bg-secondary float-end"><?php echo $cat['post_count']; ?></span>

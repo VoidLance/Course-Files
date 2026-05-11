@@ -12,6 +12,6 @@ if (Helper::isLoggedIn()) {
 }
 
 // Redirect to home page
-header("Location: /public/index.php");
+header("Location: /BlogSystem/public/index.php");
 exit();
 ?>

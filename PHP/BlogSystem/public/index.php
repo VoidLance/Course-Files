@@ -23,46 +23,46 @@ $categories = $categoryObj->getCategoriesWithCounts();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog - Welcome to the Chronicles of My Thoughts</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation bar - where users explore the site -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/index.php">Home</a>
+                        <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/search.php">Search</a>
+                        <a class="nav-link" href="/BlogSystem/public/search.php">Search</a>
                     </li>
                     <?php if (Helper::isLoggedIn()): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/create-post.php">Create Post</a>
+                            <a class="nav-link" href="/BlogSystem/public/create-post.php">Create Post</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/profile.php">Profile</a>
+                            <a class="nav-link" href="/BlogSystem/public/profile.php">Profile</a>
                         </li>
                         <?php if (Helper::isAdmin()): ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="/public/admin/dashboard.php">Admin Panel</a>
+                                <a class="nav-link" href="/BlogSystem/public/admin/dashboard.php">Admin Panel</a>
                             </li>
                         <?php endif; ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/logout.php">Logout</a>
+                            <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/login.php">Login</a>
+                            <a class="nav-link" href="/BlogSystem/public/login.php">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/register.php">Register</a>
+                            <a class="nav-link" href="/BlogSystem/public/register.php">Register</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -82,11 +82,11 @@ $categories = $categoryObj->getCategoriesWithCounts();
                         <?php foreach ($posts as $post): ?>
                             <div class="card mb-4">
                                 <?php if ($post['featured_image']): ?>
-                                    <img src="/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($post['title']); ?>">
+                                    <img src="/BlogSystem/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($post['title']); ?>">
                                 <?php endif; ?>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($post['title']); ?>
                                         </a>
                                     </h5>
@@ -98,7 +98,7 @@ $categories = $categoryObj->getCategoriesWithCounts();
                                     <p class="card-text">
                                         <?php echo Helper::excerpt($post['summary'] ?? $post['content'], 200); ?>
                                     </p>
-                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">
+                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">
                                         Read More →
                                     </a>
                                 </div>
@@ -145,7 +145,7 @@ $categories = $categoryObj->getCategoriesWithCounts();
                             <ul class="list-group list-group-flush">
                                 <?php foreach ($categories as $cat): ?>
                                     <li class="list-group-item d-flex justify-content-between">
-                                        <a href="/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($cat['name']); ?>
                                         </a>
                                         <span class="badge bg-secondary"><?php echo $cat['post_count']; ?></span>

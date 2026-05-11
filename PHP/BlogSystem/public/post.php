@@ -6,7 +6,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 $slug = isset($_GET['slug']) ? Helper::sanitizeInput($_GET['slug']) : '';
 
 if (empty($slug)) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -57,32 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($post['title']); ?> - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/public/index.php">Home</a>
+                        <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
                     </li>
                     <?php if (Helper::isLoggedIn()): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/profile.php">Profile</a>
+                            <a class="nav-link" href="/BlogSystem/public/profile.php">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/logout.php">Logout</a>
+                            <a class="nav-link" href="/BlogSystem/public/logout.php">Logout</a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/public/login.php">Login</a>
+                            <a class="nav-link" href="/BlogSystem/public/login.php">Login</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                 <div class="col-lg-8">
                     <!-- Featured image -->
                     <?php if ($post['featured_image']): ?>
-                        <img src="/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
+                        <img src="/BlogSystem/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
                              class="img-fluid rounded mb-4" alt="<?php echo htmlspecialchars($post['title']); ?>">
                     <?php endif; ?>
 
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                     <div class="mb-4 text-muted">
                         <p class="mb-2">
                             By <strong>
-                                <a href="/public/author.php?id=<?php echo $post['author_id']; ?>" class="text-decoration-none">
+                                <a href="/BlogSystem/public/author.php?id=<?php echo $post['author_id']; ?>" class="text-decoration-none">
                                     <?php echo htmlspecialchars($post['first_name'] . ' ' . $post['last_name']); ?>
                                 </a>
                             </strong>
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                     <?php if (!empty($post['categories'])): ?>
                         <div class="mb-3">
                             <?php foreach ($post['categories'] as $cat): ?>
-                                <a href="/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" 
+                                <a href="/BlogSystem/public/category.php?slug=<?php echo htmlspecialchars($cat['slug']); ?>" 
                                    class="badge bg-primary text-decoration-none">
                                     <?php echo htmlspecialchars($cat['name']); ?>
                                 </a>
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                     <!-- Edit/Delete buttons for post author or admin -->
                     <?php if (Helper::isLoggedIn() && ($post['author_id'] === $_SESSION['user_id'] || Helper::isAdmin())): ?>
                         <div class="mb-4">
-                            <a href="/public/edit-post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning btn-sm">
+                            <a href="/BlogSystem/public/edit-post.php?id=<?php echo $post['id']; ?>" class="btn btn-warning btn-sm">
                                 ✏️ Edit Post
                             </a>
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal">
@@ -165,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <a href="/public/delete-post.php?id=<?php echo $post['id']; ?>" class="btn btn-danger">
+                                        <a href="/BlogSystem/public/delete-post.php?id=<?php echo $post['id']; ?>" class="btn btn-danger">
                                             Yes, Delete
                                         </a>
                                     </div>
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_comment'])) {
                             </div>
                         <?php else: ?>
                             <div class="alert alert-info">
-                                <a href="/public/login.php">Login</a> to post a comment
+                                <a href="/BlogSystem/public/login.php">Login</a> to post a comment
                             </div>
                         <?php endif; ?>
 

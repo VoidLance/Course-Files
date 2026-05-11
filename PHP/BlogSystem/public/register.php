@@ -7,7 +7,7 @@ $success = '';
 
 // If already logged in, redirect to home
 if (Helper::isLoggedIn()) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body class="bg-light">
     <div class="container my-5">
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <hr>
                         <p class="text-center mb-0">
                             Already have an account? 
-                            <a href="/public/login.php">Login here</a>
+                            <a href="/BlogSystem/public/login.php">Login here</a>
                         </p>
                     </div>
                 </div>

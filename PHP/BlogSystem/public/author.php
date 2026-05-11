@@ -5,7 +5,7 @@ require_once dirname(__FILE__) . '/../bootstrap.php';
 $user_id = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
 if (!$user_id) {
-    header("Location: /public/index.php");
+    header("Location: /BlogSystem/public/index.php");
     exit();
 }
 
@@ -32,17 +32,17 @@ $paginate = Helper::paginate($total_posts, $per_page, $page);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($author['username']); ?> - BlogSystem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/BlogSystem/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/BlogSystem/public/css/style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="/public/index.php">📝 BlogSystem</a>
+            <a class="navbar-brand fw-bold" href="/BlogSystem/public/index.php">📝 BlogSystem</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/public/index.php">Home</a>
-                <a class="nav-link" href="/public/search.php">Search</a>
+                <a class="nav-link" href="/BlogSystem/public/index.php">Home</a>
+                <a class="nav-link" href="/BlogSystem/public/search.php">Search</a>
             </div>
         </div>
     </nav>
@@ -80,12 +80,12 @@ $paginate = Helper::paginate($total_posts, $per_page, $page);
                         <?php foreach ($posts as $post): ?>
                             <div class="card mb-4">
                                 <?php if ($post['featured_image']): ?>
-                                    <img src="/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
+                                    <img src="/BlogSystem/public/uploads/posts/<?php echo htmlspecialchars($post['featured_image']); ?>" 
                                          class="card-img-top" alt="<?php echo htmlspecialchars($post['title']); ?>">
                                 <?php endif; ?>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
+                                        <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="text-decoration-none">
                                             <?php echo htmlspecialchars($post['title']); ?>
                                         </a>
                                     </h5>
@@ -96,7 +96,7 @@ $paginate = Helper::paginate($total_posts, $per_page, $page);
                                     <p class="card-text">
                                         <?php echo Helper::excerpt($post['summary'] ?? $post['content'], 200); ?>
                                     </p>
-                                    <a href="/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">
+                                    <a href="/BlogSystem/public/post.php?slug=<?php echo htmlspecialchars($post['slug']); ?>" class="btn btn-primary btn-sm">
                                         Read More →
                                     </a>
                                 </div>
