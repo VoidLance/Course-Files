@@ -76,7 +76,8 @@ CREATE TABLE Feedback(
 	FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
 
-and made the ERD located in this project's directory: ![image](final_project_erd.png)
+and made the ERD located in this project's directory: 
+![image](final_project_erd.png)
 
 ### Creating Indexes
 I also decided to create some indexes to make some of the more frequently used searches more efficient:
