@@ -76,7 +76,10 @@ CREATE TABLE Feedback(
 	FOREIGN KEY (orderID) REFERENCES Orders(orderID)
 );
 
-and made the ERD located in this project's directory: ![image](final_project_erd.png)
+and made the ERD located in this project's directory:
+
+
+![image](final_project_erd.png)
 
 ### Creating Indexes
 I also decided to create some indexes to make some of the more frequently used searches more efficient:
@@ -201,5 +204,34 @@ The menu also includes basic error handling for:
 - invalid input values
 - constraint/integrity errors
 - other sqlite errors
+
+#### Step 6: Add try/except blocks to relevant functions
+After this, I added explicit try/except Exception as e blocks in all the relevant Python functions so errors are easier to trace while testing.
+
+I applied this to:
+- database connection function
+- CRUD functions
+- reporting functions
+- helper functions (input parsing and printing)
+- CLI flow (including an unexpected-error catch)
+
+The pattern I used was:
+
+```python
+def create_customer(first_name, last_name, email):
+	try:
+		cur.execute(
+			"INSERT INTO Customers (firstName, lastName, email) VALUES (?, ?, ?)",
+			(first_name, last_name, email)
+		)
+		conn.commit()
+		return cur.lastrowid
+	except Exception as e:
+		print(f"Error in create_customer: {e}")
+		raise
+```
+
+I kept re-raising the exception so I still get clear failure behaviour, but now I also get function-specific messages that make debugging much easier.
+
 
 
