@@ -77,6 +77,8 @@ CREATE TABLE Feedback(
 );
 
 and made the ERD located in this project's directory: 
+
+
 ![image](final_project_erd.png)
 
 ### Creating Indexes
