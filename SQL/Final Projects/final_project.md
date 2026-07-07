@@ -78,4 +78,128 @@ CREATE TABLE Feedback(
 
 and made the ERD located in this project's directory: ![image](final_project_erd.png)
 
+### Creating Indexes
+I also decided to create some indexes to make some of the more frequently used searches more efficient:
+
+CREATE INDEX idx_price ON Products(price);
+CREATE INDEX idx_quantity ON Orders(quantity);
+CREATE INDEX idx_customer ON Customers(customerID);
+
+After working further on the reporting queries, I realised the most useful extra indexes for this specific project are on the foreign key columns in Orders, because those are used in joins and grouping a lot:
+
+CREATE INDEX idx_orders_customerID ON Orders(customerID);
+CREATE INDEX idx_orders_productID ON Orders(productID);
+
+I kept the original indexes I made, but if I were cleaning this up for production I would likely remove redundant ones like indexing a primary key column directly.
+
+### Implementing in Python
+I already had the initial connection code in place, which was:
+
+```python
+import sqlite3
+
+def connect_to_db(db_name):
+	return sqlite3.connect(db_name)
+
+conn = connect_to_db('final_project.db')
+cur = conn.cursor()
+```
+
+I kept this approach and built everything else around it.
+Since I had already created the database and tables in DBeaver, I did not add database creation logic in Python.
+
+#### Step 1: Build CRUD functions for each table
+I implemented full CRUD for:
+- Customers
+- Products
+- Orders
+- Feedback
+
+For each entity I followed the same pattern:
+- create function using INSERT
+- get one record by ID
+- get all records
+- update by ID
+- delete by ID
+
+A simple example from Customers was:
+
+```python
+def create_customer(first_name, last_name, email):
+	cur.execute(
+		"INSERT INTO Customers (firstName, lastName, email) VALUES (?, ?, ?)",
+		(first_name, last_name, email)
+	)
+	conn.commit()
+	return cur.lastrowid
+```
+
+For updates/deletes I returned rowcount so I could easily confirm whether a row was actually changed.
+
+#### Step 2: Add automatic value calculation for Orders
+Originally, Orders.value could be passed in manually, but I changed this so value is always derived from existing data.
+
+Now the create flow is:
+- get product price from Products
+- multiply price by quantity
+- insert order with computed value
+
+Snippet:
+
+```python
+cur.execute("SELECT price, stock FROM Products WHERE productID = ?", (product_id,))
+price, stock = cur.fetchone()
+value = float(price) * int(quantity)
+```
+
+I applied the same idea when updating orders, so value is recalculated there as well.
+
+#### Step 3: Keep stock consistent when creating orders
+I added a stock check and stock update in order creation:
+- if product does not exist, raise ValueError
+- if stock is tracked and quantity is too high, raise ValueError
+- if order is valid, reduce stock by quantity
+
+Snippet:
+
+```python
+if stock is not None and quantity > stock:
+	raise ValueError("Insufficient stock for this order.")
+
+cur.execute(
+	"UPDATE Products SET stock = stock - ? WHERE productID = ?",
+	(quantity, product_id)
+)
+```
+
+#### Step 4: Implement report query functions
+To match the project requirements, I created dedicated report functions for:
+- customer orders and total spend
+- product sales (units and value)
+- feedback analytics (count, average rating, min/max, and distribution)
+
+Example report query pattern:
+
+```sql
+SELECT
+	c.customerID,
+	c.firstName,
+	c.lastName,
+	COUNT(o.orderID) AS totalOrders,
+	COALESCE(SUM(o.value), 0) AS totalSpent
+FROM Customers c
+LEFT JOIN Orders o ON c.customerID = o.customerID
+GROUP BY c.customerID, c.firstName, c.lastName
+ORDER BY totalSpent DESC;
+```
+
+#### Step 5: Add an interactive CLI walkthrough menu
+To make testing and demonstration easier, I added a simple terminal menu in main.py.
+This lets me run CRUD and report functions interactively without manually editing code each time.
+
+The menu also includes basic error handling for:
+- invalid input values
+- constraint/integrity errors
+- other sqlite errors
+
 
