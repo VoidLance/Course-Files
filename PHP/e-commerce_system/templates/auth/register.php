@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles th  > register - straightforward on purpose.
+// Register view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4 mx-auto" style="max-width: 640px;">
     <h1 class="h3 mb-3">Create Account</h1>
     <form method="POST" novalidate>

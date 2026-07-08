@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles etterSubscriber - straightforward on purpose.
+// Newsletter subscriber model. Mostly database chats, but at least they are organized.
 
 final class NewsletterSubscriber
 {

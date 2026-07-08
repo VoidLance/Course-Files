@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles p - straightforward on purpose.
 // Category class - organize your content into bite-sized chunks
 class Category {
     private $conn;

@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles min  > users  > show - straightforward on purpose.
+// Show view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4">
     <h1 class="h3 mb-3"><?= e($pageTitle ?? 'User Details'); ?></h1>
     <p><strong>Name:</strong> <?= e(($user['first_name'] ?? '') . ' ' . ($user['last_name'] ?? '')); ?></p>

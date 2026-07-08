@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles hp - straightforward on purpose.
+// App settings. Tiny file, big consequences, so no random edits.
 
 return [
     'app_name' => 'E-Commerce System',

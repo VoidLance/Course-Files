@@ -1,5 +1,5 @@
 <?php $cartSummary = $cartSummary ?? ['item_count' => 0, 'subtotal' => 0.0]; ?>
-// Starter note: This file handles rtials  > header - straightforward on purpose.
+// Header view. Mostly HTML, with just enough PHP to stay useful.
 <!DOCTYPE html>
 <html lang="en">
 <head>

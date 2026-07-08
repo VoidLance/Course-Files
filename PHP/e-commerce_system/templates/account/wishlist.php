@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles count  > wishlist - straightforward on purpose.
+// Wishlist view. Mostly HTML, with just enough PHP to stay useful.
 $pageTitle = 'Wishlist';
 require $rootPath . '/templates/partials/header.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles ard - straightforward on purpose.
+// Admin dashboard page. Same app, more buttons, slightly more danger.
 // Admin dashboard - the nerve center of blog management!
 require_once dirname(__FILE__) . '/../../bootstrap.php';
 

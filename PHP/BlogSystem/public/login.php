@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Login page - where users prove who they are
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

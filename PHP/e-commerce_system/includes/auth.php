@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles h - straightforward on purpose.
+// Auth helpers. Keeps private pages private and nosy users disappointed.
 
 function is_logged_in(): bool
 {

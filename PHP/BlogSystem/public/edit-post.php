@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles p - straightforward on purpose.
 // Edit Post Page - fix those typos and change your mind!
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

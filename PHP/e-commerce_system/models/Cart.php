@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles php - straightforward on purpose.
+// Cart model. Mostly database chats, but at least they are organized.
 
 final class Cart
 {

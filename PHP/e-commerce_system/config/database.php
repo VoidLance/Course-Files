@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles ase - straightforward on purpose.
+// Database settings. Small config, huge ability to ruin your afternoon.
 
 return [
     'host' => 'localhost',

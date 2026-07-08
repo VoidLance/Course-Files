@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles idation - straightforward on purpose.
+// Validation helpers. Because forms love bad input more than they should.
 
 function validate_required(array $data, array $fields): array
 {

@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
+// Helper file. Straightforward on purpose, because beginner code should be readable.
 // Helper functions - little utilities that make life easier
 class Helper {
     

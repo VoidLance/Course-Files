@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles ReviewController - straightforward on purpose.
+// Review controller. Mostly traffic control so the app does not wander off.
 
 final class ReviewController
 {

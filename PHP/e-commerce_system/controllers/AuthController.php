@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles AuthController - straightforward on purpose.
+// Auth controller. Mostly traffic control so the app does not wander off.
 
 final class AuthController
 {

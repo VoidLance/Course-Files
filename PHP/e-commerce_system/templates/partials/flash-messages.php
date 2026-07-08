@@ -1,5 +1,5 @@
 <?php $successMessage = flash('success'); ?>
-// Starter note: This file handles rtials  > flash messages - straightforward on purpose.
+// Flash messages view. Mostly HTML, with just enough PHP to stay useful.
 <?php $errorMessage = flash('error'); ?>
 <?php if ($successMessage !== null): ?>
     <div class="flash alert alert-success"><?= e($successMessage); ?></div>

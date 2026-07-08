@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles tstrap - straightforward on purpose.
+// App bootstrap. If this breaks, the rest of the site joins the panic.
 
 $rootPath = dirname(__DIR__);
 $appConfig = require $rootPath . '/config/app.php';

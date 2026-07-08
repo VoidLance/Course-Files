@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles oducts  > show - straightforward on purpose.
+// Show view. Mostly HTML, with just enough PHP to stay useful.
 $pageTitle = $product['product_name'];
 require $rootPath . '/templates/partials/header.php';
 ?>

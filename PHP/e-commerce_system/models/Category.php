@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles ory - straightforward on purpose.
+// Category model. Mostly database chats, but at least they are organized.
 
 final class Category
 {

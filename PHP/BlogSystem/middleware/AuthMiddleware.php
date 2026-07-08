@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles leware - straightforward on purpose.
+// Auth middleware file. Straightforward on purpose, because beginner code should be readable.
 // Middleware - gatekeepers for your routes!
 class AuthMiddleware {
 

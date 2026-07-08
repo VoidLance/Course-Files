@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles d - straightforward on purpose.
 // Access Denied Page - sorry, you can't do that!
 ?>
 

@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles w - straightforward on purpose.
+// Review model. Mostly database chats, but at least they are organized.
 
 final class Review
 {

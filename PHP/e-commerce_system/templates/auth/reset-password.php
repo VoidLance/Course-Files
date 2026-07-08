@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles th  > reset password - straightforward on purpose.
+// Reset password view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4 mx-auto" style="max-width: 520px;">
     <h1 class="h3 mb-3">Reset Password</h1>
     <form method="POST" novalidate>

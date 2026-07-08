@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles eckout  > payment - straightforward on purpose.
+// Payment view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4">
     <h1 class="h3 mb-3">Checkout: Payment</h1>
     <form method="POST" novalidate>

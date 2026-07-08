@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles s  > top products - straightforward on purpose.
+// Admin top products page. Same app, more buttons, slightly more danger.
 
 require dirname(__DIR__, 2) . '/includes/bootstrap.php';
 require_admin();

@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles rt  > index - straightforward on purpose.
+// Index view. Mostly HTML, with just enough PHP to stay useful.
 $pageTitle = 'Shopping Cart';
 require $rootPath . '/templates/partials/header.php';
 ?>

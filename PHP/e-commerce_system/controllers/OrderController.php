@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles OrderController - straightforward on purpose.
+// Order controller. Mostly traffic control so the app does not wander off.
 
 final class OrderController
 {

@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles php - straightforward on purpose.
+// Mail settings. Emails do not send themselves, sadly.
 
 return [
     'mailer' => 'smtp',

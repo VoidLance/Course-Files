@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles PalService - straightforward on purpose.
+// Pay pal service. Business logic lives here instead of making a mess elsewhere.
 
 final class PayPalService
 {

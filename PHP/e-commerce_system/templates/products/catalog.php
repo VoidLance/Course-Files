@@ -1,5 +1,5 @@
 <?php
-// Starter note: This file handles oducts  > catalog - straightforward on purpose.
+// Catalog view. Mostly HTML, with just enough PHP to stay useful.
 $pageTitle = 'Product Catalog';
 require $rootPath . '/templates/partials/header.php';
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles l - straightforward on purpose.
+// PayPal settings. Money code is rarely forgiving, so keep this tidy.
 
 return [
     'client_id' => '',

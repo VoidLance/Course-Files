@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles CheckoutController - straightforward on purpose.
+// Checkout controller. Mostly traffic control so the app does not wander off.
 
 final class CheckoutController
 {

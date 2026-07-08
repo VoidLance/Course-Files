@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles f - straightforward on purpose.
+// CSRF helpers. Tiny tokens doing quiet security work.
 
 function csrf_token(): string
 {

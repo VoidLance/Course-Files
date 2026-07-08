@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Bootstrap file - initialize the entire application (the master key to everything!)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

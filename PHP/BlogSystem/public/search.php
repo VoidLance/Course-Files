@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Search page - find that one post you half-remember
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

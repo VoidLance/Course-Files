@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles ckoutService - straightforward on purpose.
+// Checkout service. Business logic lives here instead of making a mess elsewhere.
 
 final class CheckoutService
 {

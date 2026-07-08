@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Database configuration - where all the magic happens (and occasionally breaks)
 class Database {
     private $host = 'localhost';

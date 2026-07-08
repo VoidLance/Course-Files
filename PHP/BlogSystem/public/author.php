@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Author Profile Page - showcase their work!
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

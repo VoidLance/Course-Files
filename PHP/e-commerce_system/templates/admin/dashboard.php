@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles min  > dashboard - straightforward on purpose.
+// Dashboard view. Mostly HTML, with just enough PHP to stay useful.
 <section class="row g-3 mb-3">
     <div class="col-md-4"><div class="card p-3"><h2 class="h6">Total Orders</h2><p class="display-6 mb-0"><?= (int) ($dashboard['sales']['total_orders'] ?? 0); ?></p></div></div>
     <div class="col-md-4"><div class="card p-3"><h2 class="h6">Total Sales</h2><p class="display-6 mb-0"><?= e(money((float) ($dashboard['sales']['total_sales'] ?? 0))); ?></p></div></div>

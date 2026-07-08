@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-// Starter note: This file handles NewsletterController - straightforward on purpose.
+// Newsletter controller. Mostly traffic control so the app does not wander off.
 
 final class NewsletterController
 {

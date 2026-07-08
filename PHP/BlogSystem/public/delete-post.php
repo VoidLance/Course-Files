@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles php - straightforward on purpose.
 // Delete Post Handler - permanently remove a post (no undo!)
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

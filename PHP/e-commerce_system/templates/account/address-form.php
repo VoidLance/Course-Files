@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles count  > address form - straightforward on purpose.
+// Address form view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4">
     <h1 class="h3 mb-3"><?= e($pageTitle ?? 'Address Form'); ?></h1>
     <form method="POST" class="row g-3" novalidate>

@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles min  > orders  > index - straightforward on purpose.
+// Index view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4">
     <h1 class="h3 mb-3">Order Management</h1>
     <div class="table-responsive">

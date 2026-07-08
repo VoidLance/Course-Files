@@ -1,5 +1,5 @@
 <?php require $rootPath . '/templates/partials/header.php'; ?>
-// Starter note: This file handles min  > categories  > index - straightforward on purpose.
+// Index view. Mostly HTML, with just enough PHP to stay useful.
 <section class="card p-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="h3 m-0">Category Management</h1>

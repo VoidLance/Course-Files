@@ -1,5 +1,4 @@
 <?php
-// Starter note: This file handles  - straightforward on purpose.
 // Post class - the main event, where your words become immortal (or forgotten)
 class Post {
     private $conn;
