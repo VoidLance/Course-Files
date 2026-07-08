@@ -1,2 +1,3 @@
 <h1>Reset Your Password</h1>
-<p>Password reset email template placeholder.</p>
+<p>We received a request to reset your password.</p>
+<p><a href="<?= e($resetUrl ?? '#'); ?>">Reset Password</a></p>

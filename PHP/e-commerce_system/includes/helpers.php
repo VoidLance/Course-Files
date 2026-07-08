@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles pers - straightforward on purpose.
 
 function app_config(string $key, mixed $default = null): mixed
 {

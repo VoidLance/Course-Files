@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Comment class - where people debate your blog posts (civilly, we hope)
 class Comment {
     private $conn;

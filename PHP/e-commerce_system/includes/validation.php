@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles idation - straightforward on purpose.
 
 function validate_required(array $data, array $fields): array
 {

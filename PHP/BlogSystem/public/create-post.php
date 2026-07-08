@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles php - straightforward on purpose.
 // Create post page - birth a new blog post!
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

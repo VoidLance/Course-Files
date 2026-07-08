@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles rt  > index - straightforward on purpose.
 $pageTitle = 'Shopping Cart';
 require $rootPath . '/templates/partials/header.php';
 ?>
@@ -45,6 +46,11 @@ require $rootPath . '/templates/partials/header.php';
         <div class="cart-summary">
             <p><strong>Items:</strong> <?= (int) $item_count; ?></p>
             <p><strong>Subtotal:</strong> <?= e(money((float) $subtotal)); ?></p>
+            <p><strong>Discount:</strong> -<?= e(money((float) $discount)); ?></p>
+            <p><strong>Estimated Tax:</strong> <?= e(money((float) $estimated_tax)); ?></p>
+            <p><strong>Estimated Shipping:</strong> <?= e(money((float) $estimated_shipping)); ?></p>
+            <p><strong>Grand Total:</strong> <?= e(money((float) $grand_total)); ?></p>
+            <a class="btn btn-cart" href="<?= e(base_url('checkout/shipping.php')); ?>">Proceed to Checkout</a>
         </div>
     <?php endif; ?>
 </section>

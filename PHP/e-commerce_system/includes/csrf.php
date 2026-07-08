@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles f - straightforward on purpose.
 
 function csrf_token(): string
 {

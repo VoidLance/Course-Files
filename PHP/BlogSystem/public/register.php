@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Register page - welcome to the blog! (but verify your email first)
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

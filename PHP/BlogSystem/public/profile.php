@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // User Profile Page - here's where you flex your blog stats
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

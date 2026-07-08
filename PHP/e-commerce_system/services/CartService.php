@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles tService - straightforward on purpose.
 
 final class CartService
 {
@@ -31,10 +32,19 @@ final class CartService
             ];
         }
 
+        $discount = 0.0;
+        $estimatedShipping = $subtotal > 0 ? 5.99 : 0.0;
+        $estimatedTax = round(($subtotal - $discount) * 0.10, 2);
+        $grandTotal = round($subtotal - $discount + $estimatedTax + $estimatedShipping, 2);
+
         return [
             'items' => $items,
             'item_count' => array_sum(array_map(static fn (array $item): int => $item['quantity'], $items)),
             'subtotal' => $subtotal,
+            'discount' => $discount,
+            'estimated_shipping' => $estimatedShipping,
+            'estimated_tax' => $estimatedTax,
+            'grand_total' => $grandTotal,
         ];
     }
 

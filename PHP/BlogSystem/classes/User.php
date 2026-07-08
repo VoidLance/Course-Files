@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // User class - where we handle all that human stuff (authentication, profiles, etc)
 class User {
     private $conn;

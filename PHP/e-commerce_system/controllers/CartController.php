@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles CartController - straightforward on purpose.
 
 final class CartController
 {
@@ -29,6 +30,12 @@ final class CartController
             flash('error', 'Unable to add that product to the cart.');
         }
 
+        if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest') {
+            header('Content-Type: application/json');
+            echo json_encode($this->cartService->getDetailedCart(), JSON_THROW_ON_ERROR);
+            exit;
+        }
+
         $returnTo = (string) ($_POST['return_to'] ?? base_url('cart/index.php'));
         redirect($returnTo);
     }
@@ -43,6 +50,13 @@ final class CartController
         $productId = (int) ($_POST['product_id'] ?? 0);
         $quantity = (int) ($_POST['quantity'] ?? 1);
         $this->cartService->update($productId, $quantity);
+
+        if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest') {
+            header('Content-Type: application/json');
+            echo json_encode($this->cartService->getDetailedCart(), JSON_THROW_ON_ERROR);
+            exit;
+        }
+
         flash('success', 'Cart updated.');
         redirect(base_url('cart/index.php'));
     }
@@ -56,6 +70,13 @@ final class CartController
 
         $productId = (int) ($_POST['product_id'] ?? 0);
         $this->cartService->remove($productId);
+
+        if (($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'XMLHttpRequest') {
+            header('Content-Type: application/json');
+            echo json_encode($this->cartService->getDetailedCart(), JSON_THROW_ON_ERROR);
+            exit;
+        }
+
         flash('success', 'Product removed from cart.');
         redirect(base_url('cart/index.php'));
     }

@@ -105,7 +105,8 @@ CREATE TABLE IF NOT EXISTS products (
     CONSTRAINT fk_products_subcategory FOREIGN KEY (subcategory_id) REFERENCES subcategories(subcategory_id) ON DELETE SET NULL,
     INDEX idx_products_name (product_name),
     INDEX idx_products_sku (sku),
-    INDEX idx_products_price (price)
+    INDEX idx_products_price (price),
+    FULLTEXT INDEX ft_products_search (product_name, description, sku)
 );
 
 CREATE TABLE IF NOT EXISTS cart_items (

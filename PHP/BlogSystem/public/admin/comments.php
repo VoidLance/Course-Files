@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles ts - straightforward on purpose.
 // Admin: Manage Comments - moderate those opinions!
 require_once dirname(__FILE__) . '/../../bootstrap.php';
 

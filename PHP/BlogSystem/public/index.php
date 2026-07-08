@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Main entry point - the home page where visitors first land
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

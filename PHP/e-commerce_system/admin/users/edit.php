@@ -1,9 +1,22 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles edit - straightforward on purpose.
 
 require dirname(__DIR__, 2) . '/includes/bootstrap.php';
 require_admin();
 
-$pageTitle = 'Edit User';
-require $rootPath . '/templates/admin/users/show.php';
+$userId = (int) ($_GET['id'] ?? 0);
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !verify_csrf_token($_POST['csrf_token'] ?? null)) {
+	http_response_code(422);
+	exit('Invalid request.');
+}
+
+$role = trim((string) ($_POST['role'] ?? 'customer'));
+$status = trim((string) ($_POST['status'] ?? 'active'));
+
+$ok = $userModel->updateAdminFields($userId, $role, $status);
+flash($ok ? 'success' : 'error', $ok ? 'User updated.' : 'Unable to update user.');
+redirect('show.php?id=' . $userId);
+

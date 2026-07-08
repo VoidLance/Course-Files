@@ -1,12 +1,26 @@
 # E-Commerce System
 
-This project is being refactored from a single catalog page into a structured PHP storefront.
+This project is a specification-aligned e-commerce website for a small business.
 
-## Current milestone
+## Implemented Features
 
-- Shared config and bootstrap are in place.
-- Catalog and cart starter flow are available under `public/`.
-- Remaining routes, services, models, and templates have been scaffolded for future implementation.
+- Product catalog with pagination, category filtering, price filtering, sorting, featured products, product details, stock status, and related products.
+- Shopping cart with add/remove/update, session persistence, mini-cart, and totals (subtotal, discount, tax, shipping, grand total).
+- User management with register, email verification, login/logout, forgot/reset password, profile editing, addresses, and saved payment method metadata.
+- Multi-step checkout (shipping, payment, review, confirmation) with guest checkout support.
+- PayPal sandbox create/capture integration.
+- Order management with history, status timeline, and PDF invoice downloads.
+- Admin panel with login, dashboard, product/category CRUD, order management, user management, and basic reports.
+- Search and filtering by name/description/SKU, category, price range, sort options, and AJAX updates.
+- Wishlist, product reviews/ratings, coupon support, newsletter subscription, and inventory movement tracking.
+
+## Technical Notes
+
+- MySQL schema includes entities, relationships, and indexes required for catalog, users, orders, and supporting features.
+- Application structure follows OOP + MVC with controllers, services, models, templates, and shared includes.
+- Prepared statements are used for database queries.
+- CSRF protection is used for state-changing forms.
+- Bootstrap is used for responsive UI.
 
 ## Setup
 

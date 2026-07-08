@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Database configuration - where all the magic happens (and occasionally breaks)
 class Database {
     private $host = 'localhost';
@@ -9,6 +10,12 @@ class Database {
 
     // Fire up that database connection - connect() to the database or connect() to your feelings
     public function connect() {
+        if (!extension_loaded('mysqli')) {
+            throw new RuntimeException(
+                'PHP extension "mysqli" is not enabled. Enable mysqli (and usually pdo_mysql) in your php.ini, then restart your local PHP server.'
+            );
+        }
+
         $this->conn = new mysqli(
             $this->host,
             $this->db_user,

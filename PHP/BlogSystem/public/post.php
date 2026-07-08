@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Post view page - read your favorite blog posts here!
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

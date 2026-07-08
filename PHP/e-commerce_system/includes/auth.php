@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+// Starter note: This file handles h - straightforward on purpose.
 
 function is_logged_in(): bool
 {
@@ -17,6 +18,11 @@ function require_login(): void
 
 function require_admin(): void
 {
+    if (!is_logged_in()) {
+        flash('error', 'Please log in as admin.');
+        redirect(base_url('../admin/login.php'));
+    }
+
     if (($_SESSION['role'] ?? null) !== 'admin') {
         http_response_code(403);
         exit('Forbidden');

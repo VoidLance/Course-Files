@@ -1,11 +1,22 @@
 <?php
+// Starter note: This file handles oducts  > catalog - straightforward on purpose.
 $pageTitle = 'Product Catalog';
 require $rootPath . '/templates/partials/header.php';
 ?>
-<section class="search-bar">
-    <form method="GET" action="<?= e(base_url('products/catalog.php')); ?>">
-        <input type="text" name="search" placeholder="Search products..." value="<?= e($filters['search']); ?>">
-        <button type="submit">Search</button>
+<section class="search-bar mb-3">
+    <form method="GET" id="catalogFilterForm" action="<?= e(base_url('products/catalog.php')); ?>" class="row g-2">
+        <div class="col-md-3"><input class="form-control" type="text" name="search" placeholder="Search products..." value="<?= e($filters['search']); ?>"></div>
+        <div class="col-md-2"><input class="form-control" type="number" step="0.01" min="0" name="min_price" placeholder="Min price" value="<?= e($filters['min_price'] ?? ''); ?>"></div>
+        <div class="col-md-2"><input class="form-control" type="number" step="0.01" min="0" name="max_price" placeholder="Max price" value="<?= e($filters['max_price'] ?? ''); ?>"></div>
+        <div class="col-md-3">
+            <select class="form-select" name="sort">
+                <option value="newest" <?= ($filters['sort'] ?? 'newest') === 'newest' ? 'selected' : ''; ?>>Newest</option>
+                <option value="price_asc" <?= ($filters['sort'] ?? '') === 'price_asc' ? 'selected' : ''; ?>>Price: Low to High</option>
+                <option value="price_desc" <?= ($filters['sort'] ?? '') === 'price_desc' ? 'selected' : ''; ?>>Price: High to Low</option>
+                <option value="popularity" <?= ($filters['sort'] ?? '') === 'popularity' ? 'selected' : ''; ?>>Popularity</option>
+            </select>
+        </div>
+        <div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Apply</button></div>
     </form>
 </section>
 <div class="catalog-wrapper">
@@ -22,7 +33,7 @@ require $rootPath . '/templates/partials/header.php';
             <?php endforeach; ?>
         </div>
     </aside>
-    <section class="main-content">
+    <section class="main-content" id="catalogResults">
         <?php if ($featuredProducts !== []): ?>
             <section class="featured-section">
                 <h2>Featured Products</h2>
@@ -104,4 +115,25 @@ require $rootPath . '/templates/partials/header.php';
         <?php endif; ?>
     </section>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('catalogFilterForm');
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener('change', function () {
+        const params = new URLSearchParams(new FormData(form));
+        params.set('ajax', '1');
+        fetch('<?= e(base_url('products/catalog.php')); ?>?' + params.toString(), { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+            .then((response) => response.json())
+            .then((payload) => {
+                if (payload && payload.html) {
+                    document.getElementById('catalogResults').innerHTML = payload.html;
+                }
+            })
+            .catch(() => {});
+    });
+});
+</script>
 <?php require $rootPath . '/templates/partials/footer.php'; ?>

@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Logout page - see you later!
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

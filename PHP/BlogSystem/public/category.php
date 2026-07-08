@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles  - straightforward on purpose.
 // Category page - view all posts in a category
 require_once dirname(__FILE__) . '/../bootstrap.php';
 

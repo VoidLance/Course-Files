@@ -1,4 +1,5 @@
 <?php
+// Starter note: This file handles leware - straightforward on purpose.
 // Middleware - gatekeepers for your routes!
 class AuthMiddleware {
 
