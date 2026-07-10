@@ -66,9 +66,21 @@ function addFileToTree(array &$tree, string $relativePath): void
     }
 
     $filePath = count($parts) > 0 ? implode('/', $parts) . '/' . $fileName : $fileName;
+    $normalizedPath = str_replace('\\', '/', $filePath);
+    $isPhpFile = str_ends_with(strtolower($fileName), '.php');
+
+    // Keep private source files visible but not clickable in launcher tree.
+    $isPrivatePhp = $isPhpFile && (
+        str_starts_with($normalizedPath, 'SecureFileShare/app/')
+        || str_starts_with($normalizedPath, 'SecureFileShare/config/')
+        || str_starts_with($normalizedPath, 'SecureFileShare/database/')
+        || str_starts_with($normalizedPath, 'SecureFileShare/storage/')
+    );
+
     $node['files'][] = [
         'name' => $fileName,
         'path' => $filePath,
+        'clickable' => !$isPrivatePhp,
     ];
 }
 
@@ -114,9 +126,15 @@ function renderTree(array $node, bool $expand = false): void
 
     foreach ($node['files'] as $fileNode) {
         echo '<li class="tree-node tree-file">';
-        echo '<a href="' . htmlspecialchars(toUrlPath($fileNode['path']), ENT_QUOTES, 'UTF-8') . '">';
-        echo htmlspecialchars($fileNode['name'], ENT_QUOTES, 'UTF-8');
-        echo '</a>';
+        if (($fileNode['clickable'] ?? true) === true) {
+            echo '<a href="' . htmlspecialchars(toUrlPath($fileNode['path']), ENT_QUOTES, 'UTF-8') . '">';
+            echo htmlspecialchars($fileNode['name'], ENT_QUOTES, 'UTF-8');
+            echo '</a>';
+        } else {
+            echo '<span class="private-file" title="Private source file: open via app routes, not directly">';
+            echo htmlspecialchars($fileNode['name'], ENT_QUOTES, 'UTF-8');
+            echo ' (private)</span>';
+        }
         echo '</li>';
     }
 }
@@ -234,11 +252,32 @@ sortTree($tree);
             border: 0;
             border-top: 1px dashed #bbb;
         }
+
+        .project-links {
+            margin: 0.6rem 0;
+            padding-left: 1rem;
+        }
+
+        .project-links li {
+            margin: 0.25rem 0;
+        }
+
+        .private-file {
+            color: #777;
+        }
     </style>
 </head>
 <body>
     <h1><?php echo htmlspecialchars($rootName, ENT_QUOTES, 'UTF-8'); ?> index</h1>
-    <p>Plain directory listing for everything inside this PHP root.</p>
+    <p>Root launcher for all PHP projects in this folder.</p>
+    <h2>Project launch links</h2>
+    <ul class="project-links">
+        <li><a href="SecureFileShare/public/">SecureFileShare app</a></li>
+        <li><a href="Basic%20App/">Basic App</a></li>
+        <li><a href="BlogSystem/public/">BlogSystem</a></li>
+        <li><a href="e-commerce_system/public/">E-commerce System</a></li>
+        <li><a href="TaskManagementSystem/public/">TaskManagementSystem</a></li>
+    </ul>
     <hr class="divider">
 
     <h2>File tree</h2>
