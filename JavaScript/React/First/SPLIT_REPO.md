@@ -2,4 +2,4 @@
 
 This project is split out from the Course-Files monorepo.
 
-Split repo: https://github.com/VoidLance/course-files-javascript-react
+Split repo: https://github.com/VoidLance/course-files-javascript-react-first
