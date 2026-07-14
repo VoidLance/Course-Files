@@ -272,6 +272,7 @@ sortTree($tree);
     <p>Root launcher for all PHP projects in this folder.</p>
     <h2>Project launch links</h2>
     <ul class="project-links">
+        <li><a href="SocialMediaAnalyticsDashboard/index.php">Project 5: Social Media Analytics Dashboard</a></li>
         <li><a href="SecureFileShare/public/">SecureFileShare app</a></li>
         <li><a href="Basic%20App/">Basic App</a></li>
         <li><a href="BlogSystem/public/">BlogSystem</a></li>

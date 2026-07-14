@@ -8,6 +8,19 @@ declare(strict_types=1);
 $uriPath = rawurldecode(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
 $fullPath = __DIR__ . $uriPath;
 
+// If router script is requested directly, bounce to the launcher page.
+if ($uriPath === '/router.php') {
+    header('Location: /index.php', true, 302);
+    exit;
+}
+
+// Built-in PHP server serves .jsx as text/jsx, which breaks module loading.
+if (str_ends_with(strtolower($uriPath), '.jsx') && is_file($fullPath)) {
+    header('Content-Type: application/javascript; charset=UTF-8');
+    readfile($fullPath);
+    exit;
+}
+
 $privatePrefixes = [
     '/SecureFileShare/app/',
     '/SecureFileShare/config/',
@@ -38,6 +51,12 @@ if ($uriPath === '/' || $uriPath === '/index.php') {
 // SecureFileShare app routes should run through its public entrypoint.
 if (str_starts_with($uriPath, '/SecureFileShare/public')) {
     require __DIR__ . '/SecureFileShare/public/index.php';
+    exit;
+}
+
+// SocialMediaAnalyticsDashboard API routes.
+if (str_starts_with($uriPath, '/SocialMediaAnalyticsDashboard/api/')) {
+    require __DIR__ . '/SocialMediaAnalyticsDashboard/backend/public/index.php';
     exit;
 }
 
